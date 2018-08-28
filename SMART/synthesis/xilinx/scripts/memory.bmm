@@ -1,0 +1,10 @@
+ADDRESS_SPACE blockrom RAMB16 [0x0000:0x0fff]
+
+  BUS_BLOCK
+
+      rom_8x2k_hi_0/B8 [15:8] LOC = X0Y28;
+      rom_8x2k_lo_0/B8 [7:0]  LOC = X0Y26;
+
+  END_BUS_BLOCK;
+
+END_ADDRESS_SPACE;
