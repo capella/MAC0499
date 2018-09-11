@@ -65,6 +65,7 @@
 ../../../rtl/verilog/mcam.v
 ../../../rtl/verilog/coregen/spartan6_dmem.v
 ../../../rtl/verilog/coregen/spartan6_pmem.v
+../../../rtl/verilog/sha256/sha256.v
 
 
 //=============================================================================

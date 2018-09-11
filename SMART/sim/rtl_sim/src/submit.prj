@@ -8,6 +8,7 @@ verilog work ../../../rtl/verilog/omsp_uart.v
 verilog work ../../../rtl/verilog/mcam.v
 verilog work ../../../rtl/verilog/coregen/spartan6_dmem.v
 verilog work ../../../rtl/verilog/coregen/spartan6_pmem.v
+verilog work ../../../rtl/verilog/sha256/sha256.v
 verilog work ../../../rtl/verilog/openmsp430/openMSP430.v
 verilog work ../../../rtl/verilog/openmsp430/omsp_frontend.v
 verilog work ../../../rtl/verilog/openmsp430/omsp_execution_unit.v

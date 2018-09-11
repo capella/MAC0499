@@ -37,6 +37,7 @@
 // $LastChangedDate: 2015-07-01 23:13:32 +0200 (Wed, 01 Jul 2015) $
 //----------------------------------------------------------------------------
 `include "openMSP430_defines.v"
+`include "sha256/sha256per.v"
 
 module openMSP430_fpga (
 
@@ -576,6 +577,27 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
     .uart_rxd     (hw_uart_rxd)    // UART Data Receive (RXD)
 );
 
+//
+// Sha256 Module
+//----------------------------------------
+
+wire        [15:0] per_sha;
+
+
+sha256_periph_16b #(.BASE_ADDR(15'h0100)) sha256_0 (
+
+// OUTPUTs
+    .per_dout     (per_sha), // Peripheral data output
+
+// INPUTs
+    .mclk         (mclk),          // Main system clock
+    .per_addr     (per_addr),      // Peripheral address
+    .per_din      (per_din),       // Peripheral data input
+    .per_en       (per_en),        // Peripheral enable (high active)
+    .per_we       (per_we),        // Peripheral write enable (high active)
+    .puc_rst      (puc_rst)       // Main system reset
+);
+
 
 //
 // Combine peripheral data buses
@@ -584,6 +606,7 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
 assign per_dout = per_dout_dio  |
                   per_dout_tA   |
                   per_dout_7seg |
+                  per_sha |
                   per_dout_uart;
 
 //
@@ -727,8 +750,8 @@ mcam #(
     .LOW_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR),
     .HIGH_SAFE((`PMEM_SIZE)/2-`IRQ_NR-1),
 
-    .LOW_CODE(`PMEM_SIZE-`IRQ_NR+(`SMART_KEY_SIZE+`SMART_SIZE-65536)/2+1),
-    .HIGH_CODE(`PMEM_SIZE-`IRQ_NR+(`SMART_SIZE-65536)/2+1)
+    .LOW_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE+`SMART_SIZE)),
+    .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_SIZE))
 )  smart1 (
     .reset(smart1_reset),
     .mem_dout(smart_mem_dout),
@@ -747,8 +770,8 @@ mcam #(
     .LOW_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR+1),
     .HIGH_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR-1),
 
-    .LOW_CODE((`PMEM_SIZE-`SMART_KEY_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR),
-    .HIGH_CODE((`PMEM_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR-1)
+    .LOW_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE+`SMART_SIZE)),
+    .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_SIZE))
 ) smart2 (
     .reset(smart2_reset),
     .mem_dout(pmem_dout),

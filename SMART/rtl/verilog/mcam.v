@@ -29,11 +29,11 @@ module  mcam (
 //=========
 parameter SIZE_MEM_ADDR = 15;          // size of mem_addr
 
-parameter LOW_SAFE = 200;              // Low address safe code
-parameter HIGH_SAFE = 200;             // High address safe code
+parameter [15:0] LOW_SAFE = 200;              // Low address safe area
+parameter [15:0] HIGH_SAFE = 200;             // High address safe area
 
-parameter LOW_CODE = 200;              // Low adress code
-parameter HIGH_CODE = 200;             // High address code
+parameter [15:0] LOW_CODE = 200;              // Low adress code
+parameter [15:0] HIGH_CODE = 200;             // High address code
 
 // OUTPUTs
 //=========
@@ -63,7 +63,9 @@ assign mem_dout = reset ? 16'b0 : mem_din;
 assign in_safe_area = allow_safe;
 
 always @ (posedge mclk) begin
-    if (ins_addr == LOW_CODE) allow_safe <= 1'b1;
+    if (ins_addr == LOW_CODE) begin
+        allow_safe <= 1'b1;
+    end
     else begin
         if (~pc_in_code) allow_safe <= 1'b0;
     end
