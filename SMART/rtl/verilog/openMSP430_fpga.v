@@ -37,7 +37,6 @@
 // $LastChangedDate: 2015-07-01 23:13:32 +0200 (Wed, 01 Jul 2015) $
 //----------------------------------------------------------------------------
 `include "openMSP430_defines.v"
-`include "sha256/sha256per.v"
 
 module openMSP430_fpga (
 
@@ -584,7 +583,7 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
 wire        [15:0] per_sha;
 
 
-sha256_periph_16b #(.BASE_ADDR(15'h0100)) sha256_0 (
+sha3_periph #(.BASE_ADDR(15'h0100)) sha256_0 (
 
 // OUTPUTs
     .per_dout     (per_sha), // Peripheral data output

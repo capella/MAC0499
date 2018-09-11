@@ -65,7 +65,14 @@
 ../../../rtl/verilog/mcam.v
 ../../../rtl/verilog/coregen/spartan6_dmem.v
 ../../../rtl/verilog/coregen/spartan6_pmem.v
-../../../rtl/verilog/sha256/sha256.v
+
+../../../rtl/verilog/sha3/sha3per.v
+../../../rtl/verilog/sha3/keccak.v
+../../../rtl/verilog/sha3/f_permutation.v
+../../../rtl/verilog/sha3/rconst.v
+../../../rtl/verilog/sha3/round.v
+../../../rtl/verilog/sha3/padder.v
+../../../rtl/verilog/sha3/padder1.v
 
 
 //=============================================================================

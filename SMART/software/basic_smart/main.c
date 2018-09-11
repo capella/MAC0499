@@ -26,16 +26,32 @@ char KEY key[0x0100] = {
 // #define SMART  __attribute__((__section__(".keyfunction"), noinline))
 
 void copykey (unsigned long *tmp) {
+    char *t = "The quick brown fox jumps over the lazy dog.";
+    unsigned long result[16];
+    unsigned long *tt;
+    tt = (unsigned long *) t;
+
+    // [is_last, in_ready, size[2], reset]
+    SHA_CONFIG = 0b00001;
+    SHA_CONFIG = 0b00000;
+
+    // for (int i = 0; i < 11; ++i) {
+    //     SHA_IN = tt[i];
+    //     SHA_CONFIG = 0b01110;
+    //     SHA_CONFIG = 0b00110;
+    // }
+    SHA_CONFIG = 0b10000;
+
+    while (~(SHA_STATUS >> 1) & 0b1);
+
+    // cprintf("%d ", SHA_OUT);
+    // t = SHA_OUT;
     for (int i = 0; i < 16; ++i) {
-        SHA_CONTROL = START_WRITE;
-        SHA_IN = 0;
-        SHA_CONTROL = END_WRITE;
+        result[i] = ((unsigned long *)SHA_OUT)[i];
     }
 
-    for (int i = 0; i < 8; ++i) {
-      SHA_CONTROL = START_RESULT;
-      tmp[i] = SHA_OUT;
-      SHA_CONTROL = END_RESULT;
+    for (int i = 0; i < 16; ++i) {
+        cprintf("%w ", result[i]);
     }
 }
 
@@ -120,8 +136,8 @@ int main(void) {
     // cprintf("\r\n====== openMSP430 in action ======\r\n");   //say hello
     copykey(calc);
 
-    for (int i = 0; i < 8; ++i) {
-     cprintf("%l ", calc[i]);
-    }
+    // for (int i = 0; i < 8; ++i) {
+    //  cprintf("%l ", calc[i]);
+    // }
     while (1) cprintf(".");
 }

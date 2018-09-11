@@ -6,13 +6,13 @@
 // Hardware SHA register address mapping
 //--------------------------------------------------
 
-#define SHA_IN           (*(volatile long *) 0x0100)
-#define SHA_OUT          (*(volatile long *) 0x0104)
-#define SHA_CONTROL      (*(volatile char  *) 0x0108)
-#define SHA_STATUS      (*(volatile char  *) 0x010A)
+#define SHA_CONFIG      (*(volatile unsigned long *) 0x0100)
+#define SHA_STATUS      (*(volatile unsigned long *) 0x0101)
+#define SHA_IN          (*(volatile unsigned long *) 0x0102)
+#define SHA_OUT      	(*(volatile unsigned char  *) 0x0106)
 
-#define START_WRITE		0b1010
-#define END_WRITE		0b0010
+#define SHA_RESET		0b0001
+#define SHA_WRITE		0b0010
 
 #define START_RESULT	0b1001
 #define END_RESULT		0b0001
