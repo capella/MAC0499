@@ -35,23 +35,26 @@ void copykey (unsigned long *tmp) {
     SHA_CONFIG = 0b00001;
     SHA_CONFIG = 0b00000;
 
-    // for (int i = 0; i < 11; ++i) {
-    //     SHA_IN = tt[i];
-    //     SHA_CONFIG = 0b01110;
-    //     SHA_CONFIG = 0b00110;
-    // }
-    SHA_CONFIG = 0b10000;
+    for (int i = 0; i < 11; ++i) {
+        SHA_IN = tt[i];
+        SHA_CONFIG = 0b01000;
+        SHA_CONFIG = 0b00000;
+    }
+    
+    SHA_IN = 0;
+    SHA_CONFIG = 0b11000;
+    SHA_CONFIG = 0b00000;
 
-    while (~(SHA_STATUS >> 1) & 0b1);
+    while (~(SHA_STATUS >> 1) & 0b1) { };
 
     // cprintf("%d ", SHA_OUT);
     // t = SHA_OUT;
-    for (int i = 0; i < 16; ++i) {
-        result[i] = ((unsigned long *)SHA_OUT)[i];
-    }
+    // for (int i = 0; i < 16; ++i) {
+    //     result[i] = ((unsigned long *)SHA_OUT)[i];
+    // }
 
-    for (int i = 0; i < 16; ++i) {
-        cprintf("%w ", result[i]);
+    for (int i = 31; i >= 0; --i) {
+        cprintf("%w ", ((unsigned int *)&SHA_OUT)[i]);
     }
 }
 

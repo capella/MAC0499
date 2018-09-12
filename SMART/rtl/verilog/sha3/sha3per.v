@@ -63,7 +63,7 @@ input               puc_rst;        // Main system reset
 parameter       [14:0] BASE_ADDR   = 15'h0100;
 
 // Decoder bit width (defines how many bits are considered for address decoding)
-parameter              DEC_WD      =  6;
+parameter              DEC_WD      =  7;
 
 // Register addresses offset
 parameter [DEC_WD-1:0] CNTRL1      = 'h0,
@@ -71,36 +71,36 @@ parameter [DEC_WD-1:0] CNTRL1      = 'h0,
                        CNTRL3      = 'h4,
                         CNTRL4_0       = 'h6,
                         CNTRL4_1       = 'h8,
-                        CNTRL4_2       = 'h10,
-                        CNTRL4_3       = 'h12,
-                        CNTRL4_4       = 'h14,
-                        CNTRL4_5       = 'h16,
-                        CNTRL4_6       = 'h18,
-                        CNTRL4_7       = 'h20,
-                        CNTRL4_8       = 'h22,
-                        CNTRL4_9       = 'h24,
-                        CNTRL4_10       = 'h26,
-                        CNTRL4_11       = 'h28,
-                        CNTRL4_12       = 'h30,
-                        CNTRL4_13       = 'h32,
-                        CNTRL4_14       = 'h34,
-                        CNTRL4_15       = 'h36,
-                        CNTRL4_16       = 'h38,
-                        CNTRL4_17       = 'h40,
-                        CNTRL4_18       = 'h42,
-                        CNTRL4_19       = 'h44,
-                        CNTRL4_20       = 'h46,
-                        CNTRL4_21       = 'h48,
-                        CNTRL4_22       = 'h50,
-                        CNTRL4_23       = 'h52,
-                        CNTRL4_24       = 'h54,
-                        CNTRL4_25       = 'h56,
-                        CNTRL4_26       = 'h58,
-                        CNTRL4_27       = 'h60,
-                        CNTRL4_28       = 'h62,
-                        CNTRL4_29       = 'h64,
-                        CNTRL4_30       = 'h66,
-                        CNTRL4_31       = 'h68;
+                        CNTRL4_2       = 'd10,
+                        CNTRL4_3       = 'd12,
+                        CNTRL4_4       = 'd14,
+                        CNTRL4_5       = 'd16,
+                        CNTRL4_6       = 'd18,
+                        CNTRL4_7       = 'd20,
+                        CNTRL4_8       = 'd22,
+                        CNTRL4_9       = 'd24,
+                        CNTRL4_10       = 'd26,
+                        CNTRL4_11       = 'd28,
+                        CNTRL4_12       = 'd30,
+                        CNTRL4_13       = 'd32,
+                        CNTRL4_14       = 'd34,
+                        CNTRL4_15       = 'd36,
+                        CNTRL4_16       = 'd38,
+                        CNTRL4_17       = 'd40,
+                        CNTRL4_18       = 'd42,
+                        CNTRL4_19       = 'd44,
+                        CNTRL4_20       = 'd46,
+                        CNTRL4_21       = 'd48,
+                        CNTRL4_22       = 'd50,
+                        CNTRL4_23       = 'd52,
+                        CNTRL4_24       = 'd54,
+                        CNTRL4_25       = 'd56,
+                        CNTRL4_26       = 'd58,
+                        CNTRL4_27       = 'd60,
+                        CNTRL4_28       = 'd62,
+                        CNTRL4_29       = 'd64,
+                        CNTRL4_30       = 'd66,
+                        CNTRL4_31       = 'd68;
 
 // Register one-hot decoder utilities
 parameter              DEC_SZ      =  (1 << DEC_WD);
@@ -243,25 +243,25 @@ always @ (posedge mclk or posedge puc_rst)
 //-----------------   
 wire  [511:0] cntrl4;
 
-always @ (cntrl4)
-  $display("%h", cntrl4);
-
-always @ (posedge ready)
-  $display("%s %h", {cntrl2[7:0], cntrl2[15:8], cntrl3[7:0], cntrl3[15:8]}, cntrl4);
-
-always @ (cntrl1_2[1])
-  $display("%d", cntrl1_2[1]);
-
 reg ready = 1'h0;
 reg count = 1'h0;
 
-always @(posedge mclk) begin
-  if (cntrl1_1[3] & ~ready & ~count) ready <= 1'h1;
-  if (cntrl1_1[3] & ready & ~count) begin 
+always @(mclk) begin
+  if (cntrl1_1[3] & ~count) begin
+    ready <= 1'h1;
+    count <= 1'h1;
+  end
+
+  if (cntrl1_1[3] & count) begin
     ready <= 1'h0;
     count <= 1'h1;
   end
-  if (~cntrl1_1[3] & ~ready & count) count <= 1'h0;
+
+  if (~cntrl1_1[3]) begin
+    ready <= 1'h0;
+    count <= 1'h0;
+  end
+
 end
 
 

@@ -9,7 +9,7 @@
 #define SHA_CONFIG      (*(volatile unsigned long *) 0x0100)
 #define SHA_STATUS      (*(volatile unsigned long *) 0x0101)
 #define SHA_IN          (*(volatile unsigned long *) 0x0102)
-#define SHA_OUT      	(*(volatile unsigned char  *) 0x0106)
+#define SHA_OUT      	(*(volatile unsigned char *) 0x0106)
 
 #define SHA_RESET		0b0001
 #define SHA_WRITE		0b0010
