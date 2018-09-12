@@ -72,9 +72,7 @@ module openMSP430_fpga (
 
 // RS-232 Port
     UART_RXD,
-    UART_TXD,
-    UART_RXD_A,
-    UART_TXD_A
+    UART_TXD
 );
 
 // Clock Sources
@@ -111,8 +109,6 @@ output    LED0;
 // RS-232 Port
 input     UART_RXD;
 output    UART_TXD;
-input     UART_RXD_A;
-output    UART_TXD_A;
 
 
 //=============================================================================
@@ -161,6 +157,8 @@ wire               irq_uart_tx;
 wire        [15:0] per_dout_uart;
 wire               hw_uart_txd;
 wire               hw_uart_rxd;
+wire               dbg_uart_txd;
+wire               dbg_uart_rxd;
 
 
 // Others
@@ -499,19 +497,19 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
 wire        [15:0] per_sha;
 
 
-sha3_periph #(.BASE_ADDR(15'h0100)) sha256_0 (
+// sha3_periph #(.BASE_ADDR(15'h0100)) sha256_0 (
 
-// OUTPUTs
-    .per_dout     (per_sha), // Peripheral data output
+// // OUTPUTs
+//     .per_dout     (per_sha), // Peripheral data output
 
-// INPUTs
-    .mclk         (mclk),          // Main system clock
-    .per_addr     (per_addr),      // Peripheral address
-    .per_din      (per_din),       // Peripheral data input
-    .per_en       (per_en),        // Peripheral enable (high active)
-    .per_we       (per_we),        // Peripheral write enable (high active)
-    .puc_rst      (puc_rst)       // Main system reset
-);
+// // INPUTs
+//     .mclk         (mclk),          // Main system clock
+//     .per_addr     (per_addr),      // Peripheral address
+//     .per_din      (per_din),       // Peripheral data input
+//     .per_en       (per_en),        // Peripheral enable (high active)
+//     .per_we       (per_we),        // Peripheral write enable (high active)
+//     .puc_rst      (puc_rst)       // Main system reset
+// );
 
 
 //
@@ -673,7 +671,8 @@ mcam #(
     .mclk(mclk),
     .mem_din(smart_mem_din),
     .ins_addr(openMSP430_0.pc),
-    .disable_debug(1'b0)
+    .disable_debug(1'b0),
+    .in_safe_area()
 );
 
 // PROTECT SMART CODE
@@ -693,7 +692,8 @@ mcam #(
     .mclk(mclk),
     .mem_din(smart_mem_dout),
     .ins_addr(openMSP430_0.pc),
-    .disable_debug(1'b0)
+    .disable_debug(1'b0),
+    .in_safe_area()
 );
 
 //=============================================================================
@@ -722,7 +722,6 @@ spartan6_dmem dmem (
 // 7)  I/O CELLS
 //=============================================================================
 
-
 // Slide Switches (Port 1 inputs)
 //--------------------------------
 IBUF  SW7_PIN        (.O(p3_din[7]),                   .I(SW7));
@@ -736,7 +735,6 @@ IBUF  SW0_PIN        (.O(p3_din[0]),                   .I(SW0));
 
 // LEDs (Port 1 outputs)
 //-----------------------
-OBUF  LED7_PIN       (.I(p3_dout[7] & p3_dout_en[7]),  .O(LED7));
 OBUF  LED6_PIN       (.I(p3_dout[6] & p3_dout_en[6]),  .O(LED6));
 OBUF  LED5_PIN       (.I(p3_dout[5] & p3_dout_en[5]),  .O(LED5));
 OBUF  LED4_PIN       (.I(p3_dout[4] & p3_dout_en[4]),  .O(LED4));
@@ -784,8 +782,6 @@ assign dbg_uart_rxd = sdi_select  ? uart_rxd_in : 1'b1;
 IBUF  UART_RXD_PIN   (.O(uart_rxd_in),                 .I(UART_RXD));
 OBUF  UART_TXD_PIN   (.I(uart_txd_out),                .O(UART_TXD));
 
-IBUF  UART_RXD_A_PIN (.O(),                            .I(UART_RXD_A));
-OBUF  UART_TXD_A_PIN (.I(1'b0),                        .O(UART_TXD_A));
-
+OBUF  LED7_PIN       (.I(sdi_select),  .O(LED7));
 
 endmodule // openMSP430_fpga

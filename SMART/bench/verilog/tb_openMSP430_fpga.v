@@ -199,9 +199,7 @@ openMSP430_fpga dut (
 
 // RS-232 Port
     .UART_RXD     (UART_RXD),
-    .UART_TXD     (UART_TXD),
-    .UART_RXD_A   (1'b0),
-    .UART_TXD_A   (UART_TXD_A)
+    .UART_TXD     (UART_TXD)
 
 );
 
