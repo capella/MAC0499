@@ -1,3 +1,4 @@
 bibliotecas/
 projetos_verilog/
 SMART/synthesis/xilinx/WORK/
+SMART/sim/rtl_sim/run/tb_openMSP430_fpga.vcd
