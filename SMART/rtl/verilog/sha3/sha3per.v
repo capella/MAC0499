@@ -250,6 +250,7 @@ always @(mclk) begin
   if (cntrl1_1[3] & ~count) begin
     ready <= 1'h1;
     count <= 1'h1;
+    // $display("%h", {cntrl2[7:0], cntrl2[15:8], cntrl3[7:0], cntrl3[15:8]});
   end
 
   if (cntrl1_1[3] & count) begin

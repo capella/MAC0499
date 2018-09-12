@@ -68,7 +68,7 @@ SECTIONS
   .key   : { KEEP (*(.key )) } > SMARTKEY
   .keyfunction   : {
     . = ALIGN(2);
-    *(.keyfunction*)
+    *(*.*keyfunction*)
   } > SMART
 
   __interrupt_vector_1   : { KEEP (*(__interrupt_vector_1 )) } > VECT1

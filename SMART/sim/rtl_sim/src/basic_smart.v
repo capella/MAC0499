@@ -105,23 +105,26 @@ initial
       // $display("RESET SMART1");
  end
 
- // always @(posedge dut.smart1.pc_in_code) begin
- //      $display("pc_in_code");
- // end
- //  always @(negedge dut.smart1.pc_in_code) begin
- //      $display("out pc_in_code");
- // end
+always @(posedge dut.smart1.pc_in_code) begin
+      $display("1 pc_in_code");
+end
+always @(negedge dut.smart1.pc_in_code) begin
+      $display("1 out pc_in_code %h (%h < %h)", dut.smart1.ins_addr, dut.smart1.LOW_CODE, dut.smart1.HIGH_CODE);
+end
 
+always @(posedge dut.smart2.pc_in_code) begin
+      $display("2 pc_in_code");
+end
+always @(negedge dut.smart2.pc_in_code) begin
+      $display("2 out pc_in_code %h (%h < %h)", dut.smart2.ins_addr, dut.smart2.LOW_CODE, dut.smart2.HIGH_CODE);
+end
 
-// always @ (e_state) begin
-//     $display ("%h) %s - %s - %s", inst_pc, inst_full, i_state, e_state);
-// end
 
 // always @ (e_state) begin
 //     $display ("%h) %s - %s - %s", inst_pc, inst_full, i_state, e_state);
 // end
 
 // always @ (dut.smart1.mem_addr) begin
-//     $display ("%d", dut.smart1.mem_addr);
+//     $display ("%h", dut.smart1.mem_addr);
 // end
 

@@ -750,7 +750,7 @@ mcam #(
     .HIGH_SAFE((`PMEM_SIZE)/2-`IRQ_NR-1),
 
     .LOW_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE+`SMART_SIZE)),
-    .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_SIZE))
+    .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE))
 )  smart1 (
     .reset(smart1_reset),
     .mem_dout(smart_mem_dout),
@@ -770,7 +770,7 @@ mcam #(
     .HIGH_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR-1),
 
     .LOW_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE+`SMART_SIZE)),
-    .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_SIZE))
+    .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE))
 ) smart2 (
     .reset(smart2_reset),
     .mem_dout(pmem_dout),
