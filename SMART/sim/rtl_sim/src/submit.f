@@ -60,7 +60,6 @@
 +incdir+../../../rtl/verilog/
 ../../../rtl/verilog/openMSP430_fpga.v
 ../../../rtl/verilog/io_mux.v
-../../../rtl/verilog/driver_7segment.v
 ../../../rtl/verilog/omsp_uart.v
 ../../../rtl/verilog/mcam.v
 ../../../rtl/verilog/coregen/spartan6_dmem.v

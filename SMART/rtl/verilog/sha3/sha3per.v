@@ -69,79 +69,7 @@ parameter              DEC_WD      =  7;
 parameter [DEC_WD-1:0] CNTRL1      = 'h0,
                        CNTRL2      = 'h2,
                        CNTRL3      = 'h4,
-                        CNTRL4_0       = 'h6,
-                        CNTRL4_1       = 'h8,
-                        CNTRL4_2       = 'd10,
-                        CNTRL4_3       = 'd12,
-                        CNTRL4_4       = 'd14,
-                        CNTRL4_5       = 'd16,
-                        CNTRL4_6       = 'd18,
-                        CNTRL4_7       = 'd20,
-                        CNTRL4_8       = 'd22,
-                        CNTRL4_9       = 'd24,
-                        CNTRL4_10       = 'd26,
-                        CNTRL4_11       = 'd28,
-                        CNTRL4_12       = 'd30,
-                        CNTRL4_13       = 'd32,
-                        CNTRL4_14       = 'd34,
-                        CNTRL4_15       = 'd36,
-                        CNTRL4_16       = 'd38,
-                        CNTRL4_17       = 'd40,
-                        CNTRL4_18       = 'd42,
-                        CNTRL4_19       = 'd44,
-                        CNTRL4_20       = 'd46,
-                        CNTRL4_21       = 'd48,
-                        CNTRL4_22       = 'd50,
-                        CNTRL4_23       = 'd52,
-                        CNTRL4_24       = 'd54,
-                        CNTRL4_25       = 'd56,
-                        CNTRL4_26       = 'd58,
-                        CNTRL4_27       = 'd60,
-                        CNTRL4_28       = 'd62,
-                        CNTRL4_29       = 'd64,
-                        CNTRL4_30       = 'd66,
-                        CNTRL4_31       = 'd68;
-
-// Register one-hot decoder utilities
-parameter              DEC_SZ      =  (1 << DEC_WD);
-parameter [DEC_SZ-1:0] BASE_REG    =  {{DEC_SZ-1{1'b0}}, 1'b1};
-
-// Register one-hot decoder
-parameter [DEC_SZ-1:0] CNTRL1_D    = (BASE_REG << CNTRL1), // configs/status
-                       CNTRL2_D    = (BASE_REG << CNTRL2), // input1
-                       CNTRL3_D    = (BASE_REG << CNTRL3), // input2
-                      CNTRL4_0_D = (BASE_REG << CNTRL4_0),
-                      CNTRL4_1_D = (BASE_REG << CNTRL4_1),
-                      CNTRL4_2_D = (BASE_REG << CNTRL4_2),
-                      CNTRL4_3_D = (BASE_REG << CNTRL4_3),
-                      CNTRL4_4_D = (BASE_REG << CNTRL4_4),
-                      CNTRL4_5_D = (BASE_REG << CNTRL4_5),
-                      CNTRL4_6_D = (BASE_REG << CNTRL4_6),
-                      CNTRL4_7_D = (BASE_REG << CNTRL4_7),
-                      CNTRL4_8_D = (BASE_REG << CNTRL4_8),
-                      CNTRL4_9_D = (BASE_REG << CNTRL4_9),
-                      CNTRL4_10_D = (BASE_REG << CNTRL4_10),
-                      CNTRL4_11_D = (BASE_REG << CNTRL4_11),
-                      CNTRL4_12_D = (BASE_REG << CNTRL4_12),
-                      CNTRL4_13_D = (BASE_REG << CNTRL4_13),
-                      CNTRL4_14_D = (BASE_REG << CNTRL4_14),
-                      CNTRL4_15_D = (BASE_REG << CNTRL4_15),
-                      CNTRL4_16_D = (BASE_REG << CNTRL4_16),
-                      CNTRL4_17_D = (BASE_REG << CNTRL4_17),
-                      CNTRL4_18_D = (BASE_REG << CNTRL4_18),
-                      CNTRL4_19_D = (BASE_REG << CNTRL4_19),
-                      CNTRL4_20_D = (BASE_REG << CNTRL4_20),
-                      CNTRL4_21_D = (BASE_REG << CNTRL4_21),
-                      CNTRL4_22_D = (BASE_REG << CNTRL4_22),
-                      CNTRL4_23_D = (BASE_REG << CNTRL4_23),
-                      CNTRL4_24_D = (BASE_REG << CNTRL4_24),
-                      CNTRL4_25_D = (BASE_REG << CNTRL4_25),
-                      CNTRL4_26_D = (BASE_REG << CNTRL4_26),
-                      CNTRL4_27_D = (BASE_REG << CNTRL4_27),
-                      CNTRL4_28_D = (BASE_REG << CNTRL4_28),
-                      CNTRL4_29_D = (BASE_REG << CNTRL4_29),
-                      CNTRL4_30_D = (BASE_REG << CNTRL4_30),
-                      CNTRL4_31_D = (BASE_REG << CNTRL4_31);
+                      CNTRL4       = 'h6;
 
 
 //============================================================================
@@ -154,49 +82,9 @@ wire              reg_sel   =  per_en & (per_addr[13:DEC_WD-1]==BASE_ADDR[14:DEC
 // Register local address
 wire [DEC_WD-1:0] reg_addr  =  {per_addr[DEC_WD-2:0], 1'b0};
 
-// Register address decode
-wire [DEC_SZ-1:0] reg_dec   =  (CNTRL1_D  &  {DEC_SZ{(reg_addr == CNTRL1 )}})  |
-                               (CNTRL2_D  &  {DEC_SZ{(reg_addr == CNTRL2 )}})  |
-                               (CNTRL3_D  &  {DEC_SZ{(reg_addr == CNTRL3 )}})  |
-                              (CNTRL4_0_D  &  {DEC_SZ{(reg_addr == CNTRL4_0)}}) |
-                              (CNTRL4_1_D  &  {DEC_SZ{(reg_addr == CNTRL4_1)}}) |
-                              (CNTRL4_2_D  &  {DEC_SZ{(reg_addr == CNTRL4_2)}}) |
-                              (CNTRL4_3_D  &  {DEC_SZ{(reg_addr == CNTRL4_3)}}) |
-                              (CNTRL4_4_D  &  {DEC_SZ{(reg_addr == CNTRL4_4)}}) |
-                              (CNTRL4_5_D  &  {DEC_SZ{(reg_addr == CNTRL4_5)}}) |
-                              (CNTRL4_6_D  &  {DEC_SZ{(reg_addr == CNTRL4_6)}}) |
-                              (CNTRL4_7_D  &  {DEC_SZ{(reg_addr == CNTRL4_7)}}) |
-                              (CNTRL4_8_D  &  {DEC_SZ{(reg_addr == CNTRL4_8)}}) |
-                              (CNTRL4_9_D  &  {DEC_SZ{(reg_addr == CNTRL4_9)}}) |
-                              (CNTRL4_10_D  &  {DEC_SZ{(reg_addr == CNTRL4_10)}}) |
-                              (CNTRL4_11_D  &  {DEC_SZ{(reg_addr == CNTRL4_11)}}) |
-                              (CNTRL4_12_D  &  {DEC_SZ{(reg_addr == CNTRL4_12)}}) |
-                              (CNTRL4_13_D  &  {DEC_SZ{(reg_addr == CNTRL4_13)}}) |
-                              (CNTRL4_14_D  &  {DEC_SZ{(reg_addr == CNTRL4_14)}}) |
-                              (CNTRL4_15_D  &  {DEC_SZ{(reg_addr == CNTRL4_15)}}) |
-                              (CNTRL4_16_D  &  {DEC_SZ{(reg_addr == CNTRL4_16)}}) |
-                              (CNTRL4_17_D  &  {DEC_SZ{(reg_addr == CNTRL4_17)}}) |
-                              (CNTRL4_18_D  &  {DEC_SZ{(reg_addr == CNTRL4_18)}}) |
-                              (CNTRL4_19_D  &  {DEC_SZ{(reg_addr == CNTRL4_19)}}) |
-                              (CNTRL4_20_D  &  {DEC_SZ{(reg_addr == CNTRL4_20)}}) |
-                              (CNTRL4_21_D  &  {DEC_SZ{(reg_addr == CNTRL4_21)}}) |
-                              (CNTRL4_22_D  &  {DEC_SZ{(reg_addr == CNTRL4_22)}}) |
-                              (CNTRL4_23_D  &  {DEC_SZ{(reg_addr == CNTRL4_23)}}) |
-                              (CNTRL4_24_D  &  {DEC_SZ{(reg_addr == CNTRL4_24)}}) |
-                              (CNTRL4_25_D  &  {DEC_SZ{(reg_addr == CNTRL4_25)}}) |
-                              (CNTRL4_26_D  &  {DEC_SZ{(reg_addr == CNTRL4_26)}}) |
-                              (CNTRL4_27_D  &  {DEC_SZ{(reg_addr == CNTRL4_27)}}) |
-                              (CNTRL4_28_D  &  {DEC_SZ{(reg_addr == CNTRL4_28)}}) |
-                              (CNTRL4_29_D  &  {DEC_SZ{(reg_addr == CNTRL4_29)}}) |
-                              (CNTRL4_30_D  &  {DEC_SZ{(reg_addr == CNTRL4_30)}}) |
-                              (CNTRL4_31_D  &  {DEC_SZ{(reg_addr == CNTRL4_31)}});
 // Read/Write probes
 wire              reg_write =  |per_we & reg_sel;
 wire              reg_read  = ~|per_we & reg_sel;
-
-// Read/Write vectors
-wire [DEC_SZ-1:0] reg_wr    = reg_dec & {DEC_SZ{reg_write}};
-wire [DEC_SZ-1:0] reg_rd    = reg_dec & {DEC_SZ{reg_read}};
 
 
 //============================================================================
@@ -210,7 +98,7 @@ wire  [7:0] cntrl1_2;
 
 assign cntrl1_2 [7:2] = 6'h0;
 
-wire         cntrl1_wr = reg_wr[CNTRL1];
+wire         cntrl1_wr = (reg_addr == CNTRL1) & reg_write;
 wire  [15:0] cntrl1 = {cntrl1_2, cntrl1_1};
 
 always @ (posedge mclk or posedge puc_rst)
@@ -222,7 +110,7 @@ always @ (posedge mclk or posedge puc_rst)
 //-----------------   
 reg  [15:0] cntrl2;
 
-wire        cntrl2_wr = reg_wr[CNTRL2];
+wire        cntrl2_wr = (reg_addr == CNTRL2) & reg_write;
 
 always @ (posedge mclk or posedge puc_rst)
   if (puc_rst)        cntrl2 <=  16'h0000;
@@ -233,7 +121,7 @@ always @ (posedge mclk or posedge puc_rst)
 //-----------------   
 reg  [15:0] cntrl3;
 
-wire        cntrl3_wr = reg_wr[CNTRL3];
+wire        cntrl3_wr = (reg_addr == CNTRL3) & reg_write;
 
 always @ (posedge mclk or posedge puc_rst)
   if (puc_rst)        cntrl3 <=  16'h0000;
@@ -265,6 +153,19 @@ always @(mclk) begin
 
 end
 
+// always @(posedge reg_sel) begin
+//   $display("%h %h %h", reg_addr*2, per_addr*2, BASE_ADDR);
+// end
+
+// always @(posedge ((reg_addr >= CNTRL4) & reg_read) & mclk) begin
+//   $display("%h %h %h", reg_addr, CNTRL4, reg_addr-CNTRL4);
+// end
+
+//e5cfabc15930fef7b0c57f6da8f128bc5e86c185a6a5039cad86fba23a05afabca2b3ae48e15ea0c702ea6bb320d6d476393c046687a26a60d8c030991da9ee2
+
+// always @(cntrl4) begin
+//   $display("%h", cntrl4);
+// end
 
 //============================================================================
 // 3.5) SHA 256
@@ -287,76 +188,14 @@ keccak uut (
 //============================================================================
 
 // Data output mux
-wire [15:0] cntrl1_rd  = cntrl1  & {16{reg_rd[CNTRL1]}};
-wire [15:0] cntrl2_rd  = cntrl2  & {16{reg_rd[CNTRL2]}};
-wire [15:0] cntrl3_rd  = cntrl3  & {16{reg_rd[CNTRL3]}};
+wire [15:0] cntrl1_rd  = cntrl1  & {16{(reg_addr == CNTRL1) & reg_read}};
+wire [15:0] cntrl2_rd  = cntrl2  & {16{(reg_addr == CNTRL2) & reg_read}};
+wire [15:0] cntrl3_rd  = cntrl3  & {16{(reg_addr == CNTRL3) & reg_read}};
 
-wire [15:0]  cntrl4_0_rd  = cntrl4[15:0] & {16{reg_rd[CNTRL4_0]}};
-wire [15:0]  cntrl4_1_rd  = cntrl4[31:16] & {16{reg_rd[CNTRL4_1]}};
-wire [15:0]  cntrl4_2_rd  = cntrl4[47:32] & {16{reg_rd[CNTRL4_2]}};
-wire [15:0]  cntrl4_3_rd  = cntrl4[63:48] & {16{reg_rd[CNTRL4_3]}};
-wire [15:0]  cntrl4_4_rd  = cntrl4[79:64] & {16{reg_rd[CNTRL4_4]}};
-wire [15:0]  cntrl4_5_rd  = cntrl4[95:80] & {16{reg_rd[CNTRL4_5]}};
-wire [15:0]  cntrl4_6_rd  = cntrl4[111:96] & {16{reg_rd[CNTRL4_6]}};
-wire [15:0]  cntrl4_7_rd  = cntrl4[127:112] & {16{reg_rd[CNTRL4_7]}};
-wire [15:0]  cntrl4_8_rd  = cntrl4[143:128] & {16{reg_rd[CNTRL4_8]}};
-wire [15:0]  cntrl4_9_rd  = cntrl4[159:144] & {16{reg_rd[CNTRL4_9]}};
-wire [15:0]  cntrl4_10_rd  = cntrl4[175:160] & {16{reg_rd[CNTRL4_10]}};
-wire [15:0]  cntrl4_11_rd  = cntrl4[191:176] & {16{reg_rd[CNTRL4_11]}};
-wire [15:0]  cntrl4_12_rd  = cntrl4[207:192] & {16{reg_rd[CNTRL4_12]}};
-wire [15:0]  cntrl4_13_rd  = cntrl4[223:208] & {16{reg_rd[CNTRL4_13]}};
-wire [15:0]  cntrl4_14_rd  = cntrl4[239:224] & {16{reg_rd[CNTRL4_14]}};
-wire [15:0]  cntrl4_15_rd  = cntrl4[255:240] & {16{reg_rd[CNTRL4_15]}};
-wire [15:0]  cntrl4_16_rd  = cntrl4[271:256] & {16{reg_rd[CNTRL4_16]}};
-wire [15:0]  cntrl4_17_rd  = cntrl4[287:272] & {16{reg_rd[CNTRL4_17]}};
-wire [15:0]  cntrl4_18_rd  = cntrl4[303:288] & {16{reg_rd[CNTRL4_18]}};
-wire [15:0]  cntrl4_19_rd  = cntrl4[319:304] & {16{reg_rd[CNTRL4_19]}};
-wire [15:0]  cntrl4_20_rd  = cntrl4[335:320] & {16{reg_rd[CNTRL4_20]}};
-wire [15:0]  cntrl4_21_rd  = cntrl4[351:336] & {16{reg_rd[CNTRL4_21]}};
-wire [15:0]  cntrl4_22_rd  = cntrl4[367:352] & {16{reg_rd[CNTRL4_22]}};
-wire [15:0]  cntrl4_23_rd  = cntrl4[383:368] & {16{reg_rd[CNTRL4_23]}};
-wire [15:0]  cntrl4_24_rd  = cntrl4[399:384] & {16{reg_rd[CNTRL4_24]}};
-wire [15:0]  cntrl4_25_rd  = cntrl4[415:400] & {16{reg_rd[CNTRL4_25]}};
-wire [15:0]  cntrl4_26_rd  = cntrl4[431:416] & {16{reg_rd[CNTRL4_26]}};
-wire [15:0]  cntrl4_27_rd  = cntrl4[447:432] & {16{reg_rd[CNTRL4_27]}};
-wire [15:0]  cntrl4_28_rd  = cntrl4[463:448] & {16{reg_rd[CNTRL4_28]}};
-wire [15:0]  cntrl4_29_rd  = cntrl4[479:464] & {16{reg_rd[CNTRL4_29]}};
-wire [15:0]  cntrl4_30_rd  = cntrl4[495:480] & {16{reg_rd[CNTRL4_30]}};
-wire [15:0]  cntrl4_31_rd  = cntrl4[511:496] & {16{reg_rd[CNTRL4_31]}};
+wire [15:0]  cntrl4_rd  = cntrl4[(reg_addr - CNTRL4)*8 +: 16] & {16{(reg_addr >= CNTRL4) & reg_read}};
 
 wire [15:0] per_dout   =  cntrl1_rd  |
                           cntrl2_rd  |
                           cntrl3_rd  |
-                          cntrl4_0_rd |
-                          cntrl4_1_rd |
-                          cntrl4_2_rd |
-                          cntrl4_3_rd |
-                          cntrl4_4_rd |
-                          cntrl4_5_rd |
-                          cntrl4_6_rd |
-                          cntrl4_7_rd |
-                          cntrl4_8_rd |
-                          cntrl4_9_rd |
-                          cntrl4_10_rd |
-                          cntrl4_11_rd |
-                          cntrl4_12_rd |
-                          cntrl4_13_rd |
-                          cntrl4_14_rd |
-                          cntrl4_15_rd |
-                          cntrl4_16_rd |
-                          cntrl4_17_rd |
-                          cntrl4_18_rd |
-                          cntrl4_19_rd |
-                          cntrl4_20_rd |
-                          cntrl4_21_rd |
-                          cntrl4_22_rd |
-                          cntrl4_23_rd |
-                          cntrl4_24_rd |
-                          cntrl4_25_rd |
-                          cntrl4_26_rd |
-                          cntrl4_27_rd |
-                          cntrl4_28_rd |
-                          cntrl4_29_rd |
-                          cntrl4_30_rd |
-                          cntrl4_31_rd;
+                          cntrl4_rd;
 endmodule

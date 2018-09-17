@@ -33,16 +33,17 @@
 // $LastChangedDate: 2012-10-15 23:35:05 +0200 (Mon, 15 Oct 2012) $
 //----------------------------------------------------------------------------
 
+
 //=============================================================================
 // FPGA Specific modules
 //=============================================================================
 
 `include "../../../rtl/verilog/openMSP430_fpga.v"
 `include "../../../rtl/verilog/io_mux.v"
-`include "../../../rtl/verilog/driver_7segment.v"
 `include "../../../rtl/verilog/omsp_uart.v"
 `include "../../../rtl/verilog/coregen/spartan6_dmem.v"
 `include "../../../rtl/verilog/coregen/spartan6_pmem.v"
+`include "../../../rtl/verilog/mcam.v"
 
 
 //=============================================================================

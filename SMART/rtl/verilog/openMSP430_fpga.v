@@ -70,36 +70,11 @@ module openMSP430_fpga (
     LED1,
     LED0,
 
-// Four-Sigit, Seven-Segment LED Display
-    SEG_A,
-    SEG_B,
-    SEG_C,
-    SEG_D,
-    SEG_E,
-    SEG_F,
-    SEG_G,
-    SEG_DP,
-    SEG_AN0,
-    SEG_AN1,
-    SEG_AN2,
-    SEG_AN3,
-
 // RS-232 Port
     UART_RXD,
     UART_TXD,
     UART_RXD_A,
-    UART_TXD_A,
-
-// PS/2 Mouse/Keyboard Port
-    PS2_D,
-    PS2_C,
-
-// VGA Port
-    VGA_R,
-    VGA_G,
-    VGA_B,
-    VGA_HS,
-    VGA_VS
+    UART_TXD_A
 );
 
 // Clock Sources
@@ -132,36 +107,12 @@ output    LED2;
 output    LED1;
 output    LED0;
 
-// Four-Sigit, Seven-Segment LED Display
-output    SEG_A;
-output    SEG_B;
-output    SEG_C;
-output    SEG_D;
-output    SEG_E;
-output    SEG_F;
-output    SEG_G;
-output    SEG_DP;
-output    SEG_AN0;
-output    SEG_AN1;
-output    SEG_AN2;
-output    SEG_AN3;
 
 // RS-232 Port
 input     UART_RXD;
 output    UART_TXD;
 input     UART_RXD_A;
 output    UART_TXD_A;
-
-// PS/2 Mouse/Keyboard Port
-inout     PS2_D;
-output    PS2_C;
-
-// VGA Port
-output    VGA_R;
-output    VGA_G;
-output    VGA_B;
-output    VGA_HS;
-output    VGA_VS;
 
 
 //=============================================================================
@@ -203,9 +154,6 @@ wire        [15:0] per_dout_dio;
 
 // Timer A
 wire        [15:0] per_dout_tA;
-
-// 7 segment driver
-wire        [15:0] per_dout_7seg;
 
 // Simple UART
 wire               irq_uart_rx;
@@ -521,38 +469,6 @@ omsp_timerA timerA_0 (
     .taclk        (taclk)          // TACLK external timer clock (SLOW)
 );
 
-
-//
-// Four-Digit, Seven-Segment LED Display driver
-//----------------------------------------------
-
-driver_7segment driver_7segment_0 (
-
-// OUTPUTs
-    .per_dout     (per_dout_7seg), // Peripheral data output
-    .seg_a        (seg_a_),        // Segment A control
-    .seg_b        (seg_b_),        // Segment B control
-    .seg_c        (seg_c_),        // Segment C control
-    .seg_d        (seg_d_),        // Segment D control
-    .seg_e        (seg_e_),        // Segment E control
-    .seg_f        (seg_f_),        // Segment F control
-    .seg_g        (seg_g_),        // Segment G control
-    .seg_dp       (seg_dp_),       // Segment DP control
-    .seg_an0      (seg_an0_),      // Anode 0 control
-    .seg_an1      (seg_an1_),      // Anode 1 control
-    .seg_an2      (seg_an2_),      // Anode 2 control
-    .seg_an3      (seg_an3_),      // Anode 3 control
-
-// INPUTs
-    .mclk         (mclk),          // Main system clock
-    .per_addr     (per_addr),      // Peripheral address
-    .per_din      (per_din),       // Peripheral data input
-    .per_en       (per_en),        // Peripheral enable (high active)
-    .per_we       (per_we),        // Peripheral write enable (high active)
-    .puc_rst      (puc_rst)        // Main system reset
-);
-
-
 //
 // Simple full duplex UART (8N1 protocol)
 //----------------------------------------
@@ -604,7 +520,6 @@ sha3_periph #(.BASE_ADDR(15'h0100)) sha256_0 (
 
 assign per_dout = per_dout_dio  |
                   per_dout_tA   |
-                  per_dout_7seg |
                   per_sha |
                   per_dout_uart;
 
@@ -836,21 +751,6 @@ IBUF  BTN2_PIN       (.O(),                            .I(BTN2));
 IBUF  BTN1_PIN       (.O(),                            .I(BTN1));
 IBUF  BTN0_PIN       (.O(),                            .I(BTN0));
 
-// Four-Sigit, Seven-Segment LED Display
-//---------------------------------------
-OBUF  SEG_A_PIN      (.I(seg_a_),                      .O(SEG_A));
-OBUF  SEG_B_PIN      (.I(seg_b_),                      .O(SEG_B));
-OBUF  SEG_C_PIN      (.I(seg_c_),                      .O(SEG_C));
-OBUF  SEG_D_PIN      (.I(seg_d_),                      .O(SEG_D));
-OBUF  SEG_E_PIN      (.I(seg_e_),                      .O(SEG_E));
-OBUF  SEG_F_PIN      (.I(seg_f_),                      .O(SEG_F));
-OBUF  SEG_G_PIN      (.I(seg_g_),                      .O(SEG_G));
-OBUF  SEG_DP_PIN     (.I(seg_dp_),                     .O(SEG_DP));
-OBUF  SEG_AN0_PIN    (.I(seg_an0_),                    .O(SEG_AN0));
-OBUF  SEG_AN1_PIN    (.I(seg_an1_),                    .O(SEG_AN1));
-OBUF  SEG_AN2_PIN    (.I(seg_an2_),                    .O(SEG_AN2));
-OBUF  SEG_AN3_PIN    (.I(seg_an3_),                    .O(SEG_AN3));
-
 // RS-232 Port
 //----------------------
 // P1.1 (TX) and P2.2 (RX)
@@ -886,21 +786,6 @@ OBUF  UART_TXD_PIN   (.I(uart_txd_out),                .O(UART_TXD));
 
 IBUF  UART_RXD_A_PIN (.O(),                            .I(UART_RXD_A));
 OBUF  UART_TXD_A_PIN (.I(1'b0),                        .O(UART_TXD_A));
-
-
-// PS/2 Mouse/Keyboard Port
-//--------------------------
-IOBUF PS2_D_PIN      (.O(), .I(1'b0), .T(1'b1),        .IO(PS2_D));
-OBUF  PS2_C_PIN      (.I(1'b0),                        .O(PS2_C));
-
-
-// VGA Port
-//---------------------------------------
-OBUF  VGA_R_PIN      (.I(1'b0),                        .O(VGA_R));
-OBUF  VGA_G_PIN      (.I(1'b0),                        .O(VGA_G));
-OBUF  VGA_B_PIN      (.I(1'b0),                        .O(VGA_B));
-OBUF  VGA_HS_PIN     (.I(1'b0),                        .O(VGA_HS));
-OBUF  VGA_VS_PIN     (.I(1'b0),                        .O(VGA_VS));
 
 
 endmodule // openMSP430_fpga

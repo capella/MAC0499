@@ -3,12 +3,10 @@ verilog work ../../../bench/verilog/msp_debug.v
 verilog work ../../../bench/verilog/glbl.v
 verilog work ../../../rtl/verilog/openMSP430_fpga.v
 verilog work ../../../rtl/verilog/io_mux.v
-verilog work ../../../rtl/verilog/driver_7segment.v
 verilog work ../../../rtl/verilog/omsp_uart.v
 verilog work ../../../rtl/verilog/mcam.v
 verilog work ../../../rtl/verilog/coregen/spartan6_dmem.v
 verilog work ../../../rtl/verilog/coregen/spartan6_pmem.v
-verilog work ../../../rtl/verilog/sha256/sha256.v
 verilog work ../../../rtl/verilog/openmsp430/openMSP430.v
 verilog work ../../../rtl/verilog/openmsp430/omsp_frontend.v
 verilog work ../../../rtl/verilog/openmsp430/omsp_execution_unit.v
@@ -32,3 +30,11 @@ verilog work ../../../rtl/verilog/openmsp430/omsp_clock_gate.v
 verilog work ../../../rtl/verilog/openmsp430/omsp_clock_mux.v
 verilog work ../../../rtl/verilog/openmsp430/periph/omsp_gpio.v
 verilog work ../../../rtl/verilog/openmsp430/periph/omsp_timerA.v
+
+verilog work ../../../rtl/verilog/sha3/sha3per.v
+verilog work ../../../rtl/verilog/sha3/keccak.v
+verilog work ../../../rtl/verilog/sha3/f_permutation.v
+verilog work ../../../rtl/verilog/sha3/rconst.v
+verilog work ../../../rtl/verilog/sha3/round.v
+verilog work ../../../rtl/verilog/sha3/padder.v
+verilog work ../../../rtl/verilog/sha3/padder1.v
