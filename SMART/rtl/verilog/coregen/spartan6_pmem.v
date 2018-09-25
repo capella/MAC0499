@@ -83,7 +83,7 @@ output [15 : 0] douta;
     .C_HAS_SOFTECC_INPUT_REGS_A(0),
     .C_HAS_SOFTECC_OUTPUT_REGS_B(0),
     .C_INIT_FILE("BlankString"),
-    .C_INIT_FILE_NAME("/home/ise/TCC/SMART/rtl/verilog/coregen/spartan6_pmem.mif"),
+    .C_INIT_FILE_NAME("pmem.mif"),
     .C_INITA_VAL("0"),
     .C_INITB_VAL("0"),
     .C_INTERFACE_TYPE(0),

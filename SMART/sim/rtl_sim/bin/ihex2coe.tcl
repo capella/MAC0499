@@ -4,10 +4,21 @@
 #                            PARAMETER CHECK                                  #
 ###############################################################################
 
+proc dec2bin i {
+    #returns a string, e.g. dec2bin 10 => 1010 
+    set res {} 
+    while {$i>0} {
+        set res [expr {$i%2}]$res
+        set i [expr {$i/2}]
+    }
+    if {$res == {}} {set res 0}
+    return $res
+}
+
 if {$argc != 6} {
   puts "ERROR   : wrong number of arguments"
-  puts "USAGE   : ihex2coe.tcl -ihex <input file> -out <output file> -mem_depth <memory size>"
-  puts "Example : ihex2coe.tcl -ihex rom.ihex     -out rom.mem       -mem_depth 2048"
+  puts "USAGE   : ihex2coe.tcl -ihex <input file> -out <output file> -mem_size <memory size>"
+  puts "Example : ihex2coe.tcl -ihex rom.ihex     -out rom.mem       -mem_size 2048"
   exit 1
 }
 
@@ -109,19 +120,21 @@ close $f_ihex
 
 
 # Writing memory array to file
-puts $f_out "memory_initialization_radix=16;"
-puts $f_out "memory_initialization_vector="
+# puts $f_out "memory_initialization_radix=16;"
+# puts $f_out "memory_initialization_vector="
 
 for {set i 0} {$i <= $num_word} {incr i} { 
  #    if {![expr $i%16]} {
 	# puts -nonewline $f_out "\n@[format "%04x" $i] "
  #    }
-    puts -nonewline $f_out " [format "%02s" $mem_arr($i) ]"
-    if { "$i" != "$num_word" } {
-      puts $f_out ","
-    } else {
-      puts $f_out ";"
-    }
+    binary scan [binary format H* $mem_arr($i)] B* bits
+
+    puts $f_out $bits
+    # if { "$i" != "$num_word" } {
+    #   puts $f_out ","
+    # } else {
+    #   puts $f_out ";"
+    # }
 }
 
 puts  $f_out "\n"
