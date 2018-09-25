@@ -2,11 +2,11 @@ verilog work ../../../bench/verilog/tb_openMSP430_fpga.v
 verilog work ../../../bench/verilog/msp_debug.v
 verilog work ../../../bench/verilog/glbl.v
 verilog work ../../../rtl/verilog/openMSP430_fpga.v
-verilog work ../../../rtl/verilog/io_mux.v
 verilog work ../../../rtl/verilog/omsp_uart.v
 verilog work ../../../rtl/verilog/mcam.v
 verilog work ../../../rtl/verilog/coregen/spartan6_dmem.v
 verilog work ../../../rtl/verilog/coregen/spartan6_pmem.v
+verilog work ../../../rtl/verilog/coregen/clock.v
 verilog work ../../../rtl/verilog/openmsp430/openMSP430.v
 verilog work ../../../rtl/verilog/openmsp430/omsp_frontend.v
 verilog work ../../../rtl/verilog/openmsp430/omsp_execution_unit.v

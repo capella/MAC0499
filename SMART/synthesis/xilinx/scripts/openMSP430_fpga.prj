@@ -33,23 +33,23 @@
 // $LastChangedDate: 2012-10-15 23:35:05 +0200 (Mon, 15 Oct 2012) $
 //----------------------------------------------------------------------------
 
-//`include "../../../rtl/verilog/sha3/sha3per.v"
-//`include "../../../rtl/verilog/sha3/keccak.v"
-//`include "../../../rtl/verilog/sha3/f_permutation.v"
-//`include "../../../rtl/verilog/sha3/rconst.v"
-//`include "../../../rtl/verilog/sha3/round.v"
-//`include "../../../rtl/verilog/sha3/padder.v"
-//`include "../../../rtl/verilog/sha3/padder1.v"
+`include "../../../rtl/verilog/sha3/sha3per.v"
+`include "../../../rtl/verilog/sha3/keccak.v"
+`include "../../../rtl/verilog/sha3/f_permutation.v"
+`include "../../../rtl/verilog/sha3/rconst.v"
+`include "../../../rtl/verilog/sha3/round.v"
+`include "../../../rtl/verilog/sha3/padder.v"
+`include "../../../rtl/verilog/sha3/padder1.v"
 
 //=============================================================================
 // FPGA Specific modules
 //=============================================================================
 
 `include "../../../rtl/verilog/openMSP430_fpga.v"
-`include "../../../rtl/verilog/io_mux.v"
 `include "../../../rtl/verilog/omsp_uart.v"
 `include "../../../rtl/verilog/coregen/spartan6_dmem.v"
 `include "../../../rtl/verilog/coregen/spartan6_pmem.v"
+`include "../../../rtl/verilog/coregen/clock.v"
 `include "../../../rtl/verilog/mcam.v"
 
 

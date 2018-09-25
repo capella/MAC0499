@@ -59,11 +59,11 @@
 
 +incdir+../../../rtl/verilog/
 ../../../rtl/verilog/openMSP430_fpga.v
-../../../rtl/verilog/io_mux.v
 ../../../rtl/verilog/omsp_uart.v
 ../../../rtl/verilog/mcam.v
 ../../../rtl/verilog/coregen/spartan6_dmem.v
 ../../../rtl/verilog/coregen/spartan6_pmem.v
+../../../rtl/verilog/coregen/clock.v
 
 ../../../rtl/verilog/sha3/sha3per.v
 ../../../rtl/verilog/sha3/keccak.v
