@@ -167,6 +167,9 @@ fi
 echo "Convert IHEX file to Verilog MEMH format..."
 ../bin/ihex2mem.tcl -ihex pmem.ihex -out pmem.mem -mem_size $pmemsize
 
+../bin/ihex2coe.tcl -ihex pmem.ihex -out pmem.coe -mem_size $pmemsize
+
+
 # Start verilog simulation
 echo "Start Verilog simulation..."
 ../bin/rtlsim.sh    stimulus.v pmem.mem $submitfile
