@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ../../../rtl/verilog/coregen
+ls | grep -Ev ".cgp|.xco" | xargs rm -rf
+ls *.xcoe | xargs rm -rf
+

@@ -1,5 +1,0 @@
-Wed Sep 12 20:35:46 2018
-
-Upgraded spartan6_dmem from Block Memory Generator 3.3 to Block Memory Generator 7.3
-
-No changes made to parameter values.

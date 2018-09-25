@@ -51,7 +51,7 @@ spartan6_pmem your_instance_name (
   .clka(clka), // input clka
   .ena(ena), // input ena
   .wea(wea), // input [1 : 0] wea
-  .addra(addra), // input [11 : 0] addra
+  .addra(addra), // input [12 : 0] addra
   .dina(dina), // input [15 : 0] dina
   .douta(douta) // output [15 : 0] douta
 );

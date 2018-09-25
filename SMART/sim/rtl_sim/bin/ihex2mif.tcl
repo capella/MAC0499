@@ -17,8 +17,8 @@ proc dec2bin i {
 
 if {$argc != 6} {
   puts "ERROR   : wrong number of arguments"
-  puts "USAGE   : ihex2coe.tcl -ihex <input file> -out <output file> -mem_size <memory size>"
-  puts "Example : ihex2coe.tcl -ihex rom.ihex     -out rom.mem       -mem_size 2048"
+  puts "USAGE   : ihex2mif.tcl -ihex <input file> -out <output file> -mem_size <memory size>"
+  puts "Example : ihex2mif.tcl -ihex rom.ihex     -out rom.mem       -mem_size 2048"
   exit 1
 }
 

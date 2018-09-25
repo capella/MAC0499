@@ -312,19 +312,19 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
 wire        [15:0] per_sha;
 
 
-sha3_periph #(.BASE_ADDR(15'h0100)) sha256_0 (
+// sha3_periph #(.BASE_ADDR(15'h0100)) sha256_0 (
 
-// OUTPUTs
-    .per_dout     (per_sha), // Peripheral data output
+// // OUTPUTs
+//     .per_dout     (per_sha), // Peripheral data output
 
-// INPUTs
-    .mclk         (mclk),          // Main system clock
-    .per_addr     (per_addr),      // Peripheral address
-    .per_din      (per_din),       // Peripheral data input
-    .per_en       (per_en),        // Peripheral enable (high active)
-    .per_we       (per_we),        // Peripheral write enable (high active)
-    .puc_rst      (puc_rst)       // Main system reset
-);
+// // INPUTs
+//     .mclk         (mclk),          // Main system clock
+//     .per_addr     (per_addr),      // Peripheral address
+//     .per_din      (per_din),       // Peripheral data input
+//     .per_en       (per_en),        // Peripheral enable (high active)
+//     .per_we       (per_we),        // Peripheral write enable (high active)
+//     .puc_rst      (puc_rst)       // Main system reset
+// );
 
 
 //
@@ -410,7 +410,7 @@ spartan6_pmem pmem  (
     .clka(mclk),
     .ena(~pmem_cen),
     .wea(~pmem_wen),
-    .addra(pmem_addr),
+    .addra({1'b0, pmem_addr}),
     .dina(pmem_din),
     .douta(smart_mem_din)
 );

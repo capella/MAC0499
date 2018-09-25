@@ -1,0 +1,15 @@
+Cleanup...
+ =======================================================
+| Start simulation:             basic_smart
+ =======================================================
+rm -f basic_smart.elf basic_smart.a43 basic_smart.lst basic_smart.size *.o
+msp430-elf-gcc -D PFX_MSP430_ELF -I /cad/ti/gcc/include -O0 -Wall -g -mcpu=msp430 -mhwmult=16bit   -c -o main.o main.c
+msp430-elf-gcc -D PFX_MSP430_ELF -I /cad/ti/gcc/include -O0 -Wall -g -mcpu=msp430 -mhwmult=16bit   -c -o cprintf.o cprintf.c
+msp430-elf-gcc -D PFX_MSP430_ELF -I /cad/ti/gcc/include -O0 -Wall -g -mcpu=msp430 -mhwmult=16bit -T linker.msp430-elf.x -o basic_smart.elf main.o cprintf.o
+msp430-elf-objcopy -O ihex basic_smart.elf basic_smart.a43
+msp430-elf-objdump -dSt basic_smart.elf >basic_smart.lst
+msp430-elf-objdump -dS basic_smart.elf > tmp
+msp430-elf-size  basic_smart.elf >basic_smart.size
+Convert ELF file to IHEX format...
+Convert IHEX file to Verilog MEMH format...
+Start Verilog simulation...

@@ -52,6 +52,5 @@ spartan6_pmem.veo
 spartan6_pmem.xco
 spartan6_pmem.xise
 spartan6_pmem_flist.txt
-spartan6_pmem_upgrade.txt
 spartan6_pmem_xmdf.tcl
 summary.log
