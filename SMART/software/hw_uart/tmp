@@ -22,13 +22,13 @@ Disassembly of section .text:
     e032:	3e 40 13 00 	mov	#19,	r14	;#0x0013
 
 0000e036 <.Loc.79.1>:
-    e036:	b0 12 d4 e9 	call	#59860		;#0xe9d4
+    e036:	b0 12 c2 e9 	call	#59842		;#0xe9c2
 
 0000e03a <__crt0_movedata>:
     e03a:	3c 40 00 02 	mov	#512,	r12	;#0x0200
 
 0000e03e <.Loc.116.1>:
-    e03e:	3d 40 20 ea 	mov	#59936,	r13	;#0xea20
+    e03e:	3d 40 0e ea 	mov	#59918,	r13	;#0xea0e
 
 0000e042 <.Loc.119.1>:
     e042:	0d 9c       	cmp	r12,	r13	;
@@ -40,10 +40,10 @@ Disassembly of section .text:
     e046:	3e 40 02 00 	mov	#2,	r14	;
 
 0000e04a <.Loc.124.1>:
-    e04a:	b0 12 9c e9 	call	#59804		;#0xe99c
+    e04a:	b0 12 8a e9 	call	#59786		;#0xe98a
 
 0000e04e <__crt0_call_init_then_main>:
-    e04e:	b0 12 04 ea 	call	#59908		;#0xea04
+    e04e:	b0 12 f2 e9 	call	#59890		;#0xe9f2
 
 0000e052 <.Loc.196.1>:
     e052:	0c 43       	clr	r12		;
@@ -113,13 +113,13 @@ Disassembly of section .text:
     e096:	30 41       	ret			
 
 0000e098 <deregister_tm_clones>:
-    e098:	3c 40 20 ea 	mov	#59936,	r12	;#0xea20
-    e09c:	3c 90 20 ea 	cmp	#59936,	r12	;#0xea20
+    e098:	3c 40 0e ea 	mov	#59918,	r12	;#0xea0e
+    e09c:	3c 90 0e ea 	cmp	#59918,	r12	;#0xea0e
     e0a0:	07 24       	jz	$+16     	;abs 0xe0b0
     e0a2:	3d 40 00 00 	mov	#0,	r13	;
     e0a6:	0d 93       	cmp	#0,	r13	;r3 As==00
     e0a8:	03 24       	jz	$+8      	;abs 0xe0b0
-    e0aa:	3c 40 20 ea 	mov	#59936,	r12	;#0xea20
+    e0aa:	3c 40 0e ea 	mov	#59918,	r12	;#0xea0e
     e0ae:	8d 12       	call	r13		;
 
 0000e0b0 <.L1>:
@@ -127,11 +127,11 @@ Disassembly of section .text:
 
 0000e0b2 <register_tm_clones>:
     e0b2:	0a 12       	push	r10		;
-    e0b4:	3a 40 20 ea 	mov	#59936,	r10	;#0xea20
-    e0b8:	3a 80 20 ea 	sub	#59936,	r10	;#0xea20
+    e0b4:	3a 40 0e ea 	mov	#59918,	r10	;#0xea0e
+    e0b8:	3a 80 0e ea 	sub	#59918,	r10	;#0xea0e
     e0bc:	0a 11       	rra	r10		;
     e0be:	0c 4a       	mov	r10,	r12	;
-    e0c0:	b0 12 e8 e8 	call	#59624		;#0xe8e8
+    e0c0:	b0 12 d6 e8 	call	#59606		;#0xe8d6
     e0c4:	0c 5a       	add	r10,	r12	;
     e0c6:	0d 4c       	mov	r12,	r13	;
     e0c8:	0d 11       	rra	r13		;
@@ -140,7 +140,7 @@ Disassembly of section .text:
     e0ce:	3e 40 00 00 	mov	#0,	r14	;
     e0d2:	0e 93       	cmp	#0,	r14	;r3 As==00
     e0d4:	03 24       	jz	$+8      	;abs 0xe0dc
-    e0d6:	3c 40 20 ea 	mov	#59936,	r12	;#0xea20
+    e0d6:	3c 40 0e ea 	mov	#59918,	r12	;#0xea0e
     e0da:	8e 12       	call	r14		;
 
 0000e0dc <.L9>:
@@ -173,7 +173,7 @@ Disassembly of section .text:
     e114:	d2 43 02 02 	mov.b	#1,	&0x0202	;r3 As==01
 
 0000e118 <.L17>:
-    e118:	30 40 6e e8 	br	#0xe86e		;
+    e118:	30 40 5c e8 	br	#0xe85c		;
 
 0000e11c <.L20>:
     e11c:	1c 53       	inc	r12		;
@@ -329,7 +329,7 @@ interrupt (8) INT_uart_rx(void) {
     e196:	81 4c 02 00 	mov	r12,	2(r1)	;
     e19a:	b1 40 00 e0 	mov	#57344,	0(r1)	;#0xe000
     e19e:	00 00 
-    e1a0:	b0 12 a2 e5 	call	#58786		;#0xe5a2
+    e1a0:	b0 12 90 e5 	call	#58768		;#0xe590
 
 0000e1a4 <.LVL5>:
   // // Exit the low power mode
@@ -360,933 +360,942 @@ int main(void) {
     e1c0:	21 83       	decd	r1		;
 
 0000e1c2 <.LCFI13>:
-    char buf[40];
-    int led = 0;
-//    int *key;
-//    key = (void *)0xfee0; 
+    // WDTCTL = WDTPW | WDTHOLD;           // Init watchdog timer
 
-    WDTCTL = WDTPW | WDTHOLD;           // Init watchdog timer
-    e1c2:	b2 40 80 5a 	mov	#23168,	&0x0120	;#0x5a80
-    e1c6:	20 01 
-
-0000e1c8 <.Loc.72.1>:
-
-    P3DIR  = 0xff;
-    e1c8:	f2 43 1a 00 	mov.b	#-1,	&0x001a	;r3 As==11
-
-0000e1cc <.Loc.73.1>:
-    P3OUT  = 0xff;                      // Light LED during init
-    e1cc:	f2 43 19 00 	mov.b	#-1,	&0x0019	;r3 As==11
-
-0000e1d0 <.Loc.75.1>:
+    // P3DIR  = 0xff;
+    // P3OUT  = 0xff;                      // Light LED during init
 
     UART_BAUD = BAUD;                   // Init UART
-    e1d0:	b2 40 ae 00 	mov	#174,	&0x0082	;#0x00ae
-    e1d4:	82 00 
+    e1c2:	b2 40 ae 00 	mov	#174,	&0x0082	;#0x00ae
+    e1c6:	82 00 
 
-0000e1d6 <.Loc.76.1>:
+0000e1c8 <.Loc.76.1>:
     UART_CTL  = UART_EN | UART_IEN_RX;
-    e1d6:	f2 40 11 00 	mov.b	#17,	&0x0080	;#0x0011
-    e1da:	80 00 
+    e1c8:	f2 40 11 00 	mov.b	#17,	&0x0080	;#0x0011
+    e1cc:	80 00 
 
-0000e1dc <.Loc.81.1>:
-
-
+0000e1ce <.Loc.84.1>:
     // delay(65535);
 
-    P3OUT  = 0x00;                      // Switch off LED
-    e1dc:	c2 43 19 00 	mov.b	#0,	&0x0019	;r3 As==00
-
-0000e1e0 <.Loc.84.1>:
+    // P3OUT  = 0x00;                      // Switch off LED
 
     // cprintf("\r\n====== openMSP430 in action ======\r\n");   //say hello
     cprintf("> ");
-    e1e0:	b1 40 03 e0 	mov	#57347,	0(r1)	;#0xe003
-    e1e4:	00 00 
-    e1e6:	b0 12 a2 e5 	call	#58786		;#0xe5a2
+    e1ce:	b1 40 03 e0 	mov	#57347,	0(r1)	;#0xe003
+    e1d2:	00 00 
+    e1d4:	b0 12 90 e5 	call	#58768		;#0xe590
 
-0000e1ea <.LVL7>:
+0000e1d8 <.LVL7>:
   //  cprintf("%d", *key);
 
     enable_interrupts();                  // Enable interrupts
-    e1ea:	03 43       	nop			
-    e1ec:	32 d2       	eint			
-    e1ee:	03 43       	nop			
+    e1d8:	03 43       	nop			
+    e1da:	32 d2       	eint			
+    e1dc:	03 43       	nop			
 
-0000e1f0 <.L14>:
-    e1f0:	30 40 f0 e1 	br	#0xe1f0		;
+0000e1de <.L14>:
+    e1de:	30 40 de e1 	br	#0xe1de		;
 
-0000e1f4 <cput_nibble>:
+0000e1e2 <cput_nibble>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e1f4:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
+    e1e2:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
 
-0000e1f8 <.LVL1>:
-    e1f8:	5d 4c 06 e0 	mov.b	-8186(r12),r13	;0xffffe006
+0000e1e6 <.LVL1>:
+    e1e6:	5d 4c 06 e0 	mov.b	-8186(r12),r13	;0xffffe006
 
-0000e1fc <.LBB120>:
+0000e1ea <.LBB120>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e1fc:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+    e1ea:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
 
-0000e200 <.L2>:
-    e200:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e204:	fd 23       	jnz	$-4      	;abs 0xe200
+0000e1ee <.L2>:
+    e1ee:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e1f2:	fd 23       	jnz	$-4      	;abs 0xe1ee
 
-0000e206 <.Loc.20.1>:
+0000e1f4 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e206:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+    e1f4:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
 
-0000e20a <.LBE120>:
+0000e1f8 <.LBE120>:
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
 }
-    e20a:	30 41       	ret			
+    e1f8:	30 41       	ret			
 
-0000e20c <cput_hex_byte>:
+0000e1fa <cput_hex_byte>:
 
 void
 cput_hex_byte (int n)
 {
-    e20c:	0a 12       	push	r10		;
+    e1fa:	0a 12       	push	r10		;
 
-0000e20e <.LCFI0>:
-    e20e:	09 12       	push	r9		;
+0000e1fc <.LCFI0>:
+    e1fc:	09 12       	push	r9		;
 
-0000e210 <.LCFI1>:
-    e210:	09 4c       	mov	r12,	r9	;
+0000e1fe <.LCFI1>:
+    e1fe:	09 4c       	mov	r12,	r9	;
 
-0000e212 <.LBB122>:
+0000e200 <.LBB122>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e212:	3a 40 06 e0 	mov	#57350,	r10	;#0xe006
+    e200:	3a 40 06 e0 	mov	#57350,	r10	;#0xe006
 
-0000e216 <.LBE122>:
+0000e204 <.LBE122>:
 }
 
 void
 cput_hex_byte (int n)
 {
   cput_nibble (n >> 4);
-    e216:	b0 12 8a e8 	call	#59530		;#0xe88a
+    e204:	b0 12 78 e8 	call	#59512		;#0xe878
 
-0000e21a <.LBB127>:
-
-
-void
-cput_nibble (int n)
-{
-  tty_putc (hex[n&0x0f]);
-    e21a:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
-    e21e:	0c 5a       	add	r10,	r12	;
-    e220:	6d 4c       	mov.b	@r12,	r13	;
-
-0000e222 <.LBB124>:
-//            (Send a byte to the UART)             //
-//--------------------------------------------------//
-static int tty_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-    e222:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
-
-0000e226 <.L6>:
-    e226:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e22a:	fd 23       	jnz	$-4      	;abs 0xe226
-
-0000e22c <.Loc.20.1>:
-
-  // Write the output character
-  UART_TXD = txdata;
-    e22c:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
-
-0000e230 <.LBB128>:
+0000e208 <.LBB127>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e230:	79 f0 0f 00 	and.b	#15,	r9	;#0x000f
+    e208:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
+    e20c:	0c 5a       	add	r10,	r12	;
+    e20e:	6d 4c       	mov.b	@r12,	r13	;
 
-0000e234 <.LVL9>:
-    e234:	0a 59       	add	r9,	r10	;
-    e236:	6d 4a       	mov.b	@r10,	r13	;
-
-0000e238 <.LBB130>:
+0000e210 <.LBB124>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e238:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+    e210:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
 
-0000e23c <.L7>:
-    e23c:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e240:	fd 23       	jnz	$-4      	;abs 0xe23c
+0000e214 <.L6>:
+    e214:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e218:	fd 23       	jnz	$-4      	;abs 0xe214
 
-0000e242 <.Loc.20.1>:
+0000e21a <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e242:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+    e21a:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
 
-0000e246 <.LBE128>:
+0000e21e <.LBB128>:
+
+
+void
+cput_nibble (int n)
+{
+  tty_putc (hex[n&0x0f]);
+    e21e:	79 f0 0f 00 	and.b	#15,	r9	;#0x000f
+
+0000e222 <.LVL9>:
+    e222:	0a 59       	add	r9,	r10	;
+    e224:	6d 4a       	mov.b	@r10,	r13	;
+
+0000e226 <.LBB130>:
+//            (Send a byte to the UART)             //
+//--------------------------------------------------//
+static int tty_putc (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+    e226:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+
+0000e22a <.L7>:
+    e22a:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e22e:	fd 23       	jnz	$-4      	;abs 0xe22a
+
+0000e230 <.Loc.20.1>:
+
+  // Write the output character
+  UART_TXD = txdata;
+    e230:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+
+0000e234 <.LBE128>:
 void
 cput_hex_byte (int n)
 {
   cput_nibble (n >> 4);
   cput_nibble (n);
 }
-    e246:	30 40 6e e8 	br	#0xe86e		;
+    e234:	30 40 5c e8 	br	#0xe85c		;
 
-0000e24a <cput_binary_byte>:
+0000e238 <cput_binary_byte>:
 
 void
 cput_binary_byte (int n)
 {
-    e24a:	0a 12       	push	r10		;
+    e238:	0a 12       	push	r10		;
 
-0000e24c <.LCFI2>:
-    e24c:	09 12       	push	r9		;
+0000e23a <.LCFI2>:
+    e23a:	09 12       	push	r9		;
 
-0000e24e <.LCFI3>:
-    e24e:	08 12       	push	r8		;
+0000e23c <.LCFI3>:
+    e23c:	08 12       	push	r8		;
 
-0000e250 <.LCFI4>:
-    e250:	07 12       	push	r7		;
+0000e23e <.LCFI4>:
+    e23e:	07 12       	push	r7		;
 
-0000e252 <.LCFI5>:
-    e252:	06 12       	push	r6		;
+0000e240 <.LCFI5>:
+    e240:	06 12       	push	r6		;
 
-0000e254 <.LCFI6>:
-    e254:	05 12       	push	r5		;
+0000e242 <.LCFI6>:
+    e242:	05 12       	push	r5		;
 
-0000e256 <.LCFI7>:
-    e256:	07 4c       	mov	r12,	r7	;
+0000e244 <.LCFI7>:
+    e244:	07 4c       	mov	r12,	r7	;
 
-0000e258 <.LVL13>:
+0000e246 <.LVL13>:
   int i;
   for (i=7; i>=0; i--)
-    e258:	79 40 07 00 	mov.b	#7,	r9	;
-    e25c:	75 40 30 00 	mov.b	#48,	r5	;#0x0030
+    e246:	79 40 07 00 	mov.b	#7,	r9	;
+    e24a:	75 40 30 00 	mov.b	#48,	r5	;#0x0030
 
-0000e260 <.Loc.44.1>:
+0000e24e <.Loc.44.1>:
     tty_putc((n & (1<<i)) ? '1' : '0');
-    e260:	76 40 31 00 	mov.b	#49,	r6	;#0x0031
+    e24e:	76 40 31 00 	mov.b	#49,	r6	;#0x0031
 
-0000e264 <.LBB132>:
+0000e252 <.LBB132>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e264:	7a 40 81 00 	mov.b	#129,	r10	;#0x0081
+    e252:	7a 40 81 00 	mov.b	#129,	r10	;#0x0081
 
-0000e268 <.Loc.20.1>:
+0000e256 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e268:	78 40 84 00 	mov.b	#132,	r8	;#0x0084
+    e256:	78 40 84 00 	mov.b	#132,	r8	;#0x0084
 
-0000e26c <.L13>:
+0000e25a <.L13>:
 void
 cput_binary_byte (int n)
 {
   int i;
   for (i=7; i>=0; i--)
     tty_putc((n & (1<<i)) ? '1' : '0');
-    e26c:	0c 47       	mov	r7,	r12	;
-    e26e:	0d 49       	mov	r9,	r13	;
-    e270:	b0 12 98 e8 	call	#59544		;#0xe898
-    e274:	1c b3       	bit	#1,	r12	;r3 As==01
-    e276:	0b 24       	jz	$+24     	;abs 0xe28e
-    e278:	0c 46       	mov	r6,	r12	;
+    e25a:	0c 47       	mov	r7,	r12	;
+    e25c:	0d 49       	mov	r9,	r13	;
+    e25e:	b0 12 86 e8 	call	#59526		;#0xe886
+    e262:	1c b3       	bit	#1,	r12	;r3 As==01
+    e264:	0b 24       	jz	$+24     	;abs 0xe27c
+    e266:	0c 46       	mov	r6,	r12	;
 
-0000e27a <.L12>:
+0000e268 <.L12>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e27a:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e27e:	fd 23       	jnz	$-4      	;abs 0xe27a
+    e268:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e26c:	fd 23       	jnz	$-4      	;abs 0xe268
 
-0000e280 <.L17>:
+0000e26e <.L17>:
 
   // Write the output character
   UART_TXD = txdata;
-    e280:	c8 4c 00 00 	mov.b	r12,	0(r8)	;
+    e26e:	c8 4c 00 00 	mov.b	r12,	0(r8)	;
 
-0000e284 <.LBE136>:
+0000e272 <.LBE136>:
 
 void
 cput_binary_byte (int n)
 {
   int i;
   for (i=7; i>=0; i--)
-    e284:	39 53       	add	#-1,	r9	;r3 As==11
-    e286:	39 93       	cmp	#-1,	r9	;r3 As==11
-    e288:	f1 23       	jnz	$-28     	;abs 0xe26c
+    e272:	39 53       	add	#-1,	r9	;r3 As==11
+    e274:	39 93       	cmp	#-1,	r9	;r3 As==11
+    e276:	f1 23       	jnz	$-28     	;abs 0xe25a
 
-0000e28a <.Loc.45.1>:
+0000e278 <.Loc.45.1>:
     tty_putc((n & (1<<i)) ? '1' : '0');
 }
-    e28a:	30 40 66 e8 	br	#0xe866		;
+    e278:	30 40 54 e8 	br	#0xe854		;
 
-0000e28e <.L14>:
-    e28e:	0c 45       	mov	r5,	r12	;
+0000e27c <.L14>:
+    e27c:	0c 45       	mov	r5,	r12	;
 
-0000e290 <.LBB137>:
+0000e27e <.LBB137>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e290:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e294:	f2 23       	jnz	$-26     	;abs 0xe27a
-    e296:	30 40 80 e2 	br	#0xe280		;
+    e27e:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e282:	f2 23       	jnz	$-26     	;abs 0xe268
+    e284:	30 40 6e e2 	br	#0xe26e		;
 
-0000e29a <cput_hex_word>:
+0000e288 <cput_hex_word>:
     tty_putc((n & (1<<i)) ? '1' : '0');
 }
 
 void
 cput_hex_word (int n)
 {
-    e29a:	0a 12       	push	r10		;
+    e288:	0a 12       	push	r10		;
 
-0000e29c <.LCFI8>:
-    e29c:	09 12       	push	r9		;
+0000e28a <.LCFI8>:
+    e28a:	09 12       	push	r9		;
 
-0000e29e <.LCFI9>:
-    e29e:	08 12       	push	r8		;
+0000e28c <.LCFI9>:
+    e28c:	08 12       	push	r8		;
 
-0000e2a0 <.LCFI10>:
-    e2a0:	09 4c       	mov	r12,	r9	;
+0000e28e <.LCFI10>:
+    e28e:	09 4c       	mov	r12,	r9	;
 
-0000e2a2 <.Loc.50.1>:
+0000e290 <.Loc.50.1>:
   cput_hex_byte (n >> 8);
-    e2a2:	b0 12 82 e8 	call	#59522		;#0xe882
+    e290:	b0 12 70 e8 	call	#59504		;#0xe870
 
-0000e2a6 <.LVL18>:
-    e2a6:	08 4c       	mov	r12,	r8	;
+0000e294 <.LVL18>:
+    e294:	08 4c       	mov	r12,	r8	;
 
-0000e2a8 <.LBB138>:
-
-
-void
-cput_nibble (int n)
-{
-  tty_putc (hex[n&0x0f]);
-    e2a8:	3a 40 06 e0 	mov	#57350,	r10	;#0xe006
-    e2ac:	0c 49       	mov	r9,	r12	;
-    e2ae:	b0 12 f4 e8 	call	#59636		;#0xe8f4
-    e2b2:	0c 5a       	add	r10,	r12	;
-    e2b4:	6d 4c       	mov.b	@r12,	r13	;
-
-0000e2b6 <.LBB141>:
-//            (Send a byte to the UART)             //
-//--------------------------------------------------//
-static int tty_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-    e2b6:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
-
-0000e2ba <.L19>:
-    e2ba:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e2be:	fd 23       	jnz	$-4      	;abs 0xe2ba
-
-0000e2c0 <.Loc.20.1>:
-
-  // Write the output character
-  UART_TXD = txdata;
-    e2c0:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
-
-0000e2c4 <.LBB143>:
+0000e296 <.LBB138>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e2c4:	78 f0 0f 00 	and.b	#15,	r8	;#0x000f
+    e296:	3a 40 06 e0 	mov	#57350,	r10	;#0xe006
+    e29a:	0c 49       	mov	r9,	r12	;
+    e29c:	b0 12 e2 e8 	call	#59618		;#0xe8e2
+    e2a0:	0c 5a       	add	r10,	r12	;
+    e2a2:	6d 4c       	mov.b	@r12,	r13	;
 
-0000e2c8 <.LVL23>:
-    e2c8:	08 5a       	add	r10,	r8	;
-    e2ca:	6d 48       	mov.b	@r8,	r13	;
-
-0000e2cc <.LBB145>:
+0000e2a4 <.LBB141>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e2cc:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+    e2a4:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
 
-0000e2d0 <.L20>:
-    e2d0:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e2d4:	fd 23       	jnz	$-4      	;abs 0xe2d0
+0000e2a8 <.L19>:
+    e2a8:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e2ac:	fd 23       	jnz	$-4      	;abs 0xe2a8
 
-0000e2d6 <.Loc.20.1>:
+0000e2ae <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e2d6:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+    e2ae:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
 
-0000e2da <.LBB147>:
+0000e2b2 <.LBB143>:
+
+
+void
+cput_nibble (int n)
+{
+  tty_putc (hex[n&0x0f]);
+    e2b2:	78 f0 0f 00 	and.b	#15,	r8	;#0x000f
+
+0000e2b6 <.LVL23>:
+    e2b6:	08 5a       	add	r10,	r8	;
+    e2b8:	6d 48       	mov.b	@r8,	r13	;
+
+0000e2ba <.LBB145>:
+//            (Send a byte to the UART)             //
+//--------------------------------------------------//
+static int tty_putc (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+    e2ba:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+
+0000e2be <.L20>:
+    e2be:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e2c2:	fd 23       	jnz	$-4      	;abs 0xe2be
+
+0000e2c4 <.Loc.20.1>:
+
+  // Write the output character
+  UART_TXD = txdata;
+    e2c4:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+
+0000e2c8 <.LBB147>:
 }
 
 void
 cput_hex_byte (int n)
 {
   cput_nibble (n >> 4);
-    e2da:	0c 49       	mov	r9,	r12	;
-    e2dc:	b0 12 8a e8 	call	#59530		;#0xe88a
+    e2c8:	0c 49       	mov	r9,	r12	;
+    e2ca:	b0 12 78 e8 	call	#59512		;#0xe878
 
-0000e2e0 <.LBB149>:
-
-
-void
-cput_nibble (int n)
-{
-  tty_putc (hex[n&0x0f]);
-    e2e0:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
-    e2e4:	0c 5a       	add	r10,	r12	;
-    e2e6:	6d 4c       	mov.b	@r12,	r13	;
-
-0000e2e8 <.LBB151>:
-//            (Send a byte to the UART)             //
-//--------------------------------------------------//
-static int tty_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-    e2e8:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
-
-0000e2ec <.L21>:
-    e2ec:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e2f0:	fd 23       	jnz	$-4      	;abs 0xe2ec
-
-0000e2f2 <.Loc.20.1>:
-
-  // Write the output character
-  UART_TXD = txdata;
-    e2f2:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
-
-0000e2f6 <.LBB153>:
+0000e2ce <.LBB149>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e2f6:	79 f0 0f 00 	and.b	#15,	r9	;#0x000f
+    e2ce:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
+    e2d2:	0c 5a       	add	r10,	r12	;
+    e2d4:	6d 4c       	mov.b	@r12,	r13	;
 
-0000e2fa <.LVL29>:
-    e2fa:	0a 59       	add	r9,	r10	;
-    e2fc:	6d 4a       	mov.b	@r10,	r13	;
-
-0000e2fe <.LBB155>:
+0000e2d6 <.LBB151>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e2fe:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+    e2d6:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
 
-0000e302 <.L22>:
-    e302:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e306:	fd 23       	jnz	$-4      	;abs 0xe302
+0000e2da <.L21>:
+    e2da:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e2de:	fd 23       	jnz	$-4      	;abs 0xe2da
 
-0000e308 <.Loc.20.1>:
+0000e2e0 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e308:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+    e2e0:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
 
-0000e30c <.LBE147>:
+0000e2e4 <.LBB153>:
+
+
+void
+cput_nibble (int n)
+{
+  tty_putc (hex[n&0x0f]);
+    e2e4:	79 f0 0f 00 	and.b	#15,	r9	;#0x000f
+
+0000e2e8 <.LVL29>:
+    e2e8:	0a 59       	add	r9,	r10	;
+    e2ea:	6d 4a       	mov.b	@r10,	r13	;
+
+0000e2ec <.LBB155>:
+//            (Send a byte to the UART)             //
+//--------------------------------------------------//
+static int tty_putc (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+    e2ec:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+
+0000e2f0 <.L22>:
+    e2f0:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e2f4:	fd 23       	jnz	$-4      	;abs 0xe2f0
+
+0000e2f6 <.Loc.20.1>:
+
+  // Write the output character
+  UART_TXD = txdata;
+    e2f6:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+
+0000e2fa <.LBE147>:
 void
 cput_hex_word (int n)
 {
   cput_hex_byte (n >> 8);
   cput_hex_byte (n);
 }
-    e30c:	30 40 6c e8 	br	#0xe86c		;
+    e2fa:	30 40 5a e8 	br	#0xe85a		;
 
-0000e310 <cput_hex_long>:
+0000e2fe <cput_hex_long>:
 
 void
 cput_hex_long (long int n)
 {
-    e310:	0a 12       	push	r10		;
+    e2fe:	0a 12       	push	r10		;
 
-0000e312 <.LCFI11>:
-    e312:	09 12       	push	r9		;
+0000e300 <.LCFI11>:
+    e300:	09 12       	push	r9		;
 
-0000e314 <.LCFI12>:
-    e314:	08 12       	push	r8		;
+0000e302 <.LCFI12>:
+    e302:	08 12       	push	r8		;
 
-0000e316 <.LCFI13>:
-    e316:	07 12       	push	r7		;
+0000e304 <.LCFI13>:
+    e304:	07 12       	push	r7		;
 
-0000e318 <.LCFI14>:
-    e318:	09 4c       	mov	r12,	r9	;
-    e31a:	08 4d       	mov	r13,	r8	;
+0000e306 <.LCFI14>:
+    e306:	09 4c       	mov	r12,	r9	;
+    e308:	08 4d       	mov	r13,	r8	;
 
-0000e31c <.Loc.57.1>:
+0000e30a <.Loc.57.1>:
   cput_hex_byte (n >> 24);
-    e31c:	7e 40 18 00 	mov.b	#24,	r14	;#0x0018
-    e320:	b0 12 e2 e8 	call	#59618		;#0xe8e2
+    e30a:	7e 40 18 00 	mov.b	#24,	r14	;#0x0018
+    e30e:	b0 12 d0 e8 	call	#59600		;#0xe8d0
 
-0000e324 <.LVL33>:
-    e324:	07 4c       	mov	r12,	r7	;
+0000e312 <.LVL33>:
+    e312:	07 4c       	mov	r12,	r7	;
 
-0000e326 <.LBB157>:
+0000e314 <.LBB157>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e326:	3a 40 06 e0 	mov	#57350,	r10	;#0xe006
+    e314:	3a 40 06 e0 	mov	#57350,	r10	;#0xe006
 
-0000e32a <.LBE159>:
+0000e318 <.LBE159>:
 }
 
 void
 cput_hex_byte (int n)
 {
   cput_nibble (n >> 4);
-    e32a:	b0 12 8a e8 	call	#59530		;#0xe88a
+    e318:	b0 12 78 e8 	call	#59512		;#0xe878
 
-0000e32e <.LBB164>:
-
-
-void
-cput_nibble (int n)
-{
-  tty_putc (hex[n&0x0f]);
-    e32e:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
-    e332:	0c 5a       	add	r10,	r12	;
-    e334:	6d 4c       	mov.b	@r12,	r13	;
-
-0000e336 <.LBB161>:
-//            (Send a byte to the UART)             //
-//--------------------------------------------------//
-static int tty_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-    e336:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
-
-0000e33a <.L28>:
-    e33a:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e33e:	fd 23       	jnz	$-4      	;abs 0xe33a
-
-0000e340 <.Loc.20.1>:
-
-  // Write the output character
-  UART_TXD = txdata;
-    e340:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
-
-0000e344 <.LBB165>:
+0000e31c <.LBB164>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e344:	77 f0 0f 00 	and.b	#15,	r7	;#0x000f
+    e31c:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
+    e320:	0c 5a       	add	r10,	r12	;
+    e322:	6d 4c       	mov.b	@r12,	r13	;
 
-0000e348 <.LVL38>:
-    e348:	07 5a       	add	r10,	r7	;
-    e34a:	6d 47       	mov.b	@r7,	r13	;
-
-0000e34c <.LBB167>:
+0000e324 <.LBB161>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e34c:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+    e324:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
 
-0000e350 <.L29>:
-    e350:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e354:	fd 23       	jnz	$-4      	;abs 0xe350
+0000e328 <.L28>:
+    e328:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e32c:	fd 23       	jnz	$-4      	;abs 0xe328
 
-0000e356 <.Loc.20.1>:
+0000e32e <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e356:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+    e32e:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
 
-0000e35a <.LBE157>:
+0000e332 <.LBB165>:
+
+
+void
+cput_nibble (int n)
+{
+  tty_putc (hex[n&0x0f]);
+    e332:	77 f0 0f 00 	and.b	#15,	r7	;#0x000f
+
+0000e336 <.LVL38>:
+    e336:	07 5a       	add	r10,	r7	;
+    e338:	6d 47       	mov.b	@r7,	r13	;
+
+0000e33a <.LBB167>:
+//            (Send a byte to the UART)             //
+//--------------------------------------------------//
+static int tty_putc (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+    e33a:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+
+0000e33e <.L29>:
+    e33e:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e342:	fd 23       	jnz	$-4      	;abs 0xe33e
+
+0000e344 <.Loc.20.1>:
+
+  // Write the output character
+  UART_TXD = txdata;
+    e344:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+
+0000e348 <.LBE157>:
 
 void
 cput_hex_long (long int n)
 {
   cput_hex_byte (n >> 24);
   cput_hex_byte (n >> 16);
-    e35a:	0c 49       	mov	r9,	r12	;
-    e35c:	0d 48       	mov	r8,	r13	;
-    e35e:	7e 40 10 00 	mov.b	#16,	r14	;#0x0010
-    e362:	b0 12 e2 e8 	call	#59618		;#0xe8e2
-    e366:	07 4c       	mov	r12,	r7	;
+    e348:	0c 49       	mov	r9,	r12	;
+    e34a:	0d 48       	mov	r8,	r13	;
+    e34c:	7e 40 10 00 	mov.b	#16,	r14	;#0x0010
+    e350:	b0 12 d0 e8 	call	#59600		;#0xe8d0
+    e354:	07 4c       	mov	r12,	r7	;
 
-0000e368 <.LBB169>:
+0000e356 <.LBB169>:
 }
 
 void
 cput_hex_byte (int n)
 {
   cput_nibble (n >> 4);
-    e368:	b0 12 8a e8 	call	#59530		;#0xe88a
+    e356:	b0 12 78 e8 	call	#59512		;#0xe878
 
-0000e36c <.LBB171>:
-
-
-void
-cput_nibble (int n)
-{
-  tty_putc (hex[n&0x0f]);
-    e36c:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
-    e370:	0c 5a       	add	r10,	r12	;
-    e372:	6d 4c       	mov.b	@r12,	r13	;
-
-0000e374 <.LBB173>:
-//            (Send a byte to the UART)             //
-//--------------------------------------------------//
-static int tty_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-    e374:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
-
-0000e378 <.L30>:
-    e378:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e37c:	fd 23       	jnz	$-4      	;abs 0xe378
-
-0000e37e <.Loc.20.1>:
-
-  // Write the output character
-  UART_TXD = txdata;
-    e37e:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
-
-0000e382 <.LBB175>:
+0000e35a <.LBB171>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e382:	77 f0 0f 00 	and.b	#15,	r7	;#0x000f
+    e35a:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
+    e35e:	0c 5a       	add	r10,	r12	;
+    e360:	6d 4c       	mov.b	@r12,	r13	;
 
-0000e386 <.LVL46>:
-    e386:	07 5a       	add	r10,	r7	;
-    e388:	6d 47       	mov.b	@r7,	r13	;
-
-0000e38a <.LBB177>:
+0000e362 <.LBB173>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e38a:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+    e362:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
 
-0000e38e <.L31>:
-    e38e:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e392:	fd 23       	jnz	$-4      	;abs 0xe38e
+0000e366 <.L30>:
+    e366:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e36a:	fd 23       	jnz	$-4      	;abs 0xe366
 
-0000e394 <.Loc.20.1>:
+0000e36c <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e394:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+    e36c:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
 
-0000e398 <.LBE169>:
+0000e370 <.LBB175>:
+
+
+void
+cput_nibble (int n)
+{
+  tty_putc (hex[n&0x0f]);
+    e370:	77 f0 0f 00 	and.b	#15,	r7	;#0x000f
+
+0000e374 <.LVL46>:
+    e374:	07 5a       	add	r10,	r7	;
+    e376:	6d 47       	mov.b	@r7,	r13	;
+
+0000e378 <.LBB177>:
+//            (Send a byte to the UART)             //
+//--------------------------------------------------//
+static int tty_putc (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+    e378:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+
+0000e37c <.L31>:
+    e37c:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e380:	fd 23       	jnz	$-4      	;abs 0xe37c
+
+0000e382 <.Loc.20.1>:
+
+  // Write the output character
+  UART_TXD = txdata;
+    e382:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+
+0000e386 <.LBE169>:
 void
 cput_hex_long (long int n)
 {
   cput_hex_byte (n >> 24);
   cput_hex_byte (n >> 16);
   cput_hex_byte (n >> 8);
-    e398:	0c 49       	mov	r9,	r12	;
-    e39a:	0d 48       	mov	r8,	r13	;
-    e39c:	b0 12 ba e8 	call	#59578		;#0xe8ba
-    e3a0:	08 4c       	mov	r12,	r8	;
+    e386:	0c 49       	mov	r9,	r12	;
+    e388:	0d 48       	mov	r8,	r13	;
+    e38a:	b0 12 a8 e8 	call	#59560		;#0xe8a8
+    e38e:	08 4c       	mov	r12,	r8	;
 
-0000e3a2 <.LBB179>:
+0000e390 <.LBB179>:
 }
 
 void
 cput_hex_byte (int n)
 {
   cput_nibble (n >> 4);
-    e3a2:	b0 12 8a e8 	call	#59530		;#0xe88a
+    e390:	b0 12 78 e8 	call	#59512		;#0xe878
 
-0000e3a6 <.LBB181>:
-
-
-void
-cput_nibble (int n)
-{
-  tty_putc (hex[n&0x0f]);
-    e3a6:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
-    e3aa:	0c 5a       	add	r10,	r12	;
-    e3ac:	6d 4c       	mov.b	@r12,	r13	;
-
-0000e3ae <.LBB183>:
-//            (Send a byte to the UART)             //
-//--------------------------------------------------//
-static int tty_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-    e3ae:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
-
-0000e3b2 <.L32>:
-    e3b2:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e3b6:	fd 23       	jnz	$-4      	;abs 0xe3b2
-
-0000e3b8 <.Loc.20.1>:
-
-  // Write the output character
-  UART_TXD = txdata;
-    e3b8:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
-
-0000e3bc <.LBB185>:
+0000e394 <.LBB181>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e3bc:	78 f0 0f 00 	and.b	#15,	r8	;#0x000f
+    e394:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
+    e398:	0c 5a       	add	r10,	r12	;
+    e39a:	6d 4c       	mov.b	@r12,	r13	;
 
-0000e3c0 <.LVL54>:
-    e3c0:	08 5a       	add	r10,	r8	;
-    e3c2:	6d 48       	mov.b	@r8,	r13	;
-
-0000e3c4 <.LBB187>:
+0000e39c <.LBB183>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e3c4:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+    e39c:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
 
-0000e3c8 <.L33>:
-    e3c8:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e3cc:	fd 23       	jnz	$-4      	;abs 0xe3c8
+0000e3a0 <.L32>:
+    e3a0:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e3a4:	fd 23       	jnz	$-4      	;abs 0xe3a0
 
-0000e3ce <.Loc.20.1>:
+0000e3a6 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e3ce:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+    e3a6:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
 
-0000e3d2 <.LBB189>:
+0000e3aa <.LBB185>:
+
+
+void
+cput_nibble (int n)
+{
+  tty_putc (hex[n&0x0f]);
+    e3aa:	78 f0 0f 00 	and.b	#15,	r8	;#0x000f
+
+0000e3ae <.LVL54>:
+    e3ae:	08 5a       	add	r10,	r8	;
+    e3b0:	6d 48       	mov.b	@r8,	r13	;
+
+0000e3b2 <.LBB187>:
+//            (Send a byte to the UART)             //
+//--------------------------------------------------//
+static int tty_putc (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+    e3b2:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+
+0000e3b6 <.L33>:
+    e3b6:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e3ba:	fd 23       	jnz	$-4      	;abs 0xe3b6
+
+0000e3bc <.Loc.20.1>:
+
+  // Write the output character
+  UART_TXD = txdata;
+    e3bc:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+
+0000e3c0 <.LBB189>:
 }
 
 void
 cput_hex_byte (int n)
 {
   cput_nibble (n >> 4);
-    e3d2:	0c 49       	mov	r9,	r12	;
-    e3d4:	b0 12 8a e8 	call	#59530		;#0xe88a
+    e3c0:	0c 49       	mov	r9,	r12	;
+    e3c2:	b0 12 78 e8 	call	#59512		;#0xe878
 
-0000e3d8 <.LBB191>:
-
-
-void
-cput_nibble (int n)
-{
-  tty_putc (hex[n&0x0f]);
-    e3d8:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
-    e3dc:	0c 5a       	add	r10,	r12	;
-    e3de:	6d 4c       	mov.b	@r12,	r13	;
-
-0000e3e0 <.LBB193>:
-//            (Send a byte to the UART)             //
-//--------------------------------------------------//
-static int tty_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-    e3e0:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
-
-0000e3e4 <.L34>:
-    e3e4:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e3e8:	fd 23       	jnz	$-4      	;abs 0xe3e4
-
-0000e3ea <.Loc.20.1>:
-
-  // Write the output character
-  UART_TXD = txdata;
-    e3ea:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
-
-0000e3ee <.LBB195>:
+0000e3c6 <.LBB191>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e3ee:	79 f0 0f 00 	and.b	#15,	r9	;#0x000f
+    e3c6:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
+    e3ca:	0c 5a       	add	r10,	r12	;
+    e3cc:	6d 4c       	mov.b	@r12,	r13	;
 
-0000e3f2 <.LVL60>:
-    e3f2:	0a 59       	add	r9,	r10	;
-    e3f4:	6d 4a       	mov.b	@r10,	r13	;
-
-0000e3f6 <.LBB197>:
+0000e3ce <.LBB193>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e3f6:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+    e3ce:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
 
-0000e3fa <.L35>:
-    e3fa:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e3fe:	fd 23       	jnz	$-4      	;abs 0xe3fa
+0000e3d2 <.L34>:
+    e3d2:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e3d6:	fd 23       	jnz	$-4      	;abs 0xe3d2
 
-0000e400 <.Loc.20.1>:
+0000e3d8 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e400:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+    e3d8:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
 
-0000e404 <.LBE189>:
+0000e3dc <.LBB195>:
+
+
+void
+cput_nibble (int n)
+{
+  tty_putc (hex[n&0x0f]);
+    e3dc:	79 f0 0f 00 	and.b	#15,	r9	;#0x000f
+
+0000e3e0 <.LVL60>:
+    e3e0:	0a 59       	add	r9,	r10	;
+    e3e2:	6d 4a       	mov.b	@r10,	r13	;
+
+0000e3e4 <.LBB197>:
+//            (Send a byte to the UART)             //
+//--------------------------------------------------//
+static int tty_putc (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+    e3e4:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+
+0000e3e8 <.L35>:
+    e3e8:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e3ec:	fd 23       	jnz	$-4      	;abs 0xe3e8
+
+0000e3ee <.Loc.20.1>:
+
+  // Write the output character
+  UART_TXD = txdata;
+    e3ee:	c2 4d 84 00 	mov.b	r13,	&0x0084	;
+
+0000e3f2 <.LBE189>:
 {
   cput_hex_byte (n >> 24);
   cput_hex_byte (n >> 16);
   cput_hex_byte (n >> 8);
   cput_hex_byte (n);
 }
-    e404:	30 40 6a e8 	br	#0xe86a		;
+    e3f2:	30 40 58 e8 	br	#0xe858		;
 
-0000e408 <cput_hex_block>:
+0000e3f6 <cput_hex_block>:
 
 void
 cput_hex_block (char *block, int n)
 {
-    e408:	0a 12       	push	r10		;
+    e3f6:	0a 12       	push	r10		;
 
-0000e40a <.LCFI15>:
-    e40a:	09 12       	push	r9		;
+0000e3f8 <.LCFI15>:
+    e3f8:	09 12       	push	r9		;
 
-0000e40c <.LCFI16>:
-    e40c:	08 12       	push	r8		;
+0000e3fa <.LCFI16>:
+    e3fa:	08 12       	push	r8		;
 
-0000e40e <.LCFI17>:
-    e40e:	07 12       	push	r7		;
+0000e3fc <.LCFI17>:
+    e3fc:	07 12       	push	r7		;
 
-0000e410 <.LCFI18>:
-    e410:	06 12       	push	r6		;
+0000e3fe <.LCFI18>:
+    e3fe:	06 12       	push	r6		;
 
-0000e412 <.LCFI19>:
-    e412:	05 12       	push	r5		;
+0000e400 <.LCFI19>:
+    e400:	05 12       	push	r5		;
 
-0000e414 <.LCFI20>:
-    e414:	04 12       	push	r4		;
+0000e402 <.LCFI20>:
+    e402:	04 12       	push	r4		;
 
-0000e416 <.LCFI21>:
+0000e404 <.LCFI21>:
   int i = 0;
   while (n)
-    e416:	0d 93       	cmp	#0,	r13	;r3 As==00
-    e418:	39 24       	jz	$+116    	;abs 0xe48c
-    e41a:	3d 53       	add	#-1,	r13	;r3 As==11
+    e404:	0d 93       	cmp	#0,	r13	;r3 As==00
+    e406:	39 24       	jz	$+116    	;abs 0xe47a
+    e408:	3d 53       	add	#-1,	r13	;r3 As==11
 
-0000e41c <.LVL65>:
-    e41c:	07 4c       	mov	r12,	r7	;
-    e41e:	07 5d       	add	r13,	r7	;
-    e420:	05 4c       	mov	r12,	r5	;
-    e422:	38 40 06 e0 	mov	#57350,	r8	;#0xe006
+0000e40a <.LVL65>:
+    e40a:	07 4c       	mov	r12,	r7	;
+    e40c:	07 5d       	add	r13,	r7	;
+    e40e:	05 4c       	mov	r12,	r5	;
+    e410:	38 40 06 e0 	mov	#57350,	r8	;#0xe006
 
-0000e426 <.LBB199>:
+0000e414 <.LBB199>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e426:	7a 40 81 00 	mov.b	#129,	r10	;#0x0081
+    e414:	7a 40 81 00 	mov.b	#129,	r10	;#0x0081
 
-0000e42a <.Loc.20.1>:
+0000e418 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e42a:	74 40 84 00 	mov.b	#132,	r4	;#0x0084
+    e418:	74 40 84 00 	mov.b	#132,	r4	;#0x0084
 
-0000e42e <.LBE199>:
+0000e41c <.LBE199>:
     {
       cput_hex_byte (*block++);
       if (--n == 0)
 	break;
       i++;
       if ((i & 7) == 0)
-    e42e:	16 43       	mov	#1,	r6	;r3 As==01
-    e430:	06 8c       	sub	r12,	r6	;
+    e41c:	16 43       	mov	#1,	r6	;r3 As==01
+    e41e:	06 8c       	sub	r12,	r6	;
 
-0000e432 <.L51>:
+0000e420 <.L51>:
 cput_hex_block (char *block, int n)
 {
   int i = 0;
   while (n)
     {
       cput_hex_byte (*block++);
-    e432:	69 45       	mov.b	@r5,	r9	;
+    e420:	69 45       	mov.b	@r5,	r9	;
 
-0000e434 <.LBB214>:
+0000e422 <.LBB214>:
 }
 
 void
 cput_hex_byte (int n)
 {
   cput_nibble (n >> 4);
-    e434:	0c 49       	mov	r9,	r12	;
-    e436:	b0 12 8a e8 	call	#59530		;#0xe88a
+    e422:	0c 49       	mov	r9,	r12	;
+    e424:	b0 12 78 e8 	call	#59512		;#0xe878
 
-0000e43a <.LBB208>:
+0000e428 <.LBB208>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e43a:	0c 58       	add	r8,	r12	;
-    e43c:	6c 4c       	mov.b	@r12,	r12	;
+    e428:	0c 58       	add	r8,	r12	;
+    e42a:	6c 4c       	mov.b	@r12,	r12	;
 
-0000e43e <.L46>:
+0000e42c <.L46>:
+//            (Send a byte to the UART)             //
+//--------------------------------------------------//
+static int tty_putc (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+    e42c:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e430:	fd 23       	jnz	$-4      	;abs 0xe42c
+
+0000e432 <.Loc.20.1>:
+
+  // Write the output character
+  UART_TXD = txdata;
+    e432:	c4 4c 00 00 	mov.b	r12,	0(r4)	;
+
+0000e436 <.LBB209>:
+
+
+void
+cput_nibble (int n)
+{
+  tty_putc (hex[n&0x0f]);
+    e436:	79 f0 0f 00 	and.b	#15,	r9	;#0x000f
+
+0000e43a <.LVL71>:
+    e43a:	09 58       	add	r8,	r9	;
+    e43c:	6c 49       	mov.b	@r9,	r12	;
+
+0000e43e <.L47>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
@@ -1302,55 +1311,47 @@ static int tty_putc (int txdata) {
   UART_TXD = txdata;
     e444:	c4 4c 00 00 	mov.b	r12,	0(r4)	;
 
-0000e448 <.LBB209>:
-
-
-void
-cput_nibble (int n)
-{
-  tty_putc (hex[n&0x0f]);
-    e448:	79 f0 0f 00 	and.b	#15,	r9	;#0x000f
-
-0000e44c <.LVL71>:
-    e44c:	09 58       	add	r8,	r9	;
-    e44e:	6c 49       	mov.b	@r9,	r12	;
-
-0000e450 <.L47>:
-//            (Send a byte to the UART)             //
-//--------------------------------------------------//
-static int tty_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-    e450:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e454:	fd 23       	jnz	$-4      	;abs 0xe450
-
-0000e456 <.Loc.20.1>:
-
-  // Write the output character
-  UART_TXD = txdata;
-    e456:	c4 4c 00 00 	mov.b	r12,	0(r4)	;
-
-0000e45a <.LBE209>:
+0000e448 <.LBE209>:
 {
   int i = 0;
   while (n)
     {
       cput_hex_byte (*block++);
       if (--n == 0)
-    e45a:	05 97       	cmp	r7,	r5	;
-    e45c:	17 24       	jz	$+48     	;abs 0xe48c
+    e448:	05 97       	cmp	r7,	r5	;
+    e44a:	17 24       	jz	$+48     	;abs 0xe47a
 
-0000e45e <.LVL74>:
+0000e44c <.LVL74>:
 	break;
       i++;
       if ((i & 7) == 0)
-    e45e:	0c 46       	mov	r6,	r12	;
-    e460:	0c 55       	add	r5,	r12	;
-    e462:	3c b0 07 00 	bit	#7,	r12	;
-    e466:	09 20       	jnz	$+20     	;abs 0xe47a
+    e44c:	0c 46       	mov	r6,	r12	;
+    e44e:	0c 55       	add	r5,	r12	;
+    e450:	3c b0 07 00 	bit	#7,	r12	;
+    e454:	09 20       	jnz	$+20     	;abs 0xe468
 
-0000e468 <.L49>:
+0000e456 <.L49>:
+//            (Send a byte to the UART)             //
+//--------------------------------------------------//
+static int tty_putc (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+    e456:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e45a:	fd 23       	jnz	$-4      	;abs 0xe456
+
+0000e45c <.Loc.20.1>:
+
+  // Write the output character
+  UART_TXD = txdata;
+    e45c:	f2 40 20 00 	mov.b	#32,	&0x0084	;#0x0020
+    e460:	84 00 
+    e462:	15 53       	inc	r5		;
+
+0000e464 <.LVL75>:
+    e464:	30 40 20 e4 	br	#0xe420		;
+
+0000e468 <.L48>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
@@ -1364,762 +1365,768 @@ static int tty_putc (int txdata) {
 
   // Write the output character
   UART_TXD = txdata;
-    e46e:	f2 40 20 00 	mov.b	#32,	&0x0084	;#0x0020
+    e46e:	f2 40 3a 00 	mov.b	#58,	&0x0084	;#0x003a
     e472:	84 00 
     e474:	15 53       	inc	r5		;
 
-0000e476 <.LVL75>:
-    e476:	30 40 32 e4 	br	#0xe432		;
+0000e476 <.LVL77>:
+    e476:	30 40 20 e4 	br	#0xe420		;
 
-0000e47a <.L48>:
-//            (Send a byte to the UART)             //
-//--------------------------------------------------//
-static int tty_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-    e47a:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e47e:	fd 23       	jnz	$-4      	;abs 0xe47a
-
-0000e480 <.Loc.20.1>:
-
-  // Write the output character
-  UART_TXD = txdata;
-    e480:	f2 40 3a 00 	mov.b	#58,	&0x0084	;#0x003a
-    e484:	84 00 
-    e486:	15 53       	inc	r5		;
-
-0000e488 <.LVL77>:
-    e488:	30 40 32 e4 	br	#0xe432		;
-
-0000e48c <.L44>:
+0000e47a <.L44>:
       if ((i & 7) == 0)
 	tty_putc (' ');
       else
 	tty_putc (':');
     }
 }
-    e48c:	30 40 64 e8 	br	#0xe864		;
+    e47a:	30 40 52 e8 	br	#0xe852		;
 
-0000e490 <cput_nibble_block>:
+0000e47e <cput_nibble_block>:
 
 void
 cput_nibble_block (char *block, int n)
 {
-    e490:	0a 12       	push	r10		;
+    e47e:	0a 12       	push	r10		;
 
-0000e492 <.LCFI22>:
-    e492:	09 12       	push	r9		;
+0000e480 <.LCFI22>:
+    e480:	09 12       	push	r9		;
 
-0000e494 <.LCFI23>:
+0000e482 <.LCFI23>:
   int i = 0;
   while (n)
-    e494:	0d 93       	cmp	#0,	r13	;r3 As==00
-    e496:	20 24       	jz	$+66     	;abs 0xe4d8
-    e498:	3d 53       	add	#-1,	r13	;r3 As==11
+    e482:	0d 93       	cmp	#0,	r13	;r3 As==00
+    e484:	20 24       	jz	$+66     	;abs 0xe4c6
+    e486:	3d 53       	add	#-1,	r13	;r3 As==11
 
-0000e49a <.LVL81>:
+0000e488 <.LVL81>:
 }
 
 void
 cput_nibble_block (char *block, int n)
 {
   int i = 0;
-    e49a:	4b 43       	clr.b	r11		;
-    e49c:	39 40 06 e0 	mov	#57350,	r9	;#0xe006
+    e488:	4b 43       	clr.b	r11		;
+    e48a:	39 40 06 e0 	mov	#57350,	r9	;#0xe006
 
-0000e4a0 <.LBB219>:
+0000e48e <.LBB219>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e4a0:	7e 40 81 00 	mov.b	#129,	r14	;#0x0081
+    e48e:	7e 40 81 00 	mov.b	#129,	r14	;#0x0081
 
-0000e4a4 <.Loc.20.1>:
+0000e492 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e4a4:	7a 40 84 00 	mov.b	#132,	r10	;#0x0084
+    e492:	7a 40 84 00 	mov.b	#132,	r10	;#0x0084
 
-0000e4a8 <.L65>:
+0000e496 <.L65>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e4a8:	6f 4c       	mov.b	@r12,	r15	;
+    e496:	6f 4c       	mov.b	@r12,	r15	;
 
-0000e4aa <.LVL83>:
-    e4aa:	7f f0 0f 00 	and.b	#15,	r15	;#0x000f
+0000e498 <.LVL83>:
+    e498:	7f f0 0f 00 	and.b	#15,	r15	;#0x000f
 
-0000e4ae <.LVL84>:
-    e4ae:	0f 59       	add	r9,	r15	;
-    e4b0:	6f 4f       	mov.b	@r15,	r15	;
+0000e49c <.LVL84>:
+    e49c:	0f 59       	add	r9,	r15	;
+    e49e:	6f 4f       	mov.b	@r15,	r15	;
 
-0000e4b2 <.L62>:
+0000e4a0 <.L62>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e4b2:	fe b2 00 00 	bit.b	#8,	0(r14)	;r2 As==11
-    e4b6:	fd 23       	jnz	$-4      	;abs 0xe4b2
+    e4a0:	fe b2 00 00 	bit.b	#8,	0(r14)	;r2 As==11
+    e4a4:	fd 23       	jnz	$-4      	;abs 0xe4a0
 
-0000e4b8 <.Loc.20.1>:
+0000e4a6 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e4b8:	ca 4f 00 00 	mov.b	r15,	0(r10)	;
+    e4a6:	ca 4f 00 00 	mov.b	r15,	0(r10)	;
 
-0000e4bc <.LBE219>:
+0000e4aa <.LBE219>:
 {
   int i = 0;
   while (n)
     {
       cput_nibble (*block);
       if (--n == 0)
-    e4bc:	0b 9d       	cmp	r13,	r11	;
-    e4be:	0c 24       	jz	$+26     	;abs 0xe4d8
+    e4aa:	0b 9d       	cmp	r13,	r11	;
+    e4ac:	0c 24       	jz	$+26     	;abs 0xe4c6
 
-0000e4c0 <.Loc.89.1>:
+0000e4ae <.Loc.89.1>:
 	break;
       i++;
-    e4c0:	1b 53       	inc	r11		;
+    e4ae:	1b 53       	inc	r11		;
 
-0000e4c2 <.LVL87>:
+0000e4b0 <.LVL87>:
       if ((i & 7) == 0)
-    e4c2:	3b b0 07 00 	bit	#7,	r11	;
-    e4c6:	f0 23       	jnz	$-30     	;abs 0xe4a8
+    e4b0:	3b b0 07 00 	bit	#7,	r11	;
+    e4b4:	f0 23       	jnz	$-30     	;abs 0xe496
 
-0000e4c8 <.L64>:
+0000e4b6 <.L64>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e4c8:	fe b2 00 00 	bit.b	#8,	0(r14)	;r2 As==11
-    e4cc:	fd 23       	jnz	$-4      	;abs 0xe4c8
+    e4b6:	fe b2 00 00 	bit.b	#8,	0(r14)	;r2 As==11
+    e4ba:	fd 23       	jnz	$-4      	;abs 0xe4b6
 
-0000e4ce <.Loc.20.1>:
+0000e4bc <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e4ce:	f2 40 20 00 	mov.b	#32,	&0x0084	;#0x0020
-    e4d2:	84 00 
-    e4d4:	30 40 a8 e4 	br	#0xe4a8		;
+    e4bc:	f2 40 20 00 	mov.b	#32,	&0x0084	;#0x0020
+    e4c0:	84 00 
+    e4c2:	30 40 96 e4 	br	#0xe496		;
 
-0000e4d8 <.L60>:
+0000e4c6 <.L60>:
 	break;
       i++;
       if ((i & 7) == 0)
 	tty_putc (' ');
     }
 }
-    e4d8:	30 40 6e e8 	br	#0xe86e		;
+    e4c6:	30 40 5c e8 	br	#0xe85c		;
 
-0000e4dc <cput_number>:
+0000e4ca <cput_number>:
 
 void
 cput_number (int n)
 {
-    e4dc:	0a 12       	push	r10		;
+    e4ca:	0a 12       	push	r10		;
 
-0000e4de <.LCFI24>:
-    e4de:	09 12       	push	r9		;
+0000e4cc <.LCFI24>:
+    e4cc:	09 12       	push	r9		;
 
-0000e4e0 <.LCFI25>:
-    e4e0:	08 12       	push	r8		;
+0000e4ce <.LCFI25>:
+    e4ce:	08 12       	push	r8		;
 
-0000e4e2 <.LCFI26>:
-    e4e2:	07 12       	push	r7		;
+0000e4d0 <.LCFI26>:
+    e4d0:	07 12       	push	r7		;
 
-0000e4e4 <.LCFI27>:
-    e4e4:	06 12       	push	r6		;
+0000e4d2 <.LCFI27>:
+    e4d2:	06 12       	push	r6		;
 
-0000e4e6 <.LCFI28>:
-    e4e6:	05 12       	push	r5		;
+0000e4d4 <.LCFI28>:
+    e4d4:	05 12       	push	r5		;
 
-0000e4e8 <.LCFI29>:
-    e4e8:	04 12       	push	r4		;
+0000e4d6 <.LCFI29>:
+    e4d6:	04 12       	push	r4		;
 
-0000e4ea <.LCFI30>:
-    e4ea:	31 80 16 00 	sub	#22,	r1	;#0x0016
+0000e4d8 <.LCFI30>:
+    e4d8:	31 80 16 00 	sub	#22,	r1	;#0x0016
 
-0000e4ee <.LCFI31>:
-    e4ee:	0a 4c       	mov	r12,	r10	;
+0000e4dc <.LCFI31>:
+    e4dc:	0a 4c       	mov	r12,	r10	;
 
-0000e4f0 <.LVL90>:
+0000e4de <.LVL90>:
   char buf[20];
   int i = 0;
   if (n < 0)
-    e4f0:	0c 93       	cmp	#0,	r12	;r3 As==00
-    e4f2:	40 38       	jl	$+130    	;abs 0xe574
+    e4de:	0c 93       	cmp	#0,	r12	;r3 As==00
+    e4e0:	40 38       	jl	$+130    	;abs 0xe562
 
-0000e4f4 <.Loc.105.1>:
+0000e4e2 <.Loc.105.1>:
     {
       tty_putc ('-');
       n = -n;
     }
   while (n > 9)
-    e4f4:	7c 40 09 00 	mov.b	#9,	r12	;
+    e4e2:	7c 40 09 00 	mov.b	#9,	r12	;
 
-0000e4f8 <.LVL91>:
-    e4f8:	0c 9a       	cmp	r10,	r12	;
-    e4fa:	4b 34       	jge	$+152    	;abs 0xe592
+0000e4e6 <.LVL91>:
+    e4e6:	0c 9a       	cmp	r10,	r12	;
+    e4e8:	4b 34       	jge	$+152    	;abs 0xe580
 
-0000e4fc <.L84>:
-    e4fc:	0c 41       	mov	r1,	r12	;
-    e4fe:	2c 53       	incd	r12		;
-    e500:	81 4c 00 00 	mov	r12,	0(r1)	;
-    e504:	09 4c       	mov	r12,	r9	;
-    e506:	5c 43       	mov.b	#1,	r12	;r3 As==01
-    e508:	0c 89       	sub	r9,	r12	;
-    e50a:	04 4c       	mov	r12,	r4	;
-    e50c:	35 40 22 e8 	mov	#59426,	r5	;#0xe822
-    e510:	36 40 d6 e7 	mov	#59350,	r6	;#0xe7d6
+0000e4ea <.L84>:
+    e4ea:	0c 41       	mov	r1,	r12	;
+    e4ec:	2c 53       	incd	r12		;
+    e4ee:	81 4c 00 00 	mov	r12,	0(r1)	;
+    e4f2:	09 4c       	mov	r12,	r9	;
+    e4f4:	5c 43       	mov.b	#1,	r12	;r3 As==01
+    e4f6:	0c 89       	sub	r9,	r12	;
+    e4f8:	04 4c       	mov	r12,	r4	;
+    e4fa:	35 40 10 e8 	mov	#59408,	r5	;#0xe810
+    e4fe:	36 40 c4 e7 	mov	#59332,	r6	;#0xe7c4
 
-0000e514 <.Loc.107.1>:
+0000e502 <.Loc.107.1>:
     {
       buf[i++] = (n%10) + '0';
-    e514:	78 40 0a 00 	mov.b	#10,	r8	;#0x000a
+    e502:	78 40 0a 00 	mov.b	#10,	r8	;#0x000a
 
-0000e518 <.L75>:
-    e518:	07 44       	mov	r4,	r7	;
-    e51a:	07 59       	add	r9,	r7	;
+0000e506 <.L75>:
+    e506:	07 44       	mov	r4,	r7	;
+    e508:	07 59       	add	r9,	r7	;
 
-0000e51c <.LVL93>:
-    e51c:	0d 48       	mov	r8,	r13	;
-    e51e:	0c 4a       	mov	r10,	r12	;
-    e520:	85 12       	call	r5		;
-    e522:	7c 50 30 00 	add.b	#48,	r12	;#0x0030
-    e526:	c9 4c 00 00 	mov.b	r12,	0(r9)	;
+0000e50a <.LVL93>:
+    e50a:	0d 48       	mov	r8,	r13	;
+    e50c:	0c 4a       	mov	r10,	r12	;
+    e50e:	85 12       	call	r5		;
+    e510:	7c 50 30 00 	add.b	#48,	r12	;#0x0030
+    e514:	c9 4c 00 00 	mov.b	r12,	0(r9)	;
 
-0000e52a <.Loc.108.1>:
+0000e518 <.Loc.108.1>:
       n /= 10;
-    e52a:	0d 48       	mov	r8,	r13	;
-    e52c:	0c 4a       	mov	r10,	r12	;
-    e52e:	86 12       	call	r6		;
-    e530:	0a 4c       	mov	r12,	r10	;
-    e532:	19 53       	inc	r9		;
+    e518:	0d 48       	mov	r8,	r13	;
+    e51a:	0c 4a       	mov	r10,	r12	;
+    e51c:	86 12       	call	r6		;
+    e51e:	0a 4c       	mov	r12,	r10	;
+    e520:	19 53       	inc	r9		;
 
-0000e534 <.Loc.105.1>:
+0000e522 <.Loc.105.1>:
   if (n < 0)
     {
       tty_putc ('-');
       n = -n;
     }
   while (n > 9)
-    e534:	7c 40 09 00 	mov.b	#9,	r12	;
-    e538:	0c 9a       	cmp	r10,	r12	;
-    e53a:	ee 3b       	jl	$-34     	;abs 0xe518
-    e53c:	0d 47       	mov	r7,	r13	;
-    e53e:	1d 53       	inc	r13		;
+    e522:	7c 40 09 00 	mov.b	#9,	r12	;
+    e526:	0c 9a       	cmp	r10,	r12	;
+    e528:	ee 3b       	jl	$-34     	;abs 0xe506
+    e52a:	0d 47       	mov	r7,	r13	;
+    e52c:	1d 53       	inc	r13		;
 
-0000e540 <.L74>:
+0000e52e <.L74>:
     {
       buf[i++] = (n%10) + '0';
       n /= 10;
     }
   buf[i++] = (n%10) + '0';
-    e540:	27 51       	add	@r1,	r7	;
+    e52e:	27 51       	add	@r1,	r7	;
 
-0000e542 <.LVL98>:
-    e542:	7a 50 30 00 	add.b	#48,	r10	;#0x0030
+0000e530 <.LVL98>:
+    e530:	7a 50 30 00 	add.b	#48,	r10	;#0x0030
 
-0000e546 <.LVL99>:
-    e546:	c7 4a 00 00 	mov.b	r10,	0(r7)	;
-    e54a:	3d 53       	add	#-1,	r13	;r3 As==11
-    e54c:	2d 51       	add	@r1,	r13	;
-    e54e:	0a 41       	mov	r1,	r10	;
-    e550:	1a 53       	inc	r10		;
+0000e534 <.LVL99>:
+    e534:	c7 4a 00 00 	mov.b	r10,	0(r7)	;
+    e538:	3d 53       	add	#-1,	r13	;r3 As==11
+    e53a:	2d 51       	add	@r1,	r13	;
+    e53c:	0a 41       	mov	r1,	r10	;
+    e53e:	1a 53       	inc	r10		;
 
-0000e552 <.LBB227>:
+0000e540 <.LBB227>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e552:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+    e540:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
 
-0000e556 <.Loc.20.1>:
+0000e544 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e556:	7f 40 84 00 	mov.b	#132,	r15	;#0x0084
+    e544:	7f 40 84 00 	mov.b	#132,	r15	;#0x0084
 
-0000e55a <.L77>:
+0000e548 <.L77>:
       buf[i++] = (n%10) + '0';
       n /= 10;
     }
   buf[i++] = (n%10) + '0';
   while (i > 0)
     tty_putc (buf[--i]);
-    e55a:	6e 4d       	mov.b	@r13,	r14	;
+    e548:	6e 4d       	mov.b	@r13,	r14	;
 
-0000e55c <.L76>:
+0000e54a <.L76>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e55c:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e560:	fd 23       	jnz	$-4      	;abs 0xe55c
+    e54a:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e54e:	fd 23       	jnz	$-4      	;abs 0xe54a
 
-0000e562 <.Loc.20.1>:
+0000e550 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e562:	cf 4e 00 00 	mov.b	r14,	0(r15)	;
-    e566:	3d 53       	add	#-1,	r13	;r3 As==11
+    e550:	cf 4e 00 00 	mov.b	r14,	0(r15)	;
+    e554:	3d 53       	add	#-1,	r13	;r3 As==11
 
-0000e568 <.LBE230>:
+0000e556 <.LBE230>:
     {
       buf[i++] = (n%10) + '0';
       n /= 10;
     }
   buf[i++] = (n%10) + '0';
   while (i > 0)
-    e568:	0a 9d       	cmp	r13,	r10	;
-    e56a:	f7 23       	jnz	$-16     	;abs 0xe55a
+    e556:	0a 9d       	cmp	r13,	r10	;
+    e558:	f7 23       	jnz	$-16     	;abs 0xe548
 
-0000e56c <.Loc.113.1>:
+0000e55a <.Loc.113.1>:
     tty_putc (buf[--i]);
 }
-    e56c:	31 50 16 00 	add	#22,	r1	;#0x0016
-    e570:	30 40 64 e8 	br	#0xe864		;
+    e55a:	31 50 16 00 	add	#22,	r1	;#0x0016
+    e55e:	30 40 52 e8 	br	#0xe852		;
 
-0000e574 <.L83>:
+0000e562 <.L83>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e574:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
+    e562:	7c 40 81 00 	mov.b	#129,	r12	;#0x0081
 
-0000e578 <.L73>:
-    e578:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
-    e57c:	fd 23       	jnz	$-4      	;abs 0xe578
+0000e566 <.L73>:
+    e566:	fc b2 00 00 	bit.b	#8,	0(r12)	;r2 As==11
+    e56a:	fd 23       	jnz	$-4      	;abs 0xe566
 
-0000e57e <.Loc.20.1>:
+0000e56c <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e57e:	f2 40 2d 00 	mov.b	#45,	&0x0084	;#0x002d
-    e582:	84 00 
+    e56c:	f2 40 2d 00 	mov.b	#45,	&0x0084	;#0x002d
+    e570:	84 00 
 
-0000e584 <.LBE231>:
+0000e572 <.LBE231>:
   char buf[20];
   int i = 0;
   if (n < 0)
     {
       tty_putc ('-');
       n = -n;
-    e584:	4c 43       	clr.b	r12		;
-    e586:	0c 8a       	sub	r10,	r12	;
-    e588:	0a 4c       	mov	r12,	r10	;
+    e572:	4c 43       	clr.b	r12		;
+    e574:	0c 8a       	sub	r10,	r12	;
+    e576:	0a 4c       	mov	r12,	r10	;
 
-0000e58a <.Loc.105.1>:
+0000e578 <.Loc.105.1>:
     }
   while (n > 9)
-    e58a:	7c 40 09 00 	mov.b	#9,	r12	;
-    e58e:	0c 9a       	cmp	r10,	r12	;
-    e590:	b5 3b       	jl	$-148    	;abs 0xe4fc
+    e578:	7c 40 09 00 	mov.b	#9,	r12	;
+    e57c:	0c 9a       	cmp	r10,	r12	;
+    e57e:	b5 3b       	jl	$-148    	;abs 0xe4ea
 
-0000e592 <.L78>:
-    e592:	5d 43       	mov.b	#1,	r13	;r3 As==01
-    e594:	47 43       	clr.b	r7		;
-    e596:	0c 41       	mov	r1,	r12	;
-    e598:	2c 53       	incd	r12		;
-    e59a:	81 4c 00 00 	mov	r12,	0(r1)	;
-    e59e:	30 40 40 e5 	br	#0xe540		;
+0000e580 <.L78>:
+    e580:	5d 43       	mov.b	#1,	r13	;r3 As==01
+    e582:	47 43       	clr.b	r7		;
+    e584:	0c 41       	mov	r1,	r12	;
+    e586:	2c 53       	incd	r12		;
+    e588:	81 4c 00 00 	mov	r12,	0(r1)	;
+    e58c:	30 40 2e e5 	br	#0xe52e		;
 
-0000e5a2 <cprintf>:
+0000e590 <cprintf>:
     tty_putc (buf[--i]);
 }
 
 void
 cprintf (const char *fmt, ...)
 {
-    e5a2:	0a 12       	push	r10		;
+    e590:	0a 12       	push	r10		;
 
-0000e5a4 <.LCFI32>:
-    e5a4:	09 12       	push	r9		;
+0000e592 <.LCFI32>:
+    e592:	09 12       	push	r9		;
 
-0000e5a6 <.LCFI33>:
-    e5a6:	08 12       	push	r8		;
+0000e594 <.LCFI33>:
+    e594:	08 12       	push	r8		;
 
-0000e5a8 <.LCFI34>:
-    e5a8:	07 12       	push	r7		;
+0000e596 <.LCFI34>:
+    e596:	07 12       	push	r7		;
 
-0000e5aa <.LCFI35>:
-    e5aa:	06 12       	push	r6		;
+0000e598 <.LCFI35>:
+    e598:	06 12       	push	r6		;
 
-0000e5ac <.LCFI36>:
-    e5ac:	05 12       	push	r5		;
+0000e59a <.LCFI36>:
+    e59a:	05 12       	push	r5		;
 
-0000e5ae <.LCFI37>:
-    e5ae:	04 12       	push	r4		;
+0000e59c <.LCFI37>:
+    e59c:	04 12       	push	r4		;
 
-0000e5b0 <.LCFI38>:
-    e5b0:	19 41 10 00 	mov	16(r1),	r9	;0x00010
+0000e59e <.LCFI38>:
+    e59e:	19 41 10 00 	mov	16(r1),	r9	;0x00010
 
-0000e5b4 <.Loc.122.1>:
+0000e5a2 <.Loc.122.1>:
   va_list v;
   int i;
   char *s;
 
   va_start (v, fmt);
-    e5b4:	08 41       	mov	r1,	r8	;
-    e5b6:	38 50 12 00 	add	#18,	r8	;#0x0012
+    e5a2:	08 41       	mov	r1,	r8	;
+    e5a4:	38 50 12 00 	add	#18,	r8	;#0x0012
 
-0000e5ba <.LVL106>:
+0000e5a8 <.LVL106>:
 
   while (*fmt)
-    e5ba:	6c 49       	mov.b	@r9,	r12	;
-    e5bc:	0c 93       	cmp	#0,	r12	;r3 As==00
-    e5be:	2c 24       	jz	$+90     	;abs 0xe618
+    e5a8:	6c 49       	mov.b	@r9,	r12	;
+    e5aa:	0c 93       	cmp	#0,	r12	;r3 As==00
+    e5ac:	2c 24       	jz	$+90     	;abs 0xe606
 
-0000e5c0 <.LBB233>:
+0000e5ae <.LBB233>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e5c0:	7a 40 81 00 	mov.b	#129,	r10	;#0x0081
+    e5ae:	7a 40 81 00 	mov.b	#129,	r10	;#0x0081
 
-0000e5c4 <.L110>:
-    e5c4:	04 49       	mov	r9,	r4	;
-    e5c6:	14 53       	inc	r4		;
+0000e5b2 <.L110>:
+    e5b2:	04 49       	mov	r9,	r4	;
+    e5b4:	14 53       	inc	r4		;
 
-0000e5c8 <.LBE233>:
+0000e5b6 <.LBE233>:
 
   va_start (v, fmt);
 
   while (*fmt)
     {
       if (*fmt != '%')
-    e5c8:	3c 90 25 00 	cmp	#37,	r12	;#0x0025
-    e5cc:	29 20       	jnz	$+84     	;abs 0xe620
+    e5b6:	3c 90 25 00 	cmp	#37,	r12	;#0x0025
+    e5ba:	29 20       	jnz	$+84     	;abs 0xe60e
 
-0000e5ce <.LVL108>:
+0000e5bc <.LVL108>:
 	tty_putc (*fmt);
       else
 	switch (*++fmt)
-    e5ce:	5d 49 01 00 	mov.b	1(r9),	r13	;
-    e5d2:	29 53       	incd	r9		;
-    e5d4:	7d 90 64 00 	cmp.b	#100,	r13	;#0x0064
-    e5d8:	d4 24       	jz	$+426    	;abs 0xe782
-    e5da:	7e 40 64 00 	mov.b	#100,	r14	;#0x0064
-    e5de:	4e 9d       	cmp.b	r13,	r14	;
-    e5e0:	2f 2c       	jc	$+96     	;abs 0xe640
-    e5e2:	7d 90 73 00 	cmp.b	#115,	r13	;#0x0073
-    e5e6:	c2 24       	jz	$+390    	;abs 0xe76c
-    e5e8:	7e 40 73 00 	mov.b	#115,	r14	;#0x0073
-    e5ec:	4e 9d       	cmp.b	r13,	r14	;
-    e5ee:	42 28       	jnc	$+134    	;abs 0xe674
-    e5f0:	7d 90 6c 00 	cmp.b	#108,	r13	;#0x006c
-    e5f4:	51 24       	jz	$+164    	;abs 0xe698
-    e5f6:	7d 90 6e 00 	cmp.b	#110,	r13	;#0x006e
-    e5fa:	1a 20       	jnz	$+54     	;abs 0xe630
+    e5bc:	5d 49 01 00 	mov.b	1(r9),	r13	;
+    e5c0:	29 53       	incd	r9		;
+    e5c2:	7d 90 64 00 	cmp.b	#100,	r13	;#0x0064
+    e5c6:	d4 24       	jz	$+426    	;abs 0xe770
+    e5c8:	7e 40 64 00 	mov.b	#100,	r14	;#0x0064
+    e5cc:	4e 9d       	cmp.b	r13,	r14	;
+    e5ce:	2f 2c       	jc	$+96     	;abs 0xe62e
+    e5d0:	7d 90 73 00 	cmp.b	#115,	r13	;#0x0073
+    e5d4:	c2 24       	jz	$+390    	;abs 0xe75a
+    e5d6:	7e 40 73 00 	mov.b	#115,	r14	;#0x0073
+    e5da:	4e 9d       	cmp.b	r13,	r14	;
+    e5dc:	42 28       	jnc	$+134    	;abs 0xe662
+    e5de:	7d 90 6c 00 	cmp.b	#108,	r13	;#0x006c
+    e5e2:	51 24       	jz	$+164    	;abs 0xe686
+    e5e4:	7d 90 6e 00 	cmp.b	#110,	r13	;#0x006e
+    e5e8:	1a 20       	jnz	$+54     	;abs 0xe61e
 
-0000e5fc <.Loc.164.1>:
+0000e5ea <.Loc.164.1>:
 	    s = va_arg (v, char *);
 	    i = va_arg (v, int);
 	    cput_hex_block (s, i);
 	    break;
 	  case 'n':
 	    s = va_arg (v, char *);
-    e5fc:	2c 48       	mov	@r8,	r12	;
+    e5ea:	2c 48       	mov	@r8,	r12	;
 
-0000e5fe <.Loc.165.1>:
+0000e5ec <.Loc.165.1>:
 	    i = va_arg (v, int);
-    e5fe:	38 50 03 00 	add	#3,	r8	;
+    e5ec:	38 50 03 00 	add	#3,	r8	;
 
-0000e602 <.LVL109>:
-    e602:	0d 48       	mov	r8,	r13	;
-    e604:	1d c3       	bic	#1,	r13	;r3 As==01
-    e606:	08 4d       	mov	r13,	r8	;
+0000e5f0 <.LVL109>:
+    e5f0:	0d 48       	mov	r8,	r13	;
+    e5f2:	1d c3       	bic	#1,	r13	;r3 As==01
+    e5f4:	08 4d       	mov	r13,	r8	;
 
-0000e608 <.LVL110>:
-    e608:	28 53       	incd	r8		;
+0000e5f6 <.LVL110>:
+    e5f6:	28 53       	incd	r8		;
 
-0000e60a <.LVL111>:
+0000e5f8 <.LVL111>:
 	    cput_nibble_block (s, i);
-    e60a:	2d 4d       	mov	@r13,	r13	;
-    e60c:	b0 12 90 e4 	call	#58512		;#0xe490
+    e5f8:	2d 4d       	mov	@r13,	r13	;
+    e5fa:	b0 12 7e e4 	call	#58494		;#0xe47e
 
-0000e610 <.LVL112>:
+0000e5fe <.LVL112>:
   int i;
   char *s;
 
   va_start (v, fmt);
 
   while (*fmt)
-    e610:	5c 44 01 00 	mov.b	1(r4),	r12	;
-    e614:	0c 93       	cmp	#0,	r12	;r3 As==00
-    e616:	d6 23       	jnz	$-82     	;abs 0xe5c4
+    e5fe:	5c 44 01 00 	mov.b	1(r4),	r12	;
+    e602:	0c 93       	cmp	#0,	r12	;r3 As==00
+    e604:	d6 23       	jnz	$-82     	;abs 0xe5b2
 
-0000e618 <.L85>:
+0000e606 <.L85>:
 	    tty_putc (s[0]);
 	    break;
 	  }
       fmt ++;
     }
 }
-    e618:	30 40 64 e8 	br	#0xe864		;
-    e61c:	30 40 96 e7 	br	#0xe796		;
+    e606:	30 40 52 e8 	br	#0xe852		;
+    e60a:	30 40 84 e7 	br	#0xe784		;
 
-0000e620 <.L88>:
+0000e60e <.L88>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e620:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e624:	fd 23       	jnz	$-4      	;abs 0xe620
+    e60e:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e612:	fd 23       	jnz	$-4      	;abs 0xe60e
 
-0000e626 <.Loc.20.1>:
+0000e614 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e626:	c2 4c 84 00 	mov.b	r12,	&0x0084	;
-    e62a:	0c 44       	mov	r4,	r12	;
-    e62c:	04 49       	mov	r9,	r4	;
-    e62e:	09 4c       	mov	r12,	r9	;
+    e614:	c2 4c 84 00 	mov.b	r12,	&0x0084	;
+    e618:	0c 44       	mov	r4,	r12	;
+    e61a:	04 49       	mov	r9,	r4	;
+    e61c:	09 4c       	mov	r12,	r9	;
 
-0000e630 <.L89>:
+0000e61e <.L89>:
   int i;
   char *s;
 
   va_start (v, fmt);
 
   while (*fmt)
-    e630:	5c 44 01 00 	mov.b	1(r4),	r12	;
-    e634:	0c 93       	cmp	#0,	r12	;r3 As==00
-    e636:	c6 23       	jnz	$-114    	;abs 0xe5c4
+    e61e:	5c 44 01 00 	mov.b	1(r4),	r12	;
+    e622:	0c 93       	cmp	#0,	r12	;r3 As==00
+    e624:	c6 23       	jnz	$-114    	;abs 0xe5b2
 
-0000e638 <.Loc.175.1>:
+0000e626 <.Loc.175.1>:
 	    tty_putc (s[0]);
 	    break;
 	  }
       fmt ++;
     }
 }
-    e638:	30 40 64 e8 	br	#0xe864		;
-    e63c:	30 40 96 e7 	br	#0xe796		;
+    e626:	30 40 52 e8 	br	#0xe852		;
+    e62a:	30 40 84 e7 	br	#0xe784		;
 
-0000e640 <.L130>:
+0000e62e <.L130>:
   while (*fmt)
     {
       if (*fmt != '%')
 	tty_putc (*fmt);
       else
 	switch (*++fmt)
-    e640:	7d 90 42 00 	cmp.b	#66,	r13	;#0x0042
-    e644:	6c 24       	jz	$+218    	;abs 0xe71e
-    e646:	7e 40 42 00 	mov.b	#66,	r14	;#0x0042
-    e64a:	4e 9d       	cmp.b	r13,	r14	;
-    e64c:	5d 2c       	jc	$+188    	;abs 0xe708
-    e64e:	7d 90 62 00 	cmp.b	#98,	r13	;#0x0062
-    e652:	3a 24       	jz	$+118    	;abs 0xe6c8
-    e654:	7d 90 63 00 	cmp.b	#99,	r13	;#0x0063
-    e658:	eb 23       	jnz	$-40     	;abs 0xe630
+    e62e:	7d 90 42 00 	cmp.b	#66,	r13	;#0x0042
+    e632:	6c 24       	jz	$+218    	;abs 0xe70c
+    e634:	7e 40 42 00 	mov.b	#66,	r14	;#0x0042
+    e638:	4e 9d       	cmp.b	r13,	r14	;
+    e63a:	5d 2c       	jc	$+188    	;abs 0xe6f6
+    e63c:	7d 90 62 00 	cmp.b	#98,	r13	;#0x0062
+    e640:	3a 24       	jz	$+118    	;abs 0xe6b6
+    e642:	7d 90 63 00 	cmp.b	#99,	r13	;#0x0063
+    e646:	eb 23       	jnz	$-40     	;abs 0xe61e
 
-0000e65a <.Loc.135.1>:
+0000e648 <.Loc.135.1>:
 	  {
 	  case '%':
 	    tty_putc ('%');
 	    break;
 	  case 'c':
 	    i = va_arg (v, int);
-    e65a:	18 53       	inc	r8		;
+    e648:	18 53       	inc	r8		;
 
-0000e65c <.LVL117>:
-    e65c:	0c 48       	mov	r8,	r12	;
-    e65e:	1c c3       	bic	#1,	r12	;r3 As==01
-    e660:	08 4c       	mov	r12,	r8	;
+0000e64a <.LVL117>:
+    e64a:	0c 48       	mov	r8,	r12	;
+    e64c:	1c c3       	bic	#1,	r12	;r3 As==01
+    e64e:	08 4c       	mov	r12,	r8	;
 
-0000e662 <.LVL118>:
-    e662:	28 53       	incd	r8		;
+0000e650 <.LVL118>:
+    e650:	28 53       	incd	r8		;
 
-0000e664 <.LVL119>:
-    e664:	2c 4c       	mov	@r12,	r12	;
+0000e652 <.LVL119>:
+    e652:	2c 4c       	mov	@r12,	r12	;
 
-0000e666 <.L103>:
+0000e654 <.L103>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e666:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e66a:	fd 23       	jnz	$-4      	;abs 0xe666
+    e654:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e658:	fd 23       	jnz	$-4      	;abs 0xe654
 
-0000e66c <.L126>:
+0000e65a <.L126>:
 
   // Write the output character
   UART_TXD = txdata;
-    e66c:	c2 4c 84 00 	mov.b	r12,	&0x0084	;
-    e670:	30 40 30 e6 	br	#0xe630		;
+    e65a:	c2 4c 84 00 	mov.b	r12,	&0x0084	;
+    e65e:	30 40 1e e6 	br	#0xe61e		;
 
-0000e674 <.L98>:
+0000e662 <.L98>:
   while (*fmt)
     {
       if (*fmt != '%')
 	tty_putc (*fmt);
       else
 	switch (*++fmt)
-    e674:	7d 90 77 00 	cmp.b	#119,	r13	;#0x0077
-    e678:	1d 24       	jz	$+60     	;abs 0xe6b4
-    e67a:	7d 90 78 00 	cmp.b	#120,	r13	;#0x0078
-    e67e:	d8 23       	jnz	$-78     	;abs 0xe630
+    e662:	7d 90 77 00 	cmp.b	#119,	r13	;#0x0077
+    e666:	1d 24       	jz	$+60     	;abs 0xe6a2
+    e668:	7d 90 78 00 	cmp.b	#120,	r13	;#0x0078
+    e66c:	d8 23       	jnz	$-78     	;abs 0xe61e
 
-0000e680 <.Loc.159.1>:
+0000e66e <.Loc.159.1>:
 	  case 'l':
 	    i = va_arg (v, int);
 	    cput_hex_long (i);
 	    break;
 	  case 'x':
 	    s = va_arg (v, char *);
-    e680:	2c 48       	mov	@r8,	r12	;
+    e66e:	2c 48       	mov	@r8,	r12	;
 
-0000e682 <.Loc.160.1>:
+0000e670 <.Loc.160.1>:
 	    i = va_arg (v, int);
-    e682:	38 50 03 00 	add	#3,	r8	;
+    e670:	38 50 03 00 	add	#3,	r8	;
 
-0000e686 <.LVL122>:
-    e686:	0d 48       	mov	r8,	r13	;
-    e688:	1d c3       	bic	#1,	r13	;r3 As==01
-    e68a:	08 4d       	mov	r13,	r8	;
+0000e674 <.LVL122>:
+    e674:	0d 48       	mov	r8,	r13	;
+    e676:	1d c3       	bic	#1,	r13	;r3 As==01
+    e678:	08 4d       	mov	r13,	r8	;
 
-0000e68c <.LVL123>:
-    e68c:	28 53       	incd	r8		;
+0000e67a <.LVL123>:
+    e67a:	28 53       	incd	r8		;
 
-0000e68e <.LVL124>:
+0000e67c <.LVL124>:
 	    cput_hex_block (s, i);
-    e68e:	2d 4d       	mov	@r13,	r13	;
-    e690:	b0 12 08 e4 	call	#58376		;#0xe408
+    e67c:	2d 4d       	mov	@r13,	r13	;
+    e67e:	b0 12 f6 e3 	call	#58358		;#0xe3f6
 
-0000e694 <.LVL125>:
+0000e682 <.LVL125>:
 	    break;
-    e694:	30 40 30 e6 	br	#0xe630		;
+    e682:	30 40 1e e6 	br	#0xe61e		;
 
-0000e698 <.L99>:
+0000e686 <.L99>:
 	  case 'w':
 	    i = va_arg (v, int);
 	    cput_hex_word (i);
 	    break;
 	  case 'l':
 	    i = va_arg (v, int);
-    e698:	18 53       	inc	r8		;
+    e686:	18 53       	inc	r8		;
 
-0000e69a <.LVL126>:
-    e69a:	0c 48       	mov	r8,	r12	;
-    e69c:	1c c3       	bic	#1,	r12	;r3 As==01
-    e69e:	08 4c       	mov	r12,	r8	;
+0000e688 <.LVL126>:
+    e688:	0c 48       	mov	r8,	r12	;
+    e68a:	1c c3       	bic	#1,	r12	;r3 As==01
+    e68c:	08 4c       	mov	r12,	r8	;
 
-0000e6a0 <.LVL127>:
-    e6a0:	28 53       	incd	r8		;
+0000e68e <.LVL127>:
+    e68e:	28 53       	incd	r8		;
 
-0000e6a2 <.LVL128>:
+0000e690 <.LVL128>:
 	    cput_hex_long (i);
-    e6a2:	2c 4c       	mov	@r12,	r12	;
-    e6a4:	3c b0 00 80 	bit	#32768,	r12	;#0x8000
-    e6a8:	0d 7d       	subc	r13,	r13	;
-    e6aa:	3d e3       	inv	r13		;
-    e6ac:	b0 12 10 e3 	call	#58128		;#0xe310
+    e690:	2c 4c       	mov	@r12,	r12	;
+    e692:	3c b0 00 80 	bit	#32768,	r12	;#0x8000
+    e696:	0d 7d       	subc	r13,	r13	;
+    e698:	3d e3       	inv	r13		;
+    e69a:	b0 12 fe e2 	call	#58110		;#0xe2fe
 
-0000e6b0 <.LVL129>:
+0000e69e <.LVL129>:
 	    break;
-    e6b0:	30 40 30 e6 	br	#0xe630		;
+    e69e:	30 40 1e e6 	br	#0xe61e		;
 
-0000e6b4 <.L101>:
+0000e6a2 <.L101>:
 	  case 'B':
 	    i = va_arg (v, int);
 	    cput_binary_byte (i);
 	    break;
 	  case 'w':
 	    i = va_arg (v, int);
-    e6b4:	18 53       	inc	r8		;
+    e6a2:	18 53       	inc	r8		;
 
-0000e6b6 <.LVL130>:
-    e6b6:	0c 48       	mov	r8,	r12	;
-    e6b8:	1c c3       	bic	#1,	r12	;r3 As==01
-    e6ba:	08 4c       	mov	r12,	r8	;
+0000e6a4 <.LVL130>:
+    e6a4:	0c 48       	mov	r8,	r12	;
+    e6a6:	1c c3       	bic	#1,	r12	;r3 As==01
+    e6a8:	08 4c       	mov	r12,	r8	;
 
-0000e6bc <.LVL131>:
-    e6bc:	28 53       	incd	r8		;
+0000e6aa <.LVL131>:
+    e6aa:	28 53       	incd	r8		;
 
-0000e6be <.LVL132>:
+0000e6ac <.LVL132>:
 	    cput_hex_word (i);
-    e6be:	2c 4c       	mov	@r12,	r12	;
-    e6c0:	b0 12 9a e2 	call	#58010		;#0xe29a
+    e6ac:	2c 4c       	mov	@r12,	r12	;
+    e6ae:	b0 12 88 e2 	call	#57992		;#0xe288
 
-0000e6c4 <.LVL133>:
+0000e6b2 <.LVL133>:
 	    break;
-    e6c4:	30 40 30 e6 	br	#0xe630		;
+    e6b2:	30 40 1e e6 	br	#0xe61e		;
 
-0000e6c8 <.L95>:
+0000e6b6 <.L95>:
 	  case 'd':
 	    i = va_arg (v, int);
 	    cput_number(i);
 	    break;
 	  case 'b':
 	    i = va_arg (v, int);
-    e6c8:	18 53       	inc	r8		;
+    e6b6:	18 53       	inc	r8		;
 
-0000e6ca <.LVL134>:
-    e6ca:	0c 48       	mov	r8,	r12	;
-    e6cc:	1c c3       	bic	#1,	r12	;r3 As==01
-    e6ce:	08 4c       	mov	r12,	r8	;
+0000e6b8 <.LVL134>:
+    e6b8:	0c 48       	mov	r8,	r12	;
+    e6ba:	1c c3       	bic	#1,	r12	;r3 As==01
+    e6bc:	08 4c       	mov	r12,	r8	;
 
-0000e6d0 <.LVL135>:
-    e6d0:	28 53       	incd	r8		;
+0000e6be <.LVL135>:
+    e6be:	28 53       	incd	r8		;
 
-0000e6d2 <.LVL136>:
-    e6d2:	26 4c       	mov	@r12,	r6	;
+0000e6c0 <.LVL136>:
+    e6c0:	26 4c       	mov	@r12,	r6	;
 
-0000e6d4 <.LBB242>:
+0000e6c2 <.LBB242>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e6d4:	37 40 06 e0 	mov	#57350,	r7	;#0xe006
+    e6c2:	37 40 06 e0 	mov	#57350,	r7	;#0xe006
 
-0000e6d8 <.LBE244>:
+0000e6c6 <.LBE244>:
 }
 
 void
 cput_hex_byte (int n)
 {
   cput_nibble (n >> 4);
-    e6d8:	0c 46       	mov	r6,	r12	;
-    e6da:	b0 12 8a e8 	call	#59530		;#0xe88a
+    e6c6:	0c 46       	mov	r6,	r12	;
+    e6c8:	b0 12 78 e8 	call	#59512		;#0xe878
 
-0000e6de <.LBB249>:
+0000e6cc <.LBB249>:
 
 
 void
 cput_nibble (int n)
 {
   tty_putc (hex[n&0x0f]);
-    e6de:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
-    e6e2:	0c 57       	add	r7,	r12	;
-    e6e4:	6c 4c       	mov.b	@r12,	r12	;
+    e6cc:	7c f0 0f 00 	and.b	#15,	r12	;#0x000f
+    e6d0:	0c 57       	add	r7,	r12	;
+    e6d2:	6c 4c       	mov.b	@r12,	r12	;
 
-0000e6e6 <.L104>:
+0000e6d4 <.L104>:
+//            (Send a byte to the UART)             //
+//--------------------------------------------------//
+static int tty_putc (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+    e6d4:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e6d8:	fd 23       	jnz	$-4      	;abs 0xe6d4
+
+0000e6da <.Loc.20.1>:
+
+  // Write the output character
+  UART_TXD = txdata;
+    e6da:	c2 4c 84 00 	mov.b	r12,	&0x0084	;
+
+0000e6de <.LBB250>:
+
+
+void
+cput_nibble (int n)
+{
+  tty_putc (hex[n&0x0f]);
+    e6de:	76 f0 0f 00 	and.b	#15,	r6	;#0x000f
+    e6e2:	07 56       	add	r6,	r7	;
+    e6e4:	6c 47       	mov.b	@r7,	r12	;
+
+0000e6e6 <.L105>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
@@ -2127,822 +2134,795 @@ static int tty_putc (int txdata) {
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
     e6e6:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e6ea:	fd 23       	jnz	$-4      	;abs 0xe6e6
+    e6ea:	b7 27       	jz	$-144    	;abs 0xe65a
+    e6ec:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e6f0:	fa 23       	jnz	$-10     	;abs 0xe6e6
+    e6f2:	30 40 5a e6 	br	#0xe65a		;
 
-0000e6ec <.Loc.20.1>:
-
-  // Write the output character
-  UART_TXD = txdata;
-    e6ec:	c2 4c 84 00 	mov.b	r12,	&0x0084	;
-
-0000e6f0 <.LBB250>:
-
-
-void
-cput_nibble (int n)
-{
-  tty_putc (hex[n&0x0f]);
-    e6f0:	76 f0 0f 00 	and.b	#15,	r6	;#0x000f
-    e6f4:	07 56       	add	r6,	r7	;
-    e6f6:	6c 47       	mov.b	@r7,	r12	;
-
-0000e6f8 <.L105>:
-//            (Send a byte to the UART)             //
-//--------------------------------------------------//
-static int tty_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-    e6f8:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e6fc:	b7 27       	jz	$-144    	;abs 0xe66c
-    e6fe:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e702:	fa 23       	jnz	$-10     	;abs 0xe6f8
-    e704:	30 40 6c e6 	br	#0xe66c		;
-
-0000e708 <.L132>:
+0000e6f6 <.L132>:
   while (*fmt)
     {
       if (*fmt != '%')
 	tty_putc (*fmt);
       else
 	switch (*++fmt)
-    e708:	7d 90 25 00 	cmp.b	#37,	r13	;#0x0025
-    e70c:	91 23       	jnz	$-220    	;abs 0xe630
+    e6f6:	7d 90 25 00 	cmp.b	#37,	r13	;#0x0025
+    e6fa:	91 23       	jnz	$-220    	;abs 0xe61e
 
-0000e70e <.L94>:
+0000e6fc <.L94>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e70e:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e712:	fd 23       	jnz	$-4      	;abs 0xe70e
+    e6fc:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e700:	fd 23       	jnz	$-4      	;abs 0xe6fc
 
-0000e714 <.Loc.20.1>:
+0000e702 <.Loc.20.1>:
 
   // Write the output character
   UART_TXD = txdata;
-    e714:	f2 40 25 00 	mov.b	#37,	&0x0084	;#0x0025
-    e718:	84 00 
-    e71a:	30 40 30 e6 	br	#0xe630		;
+    e702:	f2 40 25 00 	mov.b	#37,	&0x0084	;#0x0025
+    e706:	84 00 
+    e708:	30 40 1e e6 	br	#0xe61e		;
 
-0000e71e <.L92>:
+0000e70c <.L92>:
 	  case 'b':
 	    i = va_arg (v, int);
 	    cput_hex_byte (i);
 	    break;
 	  case 'B':
 	    i = va_arg (v, int);
-    e71e:	18 53       	inc	r8		;
+    e70c:	18 53       	inc	r8		;
 
-0000e720 <.LVL143>:
-    e720:	0c 48       	mov	r8,	r12	;
-    e722:	1c c3       	bic	#1,	r12	;r3 As==01
-    e724:	08 4c       	mov	r12,	r8	;
+0000e70e <.LVL143>:
+    e70e:	0c 48       	mov	r8,	r12	;
+    e710:	1c c3       	bic	#1,	r12	;r3 As==01
+    e712:	08 4c       	mov	r12,	r8	;
 
-0000e726 <.LVL144>:
-    e726:	28 53       	incd	r8		;
+0000e714 <.LVL144>:
+    e714:	28 53       	incd	r8		;
 
-0000e728 <.LVL145>:
-    e728:	26 4c       	mov	@r12,	r6	;
+0000e716 <.LVL145>:
+    e716:	26 4c       	mov	@r12,	r6	;
 
-0000e72a <.LBB256>:
+0000e718 <.LBB256>:
 
 void
 cput_binary_byte (int n)
 {
   int i;
   for (i=7; i>=0; i--)
-    e72a:	75 40 07 00 	mov.b	#7,	r5	;
+    e718:	75 40 07 00 	mov.b	#7,	r5	;
 
-0000e72e <.LBB258>:
+0000e71c <.LBB258>:
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
 
   // Write the output character
   UART_TXD = txdata;
-    e72e:	77 40 84 00 	mov.b	#132,	r7	;#0x0084
+    e71c:	77 40 84 00 	mov.b	#132,	r7	;#0x0084
 
-0000e732 <.LBE258>:
+0000e720 <.LBE258>:
 void
 cput_binary_byte (int n)
 {
   int i;
   for (i=7; i>=0; i--)
     tty_putc((n & (1<<i)) ? '1' : '0');
-    e732:	0c 46       	mov	r6,	r12	;
-    e734:	0d 45       	mov	r5,	r13	;
-    e736:	b0 12 98 e8 	call	#59544		;#0xe898
-    e73a:	1c b3       	bit	#1,	r12	;r3 As==01
-    e73c:	10 24       	jz	$+34     	;abs 0xe75e
+    e720:	0c 46       	mov	r6,	r12	;
+    e722:	0d 45       	mov	r5,	r13	;
+    e724:	b0 12 86 e8 	call	#59526		;#0xe886
+    e728:	1c b3       	bit	#1,	r12	;r3 As==01
+    e72a:	10 24       	jz	$+34     	;abs 0xe74c
 
-0000e73e <.L133>:
-    e73e:	7c 40 31 00 	mov.b	#49,	r12	;#0x0031
+0000e72c <.L133>:
+    e72c:	7c 40 31 00 	mov.b	#49,	r12	;#0x0031
 
-0000e742 <.L107>:
+0000e730 <.L107>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e742:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e746:	fd 23       	jnz	$-4      	;abs 0xe742
+    e730:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e734:	fd 23       	jnz	$-4      	;abs 0xe730
 
-0000e748 <.L134>:
+0000e736 <.L134>:
 
   // Write the output character
   UART_TXD = txdata;
-    e748:	c7 4c 00 00 	mov.b	r12,	0(r7)	;
+    e736:	c7 4c 00 00 	mov.b	r12,	0(r7)	;
 
-0000e74c <.LBE262>:
+0000e73a <.LBE262>:
 
 void
 cput_binary_byte (int n)
 {
   int i;
   for (i=7; i>=0; i--)
-    e74c:	35 53       	add	#-1,	r5	;r3 As==11
-    e74e:	35 93       	cmp	#-1,	r5	;r3 As==11
-    e750:	6f 27       	jz	$-288    	;abs 0xe630
+    e73a:	35 53       	add	#-1,	r5	;r3 As==11
+    e73c:	35 93       	cmp	#-1,	r5	;r3 As==11
+    e73e:	6f 27       	jz	$-288    	;abs 0xe61e
 
-0000e752 <.Loc.44.1>:
+0000e740 <.Loc.44.1>:
     tty_putc((n & (1<<i)) ? '1' : '0');
-    e752:	0c 46       	mov	r6,	r12	;
-    e754:	0d 45       	mov	r5,	r13	;
-    e756:	b0 12 98 e8 	call	#59544		;#0xe898
-    e75a:	1c b3       	bit	#1,	r12	;r3 As==01
-    e75c:	f0 23       	jnz	$-30     	;abs 0xe73e
+    e740:	0c 46       	mov	r6,	r12	;
+    e742:	0d 45       	mov	r5,	r13	;
+    e744:	b0 12 86 e8 	call	#59526		;#0xe886
+    e748:	1c b3       	bit	#1,	r12	;r3 As==01
+    e74a:	f0 23       	jnz	$-30     	;abs 0xe72c
 
-0000e75e <.L111>:
-    e75e:	7c 40 30 00 	mov.b	#48,	r12	;#0x0030
+0000e74c <.L111>:
+    e74c:	7c 40 30 00 	mov.b	#48,	r12	;#0x0030
 
-0000e762 <.LBB263>:
+0000e750 <.LBB263>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e762:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e766:	ed 23       	jnz	$-36     	;abs 0xe742
-    e768:	30 40 48 e7 	br	#0xe748		;
+    e750:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e754:	ed 23       	jnz	$-36     	;abs 0xe730
+    e756:	30 40 36 e7 	br	#0xe736		;
 
-0000e76c <.L97>:
+0000e75a <.L97>:
 	    i = va_arg (v, int);
 	    cput_nibble_block (s, i);
 	    break;
 	  case 's':
 	    s = va_arg (v, char *);
 	    tty_putc (s[0]);
-    e76c:	2c 48       	mov	@r8,	r12	;
-    e76e:	28 53       	incd	r8		;
+    e75a:	2c 48       	mov	@r8,	r12	;
+    e75c:	28 53       	incd	r8		;
 
-0000e770 <.LVL152>:
-    e770:	6c 4c       	mov.b	@r12,	r12	;
+0000e75e <.LVL152>:
+    e75e:	6c 4c       	mov.b	@r12,	r12	;
 
-0000e772 <.L109>:
+0000e760 <.L109>:
 //            (Send a byte to the UART)             //
 //--------------------------------------------------//
 static int tty_putc (int txdata) {
 
   // Wait until the TX buffer is not full
   while (UART_STAT & UART_TX_FULL);
-    e772:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e776:	7a 27       	jz	$-266    	;abs 0xe66c
-    e778:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
-    e77c:	fa 23       	jnz	$-10     	;abs 0xe772
-    e77e:	30 40 6c e6 	br	#0xe66c		;
+    e760:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e764:	7a 27       	jz	$-266    	;abs 0xe65a
+    e766:	fa b2 00 00 	bit.b	#8,	0(r10)	;r2 As==11
+    e76a:	fa 23       	jnz	$-10     	;abs 0xe760
+    e76c:	30 40 5a e6 	br	#0xe65a		;
 
-0000e782 <.L90>:
+0000e770 <.L90>:
 	  case 'c':
 	    i = va_arg (v, int);
 	    tty_putc(i);
 	    break;
 	  case 'd':
 	    i = va_arg (v, int);
-    e782:	18 53       	inc	r8		;
+    e770:	18 53       	inc	r8		;
 
-0000e784 <.LVL155>:
-    e784:	0c 48       	mov	r8,	r12	;
-    e786:	1c c3       	bic	#1,	r12	;r3 As==01
-    e788:	08 4c       	mov	r12,	r8	;
+0000e772 <.LVL155>:
+    e772:	0c 48       	mov	r8,	r12	;
+    e774:	1c c3       	bic	#1,	r12	;r3 As==01
+    e776:	08 4c       	mov	r12,	r8	;
 
-0000e78a <.LVL156>:
-    e78a:	28 53       	incd	r8		;
+0000e778 <.LVL156>:
+    e778:	28 53       	incd	r8		;
 
-0000e78c <.LVL157>:
+0000e77a <.LVL157>:
 	    cput_number(i);
-    e78c:	2c 4c       	mov	@r12,	r12	;
-    e78e:	b0 12 dc e4 	call	#58588		;#0xe4dc
+    e77a:	2c 4c       	mov	@r12,	r12	;
+    e77c:	b0 12 ca e4 	call	#58570		;#0xe4ca
 
-0000e792 <.LVL158>:
+0000e780 <.LVL158>:
 	    break;
-    e792:	30 40 30 e6 	br	#0xe630		;
+    e780:	30 40 1e e6 	br	#0xe61e		;
 
-0000e796 <udivmodhi4>:
-    e796:	7f 40 11 00 	mov.b	#17,	r15	;#0x0011
+0000e784 <udivmodhi4>:
+    e784:	7f 40 11 00 	mov.b	#17,	r15	;#0x0011
 
-0000e79a <.Loc.35.1>:
-    e79a:	5b 43       	mov.b	#1,	r11	;r3 As==01
+0000e788 <.Loc.35.1>:
+    e788:	5b 43       	mov.b	#1,	r11	;r3 As==01
 
-0000e79c <.L2>:
-    e79c:	0d 9c       	cmp	r12,	r13	;
-    e79e:	08 28       	jnc	$+18     	;abs 0xe7b0
+0000e78a <.L2>:
+    e78a:	0d 9c       	cmp	r12,	r13	;
+    e78c:	08 28       	jnc	$+18     	;abs 0xe79e
 
-0000e7a0 <.L15>:
-    e7a0:	4f 43       	clr.b	r15		;
+0000e78e <.L15>:
+    e78e:	4f 43       	clr.b	r15		;
 
-0000e7a2 <.L4>:
-    e7a2:	0b 93       	cmp	#0,	r11	;r3 As==00
-    e7a4:	0e 20       	jnz	$+30     	;abs 0xe7c2
+0000e790 <.L4>:
+    e790:	0b 93       	cmp	#0,	r11	;r3 As==00
+    e792:	0e 20       	jnz	$+30     	;abs 0xe7b0
 
-0000e7a6 <.L5>:
-    e7a6:	0e 93       	cmp	#0,	r14	;r3 As==00
-    e7a8:	01 24       	jz	$+4      	;abs 0xe7ac
-    e7aa:	0f 4c       	mov	r12,	r15	;
+0000e794 <.L5>:
+    e794:	0e 93       	cmp	#0,	r14	;r3 As==00
+    e796:	01 24       	jz	$+4      	;abs 0xe79a
+    e798:	0f 4c       	mov	r12,	r15	;
 
-0000e7ac <.L1>:
-    e7ac:	0c 4f       	mov	r15,	r12	;
-    e7ae:	30 41       	ret			
+0000e79a <.L1>:
+    e79a:	0c 4f       	mov	r15,	r12	;
+    e79c:	30 41       	ret			
 
-0000e7b0 <.L3>:
-    e7b0:	3f 53       	add	#-1,	r15	;r3 As==11
+0000e79e <.L3>:
+    e79e:	3f 53       	add	#-1,	r15	;r3 As==11
 
-0000e7b2 <.Loc.38.1>:
-    e7b2:	0f 93       	cmp	#0,	r15	;r3 As==00
-    e7b4:	f8 27       	jz	$-14     	;abs 0xe7a6
+0000e7a0 <.Loc.38.1>:
+    e7a0:	0f 93       	cmp	#0,	r15	;r3 As==00
+    e7a2:	f8 27       	jz	$-14     	;abs 0xe794
 
-0000e7b6 <.Loc.38.1>:
-    e7b6:	0d 93       	cmp	#0,	r13	;r3 As==00
-    e7b8:	f3 3b       	jl	$-24     	;abs 0xe7a0
+0000e7a4 <.Loc.38.1>:
+    e7a4:	0d 93       	cmp	#0,	r13	;r3 As==00
+    e7a6:	f3 3b       	jl	$-24     	;abs 0xe78e
 
-0000e7ba <.Loc.40.1>:
-    e7ba:	0d 5d       	rla	r13		;
+0000e7a8 <.Loc.40.1>:
+    e7a8:	0d 5d       	rla	r13		;
 
-0000e7bc <.Loc.41.1>:
-    e7bc:	0b 5b       	rla	r11		;
-    e7be:	30 40 9c e7 	br	#0xe79c		;
+0000e7aa <.Loc.41.1>:
+    e7aa:	0b 5b       	rla	r11		;
+    e7ac:	30 40 8a e7 	br	#0xe78a		;
 
-0000e7c2 <.L9>:
-    e7c2:	0c 9d       	cmp	r13,	r12	;
-    e7c4:	02 28       	jnc	$+6      	;abs 0xe7ca
+0000e7b0 <.L9>:
+    e7b0:	0c 9d       	cmp	r13,	r12	;
+    e7b2:	02 28       	jnc	$+6      	;abs 0xe7b8
 
-0000e7c6 <.Loc.47.1>:
-    e7c6:	0c 8d       	sub	r13,	r12	;
+0000e7b4 <.Loc.47.1>:
+    e7b4:	0c 8d       	sub	r13,	r12	;
 
-0000e7c8 <.Loc.48.1>:
-    e7c8:	0f db       	bis	r11,	r15	;
+0000e7b6 <.Loc.48.1>:
+    e7b6:	0f db       	bis	r11,	r15	;
 
-0000e7ca <.L8>:
-    e7ca:	12 c3       	clrc			
-    e7cc:	0b 10       	rrc	r11		;
+0000e7b8 <.L8>:
+    e7b8:	12 c3       	clrc			
+    e7ba:	0b 10       	rrc	r11		;
 
-0000e7ce <.Loc.51.1>:
-    e7ce:	12 c3       	clrc			
-    e7d0:	0d 10       	rrc	r13		;
-    e7d2:	30 40 a2 e7 	br	#0xe7a2		;
+0000e7bc <.Loc.51.1>:
+    e7bc:	12 c3       	clrc			
+    e7be:	0d 10       	rrc	r13		;
+    e7c0:	30 40 90 e7 	br	#0xe790		;
 
-0000e7d6 <__mspabi_divi>:
-    e7d6:	0a 12       	push	r10		;
+0000e7c4 <__mspabi_divi>:
+    e7c4:	0a 12       	push	r10		;
 
-0000e7d8 <.LCFI0>:
-    e7d8:	0f 4c       	mov	r12,	r15	;
-    e7da:	0e 4d       	mov	r13,	r14	;
+0000e7c6 <.LCFI0>:
+    e7c6:	0f 4c       	mov	r12,	r15	;
+    e7c8:	0e 4d       	mov	r13,	r14	;
 
-0000e7dc <.LVL14>:
-    e7dc:	3b 40 96 e7 	mov	#59286,	r11	;#0xe796
+0000e7ca <.LVL14>:
+    e7ca:	3b 40 84 e7 	mov	#59268,	r11	;#0xe784
 
-0000e7e0 <.Loc.64.1>:
-    e7e0:	0c 93       	cmp	#0,	r12	;r3 As==00
-    e7e2:	1a 34       	jge	$+54     	;abs 0xe818
+0000e7ce <.Loc.64.1>:
+    e7ce:	0c 93       	cmp	#0,	r12	;r3 As==00
+    e7d0:	1a 34       	jge	$+54     	;abs 0xe806
 
-0000e7e4 <.Loc.66.1>:
-    e7e4:	4c 43       	clr.b	r12		;
+0000e7d2 <.Loc.66.1>:
+    e7d2:	4c 43       	clr.b	r12		;
 
-0000e7e6 <.LVL15>:
-    e7e6:	0c 8f       	sub	r15,	r12	;
-    e7e8:	0f 4c       	mov	r12,	r15	;
+0000e7d4 <.LVL15>:
+    e7d4:	0c 8f       	sub	r15,	r12	;
+    e7d6:	0f 4c       	mov	r12,	r15	;
 
-0000e7ea <.LVL16>:
-    e7ea:	0d 93       	cmp	#0,	r13	;r3 As==00
-    e7ec:	0d 34       	jge	$+28     	;abs 0xe808
+0000e7d8 <.LVL16>:
+    e7d8:	0d 93       	cmp	#0,	r13	;r3 As==00
+    e7da:	0d 34       	jge	$+28     	;abs 0xe7f6
 
-0000e7ee <.Loc.67.1>:
-    e7ee:	5a 43       	mov.b	#1,	r10	;r3 As==01
+0000e7dc <.Loc.67.1>:
+    e7dc:	5a 43       	mov.b	#1,	r10	;r3 As==01
 
-0000e7f0 <.L21>:
-    e7f0:	0d 43       	clr	r13		;
-    e7f2:	0d 8e       	sub	r14,	r13	;
+0000e7de <.L21>:
+    e7de:	0d 43       	clr	r13		;
+    e7e0:	0d 8e       	sub	r14,	r13	;
 
-0000e7f4 <.LVL18>:
-    e7f4:	4e 43       	clr.b	r14		;
+0000e7e2 <.LVL18>:
+    e7e2:	4e 43       	clr.b	r14		;
 
-0000e7f6 <.LVL19>:
-    e7f6:	0c 4f       	mov	r15,	r12	;
+0000e7e4 <.LVL19>:
+    e7e4:	0c 4f       	mov	r15,	r12	;
 
-0000e7f8 <.LVL20>:
+0000e7e6 <.LVL20>:
+    e7e6:	8b 12       	call	r11		;
+
+0000e7e8 <.LVL21>:
+    e7e8:	1a 93       	cmp	#1,	r10	;r3 As==01
+    e7ea:	03 24       	jz	$+8      	;abs 0xe7f2
+
+0000e7ec <.L20>:
+    e7ec:	4d 43       	clr.b	r13		;
+    e7ee:	0d 8c       	sub	r12,	r13	;
+    e7f0:	0c 4d       	mov	r13,	r12	;
+
+0000e7f2 <.L16>:
+    e7f2:	3a 41       	pop	r10		;
+    e7f4:	30 41       	ret			
+
+0000e7f6 <.L18>:
+    e7f6:	4e 43       	clr.b	r14		;
     e7f8:	8b 12       	call	r11		;
 
-0000e7fa <.LVL21>:
-    e7fa:	1a 93       	cmp	#1,	r10	;r3 As==01
-    e7fc:	03 24       	jz	$+8      	;abs 0xe804
+0000e7fa <.LVL25>:
+    e7fa:	30 40 ec e7 	br	#0xe7ec		;
 
-0000e7fe <.L20>:
-    e7fe:	4d 43       	clr.b	r13		;
-    e800:	0d 8c       	sub	r12,	r13	;
-    e802:	0c 4d       	mov	r13,	r12	;
+0000e7fe <.L27>:
+    e7fe:	4e 43       	clr.b	r14		;
+    e800:	8b 12       	call	r11		;
 
-0000e804 <.L16>:
-    e804:	3a 41       	pop	r10		;
-    e806:	30 41       	ret			
+0000e802 <.LVL27>:
+    e802:	30 40 f2 e7 	br	#0xe7f2		;
 
-0000e808 <.L18>:
-    e808:	4e 43       	clr.b	r14		;
-    e80a:	8b 12       	call	r11		;
+0000e806 <.L17>:
+    e806:	0d 93       	cmp	#0,	r13	;r3 As==00
+    e808:	fa 37       	jge	$-10     	;abs 0xe7fe
 
-0000e80c <.LVL25>:
-    e80c:	30 40 fe e7 	br	#0xe7fe		;
+0000e80a <.Loc.61.1>:
+    e80a:	4a 43       	clr.b	r10		;
+    e80c:	30 40 de e7 	br	#0xe7de		;
 
-0000e810 <.L27>:
-    e810:	4e 43       	clr.b	r14		;
-    e812:	8b 12       	call	r11		;
+0000e810 <__mspabi_remi>:
+    e810:	0a 12       	push	r10		;
 
-0000e814 <.LVL27>:
-    e814:	30 40 04 e8 	br	#0xe804		;
+0000e812 <.LCFI1>:
+    e812:	0c 93       	cmp	#0,	r12	;r3 As==00
+    e814:	13 34       	jge	$+40     	;abs 0xe83c
 
-0000e818 <.L17>:
-    e818:	0d 93       	cmp	#0,	r13	;r3 As==00
-    e81a:	fa 37       	jge	$-10     	;abs 0xe810
+0000e816 <.Loc.92.1>:
+    e816:	4e 43       	clr.b	r14		;
+    e818:	0e 8c       	sub	r12,	r14	;
+    e81a:	0c 4e       	mov	r14,	r12	;
 
-0000e81c <.Loc.61.1>:
-    e81c:	4a 43       	clr.b	r10		;
-    e81e:	30 40 f0 e7 	br	#0xe7f0		;
+0000e81c <.LVL31>:
+    e81c:	5a 43       	mov.b	#1,	r10	;r3 As==01
 
-0000e822 <__mspabi_remi>:
-    e822:	0a 12       	push	r10		;
+0000e81e <.L29>:
+    e81e:	0d 93       	cmp	#0,	r13	;r3 As==00
+    e820:	03 34       	jge	$+8      	;abs 0xe828
+    e822:	4e 43       	clr.b	r14		;
+    e824:	0e 8d       	sub	r13,	r14	;
+    e826:	0d 4e       	mov	r14,	r13	;
 
-0000e824 <.LCFI1>:
-    e824:	0c 93       	cmp	#0,	r12	;r3 As==00
-    e826:	13 34       	jge	$+40     	;abs 0xe84e
+0000e828 <.L30>:
+    e828:	5e 43       	mov.b	#1,	r14	;r3 As==01
+    e82a:	b0 12 84 e7 	call	#59268		;#0xe784
 
-0000e828 <.Loc.92.1>:
-    e828:	4e 43       	clr.b	r14		;
-    e82a:	0e 8c       	sub	r12,	r14	;
-    e82c:	0c 4e       	mov	r14,	r12	;
+0000e82e <.LVL34>:
+    e82e:	0a 93       	cmp	#0,	r10	;r3 As==00
+    e830:	03 24       	jz	$+8      	;abs 0xe838
 
-0000e82e <.LVL31>:
-    e82e:	5a 43       	mov.b	#1,	r10	;r3 As==01
+0000e832 <.LVL35>:
+    e832:	4d 43       	clr.b	r13		;
+    e834:	0d 8c       	sub	r12,	r13	;
+    e836:	0c 4d       	mov	r13,	r12	;
 
-0000e830 <.L29>:
-    e830:	0d 93       	cmp	#0,	r13	;r3 As==00
-    e832:	03 34       	jge	$+8      	;abs 0xe83a
-    e834:	4e 43       	clr.b	r14		;
-    e836:	0e 8d       	sub	r13,	r14	;
-    e838:	0d 4e       	mov	r14,	r13	;
+0000e838 <.L28>:
+    e838:	3a 41       	pop	r10		;
+    e83a:	30 41       	ret			
 
-0000e83a <.L30>:
-    e83a:	5e 43       	mov.b	#1,	r14	;r3 As==01
-    e83c:	b0 12 96 e7 	call	#59286		;#0xe796
+0000e83c <.L32>:
+    e83c:	4a 43       	clr.b	r10		;
+    e83e:	30 40 1e e8 	br	#0xe81e		;
 
-0000e840 <.LVL34>:
-    e840:	0a 93       	cmp	#0,	r10	;r3 As==00
-    e842:	03 24       	jz	$+8      	;abs 0xe84a
+0000e842 <__mspabi_divu>:
+    e842:	4e 43       	clr.b	r14		;
+    e844:	b0 12 84 e7 	call	#59268		;#0xe784
 
-0000e844 <.LVL35>:
-    e844:	4d 43       	clr.b	r13		;
-    e846:	0d 8c       	sub	r12,	r13	;
-    e848:	0c 4d       	mov	r13,	r12	;
+0000e848 <.LVL39>:
+    e848:	30 41       	ret			
 
-0000e84a <.L28>:
-    e84a:	3a 41       	pop	r10		;
-    e84c:	30 41       	ret			
+0000e84a <__mspabi_remu>:
+    e84a:	5e 43       	mov.b	#1,	r14	;r3 As==01
+    e84c:	b0 12 84 e7 	call	#59268		;#0xe784
 
-0000e84e <.L32>:
-    e84e:	4a 43       	clr.b	r10		;
-    e850:	30 40 30 e8 	br	#0xe830		;
+0000e850 <.LVL41>:
+    e850:	30 41       	ret			
 
-0000e854 <__mspabi_divu>:
-    e854:	4e 43       	clr.b	r14		;
-    e856:	b0 12 96 e7 	call	#59286		;#0xe796
+0000e852 <__mspabi_func_epilog_7>:
+    e852:	34 41       	pop	r4		;
 
-0000e85a <.LVL39>:
-    e85a:	30 41       	ret			
+0000e854 <__mspabi_func_epilog_6>:
+    e854:	35 41       	pop	r5		;
 
-0000e85c <__mspabi_remu>:
-    e85c:	5e 43       	mov.b	#1,	r14	;r3 As==01
-    e85e:	b0 12 96 e7 	call	#59286		;#0xe796
+0000e856 <__mspabi_func_epilog_5>:
+    e856:	36 41       	pop	r6		;
 
-0000e862 <.LVL41>:
-    e862:	30 41       	ret			
+0000e858 <__mspabi_func_epilog_4>:
+    e858:	37 41       	pop	r7		;
 
-0000e864 <__mspabi_func_epilog_7>:
-    e864:	34 41       	pop	r4		;
+0000e85a <__mspabi_func_epilog_3>:
+    e85a:	38 41       	pop	r8		;
 
-0000e866 <__mspabi_func_epilog_6>:
-    e866:	35 41       	pop	r5		;
+0000e85c <__mspabi_func_epilog_2>:
+    e85c:	39 41       	pop	r9		;
 
-0000e868 <__mspabi_func_epilog_5>:
-    e868:	36 41       	pop	r6		;
+0000e85e <__mspabi_func_epilog_1>:
+    e85e:	3a 41       	pop	r10		;
+    e860:	30 41       	ret			
 
-0000e86a <__mspabi_func_epilog_4>:
-    e86a:	37 41       	pop	r7		;
+0000e862 <__mspabi_srai_15>:
+    e862:	0c 11       	rra	r12		;
 
-0000e86c <__mspabi_func_epilog_3>:
-    e86c:	38 41       	pop	r8		;
+0000e864 <__mspabi_srai_14>:
+    e864:	0c 11       	rra	r12		;
 
-0000e86e <__mspabi_func_epilog_2>:
-    e86e:	39 41       	pop	r9		;
+0000e866 <__mspabi_srai_13>:
+    e866:	0c 11       	rra	r12		;
 
-0000e870 <__mspabi_func_epilog_1>:
-    e870:	3a 41       	pop	r10		;
-    e872:	30 41       	ret			
+0000e868 <__mspabi_srai_12>:
+    e868:	0c 11       	rra	r12		;
 
-0000e874 <__mspabi_srai_15>:
+0000e86a <__mspabi_srai_11>:
+    e86a:	0c 11       	rra	r12		;
+
+0000e86c <__mspabi_srai_10>:
+    e86c:	0c 11       	rra	r12		;
+
+0000e86e <__mspabi_srai_9>:
+    e86e:	0c 11       	rra	r12		;
+
+0000e870 <__mspabi_srai_8>:
+    e870:	0c 11       	rra	r12		;
+
+0000e872 <__mspabi_srai_7>:
+    e872:	0c 11       	rra	r12		;
+
+0000e874 <__mspabi_srai_6>:
     e874:	0c 11       	rra	r12		;
 
-0000e876 <__mspabi_srai_14>:
+0000e876 <__mspabi_srai_5>:
     e876:	0c 11       	rra	r12		;
 
-0000e878 <__mspabi_srai_13>:
+0000e878 <__mspabi_srai_4>:
     e878:	0c 11       	rra	r12		;
 
-0000e87a <__mspabi_srai_12>:
+0000e87a <__mspabi_srai_3>:
     e87a:	0c 11       	rra	r12		;
 
-0000e87c <__mspabi_srai_11>:
+0000e87c <__mspabi_srai_2>:
     e87c:	0c 11       	rra	r12		;
 
-0000e87e <__mspabi_srai_10>:
+0000e87e <__mspabi_srai_1>:
     e87e:	0c 11       	rra	r12		;
+    e880:	30 41       	ret			
 
-0000e880 <__mspabi_srai_9>:
-    e880:	0c 11       	rra	r12		;
-
-0000e882 <__mspabi_srai_8>:
-    e882:	0c 11       	rra	r12		;
-
-0000e884 <__mspabi_srai_7>:
+0000e882 <.L11>:
+    e882:	3d 53       	add	#-1,	r13	;r3 As==11
     e884:	0c 11       	rra	r12		;
 
-0000e886 <__mspabi_srai_6>:
-    e886:	0c 11       	rra	r12		;
+0000e886 <__mspabi_srai>:
+    e886:	0d 93       	cmp	#0,	r13	;r3 As==00
+    e888:	fc 23       	jnz	$-6      	;abs 0xe882
+    e88a:	30 41       	ret			
 
-0000e888 <__mspabi_srai_5>:
-    e888:	0c 11       	rra	r12		;
+0000e88c <__mspabi_sral_15>:
+    e88c:	0d 11       	rra	r13		;
+    e88e:	0c 10       	rrc	r12		;
 
-0000e88a <__mspabi_srai_4>:
-    e88a:	0c 11       	rra	r12		;
+0000e890 <__mspabi_sral_14>:
+    e890:	0d 11       	rra	r13		;
+    e892:	0c 10       	rrc	r12		;
 
-0000e88c <__mspabi_srai_3>:
-    e88c:	0c 11       	rra	r12		;
+0000e894 <__mspabi_sral_13>:
+    e894:	0d 11       	rra	r13		;
+    e896:	0c 10       	rrc	r12		;
 
-0000e88e <__mspabi_srai_2>:
-    e88e:	0c 11       	rra	r12		;
+0000e898 <__mspabi_sral_12>:
+    e898:	0d 11       	rra	r13		;
+    e89a:	0c 10       	rrc	r12		;
 
-0000e890 <__mspabi_srai_1>:
-    e890:	0c 11       	rra	r12		;
-    e892:	30 41       	ret			
+0000e89c <__mspabi_sral_11>:
+    e89c:	0d 11       	rra	r13		;
+    e89e:	0c 10       	rrc	r12		;
 
-0000e894 <.L11>:
-    e894:	3d 53       	add	#-1,	r13	;r3 As==11
-    e896:	0c 11       	rra	r12		;
+0000e8a0 <__mspabi_sral_10>:
+    e8a0:	0d 11       	rra	r13		;
+    e8a2:	0c 10       	rrc	r12		;
 
-0000e898 <__mspabi_srai>:
-    e898:	0d 93       	cmp	#0,	r13	;r3 As==00
-    e89a:	fc 23       	jnz	$-6      	;abs 0xe894
-    e89c:	30 41       	ret			
+0000e8a4 <__mspabi_sral_9>:
+    e8a4:	0d 11       	rra	r13		;
+    e8a6:	0c 10       	rrc	r12		;
 
-0000e89e <__mspabi_sral_15>:
-    e89e:	0d 11       	rra	r13		;
-    e8a0:	0c 10       	rrc	r12		;
+0000e8a8 <__mspabi_sral_8>:
+    e8a8:	0d 11       	rra	r13		;
+    e8aa:	0c 10       	rrc	r12		;
 
-0000e8a2 <__mspabi_sral_14>:
-    e8a2:	0d 11       	rra	r13		;
-    e8a4:	0c 10       	rrc	r12		;
+0000e8ac <__mspabi_sral_7>:
+    e8ac:	0d 11       	rra	r13		;
+    e8ae:	0c 10       	rrc	r12		;
 
-0000e8a6 <__mspabi_sral_13>:
-    e8a6:	0d 11       	rra	r13		;
-    e8a8:	0c 10       	rrc	r12		;
+0000e8b0 <__mspabi_sral_6>:
+    e8b0:	0d 11       	rra	r13		;
+    e8b2:	0c 10       	rrc	r12		;
 
-0000e8aa <__mspabi_sral_12>:
-    e8aa:	0d 11       	rra	r13		;
-    e8ac:	0c 10       	rrc	r12		;
+0000e8b4 <__mspabi_sral_5>:
+    e8b4:	0d 11       	rra	r13		;
+    e8b6:	0c 10       	rrc	r12		;
 
-0000e8ae <__mspabi_sral_11>:
-    e8ae:	0d 11       	rra	r13		;
-    e8b0:	0c 10       	rrc	r12		;
+0000e8b8 <__mspabi_sral_4>:
+    e8b8:	0d 11       	rra	r13		;
+    e8ba:	0c 10       	rrc	r12		;
 
-0000e8b2 <__mspabi_sral_10>:
-    e8b2:	0d 11       	rra	r13		;
-    e8b4:	0c 10       	rrc	r12		;
+0000e8bc <__mspabi_sral_3>:
+    e8bc:	0d 11       	rra	r13		;
+    e8be:	0c 10       	rrc	r12		;
 
-0000e8b6 <__mspabi_sral_9>:
-    e8b6:	0d 11       	rra	r13		;
-    e8b8:	0c 10       	rrc	r12		;
+0000e8c0 <__mspabi_sral_2>:
+    e8c0:	0d 11       	rra	r13		;
+    e8c2:	0c 10       	rrc	r12		;
 
-0000e8ba <__mspabi_sral_8>:
-    e8ba:	0d 11       	rra	r13		;
-    e8bc:	0c 10       	rrc	r12		;
+0000e8c4 <__mspabi_sral_1>:
+    e8c4:	0d 11       	rra	r13		;
+    e8c6:	0c 10       	rrc	r12		;
+    e8c8:	30 41       	ret			
 
-0000e8be <__mspabi_sral_7>:
-    e8be:	0d 11       	rra	r13		;
-    e8c0:	0c 10       	rrc	r12		;
+0000e8ca <.L12>:
+    e8ca:	3e 53       	add	#-1,	r14	;r3 As==11
+    e8cc:	0d 11       	rra	r13		;
+    e8ce:	0c 10       	rrc	r12		;
 
-0000e8c2 <__mspabi_sral_6>:
-    e8c2:	0d 11       	rra	r13		;
-    e8c4:	0c 10       	rrc	r12		;
+0000e8d0 <__mspabi_sral>:
+    e8d0:	0e 93       	cmp	#0,	r14	;r3 As==00
+    e8d2:	fb 23       	jnz	$-8      	;abs 0xe8ca
+    e8d4:	30 41       	ret			
 
-0000e8c6 <__mspabi_sral_5>:
-    e8c6:	0d 11       	rra	r13		;
-    e8c8:	0c 10       	rrc	r12		;
-
-0000e8ca <__mspabi_sral_4>:
-    e8ca:	0d 11       	rra	r13		;
-    e8cc:	0c 10       	rrc	r12		;
-
-0000e8ce <__mspabi_sral_3>:
-    e8ce:	0d 11       	rra	r13		;
-    e8d0:	0c 10       	rrc	r12		;
-
-0000e8d2 <__mspabi_sral_2>:
-    e8d2:	0d 11       	rra	r13		;
-    e8d4:	0c 10       	rrc	r12		;
-
-0000e8d6 <__mspabi_sral_1>:
-    e8d6:	0d 11       	rra	r13		;
+0000e8d6 <__mspabi_srli_15>:
+    e8d6:	12 c3       	clrc			
     e8d8:	0c 10       	rrc	r12		;
-    e8da:	30 41       	ret			
 
-0000e8dc <.L12>:
-    e8dc:	3e 53       	add	#-1,	r14	;r3 As==11
-    e8de:	0d 11       	rra	r13		;
+0000e8da <__mspabi_srli_14>:
+    e8da:	12 c3       	clrc			
+    e8dc:	0c 10       	rrc	r12		;
+
+0000e8de <__mspabi_srli_13>:
+    e8de:	12 c3       	clrc			
     e8e0:	0c 10       	rrc	r12		;
 
-0000e8e2 <__mspabi_sral>:
-    e8e2:	0e 93       	cmp	#0,	r14	;r3 As==00
-    e8e4:	fb 23       	jnz	$-8      	;abs 0xe8dc
-    e8e6:	30 41       	ret			
+0000e8e2 <__mspabi_srli_12>:
+    e8e2:	12 c3       	clrc			
+    e8e4:	0c 10       	rrc	r12		;
 
-0000e8e8 <__mspabi_srli_15>:
-    e8e8:	12 c3       	clrc			
-    e8ea:	0c 10       	rrc	r12		;
+0000e8e6 <__mspabi_srli_11>:
+    e8e6:	12 c3       	clrc			
+    e8e8:	0c 10       	rrc	r12		;
 
-0000e8ec <__mspabi_srli_14>:
-    e8ec:	12 c3       	clrc			
-    e8ee:	0c 10       	rrc	r12		;
+0000e8ea <__mspabi_srli_10>:
+    e8ea:	12 c3       	clrc			
+    e8ec:	0c 10       	rrc	r12		;
 
-0000e8f0 <__mspabi_srli_13>:
-    e8f0:	12 c3       	clrc			
-    e8f2:	0c 10       	rrc	r12		;
+0000e8ee <__mspabi_srli_9>:
+    e8ee:	12 c3       	clrc			
+    e8f0:	0c 10       	rrc	r12		;
 
-0000e8f4 <__mspabi_srli_12>:
-    e8f4:	12 c3       	clrc			
-    e8f6:	0c 10       	rrc	r12		;
+0000e8f2 <__mspabi_srli_8>:
+    e8f2:	12 c3       	clrc			
+    e8f4:	0c 10       	rrc	r12		;
 
-0000e8f8 <__mspabi_srli_11>:
-    e8f8:	12 c3       	clrc			
-    e8fa:	0c 10       	rrc	r12		;
+0000e8f6 <__mspabi_srli_7>:
+    e8f6:	12 c3       	clrc			
+    e8f8:	0c 10       	rrc	r12		;
 
-0000e8fc <__mspabi_srli_10>:
-    e8fc:	12 c3       	clrc			
-    e8fe:	0c 10       	rrc	r12		;
+0000e8fa <__mspabi_srli_6>:
+    e8fa:	12 c3       	clrc			
+    e8fc:	0c 10       	rrc	r12		;
 
-0000e900 <__mspabi_srli_9>:
-    e900:	12 c3       	clrc			
-    e902:	0c 10       	rrc	r12		;
+0000e8fe <__mspabi_srli_5>:
+    e8fe:	12 c3       	clrc			
+    e900:	0c 10       	rrc	r12		;
 
-0000e904 <__mspabi_srli_8>:
-    e904:	12 c3       	clrc			
-    e906:	0c 10       	rrc	r12		;
+0000e902 <__mspabi_srli_4>:
+    e902:	12 c3       	clrc			
+    e904:	0c 10       	rrc	r12		;
 
-0000e908 <__mspabi_srli_7>:
-    e908:	12 c3       	clrc			
-    e90a:	0c 10       	rrc	r12		;
+0000e906 <__mspabi_srli_3>:
+    e906:	12 c3       	clrc			
+    e908:	0c 10       	rrc	r12		;
 
-0000e90c <__mspabi_srli_6>:
-    e90c:	12 c3       	clrc			
-    e90e:	0c 10       	rrc	r12		;
+0000e90a <__mspabi_srli_2>:
+    e90a:	12 c3       	clrc			
+    e90c:	0c 10       	rrc	r12		;
 
-0000e910 <__mspabi_srli_5>:
-    e910:	12 c3       	clrc			
-    e912:	0c 10       	rrc	r12		;
+0000e90e <__mspabi_srli_1>:
+    e90e:	12 c3       	clrc			
+    e910:	0c 10       	rrc	r12		;
+    e912:	30 41       	ret			
 
-0000e914 <__mspabi_srli_4>:
-    e914:	12 c3       	clrc			
-    e916:	0c 10       	rrc	r12		;
+0000e914 <.L11>:
+    e914:	3d 53       	add	#-1,	r13	;r3 As==11
+    e916:	12 c3       	clrc			
+    e918:	0c 10       	rrc	r12		;
 
-0000e918 <__mspabi_srli_3>:
-    e918:	12 c3       	clrc			
-    e91a:	0c 10       	rrc	r12		;
+0000e91a <__mspabi_srli>:
+    e91a:	0d 93       	cmp	#0,	r13	;r3 As==00
+    e91c:	fb 23       	jnz	$-8      	;abs 0xe914
+    e91e:	30 41       	ret			
 
-0000e91c <__mspabi_srli_2>:
-    e91c:	12 c3       	clrc			
-    e91e:	0c 10       	rrc	r12		;
-
-0000e920 <__mspabi_srli_1>:
+0000e920 <__mspabi_srll_15>:
     e920:	12 c3       	clrc			
-    e922:	0c 10       	rrc	r12		;
-    e924:	30 41       	ret			
+    e922:	0d 10       	rrc	r13		;
+    e924:	0c 10       	rrc	r12		;
 
-0000e926 <.L11>:
-    e926:	3d 53       	add	#-1,	r13	;r3 As==11
-    e928:	12 c3       	clrc			
+0000e926 <__mspabi_srll_14>:
+    e926:	12 c3       	clrc			
+    e928:	0d 10       	rrc	r13		;
     e92a:	0c 10       	rrc	r12		;
 
-0000e92c <__mspabi_srli>:
-    e92c:	0d 93       	cmp	#0,	r13	;r3 As==00
-    e92e:	fb 23       	jnz	$-8      	;abs 0xe926
-    e930:	30 41       	ret			
+0000e92c <__mspabi_srll_13>:
+    e92c:	12 c3       	clrc			
+    e92e:	0d 10       	rrc	r13		;
+    e930:	0c 10       	rrc	r12		;
 
-0000e932 <__mspabi_srll_15>:
+0000e932 <__mspabi_srll_12>:
     e932:	12 c3       	clrc			
     e934:	0d 10       	rrc	r13		;
     e936:	0c 10       	rrc	r12		;
 
-0000e938 <__mspabi_srll_14>:
+0000e938 <__mspabi_srll_11>:
     e938:	12 c3       	clrc			
     e93a:	0d 10       	rrc	r13		;
     e93c:	0c 10       	rrc	r12		;
 
-0000e93e <__mspabi_srll_13>:
+0000e93e <__mspabi_srll_10>:
     e93e:	12 c3       	clrc			
     e940:	0d 10       	rrc	r13		;
     e942:	0c 10       	rrc	r12		;
 
-0000e944 <__mspabi_srll_12>:
+0000e944 <__mspabi_srll_9>:
     e944:	12 c3       	clrc			
     e946:	0d 10       	rrc	r13		;
     e948:	0c 10       	rrc	r12		;
 
-0000e94a <__mspabi_srll_11>:
+0000e94a <__mspabi_srll_8>:
     e94a:	12 c3       	clrc			
     e94c:	0d 10       	rrc	r13		;
     e94e:	0c 10       	rrc	r12		;
 
-0000e950 <__mspabi_srll_10>:
+0000e950 <__mspabi_srll_7>:
     e950:	12 c3       	clrc			
     e952:	0d 10       	rrc	r13		;
     e954:	0c 10       	rrc	r12		;
 
-0000e956 <__mspabi_srll_9>:
+0000e956 <__mspabi_srll_6>:
     e956:	12 c3       	clrc			
     e958:	0d 10       	rrc	r13		;
     e95a:	0c 10       	rrc	r12		;
 
-0000e95c <__mspabi_srll_8>:
+0000e95c <__mspabi_srll_5>:
     e95c:	12 c3       	clrc			
     e95e:	0d 10       	rrc	r13		;
     e960:	0c 10       	rrc	r12		;
 
-0000e962 <__mspabi_srll_7>:
+0000e962 <__mspabi_srll_4>:
     e962:	12 c3       	clrc			
     e964:	0d 10       	rrc	r13		;
     e966:	0c 10       	rrc	r12		;
 
-0000e968 <__mspabi_srll_6>:
+0000e968 <__mspabi_srll_3>:
     e968:	12 c3       	clrc			
     e96a:	0d 10       	rrc	r13		;
     e96c:	0c 10       	rrc	r12		;
 
-0000e96e <__mspabi_srll_5>:
+0000e96e <__mspabi_srll_2>:
     e96e:	12 c3       	clrc			
     e970:	0d 10       	rrc	r13		;
     e972:	0c 10       	rrc	r12		;
 
-0000e974 <__mspabi_srll_4>:
+0000e974 <__mspabi_srll_1>:
     e974:	12 c3       	clrc			
     e976:	0d 10       	rrc	r13		;
     e978:	0c 10       	rrc	r12		;
+    e97a:	30 41       	ret			
 
-0000e97a <__mspabi_srll_3>:
-    e97a:	12 c3       	clrc			
-    e97c:	0d 10       	rrc	r13		;
-    e97e:	0c 10       	rrc	r12		;
+0000e97c <.L12>:
+    e97c:	3e 53       	add	#-1,	r14	;r3 As==11
+    e97e:	12 c3       	clrc			
+    e980:	0d 10       	rrc	r13		;
+    e982:	0c 10       	rrc	r12		;
 
-0000e980 <__mspabi_srll_2>:
-    e980:	12 c3       	clrc			
-    e982:	0d 10       	rrc	r13		;
-    e984:	0c 10       	rrc	r12		;
+0000e984 <__mspabi_srll>:
+    e984:	0e 93       	cmp	#0,	r14	;r3 As==00
+    e986:	fa 23       	jnz	$-10     	;abs 0xe97c
+    e988:	30 41       	ret			
 
-0000e986 <__mspabi_srll_1>:
-    e986:	12 c3       	clrc			
-    e988:	0d 10       	rrc	r13		;
-    e98a:	0c 10       	rrc	r12		;
-    e98c:	30 41       	ret			
+0000e98a <memmove>:
+    e98a:	0d 9c       	cmp	r12,	r13	;
+    e98c:	0a 28       	jnc	$+22     	;abs 0xe9a2
 
-0000e98e <.L12>:
-    e98e:	3e 53       	add	#-1,	r14	;r3 As==11
-    e990:	12 c3       	clrc			
-    e992:	0d 10       	rrc	r13		;
-    e994:	0c 10       	rrc	r12		;
+0000e98e <.L5>:
+    e98e:	0f 4c       	mov	r12,	r15	;
+    e990:	0e 5c       	add	r12,	r14	;
 
-0000e996 <__mspabi_srll>:
-    e996:	0e 93       	cmp	#0,	r14	;r3 As==00
-    e998:	fa 23       	jnz	$-10     	;abs 0xe98e
-    e99a:	30 41       	ret			
+0000e992 <.L3>:
+    e992:	0e 9f       	cmp	r15,	r14	;
+    e994:	0d 24       	jz	$+28     	;abs 0xe9b0
 
-0000e99c <memmove>:
-    e99c:	0d 9c       	cmp	r12,	r13	;
-    e99e:	0a 28       	jnc	$+22     	;abs 0xe9b4
+0000e996 <.LVL3>:
+    e996:	ef 4d 00 00 	mov.b	@r13,	0(r15)	;
+    e99a:	1f 53       	inc	r15		;
 
-0000e9a0 <.L5>:
-    e9a0:	0f 4c       	mov	r12,	r15	;
-    e9a2:	0e 5c       	add	r12,	r14	;
+0000e99c <.LVL4>:
+    e99c:	1d 53       	inc	r13		;
+    e99e:	30 40 92 e9 	br	#0xe992		;
 
-0000e9a4 <.L3>:
-    e9a4:	0e 9f       	cmp	r15,	r14	;
-    e9a6:	0d 24       	jz	$+28     	;abs 0xe9c2
+0000e9a2 <.L2>:
+    e9a2:	0f 4d       	mov	r13,	r15	;
+    e9a4:	0f 5e       	add	r14,	r15	;
+    e9a6:	0c 9f       	cmp	r15,	r12	;
+    e9a8:	f2 2f       	jc	$-26     	;abs 0xe98e
 
-0000e9a8 <.LVL3>:
-    e9a8:	ef 4d 00 00 	mov.b	@r13,	0(r15)	;
-    e9ac:	1f 53       	inc	r15		;
+0000e9aa <.L4>:
+    e9aa:	3e 53       	add	#-1,	r14	;r3 As==11
 
-0000e9ae <.LVL4>:
-    e9ae:	1d 53       	inc	r13		;
-    e9b0:	30 40 a4 e9 	br	#0xe9a4		;
+0000e9ac <.LVL7>:
+    e9ac:	3e 93       	cmp	#-1,	r14	;r3 As==11
+    e9ae:	01 20       	jnz	$+4      	;abs 0xe9b2
 
-0000e9b4 <.L2>:
-    e9b4:	0f 4d       	mov	r13,	r15	;
-    e9b6:	0f 5e       	add	r14,	r15	;
-    e9b8:	0c 9f       	cmp	r15,	r12	;
-    e9ba:	f2 2f       	jc	$-26     	;abs 0xe9a0
+0000e9b0 <.L10>:
+    e9b0:	30 41       	ret			
 
-0000e9bc <.L4>:
-    e9bc:	3e 53       	add	#-1,	r14	;r3 As==11
+0000e9b2 <.L6>:
+    e9b2:	0b 4c       	mov	r12,	r11	;
+    e9b4:	0b 5e       	add	r14,	r11	;
+    e9b6:	0f 4d       	mov	r13,	r15	;
+    e9b8:	0f 5e       	add	r14,	r15	;
+    e9ba:	eb 4f 00 00 	mov.b	@r15,	0(r11)	;
+    e9be:	30 40 aa e9 	br	#0xe9aa		;
 
-0000e9be <.LVL7>:
-    e9be:	3e 93       	cmp	#-1,	r14	;r3 As==11
-    e9c0:	01 20       	jnz	$+4      	;abs 0xe9c4
+0000e9c2 <memset>:
+    e9c2:	0f 4c       	mov	r12,	r15	;
+    e9c4:	0e 5c       	add	r12,	r14	;
 
-0000e9c2 <.L10>:
-    e9c2:	30 41       	ret			
+0000e9c6 <.L2>:
+    e9c6:	0f 9e       	cmp	r14,	r15	;
+    e9c8:	01 20       	jnz	$+4      	;abs 0xe9cc
 
-0000e9c4 <.L6>:
-    e9c4:	0b 4c       	mov	r12,	r11	;
-    e9c6:	0b 5e       	add	r14,	r11	;
-    e9c8:	0f 4d       	mov	r13,	r15	;
-    e9ca:	0f 5e       	add	r14,	r15	;
-    e9cc:	eb 4f 00 00 	mov.b	@r15,	0(r11)	;
-    e9d0:	30 40 bc e9 	br	#0xe9bc		;
+0000e9ca <.Loc.104.1>:
+    e9ca:	30 41       	ret			
 
-0000e9d4 <memset>:
-    e9d4:	0f 4c       	mov	r12,	r15	;
-    e9d6:	0e 5c       	add	r12,	r14	;
+0000e9cc <.L3>:
+    e9cc:	cf 4d 00 00 	mov.b	r13,	0(r15)	;
+    e9d0:	1f 53       	inc	r15		;
 
-0000e9d8 <.L2>:
-    e9d8:	0f 9e       	cmp	r14,	r15	;
-    e9da:	01 20       	jnz	$+4      	;abs 0xe9de
+0000e9d2 <.LVL4>:
+    e9d2:	30 40 c6 e9 	br	#0xe9c6		;
 
-0000e9dc <.Loc.104.1>:
-    e9dc:	30 41       	ret			
+0000e9d6 <L0>:
+    e9d6:	30 41       	ret			
 
-0000e9de <.L3>:
-    e9de:	cf 4d 00 00 	mov.b	r13,	0(r15)	;
-    e9e2:	1f 53       	inc	r15		;
+0000e9d8 <__do_global_ctors_aux>:
+    e9d8:	0a 12       	push	r10		;
+    e9da:	3a 40 20 e0 	mov	#57376,	r10	;#0xe020
 
-0000e9e4 <.LVL4>:
-    e9e4:	30 40 d8 e9 	br	#0xe9d8		;
+0000e9de <.L2>:
+    e9de:	2c 4a       	mov	@r10,	r12	;
+    e9e0:	3c 93       	cmp	#-1,	r12	;r3 As==11
+    e9e2:	02 20       	jnz	$+6      	;abs 0xe9e8
+    e9e4:	3a 41       	pop	r10		;
+    e9e6:	30 41       	ret			
 
-0000e9e8 <L0>:
-    e9e8:	30 41       	ret			
+0000e9e8 <.L3>:
+    e9e8:	8c 12       	call	r12		;
+    e9ea:	3a 50 fe ff 	add	#65534,	r10	;#0xfffe
+    e9ee:	30 40 de e9 	br	#0xe9de		;
 
-0000e9ea <__do_global_ctors_aux>:
-    e9ea:	0a 12       	push	r10		;
-    e9ec:	3a 40 20 e0 	mov	#57376,	r10	;#0xe020
+0000e9f2 <call___do_global_ctors_aux>:
+    e9f2:	b0 12 2e e1 	call	#57646		;#0xe12e
+    e9f6:	b0 12 d8 e9 	call	#59864		;#0xe9d8
 
-0000e9f0 <.L2>:
-    e9f0:	2c 4a       	mov	@r10,	r12	;
-    e9f2:	3c 93       	cmp	#-1,	r12	;r3 As==11
-    e9f4:	02 20       	jnz	$+6      	;abs 0xe9fa
-    e9f6:	3a 41       	pop	r10		;
-    e9f8:	30 41       	ret			
+0000e9fa <L0>:
+    e9fa:	b0 12 66 e0 	call	#57446		;#0xe066
 
-0000e9fa <.L3>:
-    e9fa:	8c 12       	call	r12		;
-    e9fc:	3a 50 fe ff 	add	#65534,	r10	;#0xfffe
-    ea00:	30 40 f0 e9 	br	#0xe9f0		;
+0000e9fe <.Loc.19.1>:
+    e9fe:	b0 12 58 e0 	call	#57432		;#0xe058
 
-0000ea04 <call___do_global_ctors_aux>:
-    ea04:	b0 12 2e e1 	call	#57646		;#0xe12e
-    ea08:	b0 12 ea e9 	call	#59882		;#0xe9ea
+0000ea02 <.Loc.20.1>:
+    ea02:	30 41       	ret			
+
+0000ea04 <__msp430_fini>:
+    ea04:	b0 12 74 e0 	call	#57460		;#0xe074
+
+0000ea08 <L0>:
+    ea08:	b0 12 e0 e0 	call	#57568		;#0xe0e0
 
 0000ea0c <L0>:
-    ea0c:	b0 12 66 e0 	call	#57446		;#0xe066
-
-0000ea10 <.Loc.19.1>:
-    ea10:	b0 12 58 e0 	call	#57432		;#0xe058
-
-0000ea14 <.Loc.20.1>:
-    ea14:	30 41       	ret			
-
-0000ea16 <__msp430_fini>:
-    ea16:	b0 12 74 e0 	call	#57460		;#0xe074
-
-0000ea1a <L0>:
-    ea1a:	b0 12 e0 e0 	call	#57568		;#0xe0e0
-
-0000ea1e <L0>:
-    ea1e:	30 41       	ret			
+    ea0c:	30 41       	ret			

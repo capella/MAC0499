@@ -67,10 +67,10 @@ int main(void) {
 //    int *key;
 //    key = (void *)0xfee0; 
 
-    WDTCTL = WDTPW | WDTHOLD;           // Init watchdog timer
+    // WDTCTL = WDTPW | WDTHOLD;           // Init watchdog timer
 
-    P3DIR  = 0xff;
-    P3OUT  = 0xff;                      // Light LED during init
+    // P3DIR  = 0xff;
+    // P3OUT  = 0xff;                      // Light LED during init
 
     UART_BAUD = BAUD;                   // Init UART
     UART_CTL  = UART_EN | UART_IEN_RX;
@@ -78,7 +78,7 @@ int main(void) {
 
     // delay(65535);
 
-    P3OUT  = 0x00;                      // Switch off LED
+    // P3OUT  = 0x00;                      // Switch off LED
 
     // cprintf("\r\n====== openMSP430 in action ======\r\n");   //say hello
     cprintf("> ");

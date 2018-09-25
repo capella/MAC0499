@@ -312,19 +312,19 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
 wire        [15:0] per_sha;
 
 
-sha3_periph #(.BASE_ADDR(15'h0100)) sha256_0 (
+// sha3_periph #(.BASE_ADDR(15'h0100)) sha256_0 (
 
-// OUTPUTs
-    .per_dout     (per_sha), // Peripheral data output
+// // OUTPUTs
+//     .per_dout     (per_sha), // Peripheral data output
 
-// INPUTs
-    .mclk         (mclk),          // Main system clock
-    .per_addr     (per_addr),      // Peripheral address
-    .per_din      (per_din),       // Peripheral data input
-    .per_en       (per_en),        // Peripheral enable (high active)
-    .per_we       (per_we),        // Peripheral write enable (high active)
-    .puc_rst      (puc_rst)       // Main system reset
-);
+// // INPUTs
+//     .mclk         (mclk),          // Main system clock
+//     .per_addr     (per_addr),      // Peripheral address
+//     .per_din      (per_din),       // Peripheral data input
+//     .per_en       (per_en),        // Peripheral enable (high active)
+//     .per_we       (per_we),        // Peripheral write enable (high active)
+//     .puc_rst      (puc_rst)       // Main system reset
+// );
 
 
 //
@@ -458,16 +458,18 @@ IBUF  BTN0_PIN       (.O(),                            .I(BTN0));
 
 // RS-232 Port
 //----------------------
+IBUF  UART_RXD_PIN   (.O(uart_rxd_in),                 .I(UART_RXD));
+OBUF  UART_TXD_PIN   (.I(uart_txd_out),                .O(UART_TXD));
+
 // P1.1 (TX) and P2.2 (RX)
 wire uart_select = ({din[1], din[0]}==2'b10);
-wire   uart_txd_out = uart_select ? hw_uart_txd    : dbg_uart_txd;
-wire   uart_rxd_in = uart_select ? hw_uart_rxd    : dbg_uart_rxd;
+assign uart_txd_out = uart_select ? hw_uart_txd    : dbg_uart_txd;
 
 assign dout[0] = uart_select;
 assign dout[7] = dbg_uart_txd;
 assign dout[6] = dbg_uart_rxd;
 
-IBUF  UART_RXD_PIN   (.O(uart_rxd_in),                 .I(UART_RXD));
-OBUF  UART_TXD_PIN   (.I(uart_txd_out),                .O(UART_TXD));
+assign dbg_uart_rxd = !uart_select? uart_rxd_in : 1'b0;
+assign hw_uart_rxd = uart_select? uart_rxd_in : 1'b0;
 
 endmodule // openMSP430_fpga
