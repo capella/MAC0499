@@ -466,10 +466,10 @@ wire uart_select = ({din[1], din[0]}==2'b10);
 assign uart_txd_out = uart_select ? hw_uart_txd    : dbg_uart_txd;
 
 assign dout[0] = uart_select;
-assign dout[7] = dbg_uart_txd;
+assign dout[7] = !dbg_uart_txd;
 assign dout[6] = dbg_uart_rxd;
 
-assign dbg_uart_rxd = !uart_select? uart_rxd_in : 1'b0;
+assign dbg_uart_rxd = (~uart_select)? uart_rxd_in : 1'b0;
 assign hw_uart_rxd = uart_select? uart_rxd_in : 1'b0;
 
 endmodule // openMSP430_fpga
