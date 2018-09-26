@@ -458,18 +458,18 @@ IBUF  BTN0_PIN       (.O(),                            .I(BTN0));
 
 // RS-232 Port
 //----------------------
-IBUF  UART_RXD_PIN   (.O(uart_rxd_in),                 .I(UART_RXD));
-OBUF  UART_TXD_PIN   (.I(uart_txd_out),                .O(UART_TXD));
+IBUF  UART_RXD_PIN   (.O(hw_uart_rxd),                 .I(UART_RXD));
+OBUF  UART_TXD_PIN   (.I(hw_uart_txd),                .O(UART_TXD));
 
 // P1.1 (TX) and P2.2 (RX)
-wire uart_select = ({din[1], din[0]}==2'b10);
-assign uart_txd_out = uart_select ? hw_uart_txd    : dbg_uart_txd;
+// wire uart_select = ({din[1], din[0]}==2'b10);
+// assign uart_txd_out = uart_select ? hw_uart_txd    : dbg_uart_txd;
 
-assign dout[0] = uart_select;
-assign dout[7] = !dbg_uart_txd;
-assign dout[6] = dbg_uart_rxd;
+// assign dout[0] = uart_select;
+// assign dout[7] = !dbg_uart_txd;
+// assign dout[6] = dbg_uart_rxd;
 
-assign dbg_uart_rxd = (~uart_select)? uart_rxd_in : 1'b0;
-assign hw_uart_rxd = uart_select? uart_rxd_in : 1'b0;
+// assign dbg_uart_rxd = (~uart_select)? uart_rxd_in : 1'b0;
+// assign hw_uart_rxd = uart_select? uart_rxd_in : 1'b0;
 
 endmodule // openMSP430_fpga

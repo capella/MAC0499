@@ -8,7 +8,7 @@
 
 // Data rate
 parameter UART_FREQ   = 115200;
-integer   UART_PERIOD = 1000000000/UART_FREQ;
+integer   UART_PERIOD = 200000000/UART_FREQ;
 
 
 reg [7:0] rxbuf;
