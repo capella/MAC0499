@@ -10,7 +10,7 @@ cd ../../../rtl/verilog/coregen
 
 echo "memory_initialization_radix=16;" > pmem.coe
 echo "memory_initialization_vector=10;" >> pmem.coe
-local path=$(echo $(pwd)/pmem.coe)
+path=$(echo $(pwd)/pmem.coe)
 sed "s\CSET coe_file=.*\$\CSET coe_file=$path\g"
 
 ls | grep -Ev ".cgp|.xco" | xargs rm -rf
