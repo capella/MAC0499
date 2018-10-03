@@ -6,6 +6,8 @@ load_c_defines
 
 cd ../../../rtl/verilog/coregen
 
+pwd
+
 echo "memory_initialization_radix=16;" > pmem.coe
 echo "memory_initialization_vector=10;" >> pmem.coe
 
