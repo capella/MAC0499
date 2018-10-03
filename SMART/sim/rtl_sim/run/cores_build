@@ -3,10 +3,11 @@
 source ../bin/helper.sh
 load_c_defines
 
+cd ../../../rtl/verilog/coregen
+
 echo "memory_initialization_radix=16;" > pmem.coe
 echo "memory_initialization_vector=10;" >> pmem.coe
 
-cd ../../../rtl/verilog/coregen
 ls | grep -Ev ".cgp|.xco" | xargs rm -rf
 
 sed -ie "s/write_depth_a=.*/write_depth_a=$pmemsize/g" spartan6_pmem.xco
