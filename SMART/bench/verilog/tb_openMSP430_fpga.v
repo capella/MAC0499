@@ -76,20 +76,6 @@ wire              LED2;
 wire              LED1;
 wire              LED0;
 
-// Four-Sigit, Seven-Segment LED Display
-wire              SEG_A;
-wire              SEG_B;
-wire              SEG_C;
-wire              SEG_D;
-wire              SEG_E;
-wire              SEG_F;
-wire              SEG_G;
-wire              SEG_DP;
-wire              SEG_AN0;
-wire              SEG_AN1;
-wire              SEG_AN2;
-wire              SEG_AN3;
-
 // UART
 reg               UART_RXD;
 wire              UART_TXD;
@@ -208,36 +194,10 @@ openMSP430_fpga dut (
     .LED1         (LED1),
     .LED0         (LED0),
 
-// Four-Sigit, Seven-Segment LED Display
-    .SEG_A        (SEG_A),
-    .SEG_B        (SEG_B),
-    .SEG_C        (SEG_C),
-    .SEG_D        (SEG_D),
-    .SEG_E        (SEG_E),
-    .SEG_F        (SEG_F),
-    .SEG_G        (SEG_G),
-    .SEG_DP       (SEG_DP),
-    .SEG_AN0      (SEG_AN0),
-    .SEG_AN1      (SEG_AN1),
-    .SEG_AN2      (SEG_AN2),
-    .SEG_AN3      (SEG_AN3),
-
 // RS-232 Port
     .UART_RXD     (UART_RXD),
-    .UART_TXD     (UART_TXD),
-    .UART_RXD_A   (1'b0),
-    .UART_TXD_A   (UART_TXD_A),
+    .UART_TXD     (UART_TXD)
 
-// PS/2 Mouse/Keyboard Port
-    .PS2_D        (PS2_D),
-    .PS2_C        (PS2_C),
-
-// VGA Port
-    .VGA_R        (VGA_R),
-    .VGA_G        (VGA_G),
-    .VGA_B        (VGA_B),
-    .VGA_HS       (VGA_HS),
-    .VGA_VS       (VGA_VS)
 );
 
    
