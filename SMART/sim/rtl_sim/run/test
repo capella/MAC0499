@@ -18,48 +18,46 @@ function get_result () {
 }
 
 # This file will run tests in tests describe in tests
+set -e
 status=0
 for file in ./tests/*; do
-    (
-        printf "%-40sRunning" "$file:"
+    printf "%-40sRunning" "$file:"
 
 
-        hash=$(md5sum "$file" | cut -d" " -f1 -)
+    hash=$(md5sum "$file" | cut -d" " -f1 -)
 
-        # get expected result
-        get_result $file /tmp/smart_exp_$hash
+    # get expected result
+    get_result $file /tmp/smart_exp_$hash
 
-        # get bash from test
-        sed -e "/$INIT_TEST/,\$d" $file > /tmp/smart_bash_$hash
+    # get bash from test
+    sed -e "/$INIT_TEST/,\$d" $file > /tmp/smart_bash_$hash
 
-        # run bash
-        bash /tmp/smart_bash_$hash > /tmp/smart_result_$hash 2> ./errors
+    # run bash
+    bash /tmp/smart_bash_$hash > /tmp/smart_result_$hash
 
-        # get result and filter it
-        get_result /tmp/smart_result_$hash /tmp/smart_result_$hash
+    # get result and filter it
+    get_result /tmp/smart_result_$hash /tmp/smart_result_$hash
 
-        printf "\b\b\b\b\b\b\b"
-        printf "       "
-        printf "\b\b\b\b\b\b\b"
+    printf "\b\b\b\b\b\b\b"
+    printf "       "
+    printf "\b\b\b\b\b\b\b"
 
 
-        result=$(diff /tmp/smart_exp_$hash /tmp/smart_result_$hash)
+    result=$(diff /tmp/smart_exp_$hash /tmp/smart_result_$hash)
 
-        if [ $? -eq 0 ]
-        then
-            green "OK\n"
-        else
-            red "ERROR\n"
-            diff /tmp/smart_exp_$hash /tmp/smart_result_$hash
-            printf "\n"
-            status=1
-        fi
+    if [ $? -eq 0 ]
+    then
+        green "OK\n"
+    else
+        red "ERROR\n"
+        diff /tmp/smart_exp_$hash /tmp/smart_result_$hash
+        printf "\n"
+        status=1
+    fi
 
-        rm /tmp/smart_bash_$hash
-        rm /tmp/smart_exp_$hash
-        echo "---------------------------" > ./errors
-    )
+    rm /tmp/smart_bash_$hash
+    rm /tmp/smart_exp_$hash
+    echo "---------------------------" > ./errors
 done
 
 exit $status
-
