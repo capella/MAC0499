@@ -1,5 +1,4 @@
-
---------------------------- ./tests/hw_uart_isim
+--------------------------- ./tests/hw_uart_iverilog
 main.c: In function 'main':
 main.c:66:9: warning: unused variable 'led' [-Wunused-variable]
      int led = 0;
@@ -10,4 +9,7 @@ main.c:65:10: warning: unused variable 'buf' [-Wunused-variable]
 main.c:64:9: warning: unused variable 'pos' [-Wunused-variable]
      int pos = 0;
          ^~~
-WARNING:HDLCompiler:1016 - "../src/../../../rtl/verilog/openMSP430_fpga.v" Line 310: Port CFGCLK is not connected to this instance
+/opt/Xilinx/14.7/ISE_DS/ISE/verilog/src/XilinxCoreLib//BLK_MEM_GEN_V7_3.v:209: warning: Anachronistic use of begin/end to surround generate schemes.
+/opt/Xilinx/14.7/ISE_DS/ISE/verilog/src/XilinxCoreLib//BLK_MEM_GEN_V7_3.v:401: warning: Anachronistic use of begin/end to surround generate schemes.
+../../../rtl/verilog/openMSP430_fpga.v:310: warning: input port GSR is coerced to inout.
+../../../rtl/verilog/openMSP430_fpga.v:310: warning: input port GTS is coerced to inout.
