@@ -1,3 +1,4 @@
 bibliotecas/
 projetos_verilog/
 SMART/synthesis/xilinx/WORK/
+SMART/rtl/verilog/coregen/*mem/
