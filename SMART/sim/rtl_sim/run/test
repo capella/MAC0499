@@ -1,6 +1,9 @@
 #!/bin/bash
 
 export GCC_PATH=${GCC_PATH:-"/cad/ti/gcc"}
+export ISE_DS_DIR=${ISE_DS_DIR:-"/opt/Xilinx/14.7/ISE_DS"}
+
+export LANG=''
 
 INIT_TEST="================= START SIMULATION =============="
 END_TEST="================== END SIMULATION ==============="
@@ -22,6 +25,9 @@ function get_result () {
 # This file will run tests in tests describe in tests
 set -e
 status=0
+
+source "$ISE_DS_DIR"/settings64.sh
+
 for file in ./tests/*; do
     printf "%-40sRunning" "$file:"
 

@@ -150,11 +150,7 @@ if [ -e $softdir ]; then
 
     # Create IHEX file from ELF
     echo "Convert ELF file to IHEX format..."
-    if command -v msp430-elf-objcopy >/dev/null; then
-        msp430-elf-objcopy -O ihex  pmem.elf pmem.ihex
-    else
-        msp430-objcopy     -O ihex  pmem.elf pmem.ihex
-    fi
+    msp430-elf-objcopy -O ihex  pmem.elf pmem.ihex
 else
     # Compile assembler code
     cp $filem43 pmem.s43
