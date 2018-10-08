@@ -163,8 +163,6 @@ echo "Convert IHEX file to Verilog MEMH format..."
 
 # Start verilog simulation
 echo "Start Verilog simulation..."
-# ../bin/rtlsim.sh    stimulus.v pmem.mem $submitfile
-
-sdafasd dfsa fads
+../bin/rtlsim.sh    stimulus.v pmem.mem $submitfile
 
 # rm -rf INCA_libs *.log pmem.* stimulus.v *.dsn *.trn *.vcd simv isim* fuse*
