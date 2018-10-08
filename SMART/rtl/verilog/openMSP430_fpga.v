@@ -767,7 +767,7 @@ spartan6_pmem pmem  (
     .clka(mclk),
     .ena(~pmem_cen),
     .wea(~pmem_wen),
-    .addra(pmem_addr),
+    .addra({1'b0, pmem_addr}),
     .dina(pmem_din),
     .douta(smart_mem_din)
 );

@@ -45,6 +45,7 @@
 # PART OF THIS FILE AT ALL TIMES.
 #--------------------------------------------------------------------------------
 #!/bin/sh
+cp ../../../spartan6_pmem.mif .
 rm -rf simv* csrc DVEfiles AN.DB
 
 echo "Compiling Core Verilog UNISIM/Behavioral model"

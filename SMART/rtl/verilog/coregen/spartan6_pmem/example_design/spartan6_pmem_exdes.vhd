@@ -91,7 +91,7 @@ ENTITY spartan6_pmem_exdes IS
     ENA            : IN STD_LOGIC;  --opt port
   
     WEA            : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-    ADDRA          : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+    ADDRA          : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
   
     DINA           : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
   
@@ -119,7 +119,7 @@ ARCHITECTURE xilinx OF spartan6_pmem_exdes IS
     ENA        : IN STD_LOGIC;  --opt port
   
     WEA        : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-    ADDRA      : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+    ADDRA      : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
   
     DINA       : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
   

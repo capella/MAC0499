@@ -46,6 +46,7 @@
 # PART OF THIS FILE AT ALL TIMES.
 set work work
 #--------------------------------------------------------------------------------
+cp ../../../spartan6_pmem.mif .
 mkdir work
 
 

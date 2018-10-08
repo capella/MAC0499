@@ -123,17 +123,17 @@ reg               stimulus_done;
 // Initialize Program Memory
 //------------------------------
 
-initial
-   begin
-      // Read memory file
-      #10 $readmemh("./pmem.mem", pmem);
+// initial
+//    begin
+//       // Read memory file
+//       #10 $readmemh("./pmem.mem", pmem);
 
-      // Update Xilinx memory banks
-      for (i=0; i<`PMEM_SIZE; i=i+1)
-	begin
-	   dut.pmem.inst.memory[i] = pmem[i];
-	end
-  end
+//       // Update Xilinx memory banks
+//       for (i=0; i<`PMEM_SIZE; i=i+1)
+// 	begin
+// 	   dut.pmem.inst.memory[i] = pmem[i];
+// 	end
+//   end
 
 //
 // Generate Clock & Reset

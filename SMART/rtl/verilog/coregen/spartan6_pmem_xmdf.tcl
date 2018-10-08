@@ -35,12 +35,188 @@ utilities_xmdf::xmdfSetData $instance FileSet $fcount type logical_library
 utilities_xmdf::xmdfSetData $instance FileSet $fcount logical_library unisim
 incr fcount
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path blk_mem_gen_ds512.pdf
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type AnyView
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/blk_mem_gen_v7_3_readme.txt
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/doc/blk_mem_gen_v7_3_vinfo.html
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/doc/pg058-blk-mem-gen.pdf
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/example_design/spartan6_pmem_exdes.ucf
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/example_design/spartan6_pmem_exdes.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/example_design/spartan6_pmem_exdes.xdc
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/example_design/spartan6_pmem_prod.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/implement/implement.bat
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/implement/implement.sh
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/implement/planAhead_ise.bat
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/implement/planAhead_ise.sh
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/implement/planAhead_ise.tcl
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/implement/xst.prj
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/implement/xst.scr
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/addr_gen.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/bmg_stim_gen.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/bmg_tb_pkg.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/checker.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/data_gen.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/simcmds.tcl
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/simulate_isim.sh
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/simulate_mti.bat
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/simulate_mti.do
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/simulate_mti.sh
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/simulate_ncsim.sh
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/simulate_vcs.sh
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/ucli_commands.key
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/vcs_session.tcl
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/wave_mti.do
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/functional/wave_ncsim.sv
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/random.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/spartan6_pmem_synth.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/spartan6_pmem_tb.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/simcmds.tcl
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/simulate_isim.sh
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/simulate_mti.bat
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/simulate_mti.do
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/simulate_mti.sh
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/simulate_ncsim.sh
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/simulate_vcs.sh
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/ucli_commands.key
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/vcs_session.tcl
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/wave_mti.do
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem/simulation/timing/wave_ncsim.sv
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
 incr fcount
 
 utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem.asy
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type asy
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem.mif
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type AnyView
 incr fcount
 
 utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem.ngc
@@ -60,6 +236,10 @@ utilities_xmdf::xmdfSetData $instance FileSet $fcount type coregen_ip
 incr fcount
 
 utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path spartan6_pmem_xmdf.tcl
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type AnyView
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path summary.log
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type AnyView
 incr fcount
 

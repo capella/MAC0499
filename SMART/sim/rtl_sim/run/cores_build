@@ -20,6 +20,6 @@ sed -i "s\CSET coe_file=.*\$\CSET coe_file=$path\g" *.xco
 
 coregen -b spartan6_pmem.xco -p coregen.cgp
 coregen -b spartan6_dmem.xco -p coregen.cgp
-coregen -b clock.xco -p coregen.cgp
+# coregen -b clock.xco -p coregen.cgp
 
 ls *.xcoe | xargs rm -rf
