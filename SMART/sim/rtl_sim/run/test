@@ -11,35 +11,52 @@ function green () {
     printf "\e[32m$1\e[0m"
 }
 
+function get_result () {
+    sed -n -e "/$INIT_TEST/,\$p" $1 | tail -n +2 > /tmp/$hash
+    sed -e "/$END_TEST/,\$d" /tmp/$hash > $2
+    rm /tmp/$hash
+}
+
 # This file will run tests in tests describe in tests
-for file in ./tests/*
-do
+for file in ./tests/*; do
     (
         printf "%-40sRunning" "$file:"
+
+
         hash=$(md5sum "$file" | cut -d" " -f1 -)
 
+        # get expected result
+        get_result $file /tmp/smart_exp_$hash
+
+        # get bash from test
         sed -e "/$INIT_TEST/,\$d" $file > /tmp/smart_bash_$hash
-        sed -n -e "/$INIT_TEST/,\$p" $file > /tmp/smart_exp_result_$hash
 
-        bash /tmp/smart_bash_$hash > /tmp/smart_result_$hash 2> /dev/null
+        # run bash
+        # bash /tmp/smart_bash_$hash > /tmp/smart_result_$hash 2> ./errors
+
+        # get result and filter it
+        get_result /tmp/smart_result_$hash /tmp/smart_result_$hash
 
         printf "\b\b\b\b\b\b\b"
-        printf "        "
+        printf "       "
         printf "\b\b\b\b\b\b\b"
 
-        sed -n -e "/$INIT_TEST/,\$p" /tmp/smart_result_$hash > /tmp/r_$hash
-        sed -e "/$END_TEST/,\$d" /tmp/r_$hash > /tmp/smart_result_$hash
 
-        result=$(diff /tmp/smart_result_$hash /tmp/smart_exp_result_$hash)
+        result=$(diff /tmp/smart_exp_$hash /tmp/smart_result_$hash)
 
         if [ $? -eq 0 ]
         then
             green "OK\n"
         else
-            red "ERROR\n\n"
-            diff /tmp/smart_result_$hash /tmp/smart_exp_result_$hash
+            red "ERROR\n"
+            diff /tmp/smart_exp_$hash /tmp/smart_result_$hash
+            printf "\n"
         fi
-    ) 
+
+        rm /tmp/smart_bash_$hash
+        rm /tmp/smart_exp_$hash
+        echo "---------------------------" > ./errors
+    )
 done
 
 wait

@@ -1,4 +1,5 @@
 OMSP_SIMULATOR=isim  ../bin/msp430sim hw_uart
+./run_clean
 
 ================= START SIMULATION ==============
 > Bonjour :-)
