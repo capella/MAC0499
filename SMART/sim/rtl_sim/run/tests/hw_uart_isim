@@ -1,0 +1,5 @@
+OMSP_SIMULATOR=isim  ../bin/msp430sim hw_uart
+
+================= START SIMULATION ==============
+> Bonjour :-)
+================== END SIMULATION ===============
