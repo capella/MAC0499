@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export GCC_PATH=${GCC_PATH:-"/cad/ti/gcc"}
+
 INIT_TEST="================= START SIMULATION =============="
 END_TEST="================== END SIMULATION ==============="
 
@@ -33,7 +35,7 @@ for file in ./tests/*; do
     sed -e "/$INIT_TEST/,\$d" $file > /tmp/smart_bash_$hash
 
     # run bash
-    bash /tmp/smart_bash_$hash > /tmp/smart_result_$hash
+    bash /tmp/smart_bash_$hash > /tmp/smart_result_$hash # 2> ./errors
 
     # get result and filter it
     get_result /tmp/smart_result_$hash /tmp/smart_result_$hash
