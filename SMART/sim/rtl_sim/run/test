@@ -18,6 +18,7 @@ function get_result () {
 }
 
 # This file will run tests in tests describe in tests
+status=0
 for file in ./tests/*; do
     (
         printf "%-40sRunning" "$file:"
@@ -32,7 +33,7 @@ for file in ./tests/*; do
         sed -e "/$INIT_TEST/,\$d" $file > /tmp/smart_bash_$hash
 
         # run bash
-        # bash /tmp/smart_bash_$hash > /tmp/smart_result_$hash 2> ./errors
+        bash /tmp/smart_bash_$hash > /tmp/smart_result_$hash 2> ./errors
 
         # get result and filter it
         get_result /tmp/smart_result_$hash /tmp/smart_result_$hash
@@ -51,6 +52,7 @@ for file in ./tests/*; do
             red "ERROR\n"
             diff /tmp/smart_exp_$hash /tmp/smart_result_$hash
             printf "\n"
+            status=1
         fi
 
         rm /tmp/smart_bash_$hash
@@ -59,4 +61,5 @@ for file in ./tests/*; do
     )
 done
 
-wait
+exit $status
+
