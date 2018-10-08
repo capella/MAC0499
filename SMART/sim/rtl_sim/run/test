@@ -23,14 +23,15 @@ function get_result () {
 }
 
 # This file will run tests in tests describe in tests
-set -e
+# set -e
 status=0
 
-source "$ISE_DS_DIR"/settings64.sh
+source "$ISE_DS_DIR"/settings64.sh > /dev/null
+echo "" > error
 
 for file in ./tests/*; do
+    echo "--------------------------- $file" >> error
     printf "%-40sRunning" "$file:"
-
 
     hash=$(md5sum "$file" | cut -d" " -f1 -)
 
@@ -41,7 +42,7 @@ for file in ./tests/*; do
     sed -e "/$INIT_TEST/,\$d" $file > /tmp/smart_bash_$hash
 
     # run bash
-    bash /tmp/smart_bash_$hash > /tmp/smart_result_$hash # 2> ./errors
+    bash /tmp/smart_bash_$hash > /tmp/smart_result_$hash 2>>error
 
     # get result and filter it
     get_result /tmp/smart_result_$hash /tmp/smart_result_$hash
@@ -65,7 +66,11 @@ for file in ./tests/*; do
 
     rm /tmp/smart_bash_$hash
     rm /tmp/smart_exp_$hash
-    echo "---------------------------" > ./errors
 done
 
-exit $status
+if [ "$status" -eq "1" ]; then
+    cat error
+    exit 1
+fi
+
+exit 0

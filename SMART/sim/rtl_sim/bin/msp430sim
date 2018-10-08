@@ -57,7 +57,6 @@ if [ $# -ne $EXPECTED_ARGS ]; then
   exit 1
 fi
 
-
 ###############################################################################
 #                     Check if the required files exist                       #
 ###############################################################################
@@ -69,7 +68,7 @@ submitfile=../src/submit.f;
 linkfile=../bin/template.x;
 headfile=../bin/template_defs.asm;
 
-if [ $OMSP_SIMULATOR == "isim" ]; then
+if [ "$OMSP_SIMULATOR" == "isim" ]; then
     submitfile=../src/submit.prj;
 fi
 incfile=../../../rtl/verilog/openmsp430/openMSP430_defines.v;
@@ -127,7 +126,6 @@ else
     msp430-gcc     -E -P -x c ../bin/omsp_config.sh > pmem.sh
 fi
 
-
 # Source the extracted configuration file
 if [[ $(uname -s) == CYGWIN* ]];
     then
@@ -165,6 +163,8 @@ echo "Convert IHEX file to Verilog MEMH format..."
 
 # Start verilog simulation
 echo "Start Verilog simulation..."
-../bin/rtlsim.sh    stimulus.v pmem.mem $submitfile
+# ../bin/rtlsim.sh    stimulus.v pmem.mem $submitfile
+
+sdafasd dfsa fads
 
 # rm -rf INCA_libs *.log pmem.* stimulus.v *.dsn *.trn *.vcd simv isim* fuse*
