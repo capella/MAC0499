@@ -62,6 +62,7 @@
 ../../../rtl/verilog/io_mux.v
 ../../../rtl/verilog/omsp_uart.v
 ../../../rtl/verilog/mcam.v
+../../../rtl/verilog/clock.v
 ../../../rtl/verilog/coregen/spartan6_dmem.v
 ../../../rtl/verilog/coregen/spartan6_pmem.v
 

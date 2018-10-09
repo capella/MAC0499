@@ -127,7 +127,7 @@ reg               stimulus_done;
 initial
   begin
      CLK_100MHz = 1'b0;
-     forever #5 CLK_100MHz <= ~CLK_100MHz; // 50 MHz
+     forever #5 CLK_100MHz <= ~CLK_100MHz; // 100 MHz
   end
 
 initial

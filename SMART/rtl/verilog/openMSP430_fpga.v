@@ -174,124 +174,13 @@ wire [15:0] smart_mem_dout;
 // 2)  CLOCK GENERATION
 //=============================================================================
 
-// Input buffers
-//------------------------
-IBUFG ibuf_clk_main   (.O(clk_100M_in),    .I(CLK_100MHz));
-// IBUFG ibuf_clk_socket (.O(clk_socket_in), .I(CLK_SOCKET));
+clock clk (
+    .CLK_IN     (CLK_100MHz),
+    .CLK_OUT    (clk_sys),
+    .RESET      (reset_pin),
 
-
-// Digital Clock Manager
-//------------------------
-
-// Generate 20MHz clock from 100MHz on-board oscillator
-//`define DCM_FX_MODE
-`ifdef DCM_FX_MODE
-DCM dcm_adv_clk_main (
-
-// OUTPUTs
-    .CLK0         (),
-    .CLK90        (),
-    .CLK180       (),
-    .CLK270       (),
-    .CLK2X        (),
-    .CLK2X180     (),
-    .CLKDV        (),
-    .CLKFX        (dcm_clk),
-    .CLKFX180     (),
-    .PSDONE       (),
-    .STATUS       (),
-    .LOCKED       (dcm_locked),
-
-// INPUTs
-    .CLKIN        (clk_100M_in),
-    .CLKFB        (1'b0),
-    .PSINCDEC     (1'b0),
-    .PSEN         (1'b0),
-    .DSSEN        (1'b0),
-    .RST          (reset_pin),
-    .PSCLK        (1'b0)
+    .LOCKED     (dcm_locked)
 );
-
-// synopsys translate_off
-defparam dcm_adv_clk_main.CLK_FEEDBACK          = "NONE";
-defparam dcm_adv_clk_main.CLKDV_DIVIDE          = 5;
-defparam dcm_adv_clk_main.CLKIN_DIVIDE_BY_2     = "FALSE";
-defparam dcm_adv_clk_main.CLKIN_PERIOD          = 20.0;
-defparam dcm_adv_clk_main.CLKOUT_PHASE_SHIFT    = "NONE";
-defparam dcm_adv_clk_main.DESKEW_ADJUST         = "SYSTEM_SYNCHRONOUS";
-defparam dcm_adv_clk_main.DFS_FREQUENCY_MODE    = "LOW";
-defparam dcm_adv_clk_main.DLL_FREQUENCY_MODE    = "LOW";
-defparam dcm_adv_clk_main.DUTY_CYCLE_CORRECTION = "TRUE";
-defparam dcm_adv_clk_main.FACTORY_JF            = 16'hC080;
-defparam dcm_adv_clk_main.PHASE_SHIFT           = 0;
-defparam dcm_adv_clk_main.STARTUP_WAIT          = "FALSE";
-
-defparam dcm_adv_clk_main.CLKFX_DIVIDE          = 5;
-defparam dcm_adv_clk_main.CLKFX_MULTIPLY        = 2;
-// synopsys translate_on
-`else
-DCM dcm_adv_clk_main (
-
-// OUTPUTs
-    .CLKDV        (dcm_clk),
-    .CLKFX        (),
-    .CLKFX180     (),
-    .CLK0         (CLK0_BUF),
-    .CLK2X        (),
-    .CLK2X180     (),
-    .CLK90        (),
-    .CLK180       (),
-    .CLK270       (),
-    .LOCKED       (dcm_locked),
-    .PSDONE       (),
-    .STATUS       (),
-
-// INPUTs
-    .CLKFB        (CLKFB_IN),
-    .CLKIN        (clk_100M_in),
-    .PSEN         (1'b0),
-    .PSINCDEC     (1'b0),
-    .DSSEN        (1'b0),
-    .PSCLK        (1'b0),
-    .RST          (reset_pin)
-);
-BUFG CLK0_BUFG_INST (
-    .I(CLK0_BUF),
-    .O(CLKFB_IN)
-);
-
-// synopsys translate_off
-defparam dcm_adv_clk_main.CLK_FEEDBACK          = "1X";
-defparam dcm_adv_clk_main.CLKDV_DIVIDE          = 5;
-defparam dcm_adv_clk_main.CLKFX_DIVIDE          = 1;
-defparam dcm_adv_clk_main.CLKFX_MULTIPLY        = 4;
-defparam dcm_adv_clk_main.CLKIN_DIVIDE_BY_2     = "FALSE";
-defparam dcm_adv_clk_main.CLKIN_PERIOD          = 20.0;
-defparam dcm_adv_clk_main.CLKOUT_PHASE_SHIFT    = "NONE";
-defparam dcm_adv_clk_main.DESKEW_ADJUST         = "SYSTEM_SYNCHRONOUS";
-defparam dcm_adv_clk_main.DFS_FREQUENCY_MODE    = "LOW";
-defparam dcm_adv_clk_main.DLL_FREQUENCY_MODE    = "LOW";
-defparam dcm_adv_clk_main.DUTY_CYCLE_CORRECTION = "TRUE";
-defparam dcm_adv_clk_main.FACTORY_JF            = 16'h8080;
-defparam dcm_adv_clk_main.PHASE_SHIFT           = 0;
-defparam dcm_adv_clk_main.STARTUP_WAIT          = "FALSE";
-// synopsys translate_on
-`endif
-
-
-//wire 	  dcm_locked = 1'b1;
-//wire      reset_n;
-
-//reg 	  dcm_clk;
-//always @(posedge clk_100M_in)
-//  if (~reset_n) dcm_clk <= 1'b0;
-//  else          dcm_clk <= ~dcm_clk;
-
-
-// Clock buffers
-//------------------------
-BUFG  buf_sys_clock  (.O(clk_sys), .I(dcm_clk));
-
 
 //=============================================================================
 // 3)  RESET GENERATION & FPGA STARTUP

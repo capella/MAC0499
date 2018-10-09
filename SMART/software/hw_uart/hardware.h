@@ -53,7 +53,7 @@
 //#define BAUD           1042            //  19200  @20.0MHz
 //#define BAUD            521            //  38400  @20.0MHz
 //#define BAUD            347            //  57600  @20.0MHz
-#define BAUD            174            // 115200  @20.0MHz
+#define BAUD           	  174            // 115200  @20.0MHz
 //#define BAUD             87            // 230400  @20.0MHz
 
 

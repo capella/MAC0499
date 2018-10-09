@@ -62,7 +62,7 @@ initial
       SW0 = 1'b0;
 
       // Wait for welcome message to be received
-      repeat(500) @(posedge mclk);
+      repeat(2500) @(posedge mclk);
 
       // Send something
       uart_tx("B");
@@ -77,7 +77,7 @@ initial
       uart_tx("-");
       uart_tx(")");
       uart_tx("\n");
-      repeat(2000) @(posedge mclk);
+      repeat(10000) @(posedge mclk);
 
       $display("================== END SIMULATION ===============");
       $finish();
