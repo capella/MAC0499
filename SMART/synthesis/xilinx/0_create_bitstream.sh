@@ -9,6 +9,7 @@
 rm -rf ./WORK
 mkdir WORK
 cd ./WORK
+# cat ../../../sim/rtl_sim/src/submit.prj | awk '{print "`include \"" $3 "\""}' > openMSP430_fpga.prj
 
 # Create links for RAM & ROM ngc files
 cp ../../../rtl/verilog/coregen/spartan6_dmem.ngc .
@@ -44,8 +45,9 @@ xflow -p xc6slx9-csg324-2 -implement high_effort.opt            \
 #trce -v -o openMSP430_fpga_ver.twr openMSP430_fpga
 
 #bitgen -w -g UserID:5555000 -g DonePipe:yes -g UnusedPin:Pullup openMSP430_fpga
+bitgen -intstyle ise -w -g Binary:yes openMSP430_fpga.ncd 
 
 
 cd ..
 
-cp -f ./WORK/openMSP430_fpga.bit ./bitstreams/.
+cp -f ./WORK/openMSP430_fpga.bin ./openMSP430_fpga.bin
