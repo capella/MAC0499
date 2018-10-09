@@ -588,36 +588,6 @@ spartan6_dmem dmem (
 // 7)  I/O CELLS
 //=============================================================================
 
-
-// Slide Switches (Port 1 inputs)
-//--------------------------------
-IBUF  SW7_PIN        (.O(p3_din[7]),                   .I(SW7));
-IBUF  SW6_PIN        (.O(p3_din[6]),                   .I(SW6));
-IBUF  SW5_PIN        (.O(p3_din[5]),                   .I(SW5));
-IBUF  SW4_PIN        (.O(p3_din[4]),                   .I(SW4));
-IBUF  SW3_PIN        (.O(p3_din[3]),                   .I(SW3));
-IBUF  SW2_PIN        (.O(p3_din[2]),                   .I(SW2));
-IBUF  SW1_PIN        (.O(p3_din[1]),                   .I(SW1));
-IBUF  SW0_PIN        (.O(p3_din[0]),                   .I(SW0));
-
-// LEDs (Port 1 outputs)
-//-----------------------
-OBUF  LED7_PIN       (.I(p3_dout[7] & p3_dout_en[7]),  .O(LED7));
-OBUF  LED6_PIN       (.I(p3_dout[6] & p3_dout_en[6]),  .O(LED6));
-OBUF  LED5_PIN       (.I(p3_dout[5] & p3_dout_en[5]),  .O(LED5));
-OBUF  LED4_PIN       (.I(p3_dout[4] & p3_dout_en[4]),  .O(LED4));
-OBUF  LED3_PIN       (.I(p3_dout[3] & p3_dout_en[3]),  .O(LED3));
-OBUF  LED2_PIN       (.I(p3_dout[2] & p3_dout_en[2]),  .O(LED2));
-OBUF  LED1_PIN       (.I(p3_dout[1] & p3_dout_en[1]),  .O(LED1));
-OBUF  LED0_PIN       (.I(p3_dout[0] & p3_dout_en[0]),  .O(LED0));
-
-// Push Button Switches
-//----------------------
-IBUF  BTN2_PIN       (.O(),                            .I(BTN2));
-IBUF  BTN1_PIN       (.O(),                            .I(BTN1));
-IBUF  BTN0_PIN       (.O(),                            .I(BTN0));
-
-
 // RS-232 Port
 //----------------------
 // P1.1 (TX) and P2.2 (RX)
@@ -650,6 +620,35 @@ assign dbg_uart_rxd = sdi_select  ? uart_rxd_in : 1'b1;
 
 IBUF  UART_RXD_PIN   (.O(uart_rxd_in),                 .I(UART_RXD));
 OBUF  UART_TXD_PIN   (.I(uart_txd_out),                .O(UART_TXD));
+
+
+// Slide Switches (Port 1 inputs)
+//--------------------------------
+IBUF  SW7_PIN        (.O(p3_din[7]),                   .I(SW7));
+IBUF  SW6_PIN        (.O(p3_din[6]),                   .I(SW6));
+IBUF  SW5_PIN        (.O(p3_din[5]),                   .I(SW5));
+IBUF  SW4_PIN        (.O(p3_din[4]),                   .I(SW4));
+IBUF  SW3_PIN        (.O(p3_din[3]),                   .I(SW3));
+IBUF  SW2_PIN        (.O(p3_din[2]),                   .I(SW2));
+IBUF  SW1_PIN        (.O(p3_din[1]),                   .I(SW1));
+IBUF  SW0_PIN        (.O(p3_din[0]),                   .I(SW0));
+
+// LEDs (Port 1 outputs)
+//-----------------------
+OBUF  LED7_PIN       (.I(sdi_select),  .O(LED7));
+OBUF  LED6_PIN       (.I(p3_dout[6] & p3_dout_en[6]),  .O(LED6));
+OBUF  LED5_PIN       (.I(p3_dout[5] & p3_dout_en[5]),  .O(LED5));
+OBUF  LED4_PIN       (.I(p3_dout[4] & p3_dout_en[4]),  .O(LED4));
+OBUF  LED3_PIN       (.I(p3_dout[3] & p3_dout_en[3]),  .O(LED3));
+OBUF  LED2_PIN       (.I(p3_dout[2] & p3_dout_en[2]),  .O(LED2));
+OBUF  LED1_PIN       (.I(p3_dout[1] & p3_dout_en[1]),  .O(LED1));
+OBUF  LED0_PIN       (.I(p3_dout[0] & p3_dout_en[0]),  .O(LED0));
+
+// Push Button Switches
+//----------------------
+IBUF  BTN2_PIN       (.O(),                            .I(BTN2));
+IBUF  BTN1_PIN       (.O(),                            .I(BTN1));
+IBUF  BTN0_PIN       (.O(),                            .I(BTN0));
 
 
 endmodule // openMSP430_fpga
