@@ -1,1 +1,0 @@
-"work.glbl" "tb_openMSP430_fpga" -prj "../src/submit.prj" -o "isim.exe" -i "../../../bench/verilog/" -i "../../../rtl/verilog/" -i "../../../rtl/verilog/openmsp430/" -i "../../../rtl/verilog/openmsp430/periph/" -L "unisims_ver" -L "unimacro_ver" -L "xilinxcorelib_ver" 
