@@ -133,19 +133,9 @@ wire        [15:0] dmem_dout;
 wire        [15:0] pmem_dout;
 
 // GPIO
-wire         [7:0] p1_din;
-wire         [7:0] p1_dout;
-wire         [7:0] p1_dout_en;
-wire         [7:0] p1_sel;
-wire         [7:0] p2_din;
-wire         [7:0] p2_dout;
-wire         [7:0] p2_dout_en;
-wire         [7:0] p2_sel;
-wire         [7:0] p3_din;
-wire         [7:0] p3_dout;
-wire         [7:0] p3_dout_en;
-wire         [7:0] p3_sel;
-wire        [15:0] per_dout_dio;
+wire         [7:0] din;
+wire         [7:0] dout;
+wire         [7:0] dout_en;
 
 // Timer A
 wire        [15:0] per_dout_tA;
@@ -192,11 +182,6 @@ wire reset_pin_n = ~reset_pin;
 
 // Release the reset only, if the DCM is locked
 assign  reset_n = reset_pin_n & dcm_locked & ~smart2_reset & ~smart1_reset;
-
-//Include the startup device
-wire  gsr_tb;
-wire  gts_tb;
-STARTUP_SPARTAN6 xstartup (.CLK(clk_sys), .GSR(gsr_tb), .GTS(gts_tb));
 
 
 //=============================================================================
@@ -263,97 +248,6 @@ openMSP430 openMSP430_0 (
     .wkup              (1'b0)          // ASIC ONLY: System Wake-up (asynchronous and non-glitchy)
 );
 
-//=============================================================================
-// 5)  OPENMSP430 PERIPHERALS
-//=============================================================================
-
-//
-// Digital I/O
-//-------------------------------
-
-omsp_gpio #(.P1_EN(1),
-            .P2_EN(1),
-            .P3_EN(1),
-            .P4_EN(0),
-            .P5_EN(0),
-            .P6_EN(0)) gpio_0 (
-
-// OUTPUTs
-    .irq_port1    (irq_port1),     // Port 1 interrupt
-    .irq_port2    (irq_port2),     // Port 2 interrupt
-    .p1_dout      (p1_dout),       // Port 1 data output
-    .p1_dout_en   (p1_dout_en),    // Port 1 data output enable
-    .p1_sel       (p1_sel),        // Port 1 function select
-    .p2_dout      (p2_dout),       // Port 2 data output
-    .p2_dout_en   (p2_dout_en),    // Port 2 data output enable
-    .p2_sel       (p2_sel),        // Port 2 function select
-    .p3_dout      (p3_dout),       // Port 3 data output
-    .p3_dout_en   (p3_dout_en),    // Port 3 data output enable
-    .p3_sel       (p3_sel),        // Port 3 function select
-    .p4_dout      (),              // Port 4 data output
-    .p4_dout_en   (),              // Port 4 data output enable
-    .p4_sel       (),              // Port 4 function select
-    .p5_dout      (),              // Port 5 data output
-    .p5_dout_en   (),              // Port 5 data output enable
-    .p5_sel       (),              // Port 5 function select
-    .p6_dout      (),              // Port 6 data output
-    .p6_dout_en   (),              // Port 6 data output enable
-    .p6_sel       (),              // Port 6 function select
-    .per_dout     (per_dout_dio),  // Peripheral data output
-
-// INPUTs
-    .mclk         (mclk),          // Main system clock
-    .p1_din       (p1_din),        // Port 1 data input
-    .p2_din       (p2_din),        // Port 2 data input
-    .p3_din       (p3_din),        // Port 3 data input
-    .p4_din       (8'h00),         // Port 4 data input
-    .p5_din       (8'h00),         // Port 5 data input
-    .p6_din       (8'h00),         // Port 6 data input
-    .per_addr     (per_addr),      // Peripheral address
-    .per_din      (per_din),       // Peripheral data input
-    .per_en       (per_en),        // Peripheral enable (high active)
-    .per_we       (per_we),        // Peripheral write enable (high active)
-    .puc_rst      (puc_rst)        // Main system reset
-);
-
-//
-// Timer A
-//----------------------------------------------
-
-omsp_timerA timerA_0 (
-
-// OUTPUTs
-    .irq_ta0      (irq_ta0),       // Timer A interrupt: TACCR0
-    .irq_ta1      (irq_ta1),       // Timer A interrupt: TAIV, TACCR1, TACCR2
-    .per_dout     (per_dout_tA),   // Peripheral data output
-    .ta_out0      (ta_out0),       // Timer A output 0
-    .ta_out0_en   (ta_out0_en),    // Timer A output 0 enable
-    .ta_out1      (ta_out1),       // Timer A output 1
-    .ta_out1_en   (ta_out1_en),    // Timer A output 1 enable
-    .ta_out2      (ta_out2),       // Timer A output 2
-    .ta_out2_en   (ta_out2_en),    // Timer A output 2 enable
-
-// INPUTs
-    .aclk_en      (aclk_en),       // ACLK enable (from CPU)
-    .dbg_freeze   (dbg_freeze),    // Freeze Timer A counter
-    .inclk        (inclk),         // INCLK external timer clock (SLOW)
-    .irq_ta0_acc  (irq_acc[9]),    // Interrupt request TACCR0 accepted
-    .mclk         (mclk),          // Main system clock
-    .per_addr     (per_addr),      // Peripheral address
-    .per_din      (per_din),       // Peripheral data input
-    .per_en       (per_en),        // Peripheral enable (high active)
-    .per_we       (per_we),        // Peripheral write enable (high active)
-    .puc_rst      (puc_rst),       // Main system reset
-    .smclk_en     (smclk_en),      // SMCLK enable (from CPU)
-    .ta_cci0a     (ta_cci0a),      // Timer A capture 0 input A
-    .ta_cci0b     (ta_cci0b),      // Timer A capture 0 input B
-    .ta_cci1a     (ta_cci1a),      // Timer A capture 1 input A
-    .ta_cci1b     (1'b0),          // Timer A capture 1 input B
-    .ta_cci2a     (ta_cci2a),      // Timer A capture 2 input A
-    .ta_cci2b     (1'b0),          // Timer A capture 2 input B
-    .taclk        (taclk)          // TACLK external timer clock (SLOW)
-);
-
 //
 // Simple full duplex UART (8N1 protocol)
 //----------------------------------------
@@ -382,9 +276,7 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
 // Combine peripheral data buses
 //-------------------------------
 
-assign per_dout = per_dout_dio  |
-                  per_dout_tA   |
-                  per_dout_uart;
+assign per_dout = per_dout_uart;
 
 //
 // Assign interrupts
@@ -395,125 +287,16 @@ assign irq_bus    = {1'b0,         // Vector 13  (0xFFFA)
                      1'b0,         // Vector 12  (0xFFF8)
                      1'b0,         // Vector 11  (0xFFF6)
                      1'b0,         // Vector 10  (0xFFF4) - Watchdog -
-                     irq_ta0,      // Vector  9  (0xFFF2)
-                     irq_ta1,      // Vector  8  (0xFFF0)
+                     1'b0,          // Vector  9  (0xFFF2)
+                     1'b0,          // Vector  8  (0xFFF0)
                      irq_uart_rx,  // Vector  7  (0xFFEE)
                      irq_uart_tx,  // Vector  6  (0xFFEC)
                      1'b0,         // Vector  5  (0xFFEA)
                      1'b0,         // Vector  4  (0xFFE8)
-                     irq_port2,    // Vector  3  (0xFFE6)
-                     irq_port1,    // Vector  2  (0xFFE4)
+                     1'b0,          // Vector  3  (0xFFE6)
+                     1'b0,          // Vector  2  (0xFFE4)
                      1'b0,         // Vector  1  (0xFFE2)
                      1'b0};        // Vector  0  (0xFFE0)
-
-//
-// GPIO Function selection
-//--------------------------
-
-// P1.0/TACLK      I/O pin / Timer_A, clock signal TACLK input
-// P1.1/TA0        I/O pin / Timer_A, capture: CCI0A input, compare: Out0 output
-// P1.2/TA1        I/O pin / Timer_A, capture: CCI1A input, compare: Out1 output
-// P1.3/TA2        I/O pin / Timer_A, capture: CCI2A input, compare: Out2 output
-// P1.4/SMCLK      I/O pin / SMCLK signal output
-// P1.5/TA0        I/O pin / Timer_A, compare: Out0 output
-// P1.6/TA1        I/O pin / Timer_A, compare: Out1 output
-// P1.7/TA2        I/O pin / Timer_A, compare: Out2 output
-wire [7:0] p1_io_mux_b_unconnected;
-wire [7:0] p1_io_dout;
-wire [7:0] p1_io_dout_en;
-wire [7:0] p1_io_din;
-
-io_mux #8 io_mux_p1 (
-		     .a_din      (p1_din),
-		     .a_dout     (p1_dout),
-		     .a_dout_en  (p1_dout_en),
-
-		     .b_din      ({p1_io_mux_b_unconnected[7],
-                                   p1_io_mux_b_unconnected[6],
-                                   p1_io_mux_b_unconnected[5],
-                                   p1_io_mux_b_unconnected[4],
-                                   ta_cci2a,
-                                   ta_cci1a,
-                                   ta_cci0a,
-                                   taclk
-                                  }),
-		     .b_dout     ({ta_out2,
-                                   ta_out1,
-                                   ta_out0,
-                                   (smclk_en & mclk),
-                                   ta_out2,
-                                   ta_out1,
-                                   ta_out0,
-                                   1'b0
-                                  }),
-		     .b_dout_en  ({ta_out2_en,
-                                   ta_out1_en,
-                                   ta_out0_en,
-                                   1'b1,
-                                   ta_out2_en,
-                                   ta_out1_en,
-                                   ta_out0_en,
-                                   1'b0
-                                  }),
-
-   	 	     .io_din     (p1_io_din),
-		     .io_dout    (p1_io_dout),
-		     .io_dout_en (p1_io_dout_en),
-
-		     .sel        (p1_sel)
-);
-
-
-
-// P2.0/ACLK       I/O pin / ACLK output
-// P2.1/INCLK      I/O pin / Timer_A, clock signal at INCLK
-// P2.2/TA0        I/O pin / Timer_A, capture: CCI0B input
-// P2.3/TA1        I/O pin / Timer_A, compare: Out1 output
-// P2.4/TA2        I/O pin / Timer_A, compare: Out2 output
-wire [7:0] p2_io_mux_b_unconnected;
-wire [7:0] p2_io_dout;
-wire [7:0] p2_io_dout_en;
-wire [7:0] p2_io_din;
-
-io_mux #8 io_mux_p2 (
-		     .a_din      (p2_din),
-		     .a_dout     (p2_dout),
-		     .a_dout_en  (p2_dout_en),
-
-		     .b_din      ({p2_io_mux_b_unconnected[7],
-                                   p2_io_mux_b_unconnected[6],
-                                   p2_io_mux_b_unconnected[5],
-                                   p2_io_mux_b_unconnected[4],
-                                   p2_io_mux_b_unconnected[3],
-                                   ta_cci0b,
-                                   inclk,
-                                   p2_io_mux_b_unconnected[0]
-                                  }),
-		     .b_dout     ({1'b0,
-                                   1'b0,
-                                   1'b0,
-                                   ta_out2,
-                                   ta_out1,
-                                   1'b0,
-                                   1'b0,
-                                   (aclk_en & mclk)
-                                  }),
-		     .b_dout_en  ({1'b0,
-                                   1'b0,
-                                   1'b0,
-                                   ta_out2_en,
-                                   ta_out1_en,
-                                   1'b0,
-                                   1'b0,
-                                   1'b1
-                                  }),
-
-   	 	     .io_din     (p2_io_din),
-		     .io_dout    (p2_io_dout),
-		     .io_dout_en (p2_io_dout_en),
-
-		     .sel        (p2_sel)
-);
 
 //=============================================================================
 // 5.5)  SMART
@@ -591,9 +374,6 @@ spartan6_dmem dmem (
 // RS-232 Port
 //----------------------
 // P1.1 (TX) and P2.2 (RX)
-assign p1_io_din      = 8'h00;
-assign p2_io_din[7:3] = 5'h00;
-assign p2_io_din[1:0] = 2'h0;
 
 // Mux the RS-232 port between:
 //   - GPIO port P1.1 (TX) / P2.2 (RX)
@@ -605,16 +385,14 @@ assign p2_io_din[1:0] = 2'h0;
 //        01 = GPIO
 //        10 = simple hardware uart
 //        11 = debug interface
-wire sdi_select  = ({p3_din[1], p3_din[0]}==2'b00) |
-                   ({p3_din[1], p3_din[0]}==2'b11);
-wire gpio_select = ({p3_din[1], p3_din[0]}==2'b01);
-wire uart_select = ({p3_din[1], p3_din[0]}==2'b10);
+wire sdi_select  = ({din[1], din[0]}==2'b00) |
+                   ({din[1], din[0]}==2'b11);
+wire uart_select = ({din[1], din[0]}==2'b10) |
+                   ({din[1], din[0]}==2'b01);
 
-wire   uart_txd_out = gpio_select ? p1_io_dout[1]  :
-                      uart_select ? hw_uart_txd    : dbg_uart_txd;
+wire   uart_txd_out = uart_select ? hw_uart_txd    : dbg_uart_txd;
 
 wire   uart_rxd_in;
-assign p2_io_din[2] = gpio_select ? uart_rxd_in : 1'b1;
 assign hw_uart_rxd  = uart_select ? uart_rxd_in : 1'b1;
 assign dbg_uart_rxd = sdi_select  ? uart_rxd_in : 1'b1;
 
@@ -624,31 +402,30 @@ OBUF  UART_TXD_PIN   (.I(uart_txd_out),                .O(UART_TXD));
 
 // Slide Switches (Port 1 inputs)
 //--------------------------------
-IBUF  SW7_PIN        (.O(p3_din[7]),                   .I(SW7));
-IBUF  SW6_PIN        (.O(p3_din[6]),                   .I(SW6));
-IBUF  SW5_PIN        (.O(p3_din[5]),                   .I(SW5));
-IBUF  SW4_PIN        (.O(p3_din[4]),                   .I(SW4));
-IBUF  SW3_PIN        (.O(p3_din[3]),                   .I(SW3));
-IBUF  SW2_PIN        (.O(p3_din[2]),                   .I(SW2));
-IBUF  SW1_PIN        (.O(p3_din[1]),                   .I(SW1));
-IBUF  SW0_PIN        (.O(p3_din[0]),                   .I(SW0));
+IBUF  SW7_PIN        (.O(din[7]),                   .I(SW7));
+IBUF  SW6_PIN        (.O(din[6]),                   .I(SW6));
+IBUF  SW5_PIN        (.O(din[5]),                   .I(SW5));
+IBUF  SW4_PIN        (.O(din[4]),                   .I(SW4));
+IBUF  SW3_PIN        (.O(din[3]),                   .I(SW3));
+IBUF  SW2_PIN        (.O(din[2]),                   .I(SW2));
+IBUF  SW1_PIN        (.O(din[1]),                   .I(SW1));
+IBUF  SW0_PIN        (.O(din[0]),                   .I(SW0));
 
 // LEDs (Port 1 outputs)
 //-----------------------
 OBUF  LED7_PIN       (.I(sdi_select),  .O(LED7));
-OBUF  LED6_PIN       (.I(p3_dout[6] & p3_dout_en[6]),  .O(LED6));
-OBUF  LED5_PIN       (.I(p3_dout[5] & p3_dout_en[5]),  .O(LED5));
-OBUF  LED4_PIN       (.I(p3_dout[4] & p3_dout_en[4]),  .O(LED4));
-OBUF  LED3_PIN       (.I(p3_dout[3] & p3_dout_en[3]),  .O(LED3));
-OBUF  LED2_PIN       (.I(p3_dout[2] & p3_dout_en[2]),  .O(LED2));
-OBUF  LED1_PIN       (.I(p3_dout[1] & p3_dout_en[1]),  .O(LED1));
-OBUF  LED0_PIN       (.I(p3_dout[0] & p3_dout_en[0]),  .O(LED0));
+OBUF  LED6_PIN       (.I(dout[6] & dout_en[6]),  .O(LED6));
+OBUF  LED5_PIN       (.I(dout[5] & dout_en[5]),  .O(LED5));
+OBUF  LED4_PIN       (.I(dout[4] & dout_en[4]),  .O(LED4));
+OBUF  LED3_PIN       (.I(dout[3] & dout_en[3]),  .O(LED3));
+OBUF  LED2_PIN       (.I(dout[2] & dout_en[2]),  .O(LED2));
+OBUF  LED1_PIN       (.I(dout[1] & dout_en[1]),  .O(LED1));
+OBUF  LED0_PIN       (.I(dout[0] & dout_en[0]),  .O(LED0));
 
 // Push Button Switches
 //----------------------
 IBUF  BTN2_PIN       (.O(),                            .I(BTN2));
 IBUF  BTN1_PIN       (.O(),                            .I(BTN1));
 IBUF  BTN0_PIN       (.O(),                            .I(BTN0));
-
 
 endmodule // openMSP430_fpga

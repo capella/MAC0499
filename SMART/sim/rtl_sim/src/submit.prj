@@ -2,7 +2,6 @@ verilog work ../../../bench/verilog/tb_openMSP430_fpga.v
 verilog work ../../../bench/verilog/msp_debug.v
 verilog work ../../../bench/verilog/glbl.v
 verilog work ../../../rtl/verilog/openMSP430_fpga.v
-verilog work ../../../rtl/verilog/io_mux.v
 verilog work ../../../rtl/verilog/clock.v
 verilog work ../../../rtl/verilog/omsp_uart.v
 verilog work ../../../rtl/verilog/mcam.v

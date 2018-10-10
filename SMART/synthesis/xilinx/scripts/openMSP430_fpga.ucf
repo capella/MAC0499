@@ -19,8 +19,8 @@ NET "CLK_100MHz"   LOC = V10  | IOSTANDARD = LVCMOS33 | PERIOD = 100MHz;
 #######################################
 #          UART Interface             #
 #######################################
-NET "UART_TXD"  LOC = A8   |  IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
-NET "UART_RXD"  LOC = B8   |  IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "UART_TXD"  LOC = B8   |  IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "UART_RXD"  LOC = A8   |  IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
 
 #######################################
 #    DIP Switches   #

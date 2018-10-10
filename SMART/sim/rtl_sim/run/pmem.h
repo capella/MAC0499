@@ -852,7 +852,7 @@
 // If the following define is commented out, then
 // the DBG_UART_BAUD and DBG_DCO_FREQ need to be properly
 // defined.
-#define DBG_UART_AUTO_SYNC
+// #define DBG_UART_AUTO_SYNC
 
 // Debug UART interface data rate
 //      In order to properly setup the UART debug interface, you
@@ -863,12 +863,12 @@
 //#define DBG_UART_BAUD   19200
 //#define DBG_UART_BAUD   38400
 //#define DBG_UART_BAUD   57600
-//#define DBG_UART_BAUD  115200
+#define DBG_UART_BAUD  115200
 //#define DBG_UART_BAUD  230400
 //#define DBG_UART_BAUD  460800
 //#define DBG_UART_BAUD  576000
 //#define DBG_UART_BAUD  921600
-#define DBG_UART_BAUD 2000000
+// #define DBG_UART_BAUD 2000000
 #define DBG_DCO_FREQ  20000000
 #define DBG_UART_CNT ((DBG_DCO_FREQ/DBG_UART_BAUD)-1)
 
