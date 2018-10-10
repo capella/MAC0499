@@ -58,4 +58,15 @@ NET "BTN1"  LOC = K17 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST | PULLUP
 NET "BTN0"  LOC = K18 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST | PULLUP; #SW6
 
 
-  
+#####################
+
+# ROM Block Assignments
+INST "pmem_galinha/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/s6_init.ram/SP.SIMPLE_PRIM18.ram"  LOC = "RAMB16_X0Y18";
+INST "pmem_galinha/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s6_init.ram/SP.SIMPLE_PRIM18.ram"  LOC = "RAMB16_X0Y10";
+INST "pmem_galinha/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/s6_init.ram/SP.SIMPLE_PRIM18.ram"  LOC = "RAMB16_X0Y24";
+INST "pmem_galinha/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s6_init.ram/SP.SIMPLE_PRIM18.ram"  LOC = "RAMB16_X0Y16";
+INST "pmem_galinha/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/s6_init.ram/SP.SIMPLE_PRIM18.ram"  LOC = "RAMB16_X0Y22";
+INST "pmem_galinha/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/s6_init.ram/SP.SIMPLE_PRIM18.ram"  LOC = "RAMB16_X0Y14";
+INST "pmem_galinha/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/s6_init.ram/SP.SIMPLE_PRIM18.ram"  LOC = "RAMB16_X0Y20";
+INST "pmem_galinha/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/s6_init.ram/SP.SIMPLE_PRIM18.ram"  LOC = "RAMB16_X0Y12";
+

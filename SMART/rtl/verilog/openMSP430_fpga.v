@@ -167,7 +167,7 @@ wire [15:0] smart_mem_dout;
 clock clk (
     .CLK_IN     (CLK_100MHz),
     .CLK_OUT    (clk_sys),
-    .RESET      (reset_pin),
+    .RESET      (~reset_pin),
 
     .LOCKED     (dcm_locked)
 );
@@ -176,12 +176,16 @@ clock clk (
 // 3)  RESET GENERATION & FPGA STARTUP
 //=============================================================================
 
+
 // Reset input buffer
 IBUF   ibuf_reset_n   (.O(reset_pin), .I(BTN3));
-wire reset_pin_n = ~reset_pin;
 
 // Release the reset only, if the DCM is locked
-assign  reset_n = reset_pin_n & dcm_locked & ~smart2_reset & ~smart1_reset;
+assign  reset_n = reset_pin & dcm_locked;
+
+// Top level reset generation
+wire dco_rst;
+omsp_sync_reset sync_reset_dco (.rst_s (dco_rst), .clk(clk_sys), .rst_a(!reset_n));
 
 
 //=============================================================================
@@ -222,8 +226,8 @@ openMSP430 openMSP430_0 (
     .smclk_en          (smclk_en),     // FPGA ONLY: SMCLK enable
 
 // INPUTs
-    .cpu_en            (1'b1),         // Enable CPU code execution (asynchronous and non-glitchy)
-    .dbg_en            (1'b1),         // Debug interface enable (asynchronous and non-glitchy)
+    .cpu_en            (SW6),         // Enable CPU code execution (asynchronous and non-glitchy)
+    .dbg_en            (SW7),         // Debug interface enable (asynchronous and non-glitchy)
     .dbg_i2c_addr      (7'h00),        // Debug interface: I2C Address
     .dbg_i2c_broadcast (7'h00),        // Debug interface: I2C Broadcast Address (for multicore systems)
     .dbg_i2c_scl       (1'b1),         // Debug interface: I2C SCL
@@ -319,7 +323,7 @@ mcam #(
     .mclk(mclk),
     .mem_din(smart_mem_din),
     .ins_addr(openMSP430_0.pc),
-    .disable_debug(1'b0),
+    .disable_debug(SW5),
     .in_safe_area()
 );
 
@@ -340,7 +344,7 @@ mcam #(
     .mclk(mclk),
     .mem_din(smart_mem_dout),
     .ins_addr(openMSP430_0.pc),
-    .disable_debug(1'b0),
+    .disable_debug(SW4),
     .in_safe_area()
 );
 
@@ -349,7 +353,7 @@ mcam #(
 // 6)  PROGRAM AND DATA MEMORIES
 //=============================================================================
 
-spartan6_pmem pmem  (
+spartan6_pmem pmem_galinha  (
     .clka(mclk),
     .ena(~pmem_cen),
     .wea(~pmem_wen),
@@ -402,10 +406,10 @@ OBUF  UART_TXD_PIN   (.I(uart_txd_out),                .O(UART_TXD));
 
 // Slide Switches (Port 1 inputs)
 //--------------------------------
-IBUF  SW7_PIN        (.O(din[7]),                   .I(SW7));
-IBUF  SW6_PIN        (.O(din[6]),                   .I(SW6));
-IBUF  SW5_PIN        (.O(din[5]),                   .I(SW5));
-IBUF  SW4_PIN        (.O(din[4]),                   .I(SW4));
+// IBUF  SW7_PIN        (.O(din[7]),                   .I(SW7));
+// IBUF  SW6_PIN        (.O(din[6]),                   .I(SW6));
+// IBUF  SW5_PIN        (.O(din[5]),                   .I(SW5));
+// IBUF  SW4_PIN        (.O(din[4]),                   .I(SW4));
 IBUF  SW3_PIN        (.O(din[3]),                   .I(SW3));
 IBUF  SW2_PIN        (.O(din[2]),                   .I(SW2));
 IBUF  SW1_PIN        (.O(din[1]),                   .I(SW1));
@@ -413,14 +417,14 @@ IBUF  SW0_PIN        (.O(din[0]),                   .I(SW0));
 
 // LEDs (Port 1 outputs)
 //-----------------------
-OBUF  LED7_PIN       (.I(sdi_select),  .O(LED7));
-OBUF  LED6_PIN       (.I(dout[6] & dout_en[6]),  .O(LED6));
-OBUF  LED5_PIN       (.I(dout[5] & dout_en[5]),  .O(LED5));
-OBUF  LED4_PIN       (.I(dout[4] & dout_en[4]),  .O(LED4));
-OBUF  LED3_PIN       (.I(dout[3] & dout_en[3]),  .O(LED3));
-OBUF  LED2_PIN       (.I(dout[2] & dout_en[2]),  .O(LED2));
-OBUF  LED1_PIN       (.I(dout[1] & dout_en[1]),  .O(LED1));
-OBUF  LED0_PIN       (.I(dout[0] & dout_en[0]),  .O(LED0));
+OBUF  LED7_PIN       (.I(pmem_addr[0]),  .O(LED7));
+OBUF  LED6_PIN       (.I(pmem_addr[1]),  .O(LED6));
+OBUF  LED5_PIN       (.I(pmem_addr[2]),  .O(LED5));
+OBUF  LED4_PIN       (.I(pmem_addr[3]),  .O(LED4));
+OBUF  LED3_PIN       (.I(pmem_addr[4]),  .O(LED3));
+OBUF  LED2_PIN       (.I(pmem_addr[5]),  .O(LED2));
+OBUF  LED1_PIN       (.I(pmem_addr[6]),  .O(LED1));
+OBUF  LED0_PIN       (.I(pmem_addr[7]),  .O(LED0));
 
 // Push Button Switches
 //----------------------

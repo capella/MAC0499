@@ -89,6 +89,7 @@ int main(void) {
     while (1) {                         //main loop, never ends...
         reading = 1;
         while (reading) {               //loop and read characters
+          cprintf(".");
             // LPM0;                       //sync, wakeup by irq
             // led++;                      // Some lighting...
             // if (led==9) led = 0;

@@ -144,8 +144,8 @@ initial
   begin
      error         = 0;
      stimulus_done = 1;
-     SW7           = 1'b0;  // Slide Switches
-     SW6           = 1'b0;
+     SW7           = 1'b1;  // Slide Switches
+     SW6           = 1'b1;
      SW5           = 1'b0;
      SW4           = 1'b0;
      SW3           = 1'b0;
@@ -179,7 +179,7 @@ openMSP430_fpga dut (
     .SW0          (SW0),
 
 // Push Button Switches
-    .BTN3         (RESET),
+    .BTN3         (~RESET),
     .BTN2         (BTN2),
     .BTN1         (BTN1),
     .BTN0         (BTN0),
@@ -219,25 +219,6 @@ msp_debug msp_debug_0 (
     .mclk         (mclk),          // Main system clock
     .puc_rst      (puc_rst)        // Main system reset
 );
-
-//
-// Generate Waveform
-//----------------------------------------
-initial
-  begin
-   `ifdef VPD_FILE
-     $vcdplusfile("tb_openMSP430_fpga.vpd");
-     $vcdpluson();
-   `else
-     `ifdef TRN_FILE
-        $recordfile ("tb_openMSP430_fpga.trn");
-        $recordvars;
-     `else
-        $dumpfile("tb_openMSP430_fpga.vcd");
-        $dumpvars(0, tb_openMSP430_fpga);
-     `endif
-   `endif
-  end
 
 //
 // End of simulation

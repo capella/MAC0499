@@ -1,0 +1,14 @@
+PROMGEN: Xilinx Prom Generator P.20160913
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+promgen -w -p bin -r ./hw_uart.mcs -o ../bitstreams/final.bin 
+
+PROM ../bitstreams/final.prm map: Tue Oct  9 09:32:55 2018
+
+Format        Bin
+Size          512K
+PROM start    00000000
+PROM end      0007ffff
+
+        Addr1        Addr2                     Date File(s)
+     00000000     0005327b     Oct 10 18:56:14 2018 ./hw_uart.mcs

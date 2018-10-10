@@ -39,6 +39,7 @@ if [ ! -e $softdir ]; then
     echo "Software directory doesn't exist: $softdir"
     exit 1
 fi
+
 export LD_LIBRARY_PATH=/opt/glibc-2.14/lib
 
 
@@ -72,7 +73,7 @@ if command -v msp430-elf-gcc >/dev/null; then
 else
     msp430-objcopy     -O ihex ../$elffile ./$1.ihex
 fi
-../scripts/ihex2mem.tcl -ihex $1.ihex -out $1.mem -mem_size 4096
+../scripts/ihex2mem.tcl -ihex $1.ihex -out $1.mem -mem_size 16384
 
 # Update bitstream
 data2mem -bm ../scripts/memory.bmm -bd $1.mem -bt openMSP430_fpga.bit -o b $1.bit

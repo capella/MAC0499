@@ -17,9 +17,9 @@ if [ $# -ne $EXPECTED_ARGS ]; then
     echo ""
     echo "AVAILABLE TESTS:"
     for fullfile in ./bitstreams/*.bit ; do
-	filename=$(basename "$fullfile")
-	filename="${filename%.*}"
-	echo "                  - $filename"
+    filename=$(basename "$fullfile")
+    filename="${filename%.*}"
+    echo "                  - $filename"
     done
     echo ""
     exit 1
@@ -50,11 +50,14 @@ cp ../scripts/impact_generate_prom_file.batch ./impact_generate_prom_file.batch
 sed -i "s/BITSTREAM_NAME/$1/g"  ./impact_generate_prom_file.batch
 
 # Create PROM image
-cat impact_generate_prom_file.batch
 impact -batch ./impact_generate_prom_file.batch
 
 # Copy new PROM image in the proper directory
 cp -f ./$1.mcs ../bitstreams
 
+promgen -w -p bin -r ./$1.mcs -o ../bitstreams/final.bin
+
+
 # Return to the root directory
 cd ../
+
