@@ -181,7 +181,7 @@ clock clk (
 IBUF   ibuf_reset_n   (.O(reset_pin), .I(BTN3));
 
 // Release the reset only, if the DCM is locked
-assign  reset_n = reset_pin & dcm_locked;
+assign  reset_n = reset_pin & dcm_locked & ~smart2_reset & ~smart1_reset;
 
 // Top level reset generation
 wire dco_rst;
@@ -307,8 +307,8 @@ assign irq_bus    = {1'b0,         // Vector 13  (0xFFFA)
 //=============================================================================
 
 
-// // PROTECT KEY
-mcam #(
+// PROTECT KEY
+smart_mac #(
     .SIZE_MEM_ADDR(`PMEM_MSB),
 
     .LOW_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR),
@@ -318,18 +318,17 @@ mcam #(
     .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE))
 )  smart1 (
     .reset(smart1_reset),
-    // .mem_dout(smart_mem_dout),
+    .mem_dout(smart_mem_dout),
     .mem_addr(pmem_addr),
     .mclk(mclk),
-    // .mem_din(smart_mem_din),
+    .mem_din(smart_mem_din),
     .ins_addr(openMSP430_0.pc),
     .disable_debug(SW5),
     .in_safe_area(LED7)
 );
 
 // PROTECT SMART CODE
-// mcam #(.SIZE_MEM_ADDR(`PMEM_MSB), .SIZE_INST_ADDR(`PMEM_MSB)) smart2 (
-mcam #(
+smart_mac #(
     .SIZE_MEM_ADDR(`PMEM_MSB),
 
     .LOW_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR+1),
@@ -339,10 +338,10 @@ mcam #(
     .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE))
 ) smart2 (
     .reset(smart2_reset),
-    // .mem_dout(pmem_dout),
+    .mem_dout(pmem_dout),
     .mem_addr(pmem_addr),
     .mclk(mclk),
-    // .mem_din(smart_mem_dout),
+    .mem_din(smart_mem_dout),
     .ins_addr(openMSP430_0.pc),
     .disable_debug(SW4),
     .in_safe_area(LED6)
@@ -359,7 +358,7 @@ spartan6_pmem pmem_galinha  (
     .wea(~pmem_wen),
     .addra({1'b0, pmem_addr}),
     .dina(pmem_din),
-    .douta(pmem_dout)
+    .douta(smart_mem_dout)
 );
 
 spartan6_dmem dmem (

@@ -6,7 +6,7 @@ MEMORY
   text      (rx)   	: ORIGIN = PMEM_BASE,   LENGTH = PMEM_SIZE
   data      (rwx)  	: ORIGIN = PER_SIZE, 	LENGTH = DMEM_SIZE
   SMART (rx)        : ORIGIN = 0xFAE0, LENGTH = 1024
-  KEY (r)      : ORIGIN = 0xFEE0, LENGTH = 256
+  KEY (r)           : ORIGIN = 0xFEE0, LENGTH = 256
   vectors   (rw)   	: ORIGIN = 0xffe0,      LENGTH = 0x20
 }
 SECTIONS

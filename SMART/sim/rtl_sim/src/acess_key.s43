@@ -2,30 +2,29 @@
 .global main
 
 main:
-
-  wait_loop:
 	call #smart
 
-		
-        /* ----------------------         END OF TEST        --------------- */
+  	mov #0xFFDF, r11
+  	mov @r11, r12
+
 end_of_test:
 	nop
+
+  	mov #0xFFDF, r11
+  	mov @r11, r12
+
 	br #0xffff
 
-        /* ----------------------         SMART  --------------- */
-
 .section .smart, "a"
-
 	smart:
 	  	mov #0xFFDF, r11
 	  	mov @r11, r12
+	  	call #end_of_test
 
 
-        /* ----------------------         KEY  --------------- */
 
 .section .key, "a"
-
-.word 1010
+	.word 1010
 
         /* ----------------------         INTERRUPT VECTORS  --------------- */
 

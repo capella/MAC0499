@@ -1,8 +1,4 @@
 #!/bin/bash
 
-# ../bin/msp430sim leds
-# ../bin/msp430sim ta_uart
-# ../bin/msp430sim main
  ../bin/msp430sim hw_uart
- # ../bin/msp430sim dbg_uart_rdwr
 # ../bin/msp430sim acess_key

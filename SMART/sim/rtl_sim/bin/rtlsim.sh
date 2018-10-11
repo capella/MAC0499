@@ -38,7 +38,7 @@
 ###############################################################################
 #                            Parameter Check                                  #
 ###############################################################################
-EXPECTED_ARGS=3
+EXPECTED_ARGS=2
 if [ $# -ne $EXPECTED_ARGS ]; then
   echo "ERROR    : wrong number of arguments"
   echo "USAGE    : rtlsim.sh <verilog stimulus file> <memory file> <submit file>"
@@ -56,12 +56,9 @@ if [ ! -e $1 ]; then
     echo "Verilog stimulus file $1 doesn't exist"
     exit 1
 fi
+
 if [ ! -e $2 ]; then
-    echo "Memory file $2 doesn't exist"
-    exit 1
-fi
-if [ ! -e $3 ]; then
-    echo "Verilog submit file $3 doesn't exist"
+    echo "Verilog submit file $2 doesn't exist"
     exit 1
 fi
 
@@ -77,9 +74,9 @@ if [ "${OMSP_SIMULATOR:-iverilog}" = iverilog ]; then
     NODUMP=${OMSP_NODUMP-0}
     if [ $NODUMP -eq 1 ]
       then
-        iverilog -o simv -c $3 -D NODUMP
+        iverilog -o simv -c $2 -D NODUMP
       else
-        iverilog -o simv -c $3
+        iverilog -o simv -c $2
     fi
 
     if [[ $(uname -s) == CYGWIN* ]];
@@ -114,17 +111,17 @@ else
        # Modelsim
        if [ -d work ]; then  vdel -all; fi
        vlib work
-       exec vlog +acc=prn -f $3 $vargs -R -c -do "run -all" ;;
+       exec vlog +acc=prn -f $2 $vargs -R -c -do "run -all" ;;
     isim )
        # Xilinx simulator
        rm -rf fuse* isim*
        export LD_LIBRARY_PATH=/opt/lib/libcX:/lib/:/usr/lib:/usr/share/lib
-       fuse work.glbl tb_openMSP430_fpga -prj $3 -o isim.exe -i ../../../bench/verilog/ -i ../../../rtl/verilog/ -i ../../../rtl/verilog/openmsp430/ -i ../../../rtl/verilog/openmsp430/periph/ -L unisims_ver -L unimacro_ver -L xilinxcorelib_ver
+       fuse work.glbl tb_openMSP430_fpga -prj $2 -o isim.exe -i ../../../bench/verilog/ -i ../../../rtl/verilog/ -i ../../../rtl/verilog/openmsp430/ -i ../../../rtl/verilog/openmsp430/periph/ -L unisims_ver -L unimacro_ver -L xilinxcorelib_ver
        echo "run all" > isim.tcl
        ./isim.exe -tclbatch isim.tcl
        exit
    esac
 
-   echo "Running: $OMSP_SIMULATOR -f $3 $vargs"
-   exec $OMSP_SIMULATOR -f $3 $vargs
+   echo "Running: $OMSP_SIMULATOR -f $2 $vargs"
+   exec $OMSP_SIMULATOR -f $2 $vargs
 fi

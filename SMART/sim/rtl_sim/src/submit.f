@@ -60,7 +60,7 @@
 +incdir+../../../rtl/verilog/
 ../../../rtl/verilog/openMSP430_fpga.v
 ../../../rtl/verilog/omsp_uart.v
-../../../rtl/verilog/mcam.v
+../../../rtl/verilog/smart_mac.v
 ../../../rtl/verilog/clock.v
 ../../../rtl/verilog/coregen/spartan6_dmem.v
 ../../../rtl/verilog/coregen/spartan6_pmem.v

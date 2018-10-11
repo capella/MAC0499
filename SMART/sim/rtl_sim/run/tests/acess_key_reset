@@ -1,0 +1,5 @@
+../bin/msp430sim acess_key
+
+================= START SIMULATION ==============
+e012 0000ffde SAFE1 (00000fee0 < 00000ffde)
+================== END SIMULATION ===============

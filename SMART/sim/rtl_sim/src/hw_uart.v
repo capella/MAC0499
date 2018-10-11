@@ -77,28 +77,16 @@ initial
       uart_tx("-");
       uart_tx(")");
       uart_tx("\n");
-      repeat(10000) @(posedge mclk);
+      
+      repeat(25000) @(posedge mclk);
 
       $display("================== END SIMULATION ===============");
       $finish();
 
    end
 
- // always @(posedge dut.reset_n) begin
- //      $display("RESET");
- // end
 
  always @(posedge dut.smart1.reset) begin
       $display("%h %h SAFE (%h < %h)", dut.smart1.ins_addr, dut.smart1.mem_addr*2+65536-`PMEM_SIZE, dut.smart1.LOW_SAFE*2+65536-`PMEM_SIZE, dut.smart1.HIGH_SAFE*2+65536-`PMEM_SIZE);
       // $display("RESET SMART1");
  end
-
-
-// always @ (e_state) begin
-//     $display ("%h) %s - %s - %s", inst_pc, inst_full, i_state, e_state);
-// end
-
-// always @ (dut.smart1.mem_addr) begin
-//     $display ("%d", dut.smart1.mem_addr);
-// end
-

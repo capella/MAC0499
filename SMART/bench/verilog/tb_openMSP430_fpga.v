@@ -220,10 +220,6 @@ msp_debug msp_debug_0 (
     .puc_rst      (puc_rst)        // Main system reset
 );
 
-//
-// End of simulation
-//----------------------------------------
-
 initial // Timeout
   begin
    `ifdef NO_TIMEOUT
@@ -240,46 +236,9 @@ initial // Timeout
        $display(" ===============================================");
        $display("|               SIMULATION FAILED               |");
        $display("|              (simulation Timeout)             |");
-       $display(" ===============================================");
+       $display("================== END SIMULATION ===============");
        $finish;
    `endif
   end
-
-initial // Normal end of test
-  begin
-    #1000
-     @(inst_pc===16'hffff)
-     $display(" ===============================================");
-     if (error!=0)
-       begin
-	  $display("|               SIMULATION FAILED               |");
-	  $display("|     (some verilog stimulus checks failed)     |");
-       end
-     else if (~stimulus_done)
-       begin
-	  $display("|               SIMULATION FAILED               |");
-	  $display("|     (the verilog stimulus didn't complete)    |");
-       end
-     else 
-       begin
-	  $display("|               SIMULATION PASSED               |");
-       end
-     $display(" ===============================================");
-     $finish;
-  end
-
-
-//
-// Tasks Definition
-//------------------------------
-
-   task tb_error;
-      input [65*8:0] error_string;
-      begin
-	 $display("ERROR: %s %t", error_string, $time);
-	 error = error+1;
-      end
-   endtask
-
 
 endmodule

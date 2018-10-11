@@ -75,6 +75,8 @@ fi
 ###############################################################################
 #               Generate the linker definition file                           #
 ###############################################################################
+
+
 PER_SIZE=$7
 DMEM_SIZE=$6
 PMEM_SIZE=$5
@@ -108,10 +110,15 @@ fi
 echo ""
 echo "\$ $MSPGCC_PFX-as      -alsm $2 -o $1.o > $1.l43"
 $MSPGCC_PFX-as      -alsm         $2     -o $1.o     > $1.l43
+
 echo "\$ $MSPGCC_PFX-objdump -xdsStr $1.o >> $1.l43"
 $MSPGCC_PFX-objdump -xdsStr       $1.o              >> $1.l43
+
 echo "\$ $MSPGCC_PFX-ld      -T ./pmem.x $1.o -o $1.elf"
 $MSPGCC_PFX-ld      -T ./pmem.x   $1.o   -o $1.elf
+
+$MSPGCC_PFX-objdump -DSt $1.elf > $1.lst
+
 echo "\$ $MSPGCC_PFX-objcopy -O ihex $1.elf $1.ihex"
 $MSPGCC_PFX-objcopy -O ihex       $1.elf    $1.ihex
 echo ""
