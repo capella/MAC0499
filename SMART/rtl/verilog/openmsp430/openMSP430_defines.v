@@ -859,7 +859,7 @@
 //      need to specify the DCO_CLK frequency (DBG_DCO_FREQ) and
 //      the chosen BAUD rate from the UART interface.
 //
-//`define DBG_UART_BAUD    9600
+// `define DBG_UART_BAUD    9600
 // `define DBG_UART_BAUD   19200
 //`define DBG_UART_BAUD   38400
 //`define DBG_UART_BAUD   57600

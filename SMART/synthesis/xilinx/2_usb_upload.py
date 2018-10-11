@@ -490,18 +490,18 @@ class MimasV2ConfigDownloader:
 			#verify the flash contents
 			print("\nVerifying flash contents...")
 			
-			if self.M25P16VerifyFlash(dataBuff):
-				print("Flash verification failed...")
-			else:
-				print("Flash verification successful...\nBooting FPGA...")
+			# if self.M25P16VerifyFlash(dataBuff):
+			# 	print("Flash verification failed...")
+			# else:
+			# 	print("Flash verification successful...\nBooting FPGA...")
 						
-				#Set CS to input
-				if self.SpiSetIoDirection(CONFIG_IO_PIN_CS, IO_DIRECTION_IN):
-					return 1
-				
-				#De-assert PROGB
-				if self.SpiSetIoValue(CONFIG_IO_PIN_PROGB, 1):
-					return 1
+			#Set CS to input
+			if self.SpiSetIoDirection(CONFIG_IO_PIN_CS, IO_DIRECTION_IN):
+				return 1
+			
+			#De-assert PROGB
+			if self.SpiSetIoValue(CONFIG_IO_PIN_PROGB, 1):
+				return 1
 		
 			print("Done.")
 		

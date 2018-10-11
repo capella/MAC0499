@@ -14,11 +14,11 @@ module  mcam (
     // OUTPUTs
     in_safe_area,                   // On on safe area
     reset,                          // High to reset device
-    mem_dout,                       // Memory data output
+    // mem_dout,                       // Memory data output
 
     // INPUTs
     mem_addr,                       // Memory adress
-    mem_din,                        // Memory data input
+    // mem_din,                        // Memory data input
     mclk,                           // Memory clock
 
     ins_addr,                       // Instruction pointer adress
@@ -39,13 +39,13 @@ parameter HIGH_CODE = 200;             // High address code
 //=========
 output                  in_safe_area;
 output                  reset;
-output           [15:0] mem_dout;
+// output           [15:0] mem_dout;
 
 // INPUTs
 //=========
 input [SIZE_MEM_ADDR:0] mem_addr;
 input                   mclk;
-input            [15:0] mem_din;
+// input            [15:0] mem_din;
 input            [15:0] ins_addr;
 input                   disable_debug;
 
@@ -59,7 +59,7 @@ wire addr_in_safe = (mem_addr <= HIGH_SAFE) & (mem_addr >= LOW_SAFE);
 wire pc_in_code = (ins_addr <= HIGH_CODE) & (ins_addr >= LOW_CODE);
 
 assign reset = r & ~disable_debug ;
-assign mem_dout = reset ? 16'b0 : mem_din;
+// assign mem_dout = reset ? 16'b0 : mem_din;
 assign in_safe_area = allow_safe;
 
 always @ (posedge mclk) begin

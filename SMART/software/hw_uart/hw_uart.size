@@ -1,2 +1,2 @@
    text	   data	    bss	    dec	    hex	filename
-   2572	     46	     20	   2638	    a4e	hw_uart.elf
+   2544	     42	     20	   2606	    a2e	hw_uart.elf

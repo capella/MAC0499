@@ -307,7 +307,7 @@ assign irq_bus    = {1'b0,         // Vector 13  (0xFFFA)
 //=============================================================================
 
 
-// PROTECT KEY
+// // PROTECT KEY
 mcam #(
     .SIZE_MEM_ADDR(`PMEM_MSB),
 
@@ -318,13 +318,13 @@ mcam #(
     .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE))
 )  smart1 (
     .reset(smart1_reset),
-    .mem_dout(smart_mem_dout),
+    // .mem_dout(smart_mem_dout),
     .mem_addr(pmem_addr),
     .mclk(mclk),
-    .mem_din(smart_mem_din),
+    // .mem_din(smart_mem_din),
     .ins_addr(openMSP430_0.pc),
     .disable_debug(SW5),
-    .in_safe_area()
+    .in_safe_area(LED7)
 );
 
 // PROTECT SMART CODE
@@ -339,13 +339,13 @@ mcam #(
     .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE))
 ) smart2 (
     .reset(smart2_reset),
-    .mem_dout(pmem_dout),
+    // .mem_dout(pmem_dout),
     .mem_addr(pmem_addr),
     .mclk(mclk),
-    .mem_din(smart_mem_dout),
+    // .mem_din(smart_mem_dout),
     .ins_addr(openMSP430_0.pc),
     .disable_debug(SW4),
-    .in_safe_area()
+    .in_safe_area(LED6)
 );
 
 
@@ -359,7 +359,7 @@ spartan6_pmem pmem_galinha  (
     .wea(~pmem_wen),
     .addra({1'b0, pmem_addr}),
     .dina(pmem_din),
-    .douta(smart_mem_din)
+    .douta(pmem_dout)
 );
 
 spartan6_dmem dmem (
@@ -417,10 +417,10 @@ IBUF  SW0_PIN        (.O(din[0]),                   .I(SW0));
 
 // LEDs (Port 1 outputs)
 //-----------------------
-OBUF  LED7_PIN       (.I(pmem_addr[0]),  .O(LED7));
-OBUF  LED6_PIN       (.I(pmem_addr[1]),  .O(LED6));
-OBUF  LED5_PIN       (.I(pmem_addr[2]),  .O(LED5));
-OBUF  LED4_PIN       (.I(pmem_addr[3]),  .O(LED4));
+// OBUF  LED7_PIN       (.I(pmem_addr[0]),  .O(LED7));
+// OBUF  LED6_PIN       (.I(pmem_addr[1]),  .O(LED6));
+OBUF  LED5_PIN       (.I(~hw_uart_txd),  .O(LED5));
+OBUF  LED4_PIN       (.I(~dbg_uart_txd),  .O(LED4));
 OBUF  LED3_PIN       (.I(pmem_addr[4]),  .O(LED3));
 OBUF  LED2_PIN       (.I(pmem_addr[5]),  .O(LED2));
 OBUF  LED1_PIN       (.I(pmem_addr[6]),  .O(LED1));

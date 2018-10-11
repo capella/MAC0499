@@ -2,7 +2,7 @@
 # Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 SOFTWARE_VERSION P.20160913
-DATE            10/ 9/2018 -  9:32
+DATE            10/ 9/2018 - 15:27
 SOURCE          ../bitstreams/final.bin
 DEVICE          512K
 DATA_WIDTH      8

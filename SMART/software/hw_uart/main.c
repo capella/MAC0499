@@ -69,58 +69,16 @@ int main(void) {
 
     WDTCTL = WDTPW | WDTHOLD;           // Init watchdog timer
 
-    P3DIR  = 0xff;
-    P3OUT  = 0xff;                      // Light LED during init
 
     UART_BAUD = BAUD;                   // Init UART
     UART_CTL  = UART_EN | UART_IEN_RX;
 
-
-    // delay(65535);
-
-    P3OUT  = 0x00;                      // Switch off LED
-
-    // cprintf("\r\n====== openMSP430 in action ======\r\n");   //say hello
     cprintf("> ");
-  //  cprintf("%d", *key);
 
     enable_interrupts();                  // Enable interrupts
 
     while (1) {                         //main loop, never ends...
-        reading = 1;
-        while (reading) {               //loop and read characters
-          cprintf(".");
-            // LPM0;                       //sync, wakeup by irq
-            // led++;                      // Some lighting...
-            // if (led==9) led = 0;
-            // P3OUT = (0x01 << led);
-
-            // switch (rxdata) {
-            //     //process RETURN key
-            //     case '\n':
-            //         cprintf("\r\n");    //finish line
-            //         buf[pos++] = 0;     //to use cprintf...
-            //         cprintf(":%s\r\n", buf);
-            //         reading = 0;        //exit read loop
-            //         pos = 0;            //reset buffer
-            //         break;
-            //         //backspace
-            //     case '\b':
-            //         if (pos > 0) {      //is there a char to delete?
-            //             pos--;          //remove it in buffer
-            //             tty_putc('\b');  //go back
-            //             tty_putc(' ');   //erase on screen
-            //             tty_putc('\b');  //go back
-            //         }
-            //         break;
-            //         //other characters
-            //     default:
-            //         //only store characters if buffer has space
-            //         if (pos < sizeof(buf)) {
-            //             tty_putc(rxdata);     //echo
-            //             buf[pos++] = rxdata; //store
-            //         }
-            // }
-        }
+        // cprintf("U");
+        // delay(5000);
     }
 }
