@@ -65,6 +65,10 @@
 ../../../rtl/verilog/coregen/spartan6_dmem.v
 ../../../rtl/verilog/coregen/spartan6_pmem.v
 
+../../../rtl/verilog/sha256/sha256_core.v
+../../../rtl/verilog/sha256/sha256_k_constants.v
+../../../rtl/verilog/sha256/sha256_w_mem.v
+../../../rtl/verilog/sha256/sha256per.v
 
 //=============================================================================
 // openMSP430

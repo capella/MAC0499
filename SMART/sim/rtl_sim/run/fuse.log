@@ -1,0 +1,101 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse work.glbl tb_openMSP430_fpga -prj ../src/submit.prj -o isim.exe -i ../../../bench/verilog/ -i ../../../rtl/verilog/ -i ../../../rtl/verilog/openmsp430/ -i ../../../rtl/verilog/openmsp430/periph/ -L unisims_ver -L unimacro_ver -L xilinxcorelib_ver 
+ISim P.20160913 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Analyzing Verilog file "../src/../../../bench/verilog/tb_openMSP430_fpga.v" into library work
+Analyzing Verilog file "../src/../../../bench/verilog/msp_debug.v" into library work
+Analyzing Verilog file "../src/../../../bench/verilog/glbl.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openMSP430_fpga.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/clock.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/omsp_uart.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/smart_mac.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/coregen/spartan6_dmem.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/coregen/spartan6_pmem.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/openMSP430.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_frontend.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_execution_unit.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_register_file.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_alu.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_sfr.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_mem_backbone.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_clock_module.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_dbg.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_dbg_hwbrk.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_dbg_uart.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_dbg_i2c.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_watchdog.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_multiplier.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_sync_reset.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_sync_cell.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_scan_mux.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_and_gate.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_wakeup_cell.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_clock_gate.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/omsp_clock_mux.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/periph/omsp_gpio.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/openmsp430/periph/omsp_timerA.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/sha256/sha256_core.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/sha256/sha256_k_constants.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/sha256/sha256_w_mem.v" into library work
+Analyzing Verilog file "../src/../../../rtl/verilog/sha256/sha256per.v" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 100844 KB
+Fuse CPU Usage: 1870 ms
+Compiling module glbl
+Compiling module IBUFG
+Compiling module dcm_sp_clock_divide_by_2
+Compiling module dcm_sp_maximum_period_check(cloc...
+Compiling module dcm_sp_maximum_period_check(cloc...
+Compiling module dcm_sp_clock_lost
+Compiling module DCM_SP(CLKDV_DIVIDE=5.0,CLKFX_DI...
+Compiling module BUFG
+Compiling module clock
+Compiling module IBUF
+Compiling module omsp_sync_reset
+Compiling module omsp_sync_cell
+Compiling module omsp_and_gate
+Compiling module omsp_clock_module_default
+Compiling module omsp_frontend
+Compiling module omsp_register_file
+Compiling module omsp_alu
+Compiling module omsp_execution_unit
+Compiling module omsp_mem_backbone
+Compiling module omsp_sfr_default
+Compiling module omsp_watchdog_default
+Compiling module omsp_multiplier_default
+Compiling module omsp_dbg_hwbrk
+Compiling module omsp_dbg_uart
+Compiling module omsp_dbg_default
+Compiling module openMSP430
+Compiling module omsp_uart_default
+Compiling module sha256_k_constants
+Compiling module sha256_w_mem
+Compiling module sha256_core
+Compiling module sha2_periph
+Compiling module smart_mac(SIZE_MEM_ADDR=11,LOW_S...
+Compiling module smart_mac(SIZE_MEM_ADDR=11,LOW_S...
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
+Compiling module BLK_MEM_GEN_V7_3_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V7_3(C_FAMILY="spart...
+Compiling module spartan6_pmem
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
+Compiling module BLK_MEM_GEN_V7_3_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V7_3(C_FAMILY="spart...
+Compiling module spartan6_dmem
+Compiling module OBUF
+Compiling module openMSP430_fpga
+Compiling module msp_debug
+Compiling module tb_openMSP430_fpga
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 49 Verilog Units
+Built simulation executable isim.exe
+Fuse Memory Usage: 662712 KB
+Fuse CPU Usage: 3680 ms
+GCC CPU Usage: 12190 ms

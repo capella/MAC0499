@@ -30,3 +30,8 @@ verilog work ../../../rtl/verilog/openmsp430/omsp_clock_gate.v
 verilog work ../../../rtl/verilog/openmsp430/omsp_clock_mux.v
 verilog work ../../../rtl/verilog/openmsp430/periph/omsp_gpio.v
 verilog work ../../../rtl/verilog/openmsp430/periph/omsp_timerA.v
+
+verilog work ../../../rtl/verilog/sha256/sha256_core.v
+verilog work ../../../rtl/verilog/sha256/sha256_k_constants.v
+verilog work ../../../rtl/verilog/sha256/sha256_w_mem.v
+verilog work ../../../rtl/verilog/sha256/sha256per.v

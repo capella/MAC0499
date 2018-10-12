@@ -275,12 +275,34 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
     .uart_rxd     (hw_uart_rxd)    // UART Data Receive (RXD)
 );
 
+//
+// Sha256 Module
+//----------------------------------------
+
+wire        [15:0] per_sha;
+
+
+sha2_periph #(.BASE_ADDR(15'h0010)) sha256_0 (
+
+// OUTPUTs
+    .per_dout     (per_sha), // Peripheral data output
+
+// INPUTs
+    .mclk         (mclk),          // Main system clock
+    .per_addr     (per_addr),      // Peripheral address
+    .per_din      (per_din),       // Peripheral data input
+    .per_en       (per_en),        // Peripheral enable (high active)
+    .per_we       (per_we),        // Peripheral write enable (high active)
+    .puc_rst      (puc_rst)       // Main system reset
+);
 
 //
 // Combine peripheral data buses
 //-------------------------------
 
-assign per_dout = per_dout_uart;
+assign per_dout = per_sha |
+                  per_dout_uart;
+
 
 //
 // Assign interrupts
@@ -358,7 +380,7 @@ spartan6_pmem pmem_galinha  (
     .wea(~pmem_wen),
     .addra({1'b0, pmem_addr}),
     .dina(pmem_din),
-    .douta(smart_mem_dout)
+    .douta(smart_mem_din)
 );
 
 spartan6_dmem dmem (
