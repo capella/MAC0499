@@ -2,9 +2,9 @@
 # Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 SOFTWARE_VERSION P.20160913
-DATE            10/ 9/2018 - 15:27
+DATE            10/10/2018 -  4:21
 SOURCE          ../bitstreams/final.bin
 DEVICE          512K
 DATA_WIDTH      8
 FILL_DATA       0xFF
-START_ADDRESS   0x00000000 END_ADDRESS 0x0005327B DIRECTION_UP   "./hw_uart.mcs"
+START_ADDRESS   0x00000000 END_ADDRESS 0x0005327B DIRECTION_UP   "./smart.mcs"

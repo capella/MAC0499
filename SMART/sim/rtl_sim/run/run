@@ -1,5 +1,6 @@
 #!/bin/bash
 
- ../bin/msp430sim sha256
+ ../bin/msp430sim smart
+ # ../bin/msp430sim sha256
  # ../bin/msp430sim hw_uart
 # ../bin/msp430sim acess_key

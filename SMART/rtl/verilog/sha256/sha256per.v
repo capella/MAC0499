@@ -68,7 +68,7 @@ parameter              DEC_WD      =  7;
 // Register addresses offset
 parameter [DEC_WD-1:0] CNTRL      = 'h0,
                        INPUT      = 'h2,
-                       OUTPUT     = 'h2+'d64;
+                       OUTPUT     = 'h42;
 
 
 //============================================================================
@@ -114,9 +114,9 @@ wire  [255:0] digest;
  
 wire in_block = (reg_addr >= INPUT) & (reg_addr < INPUT+'d64) & reg_write;
 
-always @ (posedge mclk or posedge puc_rst)
+always @ (posedge mclk)
   if (~puc_rst & in_block) begin
-    // $display("%h %h %h", per_addr, reg_addr, INPUT);
+    // $display("> %h %h", per_addr*2, reg_addr);
     block[(reg_addr - INPUT)*8 +: 16] <= per_din;
   end
 
@@ -146,10 +146,9 @@ sha256_core sha256_module (
 // Data output mux
 wire [15:0] cntrl_rd  = cntrl  & {16{(reg_addr == CNTRL) & reg_read}};
 
+wire in_digest = (reg_addr >= OUTPUT) & (reg_addr < OUTPUT+'d32) & reg_read;
 
-wire in_digest = (reg_addr >= OUTPUT) & (reg_addr < OUTPUT+'d32);
-
-wire [15:0]  in_digest_rd  = digest[(reg_addr - OUTPUT)*8 +: 16] & {16{in_block & reg_read}};
+wire [15:0]  in_digest_rd  = digest[(reg_addr - OUTPUT)*8 +: 16] & {16{in_digest}};
 
 wire [15:0] per_dout   =  cntrl_rd  |
                           in_digest_rd;

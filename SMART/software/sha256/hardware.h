@@ -38,9 +38,9 @@
 //--------------------------------------------------
 
 #define SHA_CONFIG      (*(volatile unsigned char *) 0x0011)
-#define SHA_STATUS      (*(volatile unsigned char *) 0x0010)
+#define SHA_STATUS      (*(volatile unsigned char *) 0x0011)
 #define SHA_INPUT       (*(volatile unsigned long *) 0x0012)
-#define SHA_OUTPUT      (*(volatile unsigned long *) 0x0012+64)
+#define SHA_OUTPUT      (*(volatile unsigned long *) 0x0052)
 
 // SHA Control register fields
 #define  SHA_MODE           0x08 // set to 1 for sha256
