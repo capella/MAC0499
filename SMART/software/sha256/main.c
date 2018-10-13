@@ -1,5 +1,5 @@
-#include "omsp_system.h"
-#include "hardware.h"
+#include "../libs/omsp_system.h"
+#include "../libs/hardware.h"
 #include <stdlib.h>
 #include <stdio.h>
 

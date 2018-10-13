@@ -1,6 +1,6 @@
-#include "omsp_system.h"
-#include "hardware.h"
-#include "cprintf.h"
+#include "../libs/omsp_system.h"
+#include "../libs/hardware.h"
+#include "../libs/cprintf/cprintf.h"
 #include <stdlib.h>
 #include <stdio.h>
 

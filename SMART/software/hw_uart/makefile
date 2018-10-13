@@ -1,6 +1,6 @@
 # makfile configuration
 NAME            = hw_uart
-OBJECTS         = main.o cprintf.o
+OBJECTS         = main.o ../libs/cprintf.o
 
 # Compiler performance option (-Os / -O2 / -O3)
 PORT_CFLAGS     = -O2
@@ -45,7 +45,6 @@ ${NAME}.a43: ${NAME}.elf
 
 ${NAME}.lst: ${NAME}.elf
 	${OBJDUMP} -dSt $^ >$@
-	${OBJDUMP} -dS $^ > tmp
 
 ${NAME}.size: ${NAME}.elf
 	${OBJSIZE}  $^ >$@
@@ -64,5 +63,6 @@ dist:
 FORCE:
 
 #project dependencies
-main.o: main.c hardware.h
-cprintf.o: cprintf.c cprintf.h
+main.o: main.c ../libs/hardware.h
+../libs/cprintf.o:
+	$(MAKE) -C  ../libs

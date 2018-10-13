@@ -286,7 +286,7 @@ char sha256_flush (char init) {
 
 0000e1c8 <.Loc.41.1>:
     while (!(SHA_STATUS & SHA_READY));
-    e1c8:	7c 40 10 00 	mov.b	#16,	r12	;#0x0010
+    e1c8:	7c 40 11 00 	mov.b	#17,	r12	;#0x0011
 
 0000e1cc <.L15>:
     e1cc:	dc b3 00 00 	bit.b	#1,	0(r12)	;r3 As==01
@@ -404,7 +404,7 @@ void sha256 (unsigned char *str, unsigned int length) {
 
     SHA_CONFIG = SHA_MODE | SHA_ON;
     while (!(SHA_STATUS & SHA_READY));
-    e21c:	77 40 10 00 	mov.b	#16,	r7	;#0x0010
+    e21c:	77 40 11 00 	mov.b	#17,	r7	;#0x0011
 
 0000e220 <.LBE9>:
 
@@ -658,7 +658,7 @@ char sha256_flush (char init) {
 
 0000e308 <.Loc.41.1>:
     while (!(SHA_STATUS & SHA_READY));
-    e308:	7c 40 10 00 	mov.b	#16,	r12	;#0x0010
+    e308:	7c 40 11 00 	mov.b	#17,	r12	;#0x0011
 
 0000e30c <.L32>:
     e30c:	dc b3 00 00 	bit.b	#1,	0(r12)	;r3 As==01

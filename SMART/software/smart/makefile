@@ -1,6 +1,6 @@
 # makfile configuration
 NAME            = smart
-OBJECTS         = main.o cprintf.o
+OBJECTS         = main.o ../libs/cprintf.o ../libs/smart.o
 
 # Compiler performance option (-Os / -O2 / -O3)
 PORT_CFLAGS     = -O0
@@ -63,5 +63,10 @@ send:
 FORCE:
 
 #project dependencies
-main.o: main.c hardware.h
-cprintf.o: cprintf.c cprintf.h
+main.o: main.c ../libs/hardware.h
+
+../libs/cprintf.o:
+	$(MAKE) -C  ../libs
+
+../libs/smart.o:
+	$(MAKE) -C  ../libs

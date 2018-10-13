@@ -1,7 +1,4 @@
-#include <stdarg.h>
-
 #include "cprintf.h"
-#include "hardware.h"
 
 typedef unsigned char byte;
 
@@ -22,38 +19,32 @@ static int tty_putc (int txdata) {
   return 0;
 }
 
-
 void
-cput_nibble (int n)
-{
+cput_nibble (int n) {
   tty_putc (hex[n&0x0f]);
 }
 
 void
-cput_hex_byte (int n)
-{
+cput_hex_byte (int n) {
   cput_nibble (n >> 4);
   cput_nibble (n);
 }
 
 void
-cput_binary_byte (int n)
-{
+cput_binary_byte (int n) {
   int i;
   for (i=7; i>=0; i--)
     tty_putc((n & (1<<i)) ? '1' : '0');
 }
 
 void
-cput_hex_word (int n)
-{
+cput_hex_word (int n) {
   cput_hex_byte (n >> 8);
   cput_hex_byte (n);
 }
 
 void
-cput_hex_long (long int n)
-{
+cput_hex_long (long int n) {
   cput_hex_byte (n >> 24);
   cput_hex_byte (n >> 16);
   cput_hex_byte (n >> 8);
@@ -61,8 +52,7 @@ cput_hex_long (long int n)
 }
 
 void
-cput_hex_block (char *block, int n)
-{
+cput_hex_block (char *block, int n) {
   int i = 0;
   while (n)
     {
@@ -78,8 +68,7 @@ cput_hex_block (char *block, int n)
 }
 
 void
-cput_nibble_block (char *block, int n)
-{
+cput_nibble_block (char *block, int n) {
   int i = 0;
   while (n)
     {
@@ -93,8 +82,7 @@ cput_nibble_block (char *block, int n)
 }
 
 void
-cput_number (int n)
-{
+cput_number (int n) {
   char buf[20];
   int i = 0;
   if (n < 0)
@@ -113,16 +101,14 @@ cput_number (int n)
 }
 
 void
-cprintf (const char *fmt, ...)
-{
+cprintf (const char *fmt, ...) {
   va_list v;
   int i;
   char *s;
 
   va_start (v, fmt);
 
-  while (*fmt)
-    {
+  while (*fmt) {
       if (*fmt != '%')
 	tty_putc (*fmt);
       else

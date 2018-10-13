@@ -45,7 +45,6 @@ ${NAME}.a43: ${NAME}.elf
 
 ${NAME}.lst: ${NAME}.elf
 	${OBJDUMP} -dSt $^ >$@
-	${OBJDUMP} -dS $^ > tmp
 
 ${NAME}.size: ${NAME}.elf
 	${OBJSIZE}  $^ >$@
@@ -61,4 +60,4 @@ dist:
 FORCE:
 
 #project dependencies
-main.o: main.c hardware.h
+main.o: main.c ../libs/hardware.h
