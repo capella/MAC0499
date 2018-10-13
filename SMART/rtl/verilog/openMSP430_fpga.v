@@ -180,12 +180,15 @@ clock clk (
 // Reset input buffer
 IBUF   ibuf_reset_n   (.O(reset_pin), .I(BTN3));
 
+omsp_sync_reset smart_r (.rst_s (smart_reset), .clk(clk_sys), .rst_a(~smart2_reset & ~smart1_reset));
+
 // Release the reset only, if the DCM is locked
-assign  reset_n = reset_pin & dcm_locked & ~smart2_reset & ~smart1_reset;
+assign  reset_n = reset_pin & dcm_locked & smart_reset;
 
 // Top level reset generation
 wire dco_rst;
 omsp_sync_reset sync_reset_dco (.rst_s (dco_rst), .clk(clk_sys), .rst_a(!reset_n));
+
 
 
 //=============================================================================
@@ -342,6 +345,7 @@ smart_mac #(
     .reset(smart1_reset),
     .mem_dout(smart_mem_dout),
     .mem_addr(pmem_addr),
+    .mem_cen(pmem_cen),
     .mclk(mclk),
     .mem_din(smart_mem_din),
     .ins_addr(openMSP430_0.pc),
@@ -362,13 +366,13 @@ smart_mac #(
     .reset(smart2_reset),
     .mem_dout(pmem_dout),
     .mem_addr(pmem_addr),
+    .mem_cen(pmem_cen),
     .mclk(mclk),
     .mem_din(smart_mem_dout),
     .ins_addr(openMSP430_0.pc),
     .disable_debug(SW4),
     .in_safe_area(LED6)
 );
-
 
 //=============================================================================
 // 6)  PROGRAM AND DATA MEMORIES
@@ -440,8 +444,10 @@ IBUF  SW0_PIN        (.O(din[0]),                   .I(SW0));
 //-----------------------
 // OBUF  LED7_PIN       (.I(pmem_addr[0]),  .O(LED7));
 // OBUF  LED6_PIN       (.I(pmem_addr[1]),  .O(LED6));
+
 OBUF  LED5_PIN       (.I(~hw_uart_txd),  .O(LED5));
 OBUF  LED4_PIN       (.I(~dbg_uart_txd),  .O(LED4));
+
 OBUF  LED3_PIN       (.I(pmem_addr[4]),  .O(LED3));
 OBUF  LED2_PIN       (.I(pmem_addr[5]),  .O(LED2));
 OBUF  LED1_PIN       (.I(pmem_addr[6]),  .O(LED1));

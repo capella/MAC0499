@@ -1,5 +1,5 @@
 # makfile configuration
-NAME            = smart
+NAME            = smart_v1
 OBJECTS         = main.o ../libs/cprintf.o ../libs/smart.o
 
 # Compiler performance option (-Os / -O2 / -O3)

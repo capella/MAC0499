@@ -1,4 +1,4 @@
-../bin/msp430sim smart
+../bin/msp430sim smart_v1
 
 ================= START SIMULATION ==============
 5d07ca9016ff1f7ffad02d50f178c5cb2cf23d66a221ac635e051b4dec513434

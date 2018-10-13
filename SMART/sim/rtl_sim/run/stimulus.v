@@ -61,7 +61,7 @@ initial
       SW1 = 1'b1;
       SW0 = 1'b0;
       
-      repeat(10*25000) @(posedge mclk);
+      repeat(40*25000) @(posedge mclk);
 
       $display("================== END SIMULATION ===============");
       $finish();
@@ -97,7 +97,6 @@ initial
       $finish();
       // $display("RESET SMART1");
  end
-
 
  always @(posedge dut.smart2.reset) begin
       $display("%h %h SAFE2 (%h < %h)", dut.smart2.ins_addr, dut.smart2.mem_addr*2+65536-`PMEM_SIZE, dut.smart2.LOW_SAFE*2+65536-`PMEM_SIZE, dut.smart2.HIGH_SAFE*2+65536-`PMEM_SIZE);
