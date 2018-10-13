@@ -19,7 +19,6 @@ module  smart_mac (
     // INPUTs
     mem_addr,                       // Memory adress
     mem_din,                        // Memory data input
-    mem_cen,                        // Memory chip enable (low active)
 
     mclk,                           // Memory clock
 
@@ -63,7 +62,7 @@ wire pc_in_code = (ins_addr <= HIGH_CODE) & ( (ins_addr+1) > LOW_CODE);
 
 assign safe_reset = addr_in_safe & ~inside_code;
 
-assign reset = to_be_reset & ~disable_debug & ~mem_cen;
+assign reset = to_be_reset & ~disable_debug;
 
 assign mem_dout = reset ? 16'b0 : mem_din;
 assign in_safe_area = to_be_reset;
@@ -75,7 +74,7 @@ always @ (posedge mclk) begin
     else begin
         if (~pc_in_code) inside_code <= 1'b0;
     end
-    to_be_reset <= safe_reset & ~to_be_reset;
+    to_be_reset <= safe_reset;
 end
 
 endmodule // smart_mac

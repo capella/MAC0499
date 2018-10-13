@@ -41,8 +41,8 @@ Analyzing Verilog file "../src/../../../rtl/verilog/sha256/sha256_w_mem.v" into 
 Analyzing Verilog file "../src/../../../rtl/verilog/sha256/sha256per.v" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 100860 KB
-Fuse CPU Usage: 2010 ms
+Fuse Memory Usage: 100844 KB
+Fuse CPU Usage: 1940 ms
 Compiling module glbl
 Compiling module IBUFG
 Compiling module dcm_sp_clock_divide_by_2
@@ -96,6 +96,6 @@ Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
 Compiled 49 Verilog Units
 Built simulation executable isim.exe
-Fuse Memory Usage: 662724 KB
-Fuse CPU Usage: 3750 ms
-GCC CPU Usage: 11740 ms
+Fuse Memory Usage: 662708 KB
+Fuse CPU Usage: 3530 ms
+GCC CPU Usage: 11210 ms

@@ -3,7 +3,7 @@ initial
    begin
       $display("================= START SIMULATION ==============");
 
-      repeat(50) @(posedge mclk);
+      repeat(30) @(posedge mclk);
 
       $display("================== END SIMULATION ===============");
       $finish();

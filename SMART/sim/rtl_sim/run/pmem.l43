@@ -1,0 +1,122 @@
+GAS LISTING pmem.s43 			page 1
+
+
+   1               	
+   2               	.global main
+   3               	
+   4               	main:
+   5 0000 B012 0000 		call #smart
+   6               	
+   7 0004 3B40 DAFF 	  	mov #0xFFDA, r11
+   8 0008 2C4B      	  	mov @r11, r12
+   9               	
+  10               	end_of_test:
+  11 000a 0343      		nop
+  12               	
+  13 000c 3B40 DBFF 	  	mov #0xFFDB, r11
+  14 0010 2C4B      	  	mov @r11, r12
+  15               	
+  16 0012 3040 FFFF 		br #0xffff
+  17               	
+  18               	.section .smart, "a"
+  19               		smart:
+  20 0000 3B40 DCFF 		  	mov #0xFFDC, r11
+  21 0004 2C4B      		  	mov @r11, r12
+  22 0006 B012 0000 		  	call #end_of_test
+  23               	
+  24               	
+  25               	
+  26               	.section .key, "a"
+  27 0000 F203      		.word 1010
+  28               	
+  29               	        /* ----------------------         INTERRUPT VECTORS  --------------- */
+  30               	
+  31               	.section .vectors, "a"
+  32 0000 0000      	.word end_of_test     ; Interrupt  0 (lowest priority)    <unused>
+  33 0002 0000      	.word end_of_test     ; Interrupt  1                      <unused>
+  34 0004 0000      	.word end_of_test     ; Interrupt  2                      <unused>
+  35 0006 0000      	.word end_of_test     ; Interrupt  3                      <unused>
+  36 0008 0000      	.word end_of_test     ; Interrupt  4                      <unused>
+  37 000a 0000      	.word end_of_test     ; Interrupt  5                      <unused>
+  38 000c 0000      	.word end_of_test     ; Interrupt  6                      <unused>
+  39 000e 0000      	.word end_of_test     ; Interrupt  7                      <unused>
+  40 0010 0000      	.word end_of_test     ; Interrupt  8                      <unused>
+  41 0012 0000      	.word end_of_test     ; Interrupt  9                      <unused>
+  42 0014 0000      	.word end_of_test     ; Interrupt 10                      Watchdog timer
+  43 0016 0000      	.word end_of_test     ; Interrupt 11                      <unused>
+  44 0018 0000      	.word end_of_test     ; Interrupt 12                      <unused>
+  45 001a 0000      	.word end_of_test     ; Interrupt 13                      <unused>
+  46 001c 0000      	.word end_of_test     ; Interrupt 14                      NMI
+  47 001e 0000      	.word main            ; Interrupt 15 (highest priority)   RESET
+GAS LISTING pmem.s43 			page 2
+
+
+DEFINED SYMBOLS
+            pmem.s43:4      .text:0000000000000000 main
+            pmem.s43:19     .smart:0000000000000000 smart
+            pmem.s43:10     .text:000000000000000a end_of_test
+
+NO UNDEFINED SYMBOLS
+
+pmem.o:     file format elf32-msp430
+pmem.o
+architecture: MSP430X, flags 0x00000011:
+HAS_RELOC, HAS_SYMS
+start address 0x00000000
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000016  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  1 .data         00000000  00000000  00000000  0000004a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00000000  00000000  0000004a  2**0
+                  ALLOC
+  3 .smart        0000000a  00000000  00000000  0000004a  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, DATA
+  4 .key          00000002  00000000  00000000  00000054  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  5 .vectors      00000020  00000000  00000000  00000056  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, DATA
+  6 .MSP430.attributes 00000017  00000000  00000000  00000076  2**0
+                  CONTENTS, READONLY
+SYMBOL TABLE:
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l       .smart	00000000 smart
+0000000a l       .text	00000000 end_of_test
+00000000 l    d  .smart	00000000 .smart
+00000000 l    d  .key	00000000 .key
+00000000 l    d  .vectors	00000000 .vectors
+00000000 l    d  .MSP430.attributes	00000000 .MSP430.attributes
+00000000 g       .text	00000000 main
+
+
+Contents of section .text:
+ 0000 b0120000 3b40daff 2c4b0343 3b40dbff  ....;@..,K.C;@..
+ 0010 2c4b3040 ffff                        ,K0@..          
+Contents of section .smart:
+ 0000 3b40dcff 2c4bb012 0000               ;@..,K....      
+Contents of section .key:
+ 0000 f203                                 ..              
+Contents of section .vectors:
+ 0000 00000000 00000000 00000000 00000000  ................
+ 0010 00000000 00000000 00000000 00000000  ................
+Contents of section .MSP430.attributes:
+ 0000 41160000 006d7370 61626900 010b0000  A....mspabi.....
+ 0010 00040206 010801                      .......         
+
+Disassembly of section .text:
+
+00000000 <main>:
+   0:	b0 12 00 00 	call	#0		;
+			2: R_MSP430X_ABS16	.smart
+   4:	3b 40 da ff 	mov	#65498,	r11	;#0xffda
+   8:	2c 4b       	mov	@r11,	r12	;
+
+0000000a <end_of_test>:
+   a:	03 43       	nop			
+   c:	3b 40 db ff 	mov	#65499,	r11	;#0xffdb
+  10:	2c 4b       	mov	@r11,	r12	;
+  12:	30 40 ff ff 	br	#0xffff		;

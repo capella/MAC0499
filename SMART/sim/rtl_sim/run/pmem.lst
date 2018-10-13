@@ -1,0 +1,87 @@
+
+pmem.elf:     file format elf32-msp430
+
+SYMBOL TABLE:
+0000e000 l    d  .text	00000000 .text
+00000200 l    d  .data	00000000 .data
+0000ffe0 l    d  .vectors	00000000 .vectors
+0000fae0 l    d  .smart	00000000 .smart
+0000fee0 l    d  .key	00000000 .key
+00000000 l    d  .MSP430.attributes	00000000 .MSP430.attributes
+00000000 l    df *ABS*	00000000 pmem.o
+0000fae0 l       .smart	00000000 smart
+0000e00a l       .text	00000000 end_of_test
+0000faea g       .smart	00000000 _smart_end
+0000e016 g       .text	00000000 _etext
+0000e000 g       .text	00000000 __dtors_end
+0000e000 g       .text	00000000 __ctors_start
+0000fee2 g       .key	00000000 _key_end
+0000e000 g       .text	00000000 main
+00010000 g       .vectors	00000000 _vectors_end
+0000e000 g       .text	00000000 __dtors_start
+0000e000 g       .text	00000000 __ctors_end
+00000200 g       .data	00000000 _edata
+00000200 g       .data	00000000 _end
+
+
+
+Disassembly of section .text:
+
+0000e000 <__ctors_end>:
+    e000:	b0 12 e0 fa 	call	#64224		;#0xfae0
+    e004:	3b 40 da ff 	mov	#65498,	r11	;#0xffda
+    e008:	2c 4b       	mov	@r11,	r12	;
+
+0000e00a <end_of_test>:
+    e00a:	03 43       	nop			
+    e00c:	3b 40 db ff 	mov	#65499,	r11	;#0xffdb
+    e010:	2c 4b       	mov	@r11,	r12	;
+    e012:	30 40 ff ff 	br	#0xffff		;
+
+Disassembly of section .vectors:
+
+0000ffe0 <_vectors_end-0x20>:
+    ffe0:	0a e0       	interrupt service routine at 0xe00a
+    ffe2:	0a e0       	interrupt service routine at 0xe00a
+    ffe4:	0a e0       	interrupt service routine at 0xe00a
+    ffe6:	0a e0       	interrupt service routine at 0xe00a
+    ffe8:	0a e0       	interrupt service routine at 0xe00a
+    ffea:	0a e0       	interrupt service routine at 0xe00a
+    ffec:	0a e0       	interrupt service routine at 0xe00a
+    ffee:	0a e0       	interrupt service routine at 0xe00a
+    fff0:	0a e0       	interrupt service routine at 0xe00a
+    fff2:	0a e0       	interrupt service routine at 0xe00a
+    fff4:	0a e0       	interrupt service routine at 0xe00a
+    fff6:	0a e0       	interrupt service routine at 0xe00a
+    fff8:	0a e0       	interrupt service routine at 0xe00a
+    fffa:	0a e0       	interrupt service routine at 0xe00a
+    fffc:	0a e0       	interrupt service routine at 0xe00a
+    fffe:	00 e0       	interrupt service routine at 0xe000
+
+Disassembly of section .smart:
+
+0000fae0 <smart>:
+    fae0:	3b 40 dc ff 	mov	#65500,	r11	;#0xffdc
+    fae4:	2c 4b       	mov	@r11,	r12	;
+    fae6:	b0 12 0a e0 	call	#57354		;#0xe00a
+
+Disassembly of section .key:
+
+0000fee0 <_key_end-0x2>:
+    fee0:	f2 03       	suba	r3,	r2	;
+
+Disassembly of section .MSP430.attributes:
+
+00000000 <.MSP430.attributes>:
+   0:	41 16       	popm.a	#5,	r5	;20-bit words
+   2:	00 00       	beq			
+   4:	00 6d       	addc	r13,	r0	;
+   6:	73 70       	.word	0x7073;	????
+   8:	61 62       	addc.b	#4,	r1	;r2 As==10
+   a:	69 00 01 0b 	mova	r0,	&592641	; 0x90b01
+   e:	00 00       	beq			
+  10:	00 04       	bra	@r4		;
+  12:	02 06       	mova	@r6,	r2	;
+  14:	01 08       	mova	@r8,	r1	;
+  16:	01 00       	Address 0x0000000000000016 is out of bounds.
+.word	0xffff;	????
