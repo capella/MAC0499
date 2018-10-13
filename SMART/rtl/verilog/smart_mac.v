@@ -52,24 +52,27 @@ input                   disable_debug;
 //=============================================================================
 // LOGIC
 //=============================================================================
-reg   allow_safe = 0;
-reg   r = 0;
+reg   inside_code = 0;
+reg   to_be_reset = 0;
 
 wire addr_in_safe = (mem_addr <= HIGH_SAFE) & (mem_addr >= LOW_SAFE);
-wire pc_in_code = (ins_addr <= HIGH_CODE) & (ins_addr >= LOW_CODE);
+wire pc_in_code = (ins_addr <= HIGH_CODE) & ( (ins_addr+1) > LOW_CODE);
 
-assign reset = r & ~disable_debug ;
+assign safe_reset = addr_in_safe & ~inside_code;
+
+assign reset = to_be_reset & ~disable_debug;
+
 assign mem_dout = reset ? 16'b0 : mem_din;
-assign in_safe_area = allow_safe;
+assign in_safe_area = inside_code;
 
 always @ (posedge mclk) begin
-    if (ins_addr == LOW_CODE) allow_safe <= 1'b1;
-    else begin
-        if (~pc_in_code) allow_safe <= 1'b0;
+    if (ins_addr == LOW_CODE) begin
+        inside_code <= 1'b1;
     end
-
-    if (addr_in_safe & ~allow_safe) r <= 1'b1;
-    else r <= 1'b0;
+    else begin
+        if (~pc_in_code) inside_code <= 1'b0;
+    end
+    to_be_reset <= safe_reset;
 end
 
 endmodule // smart_mac

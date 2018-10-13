@@ -38,14 +38,13 @@ download: download-uart
 
 #additional rules for files
 ${NAME}.elf: ${OBJECTS}
-	${CC} ${CFLAGS} -T linker.${MSPGCC_PFX}.x -o $@ ${OBJECTS}
+	${CC} ${CFLAGS} -T ../libs/linker.${MSPGCC_PFX}.x -o $@ ${OBJECTS}
 
 ${NAME}.a43: ${NAME}.elf
 	${OBJCOPY} -O ihex $^ $@
 
 ${NAME}.lst: ${NAME}.elf
-	${OBJDUMP} -dSt $^ >$@
-	${OBJDUMP} -dS $^ > tmp
+	${OBJDUMP} -DS $^ >$@
 
 ${NAME}.size: ${NAME}.elf
 	${OBJSIZE}  $^ >$@

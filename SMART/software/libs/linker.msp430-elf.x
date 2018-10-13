@@ -65,6 +65,12 @@ MEMORY {
 
 SECTIONS
 {
+  .key   : { KEEP (*(.key )) } > SMARTKEY
+  .keyfunction   : {
+    . = ALIGN(2);
+    *(*.*keyfunction*)
+  } > SMART
+
   __interrupt_vector_1   : { KEEP (*(__interrupt_vector_1 )) } > VECT1
   __interrupt_vector_2   : { KEEP (*(__interrupt_vector_2 )) } > VECT2
   __interrupt_vector_3   : { KEEP (*(__interrupt_vector_3 )) KEEP (*(__interrupt_vector_port1)) } > VECT3
