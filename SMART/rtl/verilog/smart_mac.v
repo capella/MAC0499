@@ -49,7 +49,6 @@ input                   mclk;
 input            [15:0] mem_din;
 input            [15:0] ins_addr;
 input                   disable_debug;
-input                   mem_cen;
 
 //=============================================================================
 // LOGIC
