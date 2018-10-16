@@ -180,16 +180,13 @@ clock clk (
 // Reset input buffer
 IBUF   ibuf_reset_n   (.O(reset_pin), .I(BTN3));
 
-omsp_sync_reset smart_r (.rst_s (smart_reset), .clk(clk_sys), .rst_a(smart2_reset | smart1_reset));
-
 // Release the reset only, if the DCM is locked
-assign  reset_n = reset_pin & dcm_locked & ~smart_reset;
+assign  reset_n = reset_pin & dcm_locked & ~(smart2_reset & smart1_reset);
 
-// Top level reset generation
-wire dco_rst;
-omsp_sync_reset sync_reset_dco (.rst_s (dco_rst), .clk(clk_sys), .rst_a(!reset_n));
-
-
+wire  gsr_tb;
+wire  gts_tb;
+wire  cpu_en;
+STARTUP_SPARTAN6 xstartup (.CLK(clk_sys), .GSR(gsr_tb), .GTS(gts_tb));
 
 //=============================================================================
 // 4)  OPENMSP430

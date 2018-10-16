@@ -3,7 +3,7 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 promgen -w -p bin -r ./smart_v1.mcs -o ../bitstreams/final.bin 
 
-PROM ../bitstreams/final.prm map: Sat Oct 13 00:28:48 2018
+PROM ../bitstreams/final.prm map: Tue Oct 16 09:35:00 2018
 
 Format        Bin
 Size          512K
@@ -11,4 +11,4 @@ PROM start    00000000
 PROM end      0007ffff
 
         Addr1        Addr2                     Date File(s)
-     00000000     0005327b     Oct 13 14:42:59 2018 ./smart_v1.mcs
+     00000000     0005327b     Oct 16 09:35:09 2018 ./smart_v1.mcs

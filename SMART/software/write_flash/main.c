@@ -6,6 +6,7 @@
 
 char * flash_possition = (void *) 0xFADE;
 char * key_possition = (void *) 0xFEE0;
+char * normal_possition = (void *) 0x05F0;
 
 void delay(unsigned int d) {
    while(d--) {
@@ -19,7 +20,7 @@ void SMART smart_read_key () {
     cprintf("C%d\n", *key_possition);
     delay(500);
 
-    *key_possition = 42;
+    *key_possition = '#';
 
     cprintf("D%d\n", *key_possition);
     delay(500);
@@ -31,13 +32,18 @@ int main(void) {
     UART_BAUD = BAUD;                   // Init UART
     UART_CTL  = UART_EN | UART_IEN_RX;
     // cprintf("1");
-    if (*flash_possition != 42) {
+    if (*flash_possition != '#') {
         // write in program memory
-        *flash_possition = 42;
-        cprintf("A%d\n", *flash_possition);
+        *normal_possition = '#';
+        cprintf("I%c\n", *normal_possition);
+        delay(1000);
+
+        // write in program memory
+        *flash_possition = '#';
+        cprintf("A%c\n", *flash_possition);
         delay(1000);
         // write smart key, cause reset
-        *key_possition = 42;
+        *key_possition = '#';
         cprintf("B%d\n", *key_possition);
         delay(500);
     } else {

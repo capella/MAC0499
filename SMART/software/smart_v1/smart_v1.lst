@@ -3632,29 +3632,29 @@ Disassembly of section .debug_info:
      884:	0d a3       	dadc	r13		;
      886:	03 00       	mova	@r0,	r3	;
      888:	00 08       	bra	@r8		;
-     88a:	06 0a       	mova	@r10,	r6	;
+     88a:	06 0b       	mova	@r11,	r6	;
      88c:	bf 08 00 00 	suba	#524288,r15	;0x80000
      890:	0e 73       	sbc	r14		;
      892:	74 72       	subc.b	#8,	r4	;r2 As==11
      894:	00 06       	bra	@r6		;
-     896:	0b c6       	bic	r6,	r11	;
+     896:	0c c6       	bic	r6,	r12	;
      898:	02 00       	mova	@r0,	r2	;
      89a:	00 00       	beq			
      89c:	0b 8c       	sub	r12,	r11	;
      89e:	03 00       	mova	@r0,	r3	;
      8a0:	00 06       	bra	@r6		;
-     8a2:	0c 25       	jz	$+538    	;abs 0xabc
+     8a2:	0d 25       	jz	$+540    	;abs 0xabe
      8a4:	00 00       	beq			
      8a6:	00 02       	bra	@r2		;
      8a8:	0b 10       	rrc	r11		;
      8aa:	02 00       	mova	@r0,	r2	;
      8ac:	00 06       	bra	@r6		;
-     8ae:	0d c6       	bic	r6,	r13	;
+     8ae:	0e c6       	bic	r6,	r14	;
      8b0:	08 00       	mova	@r0,	r8	;
      8b2:	00 04       	bra	@r4		;
      8b4:	0e 6e       	rlc	r14		;
      8b6:	00 06       	bra	@r6		;
-     8b8:	0e cc       	bic	r12,	r14	;
+     8b8:	0f cc       	bic	r12,	r15	;
      8ba:	08 00       	mova	@r0,	r8	;
      8bc:	00 06       	bra	@r6		;
      8be:	00 19 c6 08 	movax	r8,	r6	;
