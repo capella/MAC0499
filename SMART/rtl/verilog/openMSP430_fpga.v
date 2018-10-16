@@ -127,7 +127,7 @@ wire         [1:0] pmem_wen;
 wire        [13:0] irq_acc;
 
 // openMSP430 input buses
-wire   	    [13:0] irq_bus;
+wire        [13:0] irq_bus;
 wire        [15:0] per_dout;
 wire        [15:0] dmem_dout;
 wire        [15:0] pmem_dout;
@@ -180,13 +180,12 @@ clock clk (
 // Reset input buffer
 IBUF   ibuf_reset_n   (.O(reset_pin), .I(BTN3));
 
-// Release the reset only, if the DCM is locked
-assign  reset_n = reset_pin & dcm_locked & ~(smart2_reset & smart1_reset);
+// Top level reset generation
+wire dco_rst;
+reg smart_reset = 0;
 
-wire  gsr_tb;
-wire  gts_tb;
-wire  cpu_en;
-STARTUP_SPARTAN6 xstartup (.CLK(clk_sys), .GSR(gsr_tb), .GTS(gts_tb));
+// Release the reset only, if the DCM is locked
+assign  reset_n = reset_pin & dcm_locked & ~smart_reset;
 
 //=============================================================================
 // 4)  OPENMSP430
@@ -328,6 +327,25 @@ assign irq_bus    = {1'b0,         // Vector 13  (0xFFFA)
 // 5.5)  SMART
 //=============================================================================
 
+// PROTECT SMART CODE
+smart_mac #(
+    .SIZE_MEM_ADDR(`PMEM_MSB),
+
+    .LOW_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR+1),
+    .HIGH_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR-1),
+
+    .LOW_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE+`SMART_SIZE)),
+    .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE))
+) smart2 (
+    .reset(smart2_reset),
+    .mem_dout(pmem_dout),
+    .mem_addr(pmem_addr),
+    .mclk(mclk),
+    .mem_din(smart_mem_dout),
+    .ins_addr(openMSP430_0.pc),
+    .disable_debug(SW4),
+    .in_safe_area(LED6)
+);
 
 // PROTECT KEY
 smart_mac #(
@@ -347,26 +365,6 @@ smart_mac #(
     .ins_addr(openMSP430_0.pc),
     .disable_debug(SW5),
     .in_safe_area(LED7)
-);
-
-// PROTECT SMART CODE
-smart_mac #(
-    .SIZE_MEM_ADDR(`PMEM_MSB),
-
-    .LOW_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR+1),
-    .HIGH_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR-1),
-
-    .LOW_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE+`SMART_SIZE)),
-    .HIGH_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE))
-) smart2 (
-    .reset(smart2_reset),
-    .mem_dout(pmem_dout),
-    .mem_addr(pmem_addr),
-    .mclk(mclk),
-    .mem_din(smart_mem_dout),
-    .ins_addr(openMSP430_0.pc),
-    .disable_debug(SW4),
-    .in_safe_area(LED6)
 );
 
 //=============================================================================
@@ -453,5 +451,10 @@ OBUF  LED0_PIN       (.I(pmem_addr[7]),  .O(LED0));
 IBUF  BTN2_PIN       (.O(),                            .I(BTN2));
 IBUF  BTN1_PIN       (.O(),                            .I(BTN1));
 IBUF  BTN0_PIN       (.O(),                            .I(BTN0));
+
+always @(posedge mclk) begin
+    if (openMSP430_0.pc == 15'h0x000) smart_reset <= 1'h0;
+    else  smart_reset <= smart2_reset | smart1_reset;
+end
 
 endmodule // openMSP430_fpga

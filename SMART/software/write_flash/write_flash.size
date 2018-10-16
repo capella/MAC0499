@@ -1,2 +1,2 @@
    text	   data	    bss	    dec	    hex	filename
-   2454	    196	     18	   2668	    a6c	write_flash.elf
+   2350	    176	     18	   2544	    9f0	write_flash.elf

@@ -17,13 +17,11 @@ void delay(unsigned int d) {
 
 #define SMART  __attribute__((__section__(".keyfunction"), noinline))
 void SMART smart_read_key () {
-    cprintf("C%d\n", *key_possition);
-    delay(500);
-
     *key_possition = '#';
-
-    cprintf("D%d\n", *key_possition);
-    delay(500);
+    cprintf("A%c\n", *key_possition);
+    delay(100);
+    cprintf("A%c\n", *key_possition);
+    delay(100);
 }
 
 int main(void) {
@@ -31,24 +29,32 @@ int main(void) {
 
     UART_BAUD = BAUD;                   // Init UART
     UART_CTL  = UART_EN | UART_IEN_RX;
-    // cprintf("1");
-    if (*flash_possition != '#') {
-        // write in program memory
-        *normal_possition = '#';
-        cprintf("I%c\n", *normal_possition);
-        delay(1000);
 
-        // write in program memory
-        *flash_possition = '#';
-        cprintf("A%c\n", *flash_possition);
-        delay(1000);
-        // write smart key, cause reset
-        *key_possition = '#';
-        cprintf("B%d\n", *key_possition);
-        delay(500);
-    } else {
-        // call smart to read first byte in key
-        smart_read_key();
-    }
+    *key_possition = '#';
+    cprintf("A%c\n", *key_possition);
+
+    // *flash_possition = '#';
+    // cprintf("C%c\n", *flash_possition);
+    // delay(100);
+
+    // if (*flash_possition == '#') {
+    //     // write in program memory
+    //     *normal_possition = '#';
+    //     cprintf("C%c\n", *normal_possition);
+    //     delay(100);
+    // } else {
+    //     // call smart to read first byte in key
+    //     smart_read_key();
+
+    //     // write in program memory
+    //     *flash_possition = '#';
+    //     cprintf("B%c\n", *flash_possition);
+    //     delay(100);
+
+    //     // write smart key, cause reset
+    //     *key_possition = '#';
+    //     cprintf("D%d\n", *key_possition);
+    //     delay(100);
+    // }
 
 }
