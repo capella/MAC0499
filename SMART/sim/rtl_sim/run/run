@@ -1,6 +1,7 @@
 #!/bin/bash
 
- # ../bin/msp430sim smart_v1
- # ../bin/msp430sim sha256
- ../bin/msp430sim hw_uart
+# ../bin/msp430sim smart_v1
+# ../bin/msp430sim sha256
+# ../bin/msp430sim hw_uart
 # ../bin/msp430sim acess_key
+../bin/msp430sim write_flash

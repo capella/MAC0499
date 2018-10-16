@@ -231,6 +231,7 @@
 #define interrupt(x) void __attribute__((interrupt (x)))
 #define wakeup  __attribute__((wakeup))
 #define enable_interrupts()  __no_operation(); __enable_interrupt()
+#define disable_interrupts()  __no_operation(); __disable_interrupt()
 #define dint()  __dint()
 
 // Vector definition for RedHat/TI toolchain

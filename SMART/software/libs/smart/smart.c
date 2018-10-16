@@ -12,6 +12,8 @@ KEY = {
 };
 
 void SMART smart_hash (SmartInput input) {
+    disable_interrupts();
+
     unsigned char *str = input->str;
     unsigned int length = input->length;
 
@@ -65,6 +67,8 @@ void SMART smart_hash (SmartInput input) {
 
     if (input->call != NULL)
         (input->call)();
+
+    enable_interrupts();
 }
 
 char SMART sha256_flush (char init) {

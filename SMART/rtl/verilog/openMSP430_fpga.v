@@ -180,10 +180,10 @@ clock clk (
 // Reset input buffer
 IBUF   ibuf_reset_n   (.O(reset_pin), .I(BTN3));
 
-omsp_sync_reset smart_r (.rst_s (smart_reset), .clk(clk_sys), .rst_a(~smart2_reset & ~smart1_reset));
+omsp_sync_reset smart_r (.rst_s (smart_reset), .clk(clk_sys), .rst_a(smart2_reset | smart1_reset));
 
 // Release the reset only, if the DCM is locked
-assign  reset_n = reset_pin & dcm_locked & smart_reset;
+assign  reset_n = reset_pin & dcm_locked & ~smart_reset;
 
 // Top level reset generation
 wire dco_rst;

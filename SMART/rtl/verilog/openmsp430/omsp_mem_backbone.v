@@ -252,9 +252,11 @@ wire        [15:0] dmem_din      =   ext_dmem_en ?  ext_mem_dout               :
 
 parameter          PMEM_OFFSET   = (16'hFFFF-`PMEM_SIZE+1);
 
-// Execution unit access (only read access are accepted)
+// ORIGINAL: Execution unit access (only read access are accepted)
+// Execution unit access
 wire               eu_pmem_sel   = (eu_mab>=(PMEM_OFFSET>>1));
-wire               eu_pmem_en    = eu_mb_en & ~|eu_mb_wr & eu_pmem_sel;
+// ORIGINAL: wire               eu_pmem_en    = eu_mb_en & ~|eu_mb_wr & eu_pmem_sel;
+wire               eu_pmem_en    = eu_mb_en & eu_pmem_sel;
 wire        [15:0] eu_pmem_addr  = eu_mab-(PMEM_OFFSET>>1);
 
 // Front-end access
@@ -271,6 +273,7 @@ wire        [15:0] ext_pmem_addr = {1'b0, ext_mem_addr[15:1]}-(PMEM_OFFSET>>1);
 // Program-Memory Interface (Execution unit has priority over the Front-end)
 wire               pmem_cen      = ~(fe_pmem_en | eu_pmem_en | ext_pmem_en);
 wire         [1:0] pmem_wen      =  ext_pmem_en ? ~ext_mem_wr                 : 2'b11;
+// wire         [1:0] pmem_wen      =  ext_pmem_en ? ~ext_mem_wr                 : ~eu_mb_wr;
 wire [`PMEM_MSB:0] pmem_addr     =  ext_pmem_en ?  ext_pmem_addr[`PMEM_MSB:0] :
                                     eu_pmem_en  ?  eu_pmem_addr[`PMEM_MSB:0]  : fe_pmem_addr[`PMEM_MSB:0];
 wire        [15:0] pmem_din      =  ext_mem_dout;

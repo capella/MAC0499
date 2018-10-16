@@ -45,11 +45,6 @@ initial
       SW0 = 1'b0;
 
       // Wait for welcome message to be received
-      repeat(2000) @(posedge mclk);
-
-      #100 RESET    = 1'b1;
-      #600 RESET    = 1'b0;
-
       repeat(25000*10) @(posedge mclk);
 
       $display("================== END SIMULATION ===============");

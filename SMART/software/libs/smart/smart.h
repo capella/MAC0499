@@ -2,6 +2,7 @@
 #define SMART_H
 
 #include "../hardware.h"
+#include "../omsp_system.h"
 #include <stdio.h>
 
 #define KEY_attr  __attribute__((__section__(".key")))
