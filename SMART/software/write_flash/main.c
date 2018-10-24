@@ -17,11 +17,7 @@ void delay(unsigned int d) {
 
 #define SMART  __attribute__((__section__(".keyfunction"), noinline))
 void SMART smart_read_key () {
-    *key_possition = '#';
-    cprintf("A%c\n", *key_possition);
-    delay(100);
-    cprintf("A%c\n", *key_possition);
-    delay(100);
+    // *key_possition = '#';
 }
 
 int main(void) {
@@ -30,8 +26,12 @@ int main(void) {
     UART_BAUD = BAUD;                   // Init UART
     UART_CTL  = UART_EN | UART_IEN_RX;
 
-    *key_possition = '#';
-    cprintf("A%c\n", *key_possition);
+    *flash_possition = '#';
+    // cprintf("%c\n", *flash_possition);
+    // smart_read_key ();
+
+    while(1) {}
+    // cprintf("A%c\n", *key_possition);
 
     // *flash_possition = '#';
     // cprintf("C%c\n", *flash_possition);

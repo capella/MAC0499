@@ -45,7 +45,7 @@ initial
       SW0 = 1'b0;
 
       // Wait for welcome message to be received
-      repeat(25000*10) @(posedge mclk);
+      repeat(780) @(posedge mclk);
 
       $display("================== END SIMULATION ===============");
       $finish();
@@ -62,7 +62,7 @@ always @(posedge (dut.openMSP430_0.pc == 'h0xFFFE)) begin
    $display("INIT");
 end
 
-// always @ (e_state) begin
-//     $display ("%h) %s - %s - %s", inst_pc, inst_full, i_state, e_state);
-// end
+always @ (e_state) begin
+    $display ("%h) %s - %s - %s", inst_pc, inst_full, i_state, e_state);
+end
 
