@@ -64,7 +64,7 @@ assign safe_reset = addr_in_safe & ~inside_code;
 assign reset = to_be_reset & ~disable_debug;
 
 assign mem_dout = reset ? 16'b0 : mem_din;
-assign in_safe_area = to_be_reset;
+assign in_safe_area = inside_code;
 
 always @ (posedge mclk) begin
     if (ins_addr == LOW_CODE) begin
