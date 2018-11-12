@@ -78,10 +78,10 @@
 // Hardware SHA256 register field mapping
 //--------------------------------------------------
 
-#define SHA_CONFIG      (*(volatile unsigned char *) 0x0021)
-#define SHA_STATUS      (*(volatile unsigned char *) 0x0021)
-#define SHA_INPUT       (*(volatile unsigned long *) 0x0022)
-#define SHA_OUTPUT      (*(volatile unsigned long *) 0x0062)
+#define SHA_CONFIG      (*(volatile unsigned char *) 0x001F)
+#define SHA_STATUS      (*(volatile unsigned char *) 0x001F)
+#define SHA_INPUT       (*(volatile unsigned long *) 0x0020)
+#define SHA_OUTPUT      (*(volatile unsigned long *) 0x0060)
 
 // SHA Control register fields
 #define  SHA_MODE           0x08 // set to 1 for sha256

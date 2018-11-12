@@ -322,7 +322,7 @@ omsp_uart #(.BASE_ADDR(15'h0090)) uart_2 (
 wire        [15:0] per_sha;
 
 
-sha2_periph #(.BASE_ADDR(15'h0020)) sha256_0 (
+sha2_periph #(.BASE_ADDR(15'h001E)) sha256_0 (
 
 // OUTPUTs
     .per_dout     (per_sha), // Peripheral data output
@@ -434,7 +434,7 @@ smart_mac #(
     .mem_din(smart_mem_dout),
     .ins_addr(openMSP430_0.pc),
     .disable_debug(SW4),
-    .in_safe_area(LED6)
+    .in_safe_area()
 );
 
 // PROTECT KEY
@@ -454,7 +454,7 @@ smart_mac #(
     .mem_din(smart_mem_din),
     .ins_addr(openMSP430_0.pc),
     .disable_debug(SW5),
-    .in_safe_area(LED7)
+    .in_safe_area()
 );
 
 //=============================================================================

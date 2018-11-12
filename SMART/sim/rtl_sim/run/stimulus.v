@@ -60,25 +60,8 @@ initial
       // Select hardware uart
       SW1 = 1'b1;
       SW0 = 1'b0;
-
-      // Wait for welcome message to be received
-      repeat(2500) @(posedge mclk);
-
-      // Send something
-      uart_tx("B");
-      uart_tx("o");
-      uart_tx("n");
-      uart_tx("j");
-      uart_tx("o");
-      uart_tx("u");
-      uart_tx("r");
-      uart_tx(" ");
-      uart_tx(":");
-      uart_tx("-");
-      uart_tx(")");
-      uart_tx("\n");
       
-      repeat(25000) @(posedge mclk);
+      repeat(40*25000) @(posedge mclk);
 
       $display("================== END SIMULATION ===============");
       $finish();
@@ -86,7 +69,46 @@ initial
    end
 
 
+// always @(dut.smart1.r) begin
+//       $display("R  = %d \t %d %h %h", dut.smart1.r, dut.smart1.inside_code, dut.smart1.ins_addr, dut.smart1.LOW_CODE);
+// end
+
+// always @ (e_state) begin
+//     $display ("%h) %s - %s - %s", inst_pc, inst_full, i_state, e_state);
+// end
+
+
+// always @(posedge dut.smart1.pc_in_code) begin
+//       $display("1 pc_in_code");
+// end
+// always @(negedge dut.smart1.pc_in_code) begin
+//       $display("1 out pc_in_code %h (%h < %h)", dut.smart1.ins_addr, dut.smart1.LOW_CODE, dut.smart1.HIGH_CODE);
+// end
+
+// always @(posedge dut.smart2.pc_in_code) begin
+//       $display("2 pc_in_code");
+// end
+// always @(negedge dut.smart2.pc_in_code) begin
+//       $display("2 out pc_in_code %h (%h < %h)", dut.smart2.ins_addr, dut.smart2.LOW_CODE, dut.smart2.HIGH_CODE);
+// end
+
  always @(posedge dut.smart1.reset) begin
-      $display("%h %h SAFE (%h < %h)", dut.smart1.ins_addr, dut.smart1.mem_addr*2+65536-`PMEM_SIZE, dut.smart1.LOW_SAFE*2+65536-`PMEM_SIZE, dut.smart1.HIGH_SAFE*2+65536-`PMEM_SIZE);
+      $display("%h %h SAFE1 (%h < %h)", dut.smart1.ins_addr, dut.smart1.mem_addr*2+65536-`PMEM_SIZE, dut.smart1.LOW_SAFE*2+65536-`PMEM_SIZE, dut.smart1.HIGH_SAFE*2+65536-`PMEM_SIZE);
+      $finish();
       // $display("RESET SMART1");
  end
+
+ always @(posedge dut.smart2.reset) begin
+      $display("%h %h SAFE2 (%h < %h)", dut.smart2.ins_addr, dut.smart2.mem_addr*2+65536-`PMEM_SIZE, dut.smart2.LOW_SAFE*2+65536-`PMEM_SIZE, dut.smart2.HIGH_SAFE*2+65536-`PMEM_SIZE);
+      $finish();
+      // $display("RESET SMART1");
+ end
+
+ // always @(dut.sha256_0.digest) begin
+ //    $display("%h", dut.sha256_0.digest);
+ // end
+
+// always @ (dut.sha256_0.cntrl)
+//   $display("> %b", dut.sha256_0.cntrl);
+
+ 
