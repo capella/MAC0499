@@ -162,6 +162,7 @@ wire [15:0] smart_mem_dout;
 wire         [7:0] p3_dout;
 wire         [7:0] p3_dout_en;
 wire         [7:0] p3_sel;
+wire        [15:0] per_dout_dio;
 
 
 //=============================================================================
@@ -356,7 +357,8 @@ omsp_gpio #(.P1_EN(0),
 //-------------------------------
 
 assign per_dout = per_sha |
-                  per_dout_uart;
+                  per_dout_uart |
+                  per_dout_dio;
 
 //
 // Assign interrupts
