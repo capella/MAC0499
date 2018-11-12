@@ -73,6 +73,16 @@ module openMSP430_fpga (
     IO_P6_1,
     IO_P6_2,
 
+//P7
+    IO_P7_7,
+    IO_P7_6,
+    IO_P7_5,
+    IO_P7_4,
+    IO_P7_3,
+    IO_P7_2,
+    IO_P7_1,
+    IO_P7_0,
+
 // RS-232 Port
     UART_RXD,
     UART_TXD
@@ -108,12 +118,21 @@ output    LED2;
 output    LED1;
 output    LED0;
 
+// P7
+output    IO_P7_7;
+output    IO_P7_6;
+output    IO_P7_5;
+output    IO_P7_4;
+output    IO_P7_3;
+output    IO_P7_2;
+output    IO_P7_1;
+output    IO_P7_0;
+
 // RS-232 Port
 input     UART_RXD;
 output    UART_TXD;
 
-
-// RS-232 Port
+// P6
 input     IO_P6_1;
 output    IO_P6_2;
 
@@ -492,12 +511,10 @@ spartan6_dmem dmem (
 //   - the simple hardware UART
 //
 // The mux is controlled with the SW0/SW1 switches:
-//        00/11 = debug interface
-//        10/01 = simple hardware uart
-wire sdi_select  = ({din[1], din[0]}==2'b00) |
-                   ({din[1], din[0]}==2'b11);
-wire uart_select = ({din[1], din[0]}==2'b10) |
-                   ({din[1], din[0]}==2'b01);
+//        0 = debug interface
+//        1 = simple hardware uart
+wire sdi_select  = (din[0] == 1'b0);
+wire uart_select = (din[0] == 1'b1);
 
 wire   uart_txd_out = uart_select ? hw_uart_txd    : dbg_uart_txd;
 
@@ -522,14 +539,25 @@ IBUF  SW0_PIN        (.O(din[0]),                   .I(SW0));
 
 // LEDs (Port 1 outputs)
 //-----------------------
-OBUF  LED7_PIN       (.I(p3_dout[7] & p3_dout_en[7]),  .O(LED7));
-OBUF  LED6_PIN       (.I(p3_dout[6] & p3_dout_en[6]),  .O(LED6));
-OBUF  LED5_PIN       (.I(p3_dout[5] & p3_dout_en[5]),  .O(LED5));
-OBUF  LED4_PIN       (.I(p3_dout[4] & p3_dout_en[4]),  .O(LED4));
-OBUF  LED3_PIN       (.I(p3_dout[3] & p3_dout_en[3]),  .O(LED3));
-OBUF  LED2_PIN       (.I(p3_dout[2] & p3_dout_en[2]),  .O(LED2));
-OBUF  LED1_PIN       (.I(p3_dout[1] & p3_dout_en[1]),  .O(LED1));
-OBUF  LED0_PIN       (.I(p3_dout[0] & p3_dout_en[0]),  .O(LED0));
+OBUF  IO_P7_7_PIN       (.I(p3_dout[7] & p3_dout_en[7]),  .O(IO_P7_7));
+OBUF  IO_P7_6_PIN       (.I(p3_dout[6] & p3_dout_en[6]),  .O(IO_P7_6));
+OBUF  IO_P7_5_PIN       (.I(p3_dout[5] & p3_dout_en[5]),  .O(IO_P7_5));
+OBUF  IO_P7_4_PIN       (.I(p3_dout[4] & p3_dout_en[4]),  .O(IO_P7_4));
+OBUF  IO_P7_3_PIN       (.I(p3_dout[3] & p3_dout_en[3]),  .O(IO_P7_3));
+OBUF  IO_P7_2_PIN       (.I(p3_dout[2] & p3_dout_en[2]),  .O(IO_P7_2));
+OBUF  IO_P7_1_PIN       (.I(p3_dout[1] & p3_dout_en[1]),  .O(IO_P7_1));
+OBUF  IO_P7_0_PIN       (.I(p3_dout[0] & p3_dout_en[0]),  .O(IO_P7_0));
+
+OBUF  LED5_PIN       (.I(~hw_uart_txd),  .O(LED5));
+OBUF  LED4_PIN       (.I(~dbg_uart_txd),  .O(LED4));
+
+OBUF  LED7_PIN       (.I(~hw_uart_rxd),  .O(LED7));
+OBUF  LED6_PIN       (.I(~dbg_uart_rxd),  .O(LED6));
+
+OBUF  LED3_PIN       (.I(pmem_addr[4]),  .O(LED3));
+OBUF  LED2_PIN       (.I(pmem_addr[5]),  .O(LED2));
+OBUF  LED1_PIN       (.I(pmem_addr[6]),  .O(LED1));
+OBUF  LED0_PIN       (.I(pmem_addr[7]),  .O(LED0));
 
 // Push Button Switches
 //----------------------

@@ -100,8 +100,8 @@
 #define UART_TX_VECTOR      (6 *2) // Interrupt vector 6  (0xFFEC)
 #define UART_RX_VECTOR      (7 *2) // Interrupt vector 7  (0xFFEE)
 
-#define UART2_TX_VECTOR     (6 *2) // Interrupt vector 8  (0xFFF0)
-#define UART2_RX_VECTOR     (7 *2) // Interrupt vector 9  (0xFFF2)
+#define UART2_TX_VECTOR     (8 *2) // Interrupt vector 8  (0xFFF0)
+#define UART2_RX_VECTOR     (9 *2) // Interrupt vector 9  (0xFFF2)
 
 //--------------------------------------------------
 // Diverse
