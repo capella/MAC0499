@@ -57,6 +57,11 @@ NET "BTN2"  LOC = L17 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST | PULLUP
 NET "BTN1"  LOC = K17 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST | PULLUP; #SW5
 NET "BTN0"  LOC = K18 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST | PULLUP; #SW6
 
+#######################################
+# IO_P6_1     #
+#######################################
+NET "IO_P6_1"                   LOC = U7      | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ; 
+NET "IO_P6_2"                   LOC = V7      | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ; 
 
 #####################
 

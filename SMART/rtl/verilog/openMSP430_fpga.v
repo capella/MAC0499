@@ -69,6 +69,10 @@ module openMSP430_fpga (
     LED1,
     LED0,
 
+//P6
+    IO_P6_1,
+    IO_P6_2,
+
 // RS-232 Port
     UART_RXD,
     UART_TXD
@@ -109,6 +113,11 @@ input     UART_RXD;
 output    UART_TXD;
 
 
+// RS-232 Port
+input     IO_P6_1;
+output    IO_P6_2;
+
+
 //=============================================================================
 // 1)  INTERNAL WIRES/REGISTERS/PARAMETERS DECLARATION
 //=============================================================================
@@ -147,6 +156,10 @@ wire        [15:0] per_dout_uart;
 wire               hw_uart_txd;
 wire               hw_uart_rxd;
 
+// Simple UART2
+wire               irq_uart2_rx;
+wire               irq_uart2_tx;
+wire        [15:0] per_dout_uart2;
 
 // Others
 wire               reset_pin;
@@ -283,6 +296,25 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
     .uart_rxd     (hw_uart_rxd)    // UART Data Receive (RXD)
 );
 
+omsp_uart #(.BASE_ADDR(15'h0090)) uart_2 (
+
+// OUTPUTs
+    .irq_uart_rx  (irq_uart2_rx),   // UART receive interrupt
+    .irq_uart_tx  (irq_uart2_tx),   // UART transmit interrupt
+    .per_dout     (per_dout_uart2), // Peripheral data output
+    .uart_txd     (IO_P6_2),   // UART Data Transmit (TXD)
+
+// INPUTs
+    .mclk         (mclk),          // Main system clock
+    .per_addr     (per_addr),      // Peripheral address
+    .per_din      (per_din),       // Peripheral data input
+    .per_en       (per_en),        // Peripheral enable (high active)
+    .per_we       (per_we),        // Peripheral write enable (high active)
+    .puc_rst      (puc_rst),       // Main system reset
+    .smclk_en     (smclk_en),      // SMCLK enable (from CPU)
+    .uart_rxd     (IO_P6_1) // UART Data Receive (RXD)
+);
+
 //
 // Sha256 Module
 //----------------------------------------
@@ -358,6 +390,7 @@ omsp_gpio #(.P1_EN(0),
 
 assign per_dout = per_sha |
                   per_dout_uart |
+                  per_dout_uart2 |
                   per_dout_dio;
 
 //
@@ -369,8 +402,8 @@ assign irq_bus    = {1'b0,         // Vector 13  (0xFFFA)
                      1'b0,         // Vector 12  (0xFFF8)
                      1'b0,         // Vector 11  (0xFFF6)
                      1'b0,         // Vector 10  (0xFFF4) - Watchdog -
-                     1'b0,          // Vector  9  (0xFFF2)
-                     1'b0,          // Vector  8  (0xFFF0)
+                     irq_uart2_rx, // Vector  9  (0xFFF2)
+                     irq_uart2_tx, // Vector  8  (0xFFF0)
                      irq_uart_rx,  // Vector  7  (0xFFEE)
                      irq_uart_tx,  // Vector  6  (0xFFEC)
                      1'b0,         // Vector  5  (0xFFEA)

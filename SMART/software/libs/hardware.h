@@ -47,6 +47,11 @@
 #define UART_TXD          (*(volatile unsigned char *) 0x0084)  // UART Transmit data register (8bit)
 #define UART_RXD          (*(volatile unsigned char *) 0x0085)  // UART Receive data register (8bit)
 
+#define UART2_CTL         (*(volatile unsigned char *) 0x0090)  // UART2 Control register (8bit)
+#define UART2_STAT        (*(volatile unsigned char *) 0x0091)  // UART2 Status register (8bit)
+#define UART2_BAUD        (*(volatile unsigned int  *) 0x0092)  // UART2 Baud rate configuration (16bit)
+#define UART2_TXD         (*(volatile unsigned char *) 0x0094)  // UART2 Transmit data register (8bit)
+#define UART2_RXD         (*(volatile unsigned char *) 0x0095)  // UART2 Receive data register (8bit)
 
 //--------------------------------------------------
 // Hardware UART register field mapping
@@ -95,6 +100,8 @@
 #define UART_TX_VECTOR      (6 *2) // Interrupt vector 6  (0xFFEC)
 #define UART_RX_VECTOR      (7 *2) // Interrupt vector 7  (0xFFEE)
 
+#define UART2_TX_VECTOR     (6 *2) // Interrupt vector 8  (0xFFF0)
+#define UART2_RX_VECTOR     (7 *2) // Interrupt vector 9  (0xFFF2)
 
 //--------------------------------------------------
 // Diverse
