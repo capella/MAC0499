@@ -198,6 +198,17 @@ openMSP430_fpga dut (
     .IO_P6_1      (1'b0),
     .IO_P6_2      (),
 
+
+// P7
+    .IO_P7_7         (),
+    .IO_P7_6         (),
+    .IO_P7_5         (),
+    .IO_P7_4         (),
+    .IO_P7_3         (),
+    .IO_P7_2         (),
+    .IO_P7_1         (),
+    .IO_P7_0         (),
+
 // RS-232 Port
     .UART_RXD     (UART_RXD),
     .UART_TXD     (UART_TXD)

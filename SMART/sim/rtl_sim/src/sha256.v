@@ -41,9 +41,7 @@ initial
       UART_RXD = 1'b1;
 
       // Select hardware uart
-      SW1 = 1'b1;
-      SW0 = 1'b0;
-
+      SW0 = 1'b1;
       
       repeat(10000) @(posedge mclk);
       $display("%h", dut.sha256_0.digest);
