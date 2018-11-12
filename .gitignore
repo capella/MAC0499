@@ -4,3 +4,7 @@ SMART/synthesis/xilinx/WORK/
 SMART/rtl/verilog/coregen/*mem/
 SMART/sim/rtl_sim/run/isim/
 SMART/sim/rtl_sim/run/tb_openMSP430_fpga.vcd
+**/.DS_Store
+**/*.a43
+**/*.elf
+**/*.lst
