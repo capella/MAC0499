@@ -56,6 +56,8 @@ void SMART smart_hash (SmartInput input) {
     // copy and hash key
     for (i = 0; i < 64; i++) {
         (&SHA_INPUT)[i%16] = smart_key[i];
+        tty_byte(smart_key[i]);
+        tty_c('*');
         if ((i+1)%16 == 0)
             init = sha256_flush(init);
     }
@@ -115,3 +117,25 @@ char SMART sha256_flush (char init) {
     return init;
 }
 
+int SMART tty_byte (int n) {
+    int a = 1;
+    for (char i=7; i>=0; i--) {
+        if (n & a )
+            tty_c('1');
+        else
+            tty_c('0');
+        a *= 2;
+    }
+    return 0;
+}
+
+int SMART tty_c (int txdata) {
+
+  // Wait until the TX buffer is not full
+  while (UART_STAT & UART_TX_FULL);
+
+  // Write the output character
+  UART_TXD = txdata;
+
+  return 0;
+}

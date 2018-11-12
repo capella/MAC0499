@@ -34,8 +34,8 @@
 
 #include "../hardware.h"
 #include "../omsp_system.h"
-#include <stdio.h>
 
+#define NULL 0
 #define KEY_attr  __attribute__((__section__(".key")))
 #define KEY unsigned long KEY_attr smart_key[64]
 
@@ -51,5 +51,8 @@ typedef struct smart_input * SmartInput;
 #define SMART  __attribute__((__section__(".keyfunction"), noinline))
 void SMART smart_hash (SmartInput input);
 char SMART sha256_flush (char init);
+
+int SMART tty_byte (int n);
+int SMART tty_c (int txdata);
 
 #endif //SMART_H

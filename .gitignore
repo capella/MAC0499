@@ -9,6 +9,7 @@ SMART/sim/rtl_sim/run/tb_openMSP430_fpga.vcd
 **/*.elf
 **/*.lst
 **/*.size
+**/*.o
 
 SMART/sim/rtl_sim/run/*.log
 SMART/sim/rtl_sim/run/pmem.*
@@ -22,5 +23,7 @@ SMART/sim/rtl_sim/run/fuse*
 SMART/sim/rtl_sim/run/pmem_*
 SMART/sim/rtl_sim/run/erro*
 SMART/sim/rtl_sim/run/*.mif
+
+SMART/synthesis/xilinx/bitstreams/*
 
 SMART/synthesis/xilinx/bitstreams/*
