@@ -426,7 +426,7 @@ smart_mac #(
 // 6)  PROGRAM AND DATA MEMORIES
 //=============================================================================
 
-spartan6_pmem pmem_galinha  (
+spartan6_pmem pmem_main  (
     .clka(mclk),
     .ena(~pmem_cen),
     .wea(~pmem_wen),

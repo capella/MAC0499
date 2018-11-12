@@ -29,6 +29,23 @@ task uart_rx;
       end
 endtask
 
+task uart_tx;
+      input [7:0] txbuf;
+
+      reg [9:0] txbuf_full;
+      integer   txcnt;
+      begin
+	 UART_RXD = 1'b1;
+	 txbuf_full = {1'b1, txbuf, 1'b0};
+         #(UART_PERIOD);
+	 for (txcnt = 0; txcnt < 10; txcnt = txcnt + 1)
+	   begin
+	      UART_RXD   =  txbuf_full[txcnt];
+              #(UART_PERIOD);
+	   end
+      end
+endtask
+
 initial forever uart_rx;
    
 
@@ -44,11 +61,32 @@ initial
       SW1 = 1'b1;
       SW0 = 1'b0;
 
+      // Wait for welcome message to be received
+      repeat(2500) @(posedge mclk);
+
+      // Send something
+      uart_tx("B");
+      uart_tx("o");
+      uart_tx("n");
+      uart_tx("j");
+      uart_tx("o");
+      uart_tx("u");
+      uart_tx("r");
+      uart_tx(" ");
+      uart_tx(":");
+      uart_tx("-");
+      uart_tx(")");
+      uart_tx("\n");
       
-      repeat(10000) @(posedge mclk);
-      $display("%h", dut.sha256_0.digest);
+      repeat(25000) @(posedge mclk);
 
       $display("================== END SIMULATION ===============");
       $finish();
 
    end
+
+
+ always @(posedge dut.smart1.reset) begin
+      $display("%h %h SAFE (%h < %h)", dut.smart1.ins_addr, dut.smart1.mem_addr*2+65536-`PMEM_SIZE, dut.smart1.LOW_SAFE*2+65536-`PMEM_SIZE, dut.smart1.HIGH_SAFE*2+65536-`PMEM_SIZE);
+      // $display("RESET SMART1");
+ end
