@@ -8,3 +8,17 @@ SMART/sim/rtl_sim/run/tb_openMSP430_fpga.vcd
 **/*.a43
 **/*.elf
 **/*.lst
+**/*.size
+
+/home/ise/TCC/SMART/sim/rtl_sim/run/*.log
+/home/ise/TCC/SMART/sim/rtl_sim/run/pmem.*
+/home/ise/TCC/SMART/sim/rtl_sim/run/stimulus.v
+/home/ise/TCC/SMART/sim/rtl_sim/run/*.dsn
+/home/ise/TCC/SMART/sim/rtl_sim/run/*.trn
+/home/ise/TCC/SMART/sim/rtl_sim/run/*.vcd
+/home/ise/TCC/SMART/sim/rtl_sim/run/simv
+/home/ise/TCC/SMART/sim/rtl_sim/run/isim*
+/home/ise/TCC/SMART/sim/rtl_sim/run/fuse*
+/home/ise/TCC/SMART/sim/rtl_sim/run/pmem_*
+/home/ise/TCC/SMART/sim/rtl_sim/run/erro*
+/home/ise/TCC/SMART/sim/rtl_sim/run/*.mif

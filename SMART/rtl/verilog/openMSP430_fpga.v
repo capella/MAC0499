@@ -336,7 +336,7 @@ omsp_gpio #(.P1_EN(0),
     .p6_dout      (),              // Port 6 data output
     .p6_dout_en   (),              // Port 6 data output enable
     .p6_sel       (),              // Port 6 function select
-    .per_dout     (),              // Peripheral data output
+    .per_dout     (per_dout_dio),  // Peripheral data output
 
 // INPUTs
     .mclk         (mclk),          // Main system clock
