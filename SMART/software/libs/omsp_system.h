@@ -83,54 +83,14 @@
 #define  CPU_ID_LO   (*(volatile unsigned char *) 0x0004)
 #define  CPU_ID_HI   (*(volatile unsigned char *) 0x0006)
 
-
 //----------------------------------------------------------
 // GPIOs
 //----------------------------------------------------------
-#define  P1IN        (*(volatile unsigned char *) 0x0020)
-#define  P1OUT       (*(volatile unsigned char *) 0x0021)
-#define  P1DIR       (*(volatile unsigned char *) 0x0022)
-#define  P1IFG       (*(volatile unsigned char *) 0x0023)
-#define  P1IES       (*(volatile unsigned char *) 0x0024)
-#define  P1IE        (*(volatile unsigned char *) 0x0025)
-#define  P1SEL       (*(volatile unsigned char *) 0x0026)
-
-#define  P2IN        (*(volatile unsigned char *) 0x0028)
-#define  P2OUT       (*(volatile unsigned char *) 0x0029)
-#define  P2DIR       (*(volatile unsigned char *) 0x002A)
-#define  P2IFG       (*(volatile unsigned char *) 0x002B)
-#define  P2IES       (*(volatile unsigned char *) 0x002C)
-#define  P2IE        (*(volatile unsigned char *) 0x002D)
-#define  P2SEL       (*(volatile unsigned char *) 0x002E)
 
 #define  P3IN        (*(volatile unsigned char *) 0x0018)
 #define  P3OUT       (*(volatile unsigned char *) 0x0019)
 #define  P3DIR       (*(volatile unsigned char *) 0x001A)
 #define  P3SEL       (*(volatile unsigned char *) 0x001B)
-
-#define  P4IN        (*(volatile unsigned char *) 0x001C)
-#define  P4OUT       (*(volatile unsigned char *) 0x001D)
-#define  P4DIR       (*(volatile unsigned char *) 0x001E)
-#define  P4SEL       (*(volatile unsigned char *) 0x001F)
-
-#define  P5IN        (*(volatile unsigned char *) 0x0030)
-#define  P5OUT       (*(volatile unsigned char *) 0x0031)
-#define  P5DIR       (*(volatile unsigned char *) 0x0032)
-#define  P5SEL       (*(volatile unsigned char *) 0x0033)
-
-#define  P6IN        (*(volatile unsigned char *) 0x0034)
-#define  P6OUT       (*(volatile unsigned char *) 0x0035)
-#define  P6DIR       (*(volatile unsigned char *) 0x0036)
-#define  P6SEL       (*(volatile unsigned char *) 0x0037)
-
-
-//----------------------------------------------------------
-// BASIC CLOCK MODULE
-//----------------------------------------------------------
-#define  DCOCTL      (*(volatile unsigned char *) 0x0056)
-#define  BCSCTL1     (*(volatile unsigned char *) 0x0057)
-#define  BCSCTL2     (*(volatile unsigned char *) 0x0058)
-
 
 //----------------------------------------------------------
 // WATCHDOG TIMER

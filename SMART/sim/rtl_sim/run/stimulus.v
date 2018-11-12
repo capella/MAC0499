@@ -44,25 +44,11 @@ initial
       SW1 = 1'b1;
       SW0 = 1'b0;
 
-      // Wait for welcome message to be received
-      repeat(780) @(posedge mclk);
+      
+      repeat(10000) @(posedge mclk);
+      $display("%h", dut.sha256_0.digest);
 
       $display("================== END SIMULATION ===============");
       $finish();
 
    end
-
-
-always @(posedge dut.smart1.reset) begin
-   $display("\n%h %h SAFE (%h < %h) %b", dut.smart1.ins_addr, dut.smart1.mem_addr*2+65536-`PMEM_SIZE, dut.smart1.LOW_SAFE*2+65536-`PMEM_SIZE, dut.smart1.HIGH_SAFE*2+65536-`PMEM_SIZE, dut.smart1.to_be_reset);
-   // $display("RESET SMART1");
-end
-
-always @(posedge (dut.openMSP430_0.pc == 'h0xFFFE)) begin
-   $display("INIT");
-end
-
-always @ (e_state) begin
-    $display ("%h) %s - %s - %s", inst_pc, inst_full, i_state, e_state);
-end
-

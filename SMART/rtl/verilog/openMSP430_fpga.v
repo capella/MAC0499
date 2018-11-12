@@ -1,40 +1,39 @@
 //----------------------------------------------------------------------------
-// Copyright (C) 2001 Authors
+// MIT License
+// 
+// Copyright (c) 2018 Gabriel Capella
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 //
-// This source file may be used and distributed without restriction provided
-// that this copyright statement is not removed from the file and that any
-// derivative work contains the original copyright notice and the associated
-// disclaimer.
+//----------------------------------------------------------------------------
 //
-// This source file is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published
-// by the Free Software Foundation; either version 2.1 of the License, or
-// (at your option) any later version.
-//
-// This source is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
-// License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with this source; if not, write to the Free Software Foundation,
-// Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+// This source code is part of my final undergraduate thesis.
+// For any suggestion, doubt or comment send an email to
+// gabriel@capella.pro
 //
 //----------------------------------------------------------------------------
 //
 // *File Name: openMSP430_fpga.v
 //
-// *Module Description:
-//                      openMSP430 FPGA Top-level for the Diligent
-//                     Spartan-3 starter kit.
+// *Module Description: Manage all connection need to run the openMSP430 in an
+//                      FPGA.
 //
-// *Author(s):
-//              - Olivier Girard,    olgirard@gmail.com
-//
-//----------------------------------------------------------------------------
-// $Rev: 202 $
-// $LastChangedBy: olivier.girard $
-// $LastChangedDate: 2015-07-01 23:13:32 +0200 (Wed, 01 Jul 2015) $
 //----------------------------------------------------------------------------
 `include "openMSP430_defines.v"
 
@@ -159,6 +158,11 @@ wire smart2_reset;
 wire [15:0] smart_mem_din;
 wire [15:0] smart_mem_dout;
 
+// GPIO
+wire         [7:0] p3_dout;
+wire         [7:0] p3_dout_en;
+wire         [7:0] p3_sel;
+
 
 //=============================================================================
 // 2)  CLOCK GENERATION
@@ -251,6 +255,10 @@ openMSP430 openMSP430_0 (
     .wkup              (1'b0)          // ASIC ONLY: System Wake-up (asynchronous and non-glitchy)
 );
 
+//=============================================================================
+// 5)  OPENMSP430 PERIPHERALS
+//=============================================================================
+
 //
 // Simple full duplex UART (8N1 protocol)
 //----------------------------------------
@@ -281,7 +289,7 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
 wire        [15:0] per_sha;
 
 
-sha2_periph #(.BASE_ADDR(15'h0010)) sha256_0 (
+sha2_periph #(.BASE_ADDR(15'h0020)) sha256_0 (
 
 // OUTPUTs
     .per_dout     (per_sha), // Peripheral data output
@@ -296,12 +304,59 @@ sha2_periph #(.BASE_ADDR(15'h0010)) sha256_0 (
 );
 
 //
+// Digital I/O
+//-------------------------------
+
+omsp_gpio #(.P1_EN(0),
+            .P2_EN(0),
+            .P3_EN(1),
+            .P4_EN(0),
+            .P5_EN(0),
+            .P6_EN(0)) gpio_0 (
+
+// OUTPUTs
+    .irq_port1    (),              // Port 1 interrupt
+    .irq_port2    (),              // Port 2 interrupt
+    .p1_dout      (),              // Port 1 data output
+    .p1_dout_en   (),              // Port 1 data output enable
+    .p1_sel       (),              // Port 1 function select
+    .p2_dout      (),              // Port 2 data output
+    .p2_dout_en   (),              // Port 2 data output enable
+    .p2_sel       (),              // Port 2 function select
+    .p3_dout      (p3_dout),       // Port 3 data output
+    .p3_dout_en   (p3_dout_en),    // Port 3 data output enable
+    .p3_sel       (p3_sel),        // Port 3 function select
+    .p4_dout      (),              // Port 4 data output
+    .p4_dout_en   (),              // Port 4 data output enable
+    .p4_sel       (),              // Port 4 function select
+    .p5_dout      (),              // Port 5 data output
+    .p5_dout_en   (),              // Port 5 data output enable
+    .p5_sel       (),              // Port 5 function select
+    .p6_dout      (),              // Port 6 data output
+    .p6_dout_en   (),              // Port 6 data output enable
+    .p6_sel       (),              // Port 6 function select
+    .per_dout     (),              // Peripheral data output
+
+// INPUTs
+    .mclk         (mclk),          // Main system clock
+    .p1_din       (8'h00),         // Port 1 data input
+    .p2_din       (8'h00),         // Port 2 data input
+    .p3_din       (8'h00),         // Port 3 data input
+    .p4_din       (8'h00),         // Port 4 data input
+    .p5_din       (8'h00),         // Port 5 data input
+    .p6_din       (8'h00),         // Port 6 data input
+    .per_addr     (per_addr),      // Peripheral address
+    .per_din      (per_din),       // Peripheral data input
+    .per_en       (per_en),        // Peripheral enable (high active)
+    .per_we       (per_we),        // Peripheral write enable (high active)
+    .puc_rst      (puc_rst)        // Main system reset
+);
+//
 // Combine peripheral data buses
 //-------------------------------
 
 assign per_dout = per_sha |
                   per_dout_uart;
-
 
 //
 // Assign interrupts
@@ -398,15 +453,12 @@ spartan6_dmem dmem (
 // P1.1 (TX) and P2.2 (RX)
 
 // Mux the RS-232 port between:
-//   - GPIO port P1.1 (TX) / P2.2 (RX)
 //   - the debug interface.
 //   - the simple hardware UART
 //
 // The mux is controlled with the SW0/SW1 switches:
-//        00 = debug interface
-//        01 = GPIO
-//        10 = simple hardware uart
-//        11 = debug interface
+//        00/11 = debug interface
+//        10/01 = simple hardware uart
 wire sdi_select  = ({din[1], din[0]}==2'b00) |
                    ({din[1], din[0]}==2'b11);
 wire uart_select = ({din[1], din[0]}==2'b10) |
@@ -435,16 +487,14 @@ IBUF  SW0_PIN        (.O(din[0]),                   .I(SW0));
 
 // LEDs (Port 1 outputs)
 //-----------------------
-// OBUF  LED7_PIN       (.I(pmem_addr[0]),  .O(LED7));
-// OBUF  LED6_PIN       (.I(pmem_addr[1]),  .O(LED6));
-
-OBUF  LED5_PIN       (.I(~hw_uart_txd),  .O(LED5));
-OBUF  LED4_PIN       (.I(~dbg_uart_txd),  .O(LED4));
-
-OBUF  LED3_PIN       (.I(pmem_addr[4]),  .O(LED3));
-OBUF  LED2_PIN       (.I(pmem_addr[5]),  .O(LED2));
-OBUF  LED1_PIN       (.I(pmem_addr[6]),  .O(LED1));
-OBUF  LED0_PIN       (.I(pmem_addr[7]),  .O(LED0));
+OBUF  LED7_PIN       (.I(p3_dout[7] & p3_dout_en[7]),  .O(LED7));
+OBUF  LED6_PIN       (.I(p3_dout[6] & p3_dout_en[6]),  .O(LED6));
+OBUF  LED5_PIN       (.I(p3_dout[5] & p3_dout_en[5]),  .O(LED5));
+OBUF  LED4_PIN       (.I(p3_dout[4] & p3_dout_en[4]),  .O(LED4));
+OBUF  LED3_PIN       (.I(p3_dout[3] & p3_dout_en[3]),  .O(LED3));
+OBUF  LED2_PIN       (.I(p3_dout[2] & p3_dout_en[2]),  .O(LED2));
+OBUF  LED1_PIN       (.I(p3_dout[1] & p3_dout_en[1]),  .O(LED1));
+OBUF  LED0_PIN       (.I(p3_dout[0] & p3_dout_en[0]),  .O(LED0));
 
 // Push Button Switches
 //----------------------

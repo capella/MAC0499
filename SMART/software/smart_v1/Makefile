@@ -11,7 +11,7 @@ MSPGCC_PFX      = msp430-elf
 endif
 
 # disable some warnings specific to the Dhrystone code
-WARNINGS        =  -Wall
+WARNINGS        =  -Wall -pedantic
 
 # Select flags depending on selected toolchain
 ifeq ($(MSPGCC_PFX),msp430-elf)
@@ -51,6 +51,7 @@ ${NAME}.size: ${NAME}.elf
 
 clean:
 	rm -f ${NAME}.elf ${NAME}.a43 ${NAME}.lst ${NAME}.size *.o
+	rm -f ../libs/*.o
 
 #backup archive
 dist:

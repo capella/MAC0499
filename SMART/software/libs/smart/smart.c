@@ -65,7 +65,7 @@ void SMART smart_hash (SmartInput input) {
 
     sha256_flush(init);
 
-    if (input->call != NULL)
+    if (input->call != NULL && input->call < &smart_hash)
         (input->call)();
 
     enable_interrupts();

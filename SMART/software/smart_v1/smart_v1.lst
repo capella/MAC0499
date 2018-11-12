@@ -158,7 +158,7 @@ void SMART smart_hash (SmartInput input) {
 0000fb5c <.Loc.30.1>:
             init = sha256_flush(init);
     fb5c:	5c 41 13 00 	mov.b	19(r1),	r12	;0x00013
-    fb60:	b0 12 4a fd 	call	#64842		;#0xfd4a
+    fb60:	b0 12 56 fd 	call	#64854		;#0xfd56
     fb64:	c1 4c 13 00 	mov.b	r12,	19(r1)	; 0x0013
 
 0000fb68 <.L3>:
@@ -215,7 +215,7 @@ void SMART smart_hash (SmartInput input) {
 0000fbbc <.Loc.37.1>:
             init = sha256_flush(init);
     fbbc:	5c 41 13 00 	mov.b	19(r1),	r12	;0x00013
-    fbc0:	b0 12 4a fd 	call	#64842		;#0xfd4a
+    fbc0:	b0 12 56 fd 	call	#64854		;#0xfd56
     fbc4:	c1 4c 13 00 	mov.b	r12,	19(r1)	; 0x0013
 
 0000fbc8 <.L6>:
@@ -354,7 +354,7 @@ void SMART smart_hash (SmartInput input) {
 
 0000fc9e <.Loc.56.1>:
     fc9e:	5c 41 13 00 	mov.b	19(r1),	r12	;0x00013
-    fca2:	b0 12 4a fd 	call	#64842		;#0xfd4a
+    fca2:	b0 12 56 fd 	call	#64854		;#0xfd56
     fca6:	c1 4c 13 00 	mov.b	r12,	19(r1)	; 0x0013
 
 0000fcaa <.L8>:
@@ -436,94 +436,100 @@ void SMART smart_hash (SmartInput input) {
 
     sha256_flush(init);
     fd22:	5c 41 13 00 	mov.b	19(r1),	r12	;0x00013
-    fd26:	b0 12 4a fd 	call	#64842		;#0xfd4a
+    fd26:	b0 12 56 fd 	call	#64854		;#0xfd56
 
 0000fd2a <.Loc.68.1>:
 
-    if (input->call != NULL)
+    if (input->call != NULL && input->call < &smart_hash)
     fd2a:	2c 41       	mov	@r1,	r12	;
     fd2c:	1c 4c 04 00 	mov	4(r12),	r12	;
     fd30:	0c 93       	cmp	#0,	r12	;r3 As==00
-    fd32:	04 24       	jz	$+10     	;abs 0xfd3c
+    fd32:	0a 24       	jz	$+22     	;abs 0xfd48
 
-0000fd34 <.Loc.69.1>:
-        (input->call)();
+0000fd34 <.Loc.68.1>:
     fd34:	2c 41       	mov	@r1,	r12	;
     fd36:	1c 4c 04 00 	mov	4(r12),	r12	;
-    fd3a:	8c 12       	call	r12		;
+    fd3a:	3c 90 e0 fa 	cmp	#64224,	r12	;#0xfae0
+    fd3e:	04 2c       	jc	$+10     	;abs 0xfd48
 
-0000fd3c <.L17>:
+0000fd40 <.Loc.69.1>:
+        (input->call)();
+    fd40:	2c 41       	mov	@r1,	r12	;
+    fd42:	1c 4c 04 00 	mov	4(r12),	r12	;
+    fd46:	8c 12       	call	r12		;
+
+0000fd48 <.L17>:
 
     enable_interrupts();
-    fd3c:	03 43       	nop			
-    fd3e:	32 d2       	eint			
-    fd40:	03 43       	nop			
+    fd48:	03 43       	nop			
+    fd4a:	32 d2       	eint			
+    fd4c:	03 43       	nop			
 
-0000fd42 <.Loc.72.1>:
+0000fd4e <.Loc.72.1>:
 }
-    fd42:	03 43       	nop			
-    fd44:	31 50 16 00 	add	#22,	r1	;#0x0016
-    fd48:	30 41       	ret			
+    fd4e:	03 43       	nop			
+    fd50:	31 50 16 00 	add	#22,	r1	;#0x0016
+    fd54:	30 41       	ret			
 
-0000fd4a <sha256_flush>:
+0000fd56 <sha256_flush>:
 
 char SMART sha256_flush (char init) {
-    fd4a:	21 83       	decd	r1		;
+    fd56:	21 83       	decd	r1		;
 
-0000fd4c <.LCFI1>:
-    fd4c:	c1 4c 01 00 	mov.b	r12,	1(r1)	;
+0000fd58 <.LCFI1>:
+    fd58:	c1 4c 01 00 	mov.b	r12,	1(r1)	;
 
-0000fd50 <.Loc.75.1>:
+0000fd5c <.Loc.75.1>:
     if (init) {
-    fd50:	c1 93 01 00 	cmp.b	#0,	1(r1)	;r3 As==00
-    fd54:	09 24       	jz	$+20     	;abs 0xfd68
+    fd5c:	c1 93 01 00 	cmp.b	#0,	1(r1)	;r3 As==00
+    fd60:	09 24       	jz	$+20     	;abs 0xfd74
 
-0000fd56 <.Loc.76.1>:
+0000fd62 <.Loc.76.1>:
         init = 0;
-    fd56:	c1 43 01 00 	mov.b	#0,	1(r1)	;r3 As==00
+    fd62:	c1 43 01 00 	mov.b	#0,	1(r1)	;r3 As==00
 
-0000fd5a <.Loc.77.1>:
+0000fd66 <.Loc.77.1>:
         SHA_CONFIG = SHA_MODE | SHA_INIT | SHA_ON;
-    fd5a:	7c 40 11 00 	mov.b	#17,	r12	;#0x0011
-    fd5e:	fc 40 0b 00 	mov.b	#11,	0(r12)	;#0x000b
-    fd62:	00 00 
-    fd64:	30 40 72 fd 	br	#0xfd72		;
+    fd66:	7c 40 11 00 	mov.b	#17,	r12	;#0x0011
+    fd6a:	fc 40 0b 00 	mov.b	#11,	0(r12)	;#0x000b
+    fd6e:	00 00 
+    fd70:	30 40 7e fd 	br	#0xfd7e		;
 
-0000fd68 <.L19>:
+0000fd74 <.L19>:
     } else {
         SHA_CONFIG = SHA_MODE | SHA_NEXT | SHA_ON;
-    fd68:	7c 40 11 00 	mov.b	#17,	r12	;#0x0011
-    fd6c:	fc 40 0d 00 	mov.b	#13,	0(r12)	;#0x000d
-    fd70:	00 00 
+    fd74:	7c 40 11 00 	mov.b	#17,	r12	;#0x0011
+    fd78:	fc 40 0d 00 	mov.b	#13,	0(r12)	;#0x000d
+    fd7c:	00 00 
 
-0000fd72 <.L20>:
+0000fd7e <.L20>:
     }
 
     SHA_CONFIG = SHA_MODE | SHA_ON;
-    fd72:	7c 40 11 00 	mov.b	#17,	r12	;#0x0011
-    fd76:	fc 40 09 00 	mov.b	#9,	0(r12)	;
-    fd7a:	00 00 
-
-0000fd7c <.Loc.83.1>:
-    while (!(SHA_STATUS & (SHA_READY)));
-    fd7c:	03 43       	nop			
-
-0000fd7e <.L21>:
     fd7e:	7c 40 11 00 	mov.b	#17,	r12	;#0x0011
-    fd82:	6c 4c       	mov.b	@r12,	r12	;
-    fd84:	5c f3       	and.b	#1,	r12	;r3 As==01
-    fd86:	0c 93       	cmp	#0,	r12	;r3 As==00
-    fd88:	fa 27       	jz	$-10     	;abs 0xfd7e
+    fd82:	fc 40 09 00 	mov.b	#9,	0(r12)	;
+    fd86:	00 00 
 
-0000fd8a <.Loc.85.1>:
+0000fd88 <.Loc.83.1>:
+    while (!(SHA_STATUS & (SHA_READY)));
+    fd88:	03 43       	nop			
+
+0000fd8a <.L21>:
+    fd8a:	7c 40 11 00 	mov.b	#17,	r12	;#0x0011
+    fd8e:	6c 4c       	mov.b	@r12,	r12	;
+    fd90:	5c f3       	and.b	#1,	r12	;r3 As==01
+    fd92:	0c 93       	cmp	#0,	r12	;r3 As==00
+    fd94:	fa 27       	jz	$-10     	;abs 0xfd8a
+
+0000fd96 <.Loc.85.1>:
     
     return init;
-    fd8a:	5c 41 01 00 	mov.b	1(r1),	r12	;
+    fd96:	5c 41 01 00 	mov.b	1(r1),	r12	;
 
-0000fd8e <.Loc.86.1>:
+0000fd9a <.Loc.86.1>:
 }
-    fd8e:	21 53       	incd	r1		;
-    fd90:	30 41       	ret			
+    fd9a:	21 53       	incd	r1		;
+    fd9c:	30 41       	ret			
 
 Disassembly of section __reset_vector:
 
@@ -2705,9 +2711,8 @@ Disassembly of section .debug_aranges:
   4c:	00 00       	beq			
   4e:	00 00       	beq			
   50:	e0 fa 00 00 	and.b	@r10,	0x0000	; PC rel. 0x0052
-  54:	6a 02 00 00 	mova	r2,	&655360	; 0xa0000
-  58:	4a fd       	and.b	r13,	r10	;
-  5a:	00 00       	beq			
+  54:	76 02 00 00 	mova	r2,	0(r6)	;
+  58:	56 fd 00 00 	and.b	0(r13),	r6	;
   5c:	48 00       	rrcm.a	#1,	r8	;
 	...
 
@@ -4979,8 +4984,7 @@ Disassembly of section .debug_info:
     150e:	01 4a       	mov	r10,	r1	;
     1510:	da 05       	cmpa	r5,	r10	;
     1512:	00 00       	beq			
-    1514:	4a fd       	and.b	r13,	r10	;
-    1516:	00 00       	beq			
+    1514:	56 fd 00 00 	and.b	0(r13),	r6	;
     1518:	48 00       	rrcm.a	#1,	r8	;
     151a:	00 00       	beq			
     151c:	01 9c       	cmp	r12,	r1	;
@@ -4995,7 +4999,7 @@ Disassembly of section .debug_info:
     1534:	00 00       	beq			
     1536:	01 0e       	mova	@r14,	r1	;
     1538:	e0 fa 00 00 	and.b	@r10,	0x0000	; PC rel. 0x153a
-    153c:	6a 02 00 00 	mova	r2,	&655360	; 0xa0000
+    153c:	76 02 00 00 	mova	r2,	0(r6)	;
     1540:	01 9c       	cmp	r12,	r1	;
     1542:	1d a9 03 00 	dadd	3(r9),	r13	;
     1546:	00 01       	bra	@r1		;
@@ -6171,10 +6175,10 @@ Disassembly of section .debug_line:
  552:	01 09       	mova	@r9,	r1	;
  554:	08 00       	mova	@r0,	r8	;
  556:	00 01       	bra	@r1		;
- 558:	01 94       	cmp	r4,	r1	;
+ 558:	01 a0       	dadd	r0,	r1	;
 
 00000559 <L0>:
- 559:	94 02 00 00 	cmpa	#131072,r4	;0x20000
+ 559:	a0 02 00 00 	adda	#131072,r0	;0x20000
  55d:	02 00       	mova	@r0,	r2	;
  55f:	f8 00       	suba	r0,	r8	;
 	...
@@ -6455,14 +6459,14 @@ Disassembly of section .debug_line:
  791:	03 02       	mova	@r2,	r3	;
  793:	09 08       	mova	@r8,	r9	;
  795:	00 01       	bra	@r1		;
- 797:	03 01       	mova	@r1,	r3	;
- 799:	09 0a       	mova	@r10,	r9	;
- 79b:	00 01       	bra	@r1		;
- 79d:	03 02       	mova	@r2,	r3	;
- 79f:	09 08       	mova	@r8,	r9	;
- 7a1:	00 01       	bra	@r1		;
+ 797:	00 02       	bra	@r2		;
+ 799:	04 01       	mova	@r1,	r4	;
+ 79b:	06 03       	mova	@r3,	r6	;
+ 79d:	00 09       	bra	@r9		;
+ 79f:	0a 00       	mova	@r0,	r10	;
+ 7a1:	01 06       	mova	@r6,	r1	;
  7a3:	03 01       	mova	@r1,	r3	;
- 7a5:	09 06       	mova	@r6,	r9	;
+ 7a5:	09 0c       	mova	@r12,	r9	;
  7a7:	00 01       	bra	@r1		;
  7a9:	03 02       	mova	@r2,	r3	;
  7ab:	09 08       	mova	@r8,	r9	;
@@ -6470,36 +6474,42 @@ Disassembly of section .debug_line:
  7af:	03 01       	mova	@r1,	r3	;
  7b1:	09 06       	mova	@r6,	r9	;
  7b3:	00 01       	bra	@r1		;
- 7b5:	03 01       	mova	@r1,	r3	;
- 7b7:	09 06       	mova	@r6,	r9	;
+ 7b5:	03 02       	mova	@r2,	r3	;
+ 7b7:	09 08       	mova	@r8,	r9	;
  7b9:	00 01       	bra	@r1		;
  7bb:	03 01       	mova	@r1,	r3	;
- 7bd:	09 04       	mova	@r4,	r9	;
+ 7bd:	09 06       	mova	@r6,	r9	;
  7bf:	00 01       	bra	@r1		;
- 7c1:	03 02       	mova	@r2,	r3	;
- 7c3:	09 0e       	mova	@r14,	r9	;
+ 7c1:	03 01       	mova	@r1,	r3	;
+ 7c3:	09 06       	mova	@r6,	r9	;
  7c5:	00 01       	bra	@r1		;
- 7c7:	03 03       	mova	@r3,	r3	;
- 7c9:	09 0a       	mova	@r10,	r9	;
+ 7c7:	03 01       	mova	@r1,	r3	;
+ 7c9:	09 04       	mova	@r4,	r9	;
  7cb:	00 01       	bra	@r1		;
- 7cd:	03 01       	mova	@r1,	r3	;
- 7cf:	09 0a       	mova	@r10,	r9	;
+ 7cd:	03 02       	mova	@r2,	r3	;
+ 7cf:	09 0e       	mova	@r14,	r9	;
  7d1:	00 01       	bra	@r1		;
- 7d3:	00 02       	bra	@r2		;
- 7d5:	04 01       	mova	@r1,	r4	;
- 7d7:	06 03       	mova	@r3,	r6	;
- 7d9:	00 09       	bra	@r9		;
- 7db:	02 00       	mova	@r0,	r2	;
- 7dd:	01 06       	mova	@r6,	r1	;
- 7df:	03 02       	mova	@r2,	r3	;
- 7e1:	09 0c       	mova	@r12,	r9	;
- 7e3:	00 01       	bra	@r1		;
- 7e5:	03 01       	mova	@r1,	r3	;
- 7e7:	09 04       	mova	@r4,	r9	;
- 7e9:	00 01       	bra	@r1		;
- 7eb:	09 04       	mova	@r4,	r9	;
- 7ed:	00 00       	beq			
- 7ef:	01 01       	mova	@r1,	r1	;
+ 7d3:	03 03       	mova	@r3,	r3	;
+ 7d5:	09 0a       	mova	@r10,	r9	;
+ 7d7:	00 01       	bra	@r1		;
+ 7d9:	03 01       	mova	@r1,	r3	;
+ 7db:	09 0a       	mova	@r10,	r9	;
+ 7dd:	00 01       	bra	@r1		;
+ 7df:	00 02       	bra	@r2		;
+ 7e1:	04 01       	mova	@r1,	r4	;
+ 7e3:	06 03       	mova	@r3,	r6	;
+ 7e5:	00 09       	bra	@r9		;
+ 7e7:	02 00       	mova	@r0,	r2	;
+ 7e9:	01 06       	mova	@r6,	r1	;
+ 7eb:	03 02       	mova	@r2,	r3	;
+ 7ed:	09 0c       	mova	@r12,	r9	;
+ 7ef:	00 01       	bra	@r1		;
+ 7f1:	03 01       	mova	@r1,	r3	;
+ 7f3:	09 04       	mova	@r4,	r9	;
+ 7f5:	00 01       	bra	@r1		;
+ 7f7:	09 04       	mova	@r4,	r9	;
+ 7f9:	00 00       	beq			
+ 7fb:	01 01       	mova	@r1,	r1	;
 
 Disassembly of section .debug_frame:
 
@@ -6648,7 +6658,7 @@ Disassembly of section .debug_frame:
  146:	00 00       	beq			
  148:	30 01 00 00 	bra	0(r1)		;
  14c:	e0 fa 00 00 	and.b	@r10,	0x0000	; PC rel. 0x014e
- 150:	6a 02 00 00 	mova	r2,	&655360	; 0xa0000
+ 150:	76 02 00 00 	mova	r2,	0(r6)	;
  154:	04 04       	mova	@r4,	r4	;
  156:	00 00       	beq			
  158:	00 0e       	bra	@r14		;
@@ -6656,8 +6666,7 @@ Disassembly of section .debug_frame:
  15c:	14 00       	mova	@r0+,	r4	;
  15e:	00 00       	beq			
  160:	30 01 00 00 	bra	0(r1)		;
- 164:	4a fd       	and.b	r13,	r10	;
- 166:	00 00       	beq			
+ 164:	56 fd 00 00 	and.b	0(r13),	r6	;
  168:	48 00       	rrcm.a	#1,	r8	;
  16a:	00 00       	beq			
  16c:	04 02       	mova	@r2,	r4	;
@@ -7323,11 +7332,9 @@ Disassembly of section .debug_ranges:
 
 00000000 <.debug_ranges>:
    0:	e0 fa 00 00 	and.b	@r10,	0x0000	; PC rel. 0x0002
-   4:	4a fd       	and.b	r13,	r10	;
-   6:	00 00       	beq			
-   8:	4a fd       	and.b	r13,	r10	;
-   a:	00 00       	beq			
-   c:	92 fd 00 00 	and	0(r13),	&0x0000	;
+   4:	56 fd 00 00 	and.b	0(r13),	r6	;
+   8:	56 fd 00 00 	and.b	0(r13),	r6	;
+   c:	9e fd 00 00 	and	0(r13),	0(r14)	;
   10:	00 00 
   12:	00 00       	beq			
   14:	00 00       	beq			

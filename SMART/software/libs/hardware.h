@@ -1,3 +1,39 @@
+//----------------------------------------------------------------------------
+// MIT License
+// 
+// Copyright (c) 2018 Gabriel Capella
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+//----------------------------------------------------------------------------
+//
+// This source code is part of my final undergraduate thesis.
+// For any suggestion, doubt or comment send an email to
+// gabriel@capella.pro
+//
+//----------------------------------------------------------------------------
+//
+// *File Name: smart_mac.v
+//
+// *Module Description: SMART Memory Access Control
+//
+//----------------------------------------------------------------------------
 #ifndef HARDWARE_H
 #define HARDWARE_H
 
@@ -37,10 +73,10 @@
 // Hardware SHA256 register field mapping
 //--------------------------------------------------
 
-#define SHA_CONFIG      (*(volatile unsigned char *) 0x0011)
-#define SHA_STATUS      (*(volatile unsigned char *) 0x0011)
-#define SHA_INPUT       (*(volatile unsigned long *) 0x0012)
-#define SHA_OUTPUT      (*(volatile unsigned long *) 0x0052)
+#define SHA_CONFIG      (*(volatile unsigned char *) 0x0021)
+#define SHA_STATUS      (*(volatile unsigned char *) 0x0021)
+#define SHA_INPUT       (*(volatile unsigned long *) 0x0022)
+#define SHA_OUTPUT      (*(volatile unsigned long *) 0x0062)
 
 // SHA Control register fields
 #define  SHA_MODE           0x08 // set to 1 for sha256
@@ -66,11 +102,11 @@
 
 // BAUD = (mclk_freq/baudrate)-1
 
-//#define BAUD           2083            //   9600  @20.0MHz
-#define BAUD           1041            //  19200  @20.0MHz
-//#define BAUD            521            //  38400  @20.0MHz
-//#define BAUD            347            //  57600  @20.0MHz
-// #define BAUD           	  170            // 115200  @20.0MHz
-//#define BAUD             87            // 230400  @20.0MHz
+//#define BAUD          2083                //   9600  @20.0MHz
+#define BAUD            1041                //  19200  @20.0MHz
+//#define BAUD          521                 //  38400  @20.0MHz
+//#define BAUD          347                 //  57600  @20.0MHz
+// #define BAUD         170                 // 115200  @20.0MHz
+//#define BAUD          87                  // 230400  @20.0MHz
 
 #endif //HARDWARE_H
