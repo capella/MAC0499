@@ -40,75 +40,40 @@
 
 module openMSP430_fpga (
 
-// Clock Sources
-    CLK_100MHz,
-    // CLK_SOCKET,
+    // Clock Sources
+    input     CLK_100MHz,
 
-// Slide Switches
-    SW7,
-    SW6,
-    SW5,
-    SW4,
-    SW3,
-    SW2,
-    SW1,
-    SW0,
+    // Slide Switches
+    input     SW7,
+    input     SW6,
+    input     SW5,
+    input     SW4,
+    input     SW3,
+    input     SW2,
+    input     SW1,
+    input     SW0,
 
-// Push Button Switches
-    BTN3,
-    BTN2,
-    BTN1,
-    BTN0,
+    // Push Button Switches
+    input     BTN3,
+    input     BTN2,
+    input     BTN1,
+    input     BTN0,
 
-// LEDs
-    LED7,
-    LED6,
-    LED5,
-    LED4,
-    LED3,
-    LED2,
-    LED1,
-    LED0,
+    // LEDs
+    output    LED7,
+    output    LED6,
+    output    LED5,
+    output    LED4,
+    output    LED3,
+    output    LED2,
+    output    LED1,
+    output    LED0,
 
-// RS-232 Port
-    UART_RXD,
-    UART_TXD
+    // RS-232 Port
+    input     UART_RXD,
+    output    UART_TXD
+
 );
-
-// Clock Sources
-input     CLK_100MHz;
-// input     CLK_SOCKET;
-
-// Slide Switches
-input     SW7;
-input     SW6;
-input     SW5;
-input     SW4;
-input     SW3;
-input     SW2;
-input     SW1;
-input     SW0;
-
-// Push Button Switches
-input     BTN3;
-input     BTN2;
-input     BTN1;
-input     BTN0;
-
-// LEDs
-output    LED7;
-output    LED6;
-output    LED5;
-output    LED4;
-output    LED3;
-output    LED2;
-output    LED1;
-output    LED0;
-
-// RS-232 Port
-input     UART_RXD;
-output    UART_TXD;
-
 
 //=============================================================================
 // 1)  INTERNAL WIRES/REGISTERS/PARAMETERS DECLARATION
@@ -244,7 +209,7 @@ openMSP430 openMSP430_0 (
     .dma_wkup          (1'b0),         // ASIC ONLY: DMA Sub-System Wake-up (asynchronous and non-glitchy)
     .nmi               (nmi),          // Non-maskable interrupt (asynchronous)
     .per_dout          (per_dout),     // Peripheral data output
-    .pmem_dout         (pmem_dout),    // Program Memory data output
+    .pmem_dout         (smart_mem_din),    // Program Memory data output - pmem_dout
     .reset_n           (reset_n),      // Reset Pin (low active, asynchronous and non-glitchy)
     .scan_enable       (1'b0),         // ASIC ONLY: Scan enable (active during scan shifting)
     .scan_mode         (1'b0),         // ASIC ONLY: Scan mode
@@ -331,7 +296,7 @@ assign irq_bus    = {1'b0,         // Vector 13  (0xFFFA)
 smart_mac #(
     .SIZE_MEM_ADDR(`PMEM_MSB),
 
-    .LOW_SAFE((`PMEM_SIZE-`SMART_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR+1),
+    .LOW_SAFE((`PMEM_SIZE-`SMART_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR+2),
     .HIGH_SAFE((`PMEM_SIZE-`SMART_KEY_SIZE)/2-`IRQ_NR-1),
 
     .LOW_CODE(65536-(`IRQ_NR*2+`SMART_KEY_SIZE+`SMART_SIZE)),
@@ -344,7 +309,7 @@ smart_mac #(
     .mem_din(smart_mem_dout),
     .ins_addr(openMSP430_0.pc),
     .disable_debug(SW4),
-    .in_safe_area(LED6)
+    .in_safe_area()
 );
 
 // PROTECT KEY
@@ -364,7 +329,7 @@ smart_mac #(
     .mem_din(smart_mem_din),
     .ins_addr(openMSP430_0.pc),
     .disable_debug(SW5),
-    .in_safe_area(LED7)
+    .in_safe_area()
 );
 
 //=============================================================================
@@ -453,8 +418,11 @@ IBUF  BTN1_PIN       (.O(),                            .I(BTN1));
 IBUF  BTN0_PIN       (.O(),                            .I(BTN0));
 
 always @(posedge mclk) begin
-    if (openMSP430_0.pc == 15'h0x000) smart_reset <= 1'h0;
+    if (smart_reset || openMSP430_0.pc == 16'h0x000) smart_reset <= 1'h0;
     else  smart_reset <= smart2_reset | smart1_reset;
 end
+
+assign LED7 = smart2_reset;
+assign LED6 = smart2_reset;
 
 endmodule // openMSP430_fpga
