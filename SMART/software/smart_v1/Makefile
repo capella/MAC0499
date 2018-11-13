@@ -51,6 +51,7 @@ ${NAME}.size: ${NAME}.elf
 
 clean:
 	rm -f ${NAME}.elf ${NAME}.a43 ${NAME}.lst ${NAME}.size *.o
+	rm -f ../libs/*.o
 
 #backup archive
 dist:
