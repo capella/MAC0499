@@ -84,6 +84,7 @@ def calculate_hash (data, addr, nounce):
 
 class MyTCPHandler(socketserver.StreamRequestHandler):
     def handle(self):
+        print("New client.")
         # self.request is the TCP socket connected to the client
         while True:
             # VERIFY DEVICE
@@ -151,6 +152,7 @@ class MyTCPHandler(socketserver.StreamRequestHandler):
 
         final = cmd+addr+size+nounce
 
+        print(final.hex());
         self.wfile.write(final)
         return nounce
 

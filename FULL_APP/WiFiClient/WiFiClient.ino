@@ -1,12 +1,15 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
+#include <SoftwareSerial.h>
 
 ESP8266WiFiMulti WiFiMulti;
+SoftwareSerial swSer(D0, D1, false, 256);
 
 const uint16_t port = 3000;           // PORT
 const char * host = "192.168.15.11";  // HOST
 
 void setup() {
+    swSer.begin(4800);
     Serial.begin(19200);
     delay(10);
 
@@ -15,7 +18,7 @@ void setup() {
     WiFiMulti.addAP("Capella 9", "capella123");
 
     while(WiFiMulti.run() != WL_CONNECTED) {
-        Serial.print(".");
+        swSer.print(".");
         delay(500);
     }
     delay(500);
@@ -25,19 +28,22 @@ void loop() {
     WiFiClient client;
 
     if (!client.connect(host, port)) {
-        Serial.println("connection failed");
+        swSer.println("connection failed");
         delay(5000);
         return;
     }
 
     while (client.connected()) {
-        while (Serial.available())
-          client.print(Serial.read());
-        while (client.available())
-          Serial.print(client.read());
+        while (swSer.available())
+          client.print((char) swSer.read());
+        while (client.available()) {
+          char c = client.read();
+          swSer.print(c);
+          Serial.print(c, HEX);
+        }
     }
     
-    Serial.println("connection close");
+    swSer.println("connection close");
     client.stop();
     
     delay(5000);

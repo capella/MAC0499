@@ -34,6 +34,8 @@
 #include "../libs/smart/smart.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "../libs/cprintf/cprintf.h"
+
 
 #define BUFFER_SIZE         517
 
@@ -44,14 +46,13 @@
 #define GET_RESET_HASH      0x31
 
 //----------------------------------------------------------------------------
+
 unsigned int position = 0;
 char buffer[BUFFER_SIZE];
 char led_status;
-unsigned int bytes_count = 0;
 const char hex[] = "0123456789abcdef";
 
-int uart_putc (int txdata);
-int uart2_putc (int txdata);
+int tty2_putc (int txdata);
 
 //----------------------------------------------------------------------------
 void send_hash () {
@@ -59,7 +60,7 @@ void send_hash () {
     for (i = 0; i < 16; ++i) {
         c = ((unsigned int *)&SHA_OUTPUT)[15-i];
         for (j = 7; j >= 0; j--)
-            uart2_putc(hex[ (c >> (j*4) ) & 0x0f]);
+            tty2_putc(hex[ (c >> (j*4) ) & 0x0f]);
     }
 }
 
@@ -87,55 +88,33 @@ void compute_and_send_hash (struct smart_input *input) {
 }
 
 //----------------------------------------------------------------------------
-int uart_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART_STAT & UART_TX_FULL);
-
-  // Write the output character
-  UART_TXD = txdata;
-
-  return 0;
-}
-
-int uart2_putc (int txdata) {
-
-  // Wait until the TX buffer is not full
-  while (UART2_STAT & UART_TX_FULL);
-
-  // Write the output character
-  UART2_TXD = txdata;
-
-  return 0;
-}
-
 volatile char rxdata;
 
-SET_UART_RX_INTERRUPT UART_RECV(void) {
-    // Read the received data
+SET_UART_RX_INTERRUPT INT_uart_rx(void) {
     rxdata = UART_RXD;
-
-    // Clear the receive pending flag
     UART_STAT = UART_RX_PND;
 
-    uart_putc(rxdata);
-    // uart2_putc(rxdata);
+    cprintf("%c", rxdata);
 }
 
-SET_UART2_RX_INTERRUPT UART2_RECV(void) {
-    char byte;
+int tty2_putc (int txdata) {
+    while (UART2_STAT & UART_TX_FULL);
+    UART2_TXD = txdata;
+    return 0;
+}
 
-    byte = UART2_RXD;
+volatile char rxdata2;
+
+SET_UART2_RX_INTERRUPT INT_uart2_rx(void) {
+    rxdata2 = UART2_RXD;
     UART2_STAT = UART_RX_PND;
 
-    uart_putc('O');
+    cprintf("%b", rxdata2);
 
     if (position >= BUFFER_SIZE)
         position = 0;
 
-    buffer[position] = byte;
-
-    // if (position != BUFFER_SIZE) return;
+    buffer[position] = rxdata2;
 
     switch(buffer[0]) {
         case TAKE_HASH:
@@ -152,6 +131,9 @@ SET_UART2_RX_INTERRUPT UART2_RECV(void) {
             position = 0;
             return;
     }
+
+    position++;
+    if (position != BUFFER_SIZE) return;
 
     struct smart_input input;
 
@@ -181,18 +163,25 @@ SET_UART2_RX_INTERRUPT UART2_RECV(void) {
             send_hash ();
             break;
     }
-    uart2_putc('\n');
+    tty2_putc('\n');
 }
 
-//----------------------------------------------------------------------------
+//--------------------------------------------------//
+// Main function with init an an endless loop that  //
+// is synced with the interrupts trough the         //
+// lowpower mode.                                   //
+//--------------------------------------------------//
 int main(void) {
+
     WDTCTL = WDTPW | WDTHOLD;           // Init watchdog timer
 
     UART_BAUD = BAUD;                   // Init UART
     UART_CTL  = UART_EN | UART_IEN_RX;
 
-    UART2_BAUD = BAUD;                   // Init UART2
+    UART2_BAUD = 4166;                   // Init UART 4800
     UART2_CTL  = UART_EN | UART_IEN_RX;
+
+    enable_interrupts();
 
     led_status = 0;
     P3DIR  = 0xFF;
