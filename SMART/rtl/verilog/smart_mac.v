@@ -60,8 +60,8 @@ parameter HIGH_CODE     = 200;                  // High address code
 
 // LOGIC
 //============================================================================
-reg   inside_code;
-reg   to_be_reset;
+reg   inside_code = 1'b0;
+reg   to_be_reset = 1'b0;
 
 wire addr_in_safe = (mem_addr <= HIGH_SAFE) & (mem_addr >= LOW_SAFE);
 wire pc_in_code = (ins_addr <= HIGH_CODE) & (ins_addr >= LOW_CODE);
