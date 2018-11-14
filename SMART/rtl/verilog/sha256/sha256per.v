@@ -30,32 +30,20 @@
 //----------------------------------------------------------------------------
 
 module  sha2_periph (
+  // OUTPUTs
+  //=========
+  output       [15:0] per_dout,       // Peripheral data output
 
-// OUTPUTs
-    per_dout,                       // Peripheral data output
+  // INPUTs
+  //=========
+  input               mclk,           // Main system clock
+  input        [13:0] per_addr,       // Peripheral address
+  input        [15:0] per_din,        // Peripheral data input
+  input               per_en,         // Peripheral enable (high active)
+  input         [1:0] per_we,         // Peripheral write enable (high active)
+  input               puc_rst         // Main system reset
 
-// INPUTs
-    mclk,                           // Main system clock
-    per_addr,                       // Peripheral address
-    per_din,                        // Peripheral data input
-    per_en,                         // Peripheral enable (high active)
-    per_we,                         // Peripheral write enable (high active)
-    puc_rst                         // Main system reset
 );
-
-// OUTPUTs
-//=========
-output       [15:0] per_dout;       // Peripheral data output
-
-// INPUTs
-//=========
-input               mclk;           // Main system clock
-input        [13:0] per_addr;       // Peripheral address
-input        [15:0] per_din;        // Peripheral data input
-input               per_en;         // Peripheral enable (high active)
-input         [1:0] per_we;         // Peripheral write enable (high active)
-input               puc_rst;        // Main system reset
-
 
 //=============================================================================
 // 1)  PARAMETER DECLARATION
