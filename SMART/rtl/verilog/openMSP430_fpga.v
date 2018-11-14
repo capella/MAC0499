@@ -83,10 +83,6 @@ module openMSP430_fpga (
     output    IO_P7_1,
     output    IO_P7_0,
 
-    // RS-232 Port
-    input     UART_RXD,
-    output    UART_TXD,
-
     // P6
     input     IO_P6_1,
     output    IO_P6_2,
@@ -556,9 +552,6 @@ assign smart_reset =  smart1_reset || smart2_reset;
 //     .segments(SevenSegment),
 //     .segments_enable(SevenSegmentEnable)
 // );
-
-assign LED7 = smart2_reset;
-assign LED6 = smart1_reset;
 
 endmodule // openMSP430_fpga
 
