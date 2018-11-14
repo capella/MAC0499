@@ -68,51 +68,70 @@ MEMORY = []
 def calculate_hash_pmem (addr, size, nounce):
     addr = addr-0xe000
     data = MEMORY[addr:addr+size]
-    return calculate_hash(data, nounce)
+    return calculate_hash(data, addr, nounce)
 
-def calculate_hash (data, nounce):
+def calculate_hash (data, addr, nounce):
     key = []
     for i in range(len(device_key)):
         key.append(0)
         key[i] = device_key[len(device_key)-i-1].to_bytes(4, byteorder='big')
 
     key = b''.join(key)
-    array = key+nounce+data
+    array = key+nounce
+    array = array+data+int(addr).to_bytes(4, byteorder='big')
 
     return hashlib.sha256(array).digest()
 
 class MyTCPHandler(socketserver.StreamRequestHandler):
     def handle(self):
-
-        nounce = self.send_command(TAKE_HASH, LED_ADDR, 0x1)
-        auth = self.rfile.readline().strip()
-        if (auth!= calculate_hash(bytes(), nounce)):
-            print("Device is not trust...")
-            return
-
         # self.request is the TCP socket connected to the client
         while True:
-            for cmd in [SET_LED_ON, SET_LED_OFF]:
-                self.send_command(cmd, 0x0, 0x0)
+            # VERIFY DEVICE
+            nounce = self.send_command(TAKE_HASH, 0x0, 0x0)
+            auth = self.rfile.readline().strip()
 
-                nounce = self.send_command(TAKE_HASH, 0x0, 0x0)
+            expected = calculate_hash(nounce, bytes(), 0x0)
+            if (auth.decode() != expected.hex()):
+                print("Device is not trust...")
+                return
+            print("Correct device.")
+
+            # TURN LED ON
+            self.send_command(SET_LED_ON, LED_ADDR, 0x01)
+            self.rfile.readline().strip() # ignore response
+
+            # VERIFY LED ON STATUS
+            for i in xrange(0,10):
+                nounce = self.send_command(TAKE_HASH, LED_ADDR, 0x01)
                 auth = self.rfile.readline().strip()
-                if (auth!= calculate_hash(bytes(), nounce)):
-                    print("Device is not trust...")
-                    return
+                expected = calculate_hash(bytes([1]), LED_ADDR, nounce)
+                if (auth.decode() != expected.hex()):
+                    print("Incorrect led value!!!")
 
+            # TURN LED OFF
+            self.send_command(SET_LED_OFF, LED_ADDR, 0x01)
+            self.rfile.readline().strip() # ignore response
 
+            # VERIFY LED OFF STATUS
+            for i in xrange(0,10):
+                nounce = self.send_command(TAKE_HASH, LED_ADDR, 0x01)
+                auth = self.rfile.readline().strip()
+                expected = calculate_hash(bytes([1]), LED_ADDR, nounce)
+                if (auth.decode() != expected.hex()):
+                    print("Incorrect led value!!!")
 
-            # SET LED VALUE TO 1
-            # Verify,Verify,Verify,Verify,
+            # SEND RESET COMMAND
+            self.send_command(SET_LED_ON, LED_ADDR, 0x0, 0x0)
+            self.rfile.readline().strip() # ignore response
 
-            # SET LED VALUE TO 0
-            # Verify,Verify,Verify,Verify,
-
-            # PERFORM A SAFT RESET
-            # atest reset call code, intructions interpreter
-            # send reset command
-            # get reset hash
+            # VERIFY SECURELY RESET
+            nounce = self.send_command(TAKE_HASH, 0x0, 0x0)
+            auth = self.rfile.readline().strip()
+            expected = calculate_hash(nounce, bytes(), 0x0)
+            if (auth.decode() != expected.hex()):
+                print("Device did not made a reset.")
+            else:
+                print("Device successfully reset.")
 
     def send_command(self, cmd, addr, size):
         cmd = int(cmd).to_bytes(1, byteorder="big", signed=False)
