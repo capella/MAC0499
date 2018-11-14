@@ -140,6 +140,6 @@ wire in_digest = (reg_addr >= OUTPUT) & (reg_addr < OUTPUT+'d32) & reg_read;
 
 wire [15:0]  in_digest_rd  = digest[(reg_addr - OUTPUT)*8 +: 16] & {16{in_digest}};
 
-wire [15:0] per_dout   =  cntrl_rd  |
-                          in_digest_rd;
+assign per_dout   =  cntrl_rd  |
+                     in_digest_rd;
 endmodule
