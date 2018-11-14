@@ -52,7 +52,4 @@ typedef struct smart_input * SmartInput;
 void SMART smart_hash (SmartInput input);
 char SMART sha256_flush (char init);
 
-int SMART tty_byte (int n);
-int SMART tty_c (int txdata);
-
 #endif //SMART_H

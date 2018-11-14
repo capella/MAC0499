@@ -136,7 +136,7 @@ wire               irq_uart2_tx;
 wire        [15:0] per_dout_uart2;
 
 // Others
-wire               reset_pin;
+wire               reset_pin_n;
 
 // SMART
 wire smart1_reset;
@@ -159,7 +159,7 @@ wire        [15:0] per_dout_dio;
 clock clk (
     .CLK_IN     (CLK_100MHz),
     .CLK_OUT    (clk_sys),
-    .RESET      (~reset_pin),
+    .RESET      (~reset_pin_n),
 
     .LOCKED     (dcm_locked)
 );
@@ -170,13 +170,13 @@ clock clk (
 
 
 // Reset input buffer
-IBUF   ibuf_reset_n   (.O(reset_pin), .I(BTN3));
+IBUF   ibuf_reset_n   (.O(reset_pin_n), .I(BTN3));
 
 // Top level reset generation
-wire smart_reset;
+wire smart_reset =  smart1_reset || smart2_reset;
 
 // Release the reset only, if the DCM is locked
-assign  reset_n = reset_pin & dcm_locked & ~smart_reset;
+assign  reset_n = reset_pin_n & dcm_locked & ~smart_reset;
 
 // //Include the startup device
 // wire  gsr_tb;
@@ -387,8 +387,8 @@ assign irq_bus    = {1'b0,         // Vector 13  (0xFFFA)
                      irq_uart_tx,  // Vector  6  (0xFFEC)
                      1'b0,         // Vector  5  (0xFFEA)
                      1'b0,         // Vector  4  (0xFFE8)
-                     1'b0,          // Vector  3  (0xFFE6)
-                     1'b0,          // Vector  2  (0xFFE4)
+                     1'b0,         // Vector  3  (0xFFE6)
+                     1'b0,         // Vector  2  (0xFFE4)
                      1'b0,         // Vector  1  (0xFFE2)
                      1'b0};        // Vector  0  (0xFFE0)
 
@@ -525,33 +525,4 @@ IBUF  BTN2_PIN       (.O(),                            .I(BTN2));
 IBUF  BTN1_PIN       (.O(),                            .I(BTN1));
 IBUF  BTN0_PIN       (.O(),                            .I(BTN0));
 
-assign smart_reset =  smart1_reset || smart2_reset;
-// wire smart_reset2 =  smart1_reset || smart2_reset;
-
-// omsp_sync_cell sync_cell_puc1 (
-//     .data_out  (smart_reset),
-//     .data_in   (smart_reset2),
-//     .clk       (mclk),
-//     .rst       (puc_rst)
-// );
-
-// reg [12:0] reset_adress = 13'b0;
-
-// always @(posedge smart_reset) begin
-//     reset_adress <= pmem_addr;
-// end
-
-// display_hex_byte #(
-//     .refresh_rate(1000/5),
-//     // .refresh_rate(1/5),
-//     .sys_clk_freq(100000000/5)
-// )
-// hex_display(
-//     .clk(clk_sys),
-//     .hex_byte(din[2]? reset_adress:pmem_addr),
-//     .segments(SevenSegment),
-//     .segments_enable(SevenSegmentEnable)
-// );
-
 endmodule // openMSP430_fpga
-
