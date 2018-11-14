@@ -85,11 +85,11 @@ module openMSP430_fpga (
 
     // P6
     input     IO_P6_1,
-    output    IO_P6_2,
+    output    IO_P6_2
 
     // SevenSegment
-    output [7:0] SevenSegment,
-    output [2:0] SevenSegmentEnable
+    // output [7:0] SevenSegment,
+    // output [2:0] SevenSegmentEnable
 
 );
 
