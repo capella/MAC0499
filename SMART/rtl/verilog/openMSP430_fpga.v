@@ -507,11 +507,11 @@ OBUF  IO_P7_2_PIN       (.I(p3_dout[2] & p3_dout_en[2]),  .O(IO_P7_2));
 OBUF  IO_P7_1_PIN       (.I(p3_dout[1] & p3_dout_en[1]),  .O(IO_P7_1));
 OBUF  IO_P7_0_PIN       (.I(p3_dout[0] & p3_dout_en[0]),  .O(IO_P7_0));
 
-OBUF  LED5_PIN       (.I(~hw_uart_txd),  .O(LED5));
-OBUF  LED4_PIN       (.I(~dbg_uart_txd),  .O(LED4));
+OBUF  LED5_PIN       (.I(~uart_rxd_in),  .O(LED5));
+OBUF  LED4_PIN       (.I(~uart_txd_out),  .O(LED4));
 
-OBUF  LED7_PIN       (.I(~hw_uart_rxd),  .O(LED7));
-OBUF  LED6_PIN       (.I(~dbg_uart_rxd),  .O(LED6));
+OBUF  LED7_PIN       (.I(~IO_P6_1),  .O(LED7));
+OBUF  LED6_PIN       (.I(~IO_P6_2),  .O(LED6));
 
 OBUF  LED3_PIN       (.I(pmem_addr[4]),  .O(LED3));
 OBUF  LED2_PIN       (.I(pmem_addr[5]),  .O(LED2));

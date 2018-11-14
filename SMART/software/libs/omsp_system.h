@@ -194,11 +194,9 @@
 #define disable_interrupts()  __no_operation(); __disable_interrupt()
 #define dint()  __dint()
 
-
 //--------------------------------------------------
 // Hardware UART interrupt mapping
 //--------------------------------------------------
-
 
 #define SET_UART2_RX_INTERRUPT     interrupt (10) // Interrupt vector 9
 #define SET_UART2_TX_INTERRUPT     interrupt (9) // Interrupt vector 8

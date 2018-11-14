@@ -12,7 +12,7 @@ void setup() {
 
     // We start by connecting to a WiFi network
     WiFi.mode(WIFI_STA);
-    WiFiMulti.addAP("Capella 10", "capella123");
+    WiFiMulti.addAP("Capella 9", "capella123");
 
     while(WiFiMulti.run() != WL_CONNECTED) {
         Serial.print(".");

@@ -51,17 +51,17 @@ GET_RESET_HASH  = 0x31
 
 ############ DEVICE KEY ############
 device_key = [
-  42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
-  42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
-  42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
-  42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68,
-  42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
-  42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
-  42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
-  42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68
+    42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
+    42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
+    42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
+    42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68,
+    42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
+    42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
+    42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 
+    42, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68
 ]
 
-MEMORY_FILE = "../../SMART/synthesis/xilinx/WORK/smart_v1.mem"
+MEMORY_FILE = "../../SMART/synthesis/xilinx/WORK/smart_app.mem"
 LED_ADDR = 0x00;
 MEMORY = []
 
@@ -90,7 +90,7 @@ class MyTCPHandler(socketserver.StreamRequestHandler):
             nounce = self.send_command(TAKE_HASH, 0x0, 0x0)
             auth = self.rfile.readline().strip()
 
-            expected = calculate_hash(nounce, bytes(), 0x0)
+            expected = calculate_hash(bytes(), 0x0, nounce)
             if (auth.decode() != expected.hex()):
                 print("Device is not trust...")
                 return
@@ -120,6 +120,16 @@ class MyTCPHandler(socketserver.StreamRequestHandler):
                 if (auth.decode() != expected.hex()):
                     print("Incorrect led value!!!")
 
+
+            # VERIFY FULL PROGRAM MEMORY
+            nounce = self.send_command(TAKE_HASH, 0xe000, 2**13)
+            auth = self.rfile.readline().strip()
+            expected = calculate_hash_pmem(0xe000, 2**13, nounce)
+            if (auth.decode() != expected.hex()):
+                print("Device code has changed.")
+            else:
+                print("Device successfully device code check.")
+
             # SEND RESET COMMAND
             self.send_command(SET_LED_ON, LED_ADDR, 0x0, 0x0)
             self.rfile.readline().strip() # ignore response
@@ -127,7 +137,7 @@ class MyTCPHandler(socketserver.StreamRequestHandler):
             # VERIFY SECURELY RESET
             nounce = self.send_command(TAKE_HASH, 0x0, 0x0)
             auth = self.rfile.readline().strip()
-            expected = calculate_hash(nounce, bytes(), 0x0)
+            expected = calculate_hash(bytes(), 0x0, nounce)
             if (auth.decode() != expected.hex()):
                 print("Device did not made a reset.")
             else:
