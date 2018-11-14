@@ -1,5 +1,0 @@
-#!/bin/bash
-
-export LD_LIBRARY_PATH=/opt/glibc-2.14/lib
-
-msp430-elf-objcopy -d pmem.elf

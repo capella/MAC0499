@@ -36,7 +36,6 @@
 //
 //----------------------------------------------------------------------------
 `include "openMSP430_defines.v"
-`include "display_hex_byte.v"
 
 module openMSP430_fpga (
 
