@@ -25,7 +25,6 @@ module clock
   //    * Unused outputs are labeled unused
   wire        psdone_unused;
   wire        locked_int;
-  wire [7:0]  status_int;
   wire clkfb;
   wire clk0;
   wire clkfx;
@@ -62,7 +61,7 @@ module clock
     .PSDONE                (),
     // Other control and status signals
     .LOCKED                (locked_int),
-    .STATUS                (status_int),
+    .STATUS                (),
  
     .RST                   (RESET),
     // Unused pin- tie low

@@ -46,6 +46,9 @@ void SMART smart_hash (SmartInput input) {
 
     unsigned char *str = input->str;
     unsigned int length = input->length;
+    unsigned int length_by_4 = input->length;
+    length_by_4 /= 2;
+    length_by_4 /= 2;
 
     unsigned long size = (length + 64 * 4 * 2) * 8;
     unsigned int i = 0;
@@ -71,7 +74,7 @@ void SMART smart_hash (SmartInput input) {
 
     // copy and hash data
     i = 0;
-    while (i <= length/4) {
+    while (i <= length_by_4) {
         in = 0;
         for (unsigned int j = 0; j < 4; j++) {
             if (i*4+j < length) {

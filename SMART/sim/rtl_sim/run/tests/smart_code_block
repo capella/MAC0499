@@ -1,0 +1,6 @@
+../bin/msp430sim smart_code_block
+
+================= START SIMULATION ==============
+fae4 0000fae4 SAFE2 (00000fae4 < 00000fede)
+fae4 0000fae4 SAFE2 (00000fae4 < 00000fede)
+================== END SIMULATION ===============

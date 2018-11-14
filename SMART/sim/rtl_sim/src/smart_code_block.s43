@@ -1,0 +1,23 @@
+
+.global main
+
+main:
+
+	mov	#1536,	r1		;#0x0600
+	call #smart
+
+  	call #smart+4
+
+  	br #0xffff
+
+.section .keyfunction, "a"
+	smart:
+		sub	#24,	r1	;#0x0018
+	  	nop
+	  	nop
+	  	nop
+		add	#24,	r1	;#0x0018
+	  	ret
+
+.section .resetvec, "a"
+	.word main          ; Interrupt 15 (highest priority)   RESET
