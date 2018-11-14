@@ -27,3 +27,11 @@ SMART/sim/rtl_sim/run/*.mif
 SMART/synthesis/xilinx/bitstreams/*
 
 SMART/synthesis/xilinx/bitstreams/*
+
+SMART/sim/rtl_sim/run/pmem.elf
+SMART/sim/rtl_sim/run/pmem.h
+SMART/sim/rtl_sim/run/pmem.he
+SMART/sim/rtl_sim/run/pmem.ihex
+SMART/sim/rtl_sim/run/simv
+SMART/sim/rtl_sim/run/spartan6_pmem.mif
+SMART/sim/rtl_sim/run/stimulus.v
