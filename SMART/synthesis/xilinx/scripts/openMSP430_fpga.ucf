@@ -17,7 +17,7 @@ NET "CLK_100MHz"   LOC = V10  | IOSTANDARD = LVCMOS33 | PERIOD = 100MHz;
 #NET "CLK_12MHz"    LOC = D9   | IOSTANDARD = LVCMOS33 | PERIOD = 12MHz;
    
 #######################################
-#          UART Interface             #
+#          UART Interface     #
 #######################################
 NET "UART_TXD"  LOC = B8   |  IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
 NET "UART_RXD"  LOC = A8   |  IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
@@ -57,6 +57,23 @@ NET "BTN2"  LOC = L17 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST | PULLUP
 NET "BTN1"  LOC = K17 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST | PULLUP; #SW5
 NET "BTN0"  LOC = K18 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST | PULLUP; #SW6
 
+
+#######################################
+# BTNs     #
+#######################################
+NET "SevenSegment[0]"     LOC = A5  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "SevenSegment[1]"     LOC = C6  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "SevenSegment[2]"     LOC = D6  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "SevenSegment[3]"     LOC = C5  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "SevenSegment[4]"     LOC = C4  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "SevenSegment[5]"     LOC = A4  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "SevenSegment[6]"     LOC = B4  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "SevenSegment[7]"     LOC = A3  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+
+# Enables for Seven Segment Display
+NET "SevenSegmentEnable[2]"   LOC = B3  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "SevenSegmentEnable[1]"   LOC = A2  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
+NET "SevenSegmentEnable[0]"   LOC = B2  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
 
 #####################
 

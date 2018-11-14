@@ -37,6 +37,7 @@
 // $LastChangedDate: 2015-07-01 23:13:32 +0200 (Wed, 01 Jul 2015) $
 //----------------------------------------------------------------------------
 `include "openMSP430_defines.v"
+`include "display_hex_byte.v"
 
 module openMSP430_fpga (
 
@@ -71,7 +72,11 @@ module openMSP430_fpga (
 
     // RS-232 Port
     input     UART_RXD,
-    output    UART_TXD
+    output    UART_TXD,
+
+
+    output [7:0] SevenSegment,
+    output [2:0] SevenSegmentEnable
 
 );
 
@@ -89,7 +94,6 @@ wire         [1:0] dmem_wen;
 wire [`PMEM_MSB:0] pmem_addr;
 wire        [15:0] pmem_din;
 wire         [1:0] pmem_wen;
-wire        [13:0] irq_acc;
 
 // openMSP430 input buses
 wire        [13:0] irq_bus;
@@ -124,6 +128,7 @@ wire smart2_reset;
 wire [15:0] smart_mem_din;
 wire [15:0] smart_mem_dout;
 
+wire [15:0] pc;
 
 //=============================================================================
 // 2)  CLOCK GENERATION
@@ -146,11 +151,15 @@ clock clk (
 IBUF   ibuf_reset_n   (.O(reset_pin), .I(BTN3));
 
 // Top level reset generation
-wire dco_rst;
-reg smart_reset = 0;
+wire smart_reset;
 
 // Release the reset only, if the DCM is locked
 assign  reset_n = reset_pin & dcm_locked & ~smart_reset;
+
+// //Include the startup device
+// wire  gsr_tb;
+// wire  gts_tb;
+// STARTUP_SPARTAN6 xstartup (.CLK(clk_sys), .GSR(gsr_tb), .GTS(gts_tb));
 
 //=============================================================================
 // 4)  OPENMSP430
@@ -160,8 +169,8 @@ openMSP430 openMSP430_0 (
 
 // OUTPUTs
     .aclk              (),             // ASIC ONLY: ACLK
-    .aclk_en           (aclk_en),      // FPGA ONLY: ACLK enable
-    .dbg_freeze        (dbg_freeze),   // Freeze peripherals
+    .aclk_en           (),             // FPGA ONLY: ACLK enable
+    .dbg_freeze        (),             // Freeze peripherals
     .dbg_i2c_sda_out   (),             // Debug interface: I2C SDA OUT
     .dbg_uart_txd      (dbg_uart_txd), // Debug interface: UART TXD
     .dco_enable        (),             // ASIC ONLY: Fast oscillator enable
@@ -170,7 +179,7 @@ openMSP430 openMSP430_0 (
     .dmem_cen          (dmem_cen),     // Data Memory chip enable (low active)
     .dmem_din          (dmem_din),     // Data Memory data input
     .dmem_wen          (dmem_wen),     // Data Memory write enable (low active)
-    .irq_acc           (irq_acc),      // Interrupt request accepted (one-hot signal)
+    .irq_acc           (),             // Interrupt request accepted (one-hot signal)
     .lfxt_enable       (),             // ASIC ONLY: Low frequency oscillator enable
     .lfxt_wkup         (),             // ASIC ONLY: Low frequency oscillator wake-up (asynchronous)
     .mclk              (mclk),         // Main system clock
@@ -188,6 +197,7 @@ openMSP430 openMSP430_0 (
     .puc_rst           (puc_rst),      // Main system reset
     .smclk             (),             // ASIC ONLY: SMCLK
     .smclk_en          (smclk_en),     // FPGA ONLY: SMCLK enable
+    .pc          (pc),
 
 // INPUTs
     .cpu_en            (SW6),         // Enable CPU code execution (asynchronous and non-glitchy)
@@ -307,7 +317,7 @@ smart_mac #(
     .mem_addr(pmem_addr),
     .mclk(mclk),
     .mem_din(smart_mem_dout),
-    .ins_addr(openMSP430_0.pc),
+    .ins_addr(pc),
     .disable_debug(SW4),
     .in_safe_area()
 );
@@ -327,7 +337,7 @@ smart_mac #(
     .mem_addr(pmem_addr),
     .mclk(mclk),
     .mem_din(smart_mem_din),
-    .ins_addr(openMSP430_0.pc),
+    .ins_addr(pc),
     .disable_debug(SW5),
     .in_safe_area()
 );
@@ -417,12 +427,36 @@ IBUF  BTN2_PIN       (.O(),                            .I(BTN2));
 IBUF  BTN1_PIN       (.O(),                            .I(BTN1));
 IBUF  BTN0_PIN       (.O(),                            .I(BTN0));
 
-always @(posedge mclk) begin
-    if (smart_reset || openMSP430_0.pc == 16'h0x000) smart_reset <= 1'h0;
-    else  smart_reset <= smart2_reset | smart1_reset;
+assign smart_reset =  smart1_reset || smart2_reset;
+// wire smart_reset2 =  smart1_reset || smart2_reset;
+
+// omsp_sync_cell sync_cell_puc1 (
+//     .data_out  (smart_reset),
+//     .data_in   (smart_reset2),
+//     .clk       (mclk),
+//     .rst       (puc_rst)
+// );
+
+reg [12:0] reset_adress = 13'b0;
+
+always @(posedge smart_reset) begin
+    reset_adress <= pmem_addr;
 end
 
+
+display_hex_byte #(
+    .refresh_rate(1000/5),
+    // .refresh_rate(1/5),
+    .sys_clk_freq(100000000/5)
+)
+hex_display(
+    .clk(clk_sys),
+    .hex_byte(din[2]? reset_adress:pmem_addr),
+    .segments(SevenSegment),
+    .segments_enable(SevenSegmentEnable)
+);
+
 assign LED7 = smart2_reset;
-assign LED6 = smart2_reset;
+assign LED6 = smart1_reset;
 
 endmodule // openMSP430_fpga

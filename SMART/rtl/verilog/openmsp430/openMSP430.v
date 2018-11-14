@@ -77,6 +77,7 @@ module  openMSP430 (
     puc_rst,                                 // Main system reset
     smclk,                                   // ASIC ONLY: SMCLK
     smclk_en,                                // FPGA ONLY: SMCLK enable
+    pc,
 
 // INPUTs
     cpu_en,                                  // Enable CPU code execution (asynchronous and non-glitchy)
@@ -141,6 +142,7 @@ output         [1:0] pmem_wen;               // Program Memory write enable (low
 output               puc_rst;                // Main system reset
 output               smclk;                  // ASIC ONLY: SMCLK
 output               smclk_en;               // FPGA ONLY: SMCLK enable
+output        [15:0] pc;
 
 
 // INPUTs
@@ -221,7 +223,7 @@ wire                 fe_pmem_wait;
 
 wire                 pc_sw_wr;
 wire          [15:0] pc_sw;
-wire          [15:0] pc;
+// wire          [15:0] pc;
 wire          [15:0] pc_nxt;
 
 wire                 nmi_acc;

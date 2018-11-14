@@ -26,6 +26,7 @@ ParamFile: <design>_xst.scr
 #
 # Global Synthesis Options
 #
+#"-keep_hierarchy Yes";           # Input/Project File Name
 "-ifn <synthdesign>";             # Input/Project File Name
 "-ifmt Verilog";                  # Input Format
 "-ofn <design>";                  # Output File Name 
