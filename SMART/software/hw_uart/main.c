@@ -67,7 +67,7 @@ int tty_putc (int txdata) {
 volatile char rxdata;
 
 // wakeup interrupt (8) INT_uart_rx(void) {
-interrupt (8) INT_uart_rx(void) {
+SET_UART_RX_INTERRUPT INT_uart_rx(void) {
   // Read the received data
   rxdata = UART_RXD;
 
@@ -78,12 +78,6 @@ interrupt (8) INT_uart_rx(void) {
   // // Exit the low power mode
   // LPM0_EXIT;
 }
-// void Port_1(void) {
-//   rxdata = UART_RXD;
-//   UART_STAT = UART_RX_PND;
-//   cprintf(".");
-// }
-
 
 //--------------------------------------------------//
 // Main function with init an an endless loop that  //
@@ -95,21 +89,16 @@ int main(void) {
     int pos = 0;
     char buf[40];
     int led = 0;
-//    int *key;
-//    key = (void *)0xfee0; 
 
     WDTCTL = WDTPW | WDTHOLD;           // Init watchdog timer
-
 
     UART_BAUD = BAUD;                   // Init UART
     UART_CTL  = UART_EN | UART_IEN_RX;
 
     cprintf("> ");
 
-    enable_interrupts();                  // Enable interrupts
+    enable_interrupts();
 
-    while (1) {                         //main loop, never ends...
-        // cprintf("U");
-        // delay(5000);
+    while (1) {
     }
 }

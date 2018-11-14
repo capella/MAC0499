@@ -194,6 +194,18 @@
 #define disable_interrupts()  __no_operation(); __disable_interrupt()
 #define dint()  __dint()
 
+
+//--------------------------------------------------
+// Hardware UART interrupt mapping
+//--------------------------------------------------
+
+
+#define SET_UART2_RX_INTERRUPT     interrupt (10) // Interrupt vector 9
+#define SET_UART2_TX_INTERRUPT     interrupt (9) // Interrupt vector 8
+
+#define SET_UART_RX_INTERRUPT      interrupt (8) // Interrupt vector 7
+#define SET_UART_TX_INTERRUPT      interrupt (7) // Interrupt vector 6
+
 // Vector definition for RedHat/TI toolchain
 #ifdef PFX_MSP430_ELF
    #define RESET_VECTOR        ("reset")   // Vector 15  (0xFFFE) - Reset              -  [Highest Priority]
