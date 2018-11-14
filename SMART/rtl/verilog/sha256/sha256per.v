@@ -106,7 +106,7 @@ wire in_block = (reg_addr >= INPUT) & (reg_addr < INPUT+'d64) & reg_write;
 
 always @ (posedge mclk)
   if (~puc_rst & in_block) begin
-    $display("> %h %h", per_din, block);
+    // $display("> %h %h", per_din, block);
     block[(reg_addr - INPUT)*8 +: 16] <= per_din;
   end
 

@@ -31,7 +31,7 @@ data = bytes(data, encoding='ascii')
 array = key+nounce
 array = b''.join(array)
 
-array = array+data+int(0x1122).to_bytes(4, byteorder='big')
+array = array+data+int(0xe000).to_bytes(4, byteorder='big')
 # array = data
 
 print(array.hex())

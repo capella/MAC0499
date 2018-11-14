@@ -43,11 +43,11 @@
 //--------------------------------------------------//
 int main(void) {
 
-    unsigned char string[] = "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.";
+    char * string = "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.";
     unsigned long nounce[64];
     struct smart_input input;
 
-    input.str = string;
+    input.str = (unsigned char *) string;
     input.length = 89;
     input.call = NULL;
     input.n = nounce;

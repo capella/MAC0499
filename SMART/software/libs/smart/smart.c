@@ -56,7 +56,7 @@ void SMART smart_hash (SmartInput input) {
 
     unsigned long in;
 
-    unsigned long addr_pos = 0x1122;
+    unsigned long addr_pos = (unsigned int) str;
     unsigned char p_apeend_addr = 0;
 
     // copy and hash key
@@ -85,7 +85,7 @@ void SMART smart_hash (SmartInput input) {
                 break;
             } else if (i*4+j >= length && i*4+j < length+4) {
                 // append adress
-                unsigned char * k = &addr_pos;
+                unsigned char * k = (unsigned char *) &addr_pos;
                 ((unsigned char *) &in)[3-j] = k[3-p_apeend_addr];
                 p_apeend_addr++;
             }
