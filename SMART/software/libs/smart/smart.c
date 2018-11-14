@@ -50,11 +50,14 @@ void SMART smart_hash (SmartInput input) {
     length_by_4 /= 2;
     length_by_4 /= 2;
 
-    unsigned long size = (length + 64 * 4 * 2) * 8;
+    unsigned long size = (length + 64 * 4 * 2 + 4) * 8;
     unsigned int i = 0;
     char init = 1;
 
     unsigned long in;
+
+    unsigned long addr_pos = 0x1122;
+    unsigned char p_apeend_addr = 0;
 
     // copy and hash key
     for (i = 0; i < 64; i++) {
@@ -72,14 +75,19 @@ void SMART smart_hash (SmartInput input) {
 
     // copy and hash data
     i = 0;
-    while (i <= length_by_4) {
+    while (i <= length_by_4+4) {
         in = 0;
         for (unsigned int j = 0; j < 4; j++) {
             if (i*4+j < length) {
                 ((unsigned char *) &in)[3-j] = str[i*4+j];
-            } else if (i*4+j == length) {
+            } else if (i*4+j == length+4) {
                 ((unsigned char *) &in)[3-j] = 0x80;
                 break;
+            } else if (i*4+j >= length && i*4+j < length+4) {
+                // append adress
+                unsigned char * k = &addr_pos;
+                ((unsigned char *) &in)[3-j] = k[3-p_apeend_addr];
+                p_apeend_addr++;
             }
         }
 
