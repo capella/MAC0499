@@ -49,7 +49,7 @@ int main(void) {
      
     for (i=0; i<8; i++) {
         P3OUT = (1<<i) ;
-        delay(10);
+        delay(5);
     }
 
     while (1) {
