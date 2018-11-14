@@ -35,23 +35,26 @@
 //--------------------------------------------------//
 //                   Delay function                 //
 //--------------------------------------------------//
-void delay(unsigned int d) {
-   while(d--) {
+void delay(unsigned int c, unsigned int d) {
+  volatile int i, j;
+  for (i = 0; i<c; i++) {
+    for (j = 0; j<d; j++) {
       __nop();
       __nop();
-   }
+    }
+  }
 }
 
 int main(void) {
     char i;
+    WDTCTL = WDTPW | WDTHOLD;           // Init watchdog timer
 
     P3DIR  = 0xFF;                      // Port direction register
-     
-    for (i=0; i<8; i++) {
-        P3OUT = (1<<i) ;
-        delay(10);
-    }
 
     while (1) {
+        P3OUT = 0;
+        delay(0x0007, 0xffff);
+        P3OUT = 0xFF;
+        delay(0x0007, 0xffff);
     }
 }
