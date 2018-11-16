@@ -33,7 +33,7 @@ import hashlib
 import os
 
 # [CMD, ADDR, SIZE, NOUCE]
-# bytes [1, 2, 2, 256, 256]
+# bytes [1, 2, 2, 256]
 
 # Server send request to device, where:
 #  - CMD: the command to be executed
@@ -62,7 +62,7 @@ device_key = [
 ]
 
 MEMORY_FILE = "../../SMART/synthesis/xilinx/WORK/smart_app.mem"
-LED_ADDR = 0x00;
+LED_ADDR = 0x022b;
 MEMORY = []
 
 def calculate_hash_pmem (addr, size, nounce):
@@ -85,6 +85,8 @@ def calculate_hash (data, addr, nounce):
 class MyTCPHandler(socketserver.StreamRequestHandler):
     def handle(self):
         print("New client.")
+        self.request.settimeout(5)
+
         # self.request is the TCP socket connected to the client
         while True:
             # VERIFY DEVICE
@@ -94,7 +96,8 @@ class MyTCPHandler(socketserver.StreamRequestHandler):
             expected = calculate_hash(bytes(), 0x0, nounce)
             if (auth.decode() != expected.hex()):
                 print("Device is not trust...")
-                return
+                print("E", expected.hex())
+                print("R", auth.decode())
             print("Correct device.")
 
             # TURN LED ON
@@ -102,25 +105,28 @@ class MyTCPHandler(socketserver.StreamRequestHandler):
             self.rfile.readline().strip() # ignore response
 
             # VERIFY LED ON STATUS
-            for i in xrange(0,10):
+            for i in range(10):
                 nounce = self.send_command(TAKE_HASH, LED_ADDR, 0x01)
                 auth = self.rfile.readline().strip()
                 expected = calculate_hash(bytes([1]), LED_ADDR, nounce)
                 if (auth.decode() != expected.hex()):
                     print("Incorrect led value!!!")
+                    print("E", expected.hex())
+                    print("R", auth.decode())
 
             # TURN LED OFF
             self.send_command(SET_LED_OFF, LED_ADDR, 0x01)
             self.rfile.readline().strip() # ignore response
 
             # VERIFY LED OFF STATUS
-            for i in xrange(0,10):
+            for i in range(10):
                 nounce = self.send_command(TAKE_HASH, LED_ADDR, 0x01)
                 auth = self.rfile.readline().strip()
                 expected = calculate_hash(bytes([1]), LED_ADDR, nounce)
                 if (auth.decode() != expected.hex()):
                     print("Incorrect led value!!!")
-
+                    print("E", expected.hex())
+                    print("R", auth.decode())
 
             # VERIFY FULL PROGRAM MEMORY
             nounce = self.send_command(TAKE_HASH, 0xe000, 2**13)
@@ -132,7 +138,7 @@ class MyTCPHandler(socketserver.StreamRequestHandler):
                 print("Device successfully device code check.")
 
             # SEND RESET COMMAND
-            self.send_command(SET_LED_ON, LED_ADDR, 0x0, 0x0)
+            self.send_command(SET_RESET, 0x0, 0x0)
             self.rfile.readline().strip() # ignore response
 
             # VERIFY SECURELY RESET
@@ -148,11 +154,15 @@ class MyTCPHandler(socketserver.StreamRequestHandler):
         cmd = int(cmd).to_bytes(1, byteorder="big", signed=False)
         addr = int(addr).to_bytes(2, byteorder="big", signed=False)
         size = int(size).to_bytes(2, byteorder="big", signed=False)
-        nounce = os.urandom(256)
 
-        final = cmd+addr+size+nounce
+        nounce_tmp = bytes()
+        for x in range(86):
+            nounce_tmp = nounce_tmp+os.urandom(1)
+        nounce_tmp = nounce_tmp+nounce_tmp+nounce_tmp
 
-        print(final.hex());
+        final = cmd+addr+size+nounce_tmp
+        nounce = nounce_tmp[0:256]
+        # print((cmd+addr+size).hex());
         self.wfile.write(final)
         return nounce
 

@@ -37,7 +37,7 @@
 #include "../libs/cprintf/cprintf.h"
 
 
-#define BUFFER_SIZE         517
+#define BUFFER_SIZE         263
 
 #define TAKE_HASH           0x10
 #define SET_LED_ON          0x20
@@ -48,42 +48,44 @@
 //----------------------------------------------------------------------------
 
 unsigned int position = 0;
-char buffer[BUFFER_SIZE];
+unsigned int timeout = 0;
+unsigned char buffer[BUFFER_SIZE];
 char led_status;
 const char hex[] = "0123456789abcdef";
 
 int tty2_putc (int txdata);
 
+void cput2_number (int n) {
+  char buf[20];
+  int i = 0;
+  if (n < 0)
+    {
+      tty2_putc ('-');
+      n = -n;
+    }
+  while (n > 9)
+    {
+      buf[i++] = (n%10) + '0';
+      n /= 10;
+    }
+  buf[i++] = (n%10) + '0';
+  while (i > 0)
+    tty2_putc (buf[--i]);
+}
+
 //----------------------------------------------------------------------------
 void send_hash () {
-    unsigned int i, j, c;
+    int i, j, c;
     for (i = 0; i < 16; ++i) {
         c = ((unsigned int *)&SHA_OUTPUT)[15-i];
-        for (j = 7; j >= 0; j--)
-            tty2_putc(hex[ (c >> (j*4) ) & 0x0f]);
+        for (j = 3; j >= 0; j--)
+            tty2_putc (hex[(c >> (j*4))&0x0f]);
+        // cprintf("%c", hex[ (c >> (j*4) ) & 0x0f]);
     }
 }
 
 void compute_and_send_hash (struct smart_input *input) {
-
-    unsigned int i;
-    unsigned char *n;
-    n = (unsigned char *) input->n;
-    char tmp;
-
-    // fix nounce
-    for (i = 0; i < 16; ++i) {
-        tmp = n[i*4];
-        n[i*4] = n[i*4+3];
-        n[i*4+3] = tmp;
-
-        tmp = n[i*4+1];
-        n[i*4+1] = n[i*4+2];
-        n[i*4+2] = tmp;
-    }
-
     smart_hash (input);
-
     send_hash ();
 }
 
@@ -109,7 +111,7 @@ SET_UART2_RX_INTERRUPT INT_uart2_rx(void) {
     rxdata2 = UART2_RXD;
     UART2_STAT = UART_RX_PND;
 
-    cprintf("%b", rxdata2);
+    // cprintf("%b", rxdata2);
 
     if (position >= BUFFER_SIZE)
         position = 0;
@@ -131,29 +133,63 @@ SET_UART2_RX_INTERRUPT INT_uart2_rx(void) {
             position = 0;
             return;
     }
+    timeout = 0;
 
     position++;
+    // cprintf("B %d\n", position);
     if (position != BUFFER_SIZE) return;
 
     struct smart_input input;
 
-    unsigned int addr = *((unsigned int *) &(buffer[1]));
-    unsigned int size = *((unsigned int *) &(buffer[3]));
+
+    unsigned int addr = buffer[2]+buffer[1]*256;
+    unsigned int size = buffer[4]+buffer[3]*256;
 
     input.str = (unsigned char *) addr;
     input.length = size;
-    input.call = NULL;
-    input.n = (unsigned long *) &(buffer[5]);
+    input.call = 0;
+    input.n = &(buffer[5]);
+
+    cprintf("SIZE OK %w\n", buffer[0]);
+
+    // int i, j, c;
+    // for (i = 0; i < 256; ++i) {
+    //     c = input.n[i];
+    //     for (j = 1; j >= 0; j--)
+    //         tty2_putc (hex[(c >> (j*4))&0x0f]);
+    // }
+
+    // tty2_putc ('|');
+
+    for (int i = 0; i < 86; ++i) {
+        if (buffer[5+i+86] == buffer[5+i+86*2])
+            buffer[5+i] = buffer[5+i+86];
+        else if (buffer[5+i] == buffer[5+i+86*2])
+            buffer[5+i+86] = buffer[5+i];
+        else if (buffer[5+i] == buffer[5+i+86])
+            buffer[5+i+86*2] = buffer[5+i];
+    }
+
+    // for (unsigned int i = 5; i < 261; ++i) {
+    //     tty2_putc (hex[(buffer[i] >> 4)&0x0f]);
+    //     tty2_putc (hex[(buffer[i]     )&0x0f]);
+    // }
+    // tty2_putc ('|');
 
     switch(buffer[0]) {
         case TAKE_HASH:
+            cprintf("HASH\n");
             compute_and_send_hash(&input);
             break;
         case SET_LED_ON:
             led_status = 1;
+            tty2_putc('O');
+            tty2_putc('K');
             break;
         case SET_LED_OFF:
             led_status = 0;
+            tty2_putc('O');
+            tty2_putc('K');
             break;
         case SET_RESET:
             P3OUT = 0;
@@ -163,6 +199,7 @@ SET_UART2_RX_INTERRUPT INT_uart2_rx(void) {
             send_hash ();
             break;
     }
+    position = 0;
     tty2_putc('\n');
 }
 
@@ -194,5 +231,16 @@ int main(void) {
         __nop();
         __nop();
         __nop();
+        timeout++;
+        if (timeout == 30000 && position != 0) {
+            position = 0;
+            cprintf("timeout\n");
+        }
+
+        if (timeout == 30000 && position != 0) {
+            position = 0;
+            cprintf(".");
+            tty2_putc('.');
+        }
     }
 }

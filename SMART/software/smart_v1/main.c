@@ -44,7 +44,7 @@
 int main(void) {
 
     char * string = "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.";
-    unsigned long nounce[64];
+    unsigned char nounce[256];
     struct smart_input input;
 
     input.str = (unsigned char *) string;
@@ -58,8 +58,8 @@ int main(void) {
     UART_CTL  = UART_EN | UART_IEN_RX;
 
     // sha256(string, 89);
-    for (int i = 0; i < 64; ++i) {
-        nounce[i] = 0x23001120;
+    for (int i = 0; i < 256; ++i) {
+        nounce[i] = i;
     }
 
     smart_hash (&input);

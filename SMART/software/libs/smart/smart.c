@@ -68,9 +68,11 @@ void SMART smart_hash (SmartInput input) {
 
     // copy and hash nounce
     for (i = 0; i < 64; i++) {
-        (&SHA_INPUT)[i%16] = (input->n)[i];
-        if ((i+1)%16 == 0)
-            init = sha256_flush(init);
+        for (unsigned int j = 0; j < 4; j++)
+            ((unsigned char *) &in)[3-j] = (input->n)[i*4+j];
+
+        (&SHA_INPUT)[15 - i%16] = in;
+        if ((i+1)%16 == 0) init = sha256_flush(init);
     }
 
     // copy and hash data

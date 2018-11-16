@@ -15,7 +15,7 @@ nounce = []
 for x in range(256):
     nounce.append(x)
 
-data = "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
+data = ""
 
 
 for i in range(len(nounce)):
@@ -33,7 +33,7 @@ data = bytes(data, encoding='ascii')
 array = key+nounce
 array = b''.join(array)
 
-array = array+data+int(0xe000).to_bytes(4, byteorder='big')
+array = array+data+int(0x0000).to_bytes(4, byteorder='big')
 # array = data
 
 print(array.hex())

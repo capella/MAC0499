@@ -43,7 +43,7 @@ struct smart_input {
     unsigned char *str;         // initial memory position
     unsigned int length;        // size in bytes of memory to hash
     void (* call)();            // function call after smart
-    unsigned long *n;           // nounce 256 bytes - 64 elements
+    unsigned char *n;           // nounce 256 bytes - 64 elements
 };
 typedef struct smart_input * SmartInput;
 
