@@ -170,10 +170,11 @@ SET_UART2_RX_INTERRUPT INT_uart2_rx(void) {
             buffer[5+i+86*2] = buffer[5+i];
     }
 
-    // for (unsigned int i = 5; i < 261; ++i) {
-    //     tty2_putc (hex[(buffer[i] >> 4)&0x0f]);
-    //     tty2_putc (hex[(buffer[i]     )&0x0f]);
+    // for (unsigned int i = 0; i < size; ++i) {
+    //     tty2_putc (hex[(input.str[i] >> 4)&0x0f]);
+    //     tty2_putc (hex[(input.str[i]     )&0x0f]);
     // }
+
     // tty2_putc ('|');
 
     switch(buffer[0]) {
@@ -182,18 +183,18 @@ SET_UART2_RX_INTERRUPT INT_uart2_rx(void) {
             compute_and_send_hash(&input);
             break;
         case SET_LED_ON:
-            led_status = 1;
+            led_status = 0xff;
             tty2_putc('O');
             tty2_putc('K');
             break;
         case SET_LED_OFF:
-            led_status = 0;
+            led_status = 0x00;
             tty2_putc('O');
             tty2_putc('K');
             break;
         case SET_RESET:
-            P3OUT = 0;
-            // TODO
+            P3OUT = 0x00;
+            WDTCTL = 0xDEAD;
             break;
         case GET_RESET_HASH:
             send_hash ();
@@ -220,11 +221,11 @@ int main(void) {
 
     enable_interrupts();
 
-    led_status = 0;
     P3DIR  = 0xFF;
+    led_status = 0x11;
 
     while(1) {
-        P3OUT = led_status+128;
+        P3OUT = led_status;
         __nop();
         __nop();
         __nop();
